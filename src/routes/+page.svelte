@@ -1,6 +1,6 @@
 
 <script lang="ts">
-    import { Banknote, Cpu, Pickaxe } from '@lucide/svelte';
+    import { Banknote, Cpu, DraftingCompass, Pickaxe } from '@lucide/svelte';
     import type { Component } from 'svelte';
     import Button from "$lib/components/button/button.svelte";
     import { Icon } from 'svelte-sonner';
@@ -9,7 +9,7 @@
     const departments: Department[] = [
         { id: 'finance', title: 'Finance', icon: Banknote },
         { id: 'engineering', title: 'Engineering', icon: Cpu },
-        { id: 'materials', title: 'Materials', icon: Pickaxe }
+        { id: 'metrology', title: 'Metrology', icon: DraftingCompass }
     ]
 
 </script>
