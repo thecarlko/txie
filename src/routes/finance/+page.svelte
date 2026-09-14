@@ -5,8 +5,10 @@
     import { Sankey } from '$lib/components/sankey'
     import { bank } from '$lib/data/bank.svelte';
     import * as Tabs from "$lib/components/tabs";
+    import * as Table from "$lib/components/table";
     import Button from '$lib/components/button/button.svelte';
-    import { Plus } from '@lucide/svelte';
+    import { Plus, UserRound } from '@lucide/svelte';
+    import { PurchaseRequest, procurement } from '$lib/data/procurement.svelte';
 </script>
 
 <section class='max-w-8xl mx-auto px-[3vw]'>
@@ -21,12 +23,62 @@
     </article>
     <br>
 
-    <Button href='/finance/new' variant='ghost'>
-        <Plus />
-        New Request
-    </Button>
+    <div class='flex items-center justify-between'>
+        <Tabs.Root value="contracts" class='w-72'>
+        <Tabs.List variant='line' class='w-full'>
+            <Tabs.Trigger value="contracts">Contracts</Tabs.Trigger>
+            <Tabs.Trigger value="transactions">Transactions</Tabs.Trigger>
+        </Tabs.List>
+        </Tabs.Root>
 
+        <Button href='/finance/new' variant='secondary'><Plus />New Request</Button>
+    </div>
+    <br>
+
+    <Table.Root class='border'>
+        <Table.Header class='bg-muted'>
+            <Table.Row>
+            <Table.Head class="w-8"></Table.Head>
+            <Table.Head class="w-25"><UserRound class='stroke-2 size-5 ' /></Table.Head>
+            <Table.Head>Email</Table.Head>
+            <Table.Head>Approval</Table.Head>
+            <Table.Head>Purpose</Table.Head>
+            <Table.Head>Details</Table.Head>
+            <Table.Head class="text-end">Cost</Table.Head>
+            </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+        {#each procurement.contracts as info, index }
+            {@render ContractRow(info, index)}
+        {/each}
+        </Table.Body>
+    </Table.Root>
 </section>
+
+
+
+
+
+
+
+<!-- Row representing a single PurchaseRequest -->
+{#snippet ContractRow(info: PurchaseRequest, index: number)}
+{@const { contact, email, approval, purpose, details, purchase, fitup, misc } = info }
+{@const estimate = purchase + fitup + misc }
+<Table.Row>
+    <Table.Cell class="hover:bg-muted/50 font-medium text-center">{ index + 1 }</Table.Cell>
+    <Table.Cell class="hover:bg-muted/50 font-medium">{ contact }</Table.Cell>
+    <Table.Cell class='hover:bg-muted/50'>{ email }</Table.Cell>
+    {@render ApprovalCell(approval)}
+    <Table.Cell class='hover:bg-muted/50'>{ purpose }</Table.Cell>
+    <Table.Cell class='text-muted-foreground'>{ details }</Table.Cell>
+    <Table.Cell class="hover:bg-muted/50 text-end">{ formatCurrency(estimate) }</Table.Cell>
+</Table.Row>
+{/snippet}
+
+
+
 
 {#snippet SankeyOverview()}
 <div class='col-span-2'>
@@ -44,6 +96,18 @@
     <br>
     <p class='text-2xl'>{ formatCurrency(bank.available) }</p>
 </div>
+{/snippet}
+
+{#snippet ApprovalCell(approval: string)}
+{#if approval === 'pending'}
+    <Table.Cell class='text-orange-500'>Pending</Table.Cell>
+{:else if approval === 'approved'}
+    <Table.Cell class='text-green-500 hover:bg-muted/50'>Approved</Table.Cell>
+{:else if approval === 'rejected'}
+    <Table.Cell class='text-red-500 hover:bg-muted/50'>Rejected</Table.Cell>
+{:else}
+    <Table.Cell class='hover:bg-muted/50'>-</Table.Cell>
+{/if}
 {/snippet}
 
 

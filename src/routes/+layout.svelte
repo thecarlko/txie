@@ -4,6 +4,7 @@
     import { Button } from '$lib/components/button';
 	import * as Avatar from '$lib/components/avatar';
 	import * as Tooltip from '$lib/components/tooltip';
+    import { Toaster } from '$lib/components/sonner';
     
     
 	let { children } = $props();
@@ -12,6 +13,7 @@
 
 
 
+<Toaster richColors />
 <Tooltip.Provider>
 <nav class='fixed top-0 left-0 right-0 px-4 py-2 z-50 flex justify-between font-sans'>
     <a href='/' aria-label="Home"><img class='h-10' src='/brand/wordmark.svg' alt="Home"/></a>

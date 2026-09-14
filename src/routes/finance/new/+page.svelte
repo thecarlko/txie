@@ -1,20 +1,48 @@
 
 
 <script lang='ts'>
+    import { goto } from '$app/navigation';
     import Button from '$lib/components/button/button.svelte';
     import Currency from '$lib/components/currency/currency.svelte';
-import * as InputGroup from '$lib/components/input-group';
+    import * as InputGroup from '$lib/components/input-group';
+    import { PurchaseRequest, procurement } from '$lib/data/procurement.svelte';
     import { formatCurrency } from '$lib/hooks/finance';
     import { AtSign, Goal, SearchIcon, UserRound } from '@lucide/svelte';
+    import { toast } from 'svelte-sonner';
+
+    let form = $state<HTMLFormElement | undefined>(undefined)
+
+    let contact = $state('');
+    let email = $state('');
+
+    let purpose = $state('');
+    let details = $state('');
 
     let purchase = $state(0);
     let fitup = $state(0);
     let misc = $state(0);
     
+    let valid = $derived(
+        email &&
+        contact &&
+        purpose &&
+        details &&
+        (purchase + fitup + misc) > 0
+    );
 
     async function submitProposal() {
+        const contract = new PurchaseRequest({ contact, email, purpose, details, purchase, fitup, misc });
+        contract.approval = 'pending';
+
+        procurement.contracts.push(contract);
+        toast.success(`Proposal submitted`);
 
 
+        form?.reset();
+        purchase = 0; fitup = 0; misc = 0;
+
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await goto('/finance');
     }
 </script>
 
@@ -22,10 +50,12 @@ import * as InputGroup from '$lib/components/input-group';
 <br>
 <br>
 <br>
+<br>
+<br>
 <article class='px-[5vw]'>
-    <form class='max-w-xl mx-auto'>
+    <form bind:this={ form }  class='max-w-xl mx-auto' onsubmit={ submitProposal }>
         <h2 class='font-medium text-2xl mb-2'>Create a new Procurement Proposal</h2>
-        <p class='text-muted-foreground'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis minima numquam recusandae?</p>
+        <p class='text-muted-foreground'>Fill out the form below to create a new procurement proposal.</p>
         <br>
         
         <h4 class='font-medium text-'>Primary Contact</h4>        
@@ -34,12 +64,12 @@ import * as InputGroup from '$lib/components/input-group';
             <label for='email' class='text-sm font-medium'>Email</label>
 
             <InputGroup.Root id='person' class='mb-3'>
-                <InputGroup.Input placeholder="Ada Lovelace" />
+                <InputGroup.Input bind:value={ contact } placeholder="Ada Lovelace" />
                 <InputGroup.Addon><UserRound /></InputGroup.Addon>
             </InputGroup.Root>
     
             <InputGroup.Root id='email' class='mb-3'>
-                <InputGroup.Input placeholder="ada_lovelace@txie.org" />
+                <InputGroup.Input bind:value={ email } placeholder="ada_lovelace@txie.org" />
                 <InputGroup.Addon><AtSign /></InputGroup.Addon>
             </InputGroup.Root>
         </div>
@@ -52,16 +82,15 @@ import * as InputGroup from '$lib/components/input-group';
 
         <div class='space-y-3 mt-3'>
             <label for='purpose' class='text-sm font-medium'>Purpose</label>
-            <InputGroup.Root id='person' class='mb-3'>
-                <InputGroup.Input placeholder="Single Wafer Cleans @ MER" />
+            <InputGroup.Root id='purpose' class='mb-3'>
+                <InputGroup.Input bind:value={ purpose } placeholder="Single Wafer Cleans @ MER" />
                 <InputGroup.Addon><Goal /></InputGroup.Addon>
             </InputGroup.Root>
 
 
             <label for='details' class='text-sm font-medium'>Details</label>
             <InputGroup.Root id='details'>
-                <InputGroup.Textarea placeholder={ `Need inline DC parametric testing. Fully enclosed ISO Class 2 clean room. Specs:\n * 100mm x 150mm\n * 200 V with AC-DC conversion` }/>
-
+                <InputGroup.Textarea bind:value={ details } placeholder={ `Need inline DC parametric testing. Fully enclosed ISO Class 2 clean room. Specs:\n * 100mm x 150mm\n * 200 V with AC-DC conversion` }/>
 
                 <InputGroup.Addon align="block-end"><InputGroup.Text class="text-xs text-muted-foreground"></InputGroup.Text></InputGroup.Addon>
             </InputGroup.Root>
@@ -86,10 +115,10 @@ import * as InputGroup from '$lib/components/input-group';
 
         <br>
         <br>
-
-        <Button class='block ml-auto'>Submit</Button>
+        <Button type="submit" disabled={ !valid } class='block ml-auto'>Submit</Button>
         <br>
         <br>
-
+        <br>
+        <br>
     </form>
 </article>
