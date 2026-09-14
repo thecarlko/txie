@@ -6,16 +6,8 @@
     import { bank } from '$lib/data/bank.svelte';
     import * as Tabs from "$lib/components/tabs";
     import Button from '$lib/components/button/button.svelte';
-    import { page } from '$app/state';
-    import Transactions from './transactions/+page.svelte';
-
-
-
-	let { children } = $props();
-    let tab = $derived(page.url.pathname.split('/')[2] || 'contracts');
+    import { Plus } from '@lucide/svelte';
 </script>
-
-
 
 <section class='max-w-8xl mx-auto px-[3vw]'>
     <br>
@@ -27,16 +19,13 @@
         {@render SankeyOverview()}
         {@render AccountOverview()}
     </article>
-
-    <Tabs.Root value={ tab } >
-    <Tabs.List variant='line' class='w-56'>
-        <Tabs.Trigger class='w-full' value='contracts'><a href='/finance/contracts'>Contracts</a></Tabs.Trigger>
-        <Tabs.Trigger class='w-full' value='transactions'><a href='/finance/transactions'>Transactions</a></Tabs.Trigger>
-    </Tabs.List>
-    </Tabs.Root>
     <br>
 
-    {@render children()}
+    <Button href='/finance/new' variant='ghost'>
+        <Plus />
+        New Request
+    </Button>
+
 </section>
 
 {#snippet SankeyOverview()}
