@@ -15,7 +15,7 @@
 
 
 <Tooltip.Provider>
-<nav class='fixed top-0 left-0 right-0 px-4 py-2 z-50 flex justify-between'>
+<nav class='fixed top-0 left-0 right-0 px-4 py-2 z-50 flex justify-between font-sans'>
     <a href='/' aria-label="Home"><img class='h-10' src='/brand/wordmark.svg' alt="Home"/></a>
 
     <a href={ sessionUser ? "/profile" : "/login" }>

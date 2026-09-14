@@ -29,7 +29,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV003",
     status: "processing",
-    amount: 32780.00,
+    amount: 327870.00,
     date: "2026-09-09T16:42:13.000Z",
     vendor: "Entegris",
     description: "FOUP carriers and wafer handling components for cleanroom production"
