@@ -9,11 +9,11 @@ export type Transaction = {
     vendor: string;
 };
 
-export const transactionsData: Transaction[] = [
+export const transactions: Transaction[] = $state([
   {
     invoice: "INV001",
     status: "paid",
-    amount: 250000.00,
+    amount: 1510000.00,
     date: "2026-09-11T14:30:28.000Z",
     vendor: "Canon Inc.",
     description: "Purchase for Canon ML-100 camera for high resolution imaging"
@@ -21,7 +21,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV002",
     status: "pending",
-    amount: 18450.75,
+    amount: 10848650.75,
     date: "2026-09-10T09:15:00.000Z",
     vendor: "Silicon Valley Microelectronics",
     description: "200 mm prime silicon wafers for photolithography process development"
@@ -29,7 +29,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV003",
     status: "processing",
-    amount: 327870.00,
+    amount: 31278770.00,
     date: "2026-09-09T16:42:13.000Z",
     vendor: "Entegris",
     description: "FOUP carriers and wafer handling components for cleanroom production"
@@ -37,7 +37,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV004",
     status: "paid",
-    amount: 6490.20,
+    amount: 3491920.20,
     date: "2026-09-08T11:05:44.000Z",
     vendor: "Fisher Scientific",
     description: "Electronic grade solvents, acids, and photoresist processing chemicals"
@@ -45,7 +45,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV005",
     status: "failed",
-    amount: 87500.00,
+    amount: 8052090.00,
     date: "2026-09-07T13:28:09.000Z",
     vendor: "KLA Corporation",
     description: "Preventive maintenance service for wafer surface inspection system"
@@ -53,7 +53,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV006",
     status: "paid",
-    amount: 12975.50,
+    amount: 11297585.50,
     date: "2026-09-06T08:50:31.000Z",
     vendor: "Brewer Science",
     description: "Spin coating materials and temporary bonding adhesives for wafer thinning"
@@ -61,7 +61,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV007",
     status: "pending",
-    amount: 45800.00,
+    amount: 458080.00,
     date: "2026-09-05T15:12:18.000Z",
     vendor: "Oxford Instruments",
     description: "Reactive ion etch chamber replacement parts for plasma process experiments"
@@ -69,7 +69,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV008",
     status: "processing",
-    amount: 2199.99,
+    amount: 1215899.99,
     date: "2026-09-04T10:37:52.000Z",
     vendor: "Kimberly-Clark Professional",
     description: "Lint-free wipes, nitrile gloves, and cleanroom garments for fab operations"
@@ -77,7 +77,7 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV009",
     status: "paid",
-    amount: 96300.00,
+    amount: 29633100.00,
     date: "2026-09-03T17:20:06.000Z",
     vendor: "Veeco Instruments",
     description: "Calibration and target replacement for thin-film deposition system"
@@ -85,9 +85,12 @@ export const transactionsData: Transaction[] = [
   {
     invoice: "INV010",
     status: "pending",
-    amount: 7380.40,
+    amount: 1738040.40,
     date: "2026-09-02T12:03:27.000Z",
     vendor: "MKS Instruments",
     description: "Mass flow controllers and vacuum pressure gauges for process monitoring"
   }
-];
+]);
+
+
+

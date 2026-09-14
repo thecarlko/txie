@@ -4,21 +4,16 @@
     import * as Table from "$lib/components/table";
     import { createColumnHelper } from "@tanstack/svelte-table";
     import type { DataTableFeatures } from "./table-features.ts";
-    import { transactionsData, type Transaction } from "$lib/data/transactions";
-
-
+    import { transactions, type Transaction } from "$lib/data/transactions.svelte";
 
     const columnHelper = createColumnHelper<DataTableFeatures, Transaction>();
-    
-
-    
 </script>
 
 
 <Table.Root class='border'>
     <Table.Header class='bg-muted'>
         <Table.Row>
-        <Table.Head class="w-[100px]">Invoice</Table.Head>
+        <Table.Head class="w-25">Invoice</Table.Head>
         <Table.Head>Status</Table.Head>
         <Table.Head>Vendor</Table.Head>
         <Table.Head>Description</Table.Head>
@@ -27,7 +22,7 @@
     </Table.Header>
 
     <Table.Body>
-    {#each transactionsData as info}
+    {#each transactions as info}
         {@render Transaction(info)}
     {/each}
     </Table.Body>

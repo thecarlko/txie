@@ -45,6 +45,8 @@
 		"@observablehq/plot": "^0.6.17",
 		"@tanstack/svelte-table": "^9.2.4",
 		"@types/d3": "^7.4.3",
+		"@unovis/svelte": "^1.7.0",
+		"@unovis/ts": "^1.7.0",
 		"d3": "^7.9.0",
 		"d3-sankey": "^0.12.3",
 		"d3-scale": "^4.0.2",
