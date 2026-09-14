@@ -7,8 +7,6 @@
     
     
 	let { children } = $props();
-
-
     let sessionUser = $state(undefined);
 </script>
 

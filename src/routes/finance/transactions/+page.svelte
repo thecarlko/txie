@@ -3,7 +3,7 @@
 <script lang='ts'>
     import * as Table from "$lib/components/table";
     import { createColumnHelper } from "@tanstack/svelte-table";
-    import type { DataTableFeatures } from "./table-features.ts";
+    import type { DataTableFeatures } from "../table-features.ts";
     import { transactions, type Transaction } from "$lib/data/transactions.svelte";
 
     const columnHelper = createColumnHelper<DataTableFeatures, Transaction>();

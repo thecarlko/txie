@@ -19,7 +19,7 @@
 <section class='h-screen flex flex-col pt-[6vw]'>
     <article class='w-full max-w-8xl mx-auto px-[3vw]'>
         <img class='size-16 pr-3' src='brand/icon.svg' alt="Texas Institute for Electronics" /> 
-
+        <br>
         <h1 class="bg-linear-to-br from-foreground to-zinc-400 bg-clip-text text-balance text-transparent">
         <span class='text-3xl/loose font-medium'>Fab Engineering</span><br>
         <span class="text-6xl font-display font-medium bg-clip-text bg-linear-to-br from-[hsl(24,84%,87%)] to-[hsl(21,28%,51%)]">Texas Institute for Electronics</span><br>
