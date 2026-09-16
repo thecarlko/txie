@@ -39,7 +39,7 @@
         </Tabs.List>
         </Tabs.Root>
 
-        <Button href='/finance/new' class='w-max mx-auto rounded-none pr-4'><Plus />New Request</Button>
+        <Button href='/new' class='w-max mx-auto rounded-none pr-4'><Plus />New Request</Button>
 
         <div class='ml-auto flex gap-2'>
             <DatePicker title="Start Date" bind:value={ start } />

@@ -19,13 +19,10 @@
 </script>
 
 
-<div class="flex flex-col gap-3 ml-auto">
-    <Label for={ rand } class="px-1">{ title }</Label>
-    <Input
-      type="date"
-      id="date"
-      step="1"
-      bind:value
-      class="appearance-none bg-background [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
-    />
-</div>
+<Input
+    type="date"
+    id="date"
+    step="1"
+    bind:value
+    class="appearance-none bg-background [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+/>
