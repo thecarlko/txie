@@ -4,6 +4,7 @@
     import { goto } from '$app/navigation';
     import Button from '$lib/components/button/button.svelte';
     import Currency from '$lib/components/currency/currency.svelte';
+    import { DatePicker } from '$lib/components/date-picker';
     import * as InputGroup from '$lib/components/input-group';
     import { PurchaseRequest, procurement } from '$lib/data/procurement.svelte';
     import { formatCurrency } from '$lib/hooks/finance';
@@ -12,11 +13,12 @@
 
     let form = $state<HTMLFormElement | undefined>(undefined)
 
-    let contact = $state('');
-    let email = $state('');
+    let contact = $state('Gordon Moore');
+    let email = $state('gordon_moore@txie.org');
 
-    let purpose = $state('');
-    let details = $state('');
+    let purpose = $state('Single Wafer Cleans @ MER');
+    let details = $state('Need inline DC parametric testing. Fully enclosed ISO Class 2 clean room. Specs:\n * 100mm x 150mm\n * 200 V with AC-DC conversion');
+    let targetDate = $state('09:01:2026');
 
     let purchase = $state(0);
     let fitup = $state(0);
@@ -26,8 +28,8 @@
         email &&
         contact &&
         purpose &&
-        details &&
-        (purchase + fitup + misc) > 0
+        details
+        // (purchase + fitup + misc) > 0
     );
 
     async function submitProposal() {
@@ -88,18 +90,20 @@
             </InputGroup.Root>
 
 
-            <label for='details' class='text-sm font-medium'>Details</label>
+            <label for='details' class='text-sm mb-2 font-medium'>Details</label>
             <InputGroup.Root id='details'>
                 <InputGroup.Textarea bind:value={ details } placeholder={ `Need inline DC parametric testing. Fully enclosed ISO Class 2 clean room. Specs:\n * 100mm x 150mm\n * 200 V with AC-DC conversion` }/>
 
                 <InputGroup.Addon align="block-end"><InputGroup.Text class="text-xs text-muted-foreground"></InputGroup.Text></InputGroup.Addon>
             </InputGroup.Root>
-        </div>
-        <br>
-        <hr class='border-b-[0.5] border-dashed'>
-        <br>
 
-        <h4 class='font-medium text-'>Cost</h4>     
+            <DatePicker bind:value={ targetDate } title='Needed by'></DatePicker>
+        </div>
+
+        <!-- <br>
+        <hr class='border-b-[0.5] border-dashed'>
+        <br> -->
+        <!-- <h4 class='font-medium text-'>Cost</h4>     
         <p class='text-muted-foreground'>How much is the estimated cost for this tool/service</p>
         <div class='mt-3 grid grid-cols-3 gap-y-2 gap-x-3 items-center'>
             <label for='purpose' class='text-sm font-medium'>Est. Purchase</label>
@@ -111,7 +115,7 @@
             <label for='purpose' class='text-sm font-medium'>Est. Miscellaneous & Fees</label>
             <Currency bind:value={ misc } />
         </div>
-        <p class='mt-4 text-end text-sm text-muted-foreground'>Total estimated cost: <span class='text-xl text-foreground font-medium'>{ formatCurrency(purchase + fitup + misc) }</span></p>
+        <p class='mt-4 text-end text-sm text-muted-foreground'>Total estimated cost: <span class='text-xl text-foreground font-medium'>{ formatCurrency(purchase + fitup + misc) }</span></p> -->
 
         <br>
         <br>

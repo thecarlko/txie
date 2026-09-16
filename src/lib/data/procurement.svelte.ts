@@ -7,12 +7,13 @@ export class PurchaseRequest {
 
     purpose: string;
     details: string;
+    targetDate: string;
+    approval: 'draft' | 'pending' | 'approved' | 'rejected' = 'draft';
 
     purchase: number;
     fitup: number
     misc: number;
 
-    approval: 'draft' | 'pending' | 'approved' | 'rejected' = 'draft';
 
     vendor: string | undefined;
     model: string | undefined;
@@ -30,6 +31,8 @@ export class PurchaseRequest {
         this.purchase = data.purchase;
         this.fitup = data.fitup;
         this.misc = data.misc;
+
+        this.targetDate = data.targetDate;
     }
 }
 

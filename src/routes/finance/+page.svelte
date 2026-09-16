@@ -6,9 +6,17 @@
     import { bank } from '$lib/data/bank.svelte';
     import * as Tabs from "$lib/components/tabs";
     import * as Table from "$lib/components/table";
+    import { Calendar } from "$lib/components/calendar";
+    import { Label } from "$lib/components/label";
+    import * as Popover from "$lib/components/popover";
     import Button from '$lib/components/button/button.svelte';
-    import { Plus, UserRound } from '@lucide/svelte';
+    import { Plus, UserRound, ChevronDownIcon, ChevronsLeftRight } from '@lucide/svelte';
     import { PurchaseRequest, procurement } from '$lib/data/procurement.svelte';
+    import { type CalendarDate } from "@internationalized/date";
+    import { DatePicker } from '$lib/components/date-picker';
+
+    let start = $state<CalendarDate | undefined>();
+    let end = $state<CalendarDate | undefined>();
 </script>
 
 <section class='max-w-8xl mx-auto px-[3vw]'>
@@ -23,7 +31,7 @@
     </article>
     <br>
 
-    <div class='flex items-center justify-between'>
+    <div class='grid grid-cols-3 gap-4 items-end'>
         <Tabs.Root value="contracts" class='w-72'>
         <Tabs.List variant='line' class='w-full'>
             <Tabs.Trigger value="contracts">Contracts</Tabs.Trigger>
@@ -31,20 +39,26 @@
         </Tabs.List>
         </Tabs.Root>
 
-        <Button href='/finance/new' variant='secondary'><Plus />New Request</Button>
+        <Button href='/finance/new' class='w-max mx-auto rounded-none pr-4'><Plus />New Request</Button>
+
+        <div class='ml-auto flex gap-2'>
+            <DatePicker title="Start Date" bind:value={ start } />
+            <DatePicker title="End Date" bind:value={ end } />
+        </div>
     </div>
+    <br>
     <br>
 
     <Table.Root class='border'>
         <Table.Header class='bg-muted'>
             <Table.Row>
-            <Table.Head class="w-8"></Table.Head>
-            <Table.Head class="w-25"><UserRound class='stroke-2 size-5 ' /></Table.Head>
-            <Table.Head>Email</Table.Head>
-            <Table.Head>Approval</Table.Head>
-            <Table.Head>Purpose</Table.Head>
-            <Table.Head>Details</Table.Head>
-            <Table.Head class="text-end">Cost</Table.Head>
+                <Table.Head class="w-8"></Table.Head>
+                <Table.Head class="w-25"><UserRound class='stroke-2 size-5 ' /></Table.Head>
+                <Table.Head>Email</Table.Head>
+                <Table.Head>Status</Table.Head>
+                <Table.Head>Purpose</Table.Head>
+                <!-- <Table.Head class='border'>Details</Table.Head> -->
+                <Table.Head class="text-end">Target Date</Table.Head>
             </Table.Row>
         </Table.Header>
 
@@ -56,28 +70,20 @@
     </Table.Root>
 </section>
 
-
-
-
-
-
-
 <!-- Row representing a single PurchaseRequest -->
 {#snippet ContractRow(info: PurchaseRequest, index: number)}
-{@const { contact, email, approval, purpose, details, purchase, fitup, misc } = info }
+{@const { contact, email, approval, purpose, details, purchase, fitup, misc, targetDate } = info }
 {@const estimate = purchase + fitup + misc }
 <Table.Row>
-    <Table.Cell class="hover:bg-muted/50 font-medium text-center">{ index + 1 }</Table.Cell>
+    <Table.Cell class="hover:bg-muted/50 font-medium text-center"><ChevronsLeftRight class='-rotate-45 stroke-1 transition-all hover:scale-110' /></Table.Cell>
     <Table.Cell class="hover:bg-muted/50 font-medium">{ contact }</Table.Cell>
     <Table.Cell class='hover:bg-muted/50'>{ email }</Table.Cell>
     {@render ApprovalCell(approval)}
     <Table.Cell class='hover:bg-muted/50'>{ purpose }</Table.Cell>
-    <Table.Cell class='text-muted-foreground'>{ details }</Table.Cell>
-    <Table.Cell class="hover:bg-muted/50 text-end">{ formatCurrency(estimate) }</Table.Cell>
+    <!-- <Table.Cell class='text-muted-foreground'>{ details }</Table.Cell> -->
+    <Table.Cell class="hover:bg-muted/50 text-end">{ targetDate }</Table.Cell>
 </Table.Row>
 {/snippet}
-
-
 
 
 {#snippet SankeyOverview()}
