@@ -6,17 +6,23 @@
     import { bank } from '$lib/data/bank.svelte';
     import * as Tabs from "$lib/components/tabs";
     import * as Table from "$lib/components/table";
-    import { Calendar } from "$lib/components/calendar";
-    import { Label } from "$lib/components/label";
-    import * as Popover from "$lib/components/popover";
     import Button from '$lib/components/button/button.svelte';
-    import { Plus, UserRound, ChevronDownIcon, ChevronsLeftRight } from '@lucide/svelte';
-    import { PurchaseRequest, procurement } from '$lib/data/procurement.svelte';
+    import { Plus } from '@lucide/svelte';
     import { type CalendarDate } from "@internationalized/date";
     import { DatePicker } from '$lib/components/date-picker';
+    import { generateID } from '$lib/hooks/hash';
+    import { goto } from '$app/navigation';
 
     let start = $state<CalendarDate | undefined>();
     let end = $state<CalendarDate | undefined>();
+
+    function createPurchaseRequest() {
+        const id = generateID();
+        const request = { id, proposals: [] };
+
+        bank.purchaseRequests[id] = request;
+        goto(`/finance/${ request.id }`);
+    }
 </script>
 
 <section class='max-w-8xl mx-auto px-[3vw]'>
@@ -39,7 +45,7 @@
         </Tabs.List>
         </Tabs.Root>
 
-        <Button href='/new' class='w-max mx-auto rounded-none pr-4'><Plus />New Request</Button>
+        <Button onclick={ createPurchaseRequest } class='w-max mx-auto rounded-none pr-4'><Plus />New Purchase Request</Button>
 
         <div class='ml-auto flex gap-2'>
             <DatePicker title="Start Date" bind:value={ start } />
@@ -49,6 +55,28 @@
     <br>
     <br>
 
+    
+</section>
+
+<!-- Row representing a single PurchaseRequest -->
+<!-- {#snippet ContractRow(info: PurchaseRequest, index: number)}
+{@const { contact, email, approval, purpose, details, purchase, fitup, misc, targetDate } = info }
+{@const estimate = purchase + fitup + misc }
+<Table.Row>
+    <Table.Cell class="hover:bg-muted/50 font-medium text-center"><ChevronsLeftRight class='-rotate-45 stroke-1 transition-all hover:scale-110' /></Table.Cell>
+    <Table.Cell class="hover:bg-muted/50 font-medium">{ contact }</Table.Cell>
+    <Table.Cell class='hover:bg-muted/50'>{ email }</Table.Cell>
+    {@render ApprovalCell(approval)}
+    <Table.Cell class='hover:bg-muted/50'>{ purpose }</Table.Cell>
+    <Table.Cell class='text-muted-foreground'>{ details }</Table.Cell>
+    <Table.Cell class="hover:bg-muted/50 text-end">{ targetDate }</Table.Cell>
+</Table.Row>
+{/snippet} -->
+
+<!--
+
+    
+
     <Table.Root class='border'>
         <Table.Header class='bg-muted'>
             <Table.Row>
@@ -57,7 +85,7 @@
                 <Table.Head>Email</Table.Head>
                 <Table.Head>Status</Table.Head>
                 <Table.Head>Purpose</Table.Head>
-                <!-- <Table.Head class='border'>Details</Table.Head> -->
+                <Table.Head class='border'>Details</Table.Head>
                 <Table.Head class="text-end">Target Date</Table.Head>
             </Table.Row>
         </Table.Header>
@@ -68,22 +96,8 @@
         {/each}
         </Table.Body>
     </Table.Root>
-</section>
 
-<!-- Row representing a single PurchaseRequest -->
-{#snippet ContractRow(info: PurchaseRequest, index: number)}
-{@const { contact, email, approval, purpose, details, purchase, fitup, misc, targetDate } = info }
-{@const estimate = purchase + fitup + misc }
-<Table.Row>
-    <Table.Cell class="hover:bg-muted/50 font-medium text-center"><ChevronsLeftRight class='-rotate-45 stroke-1 transition-all hover:scale-110' /></Table.Cell>
-    <Table.Cell class="hover:bg-muted/50 font-medium">{ contact }</Table.Cell>
-    <Table.Cell class='hover:bg-muted/50'>{ email }</Table.Cell>
-    {@render ApprovalCell(approval)}
-    <Table.Cell class='hover:bg-muted/50'>{ purpose }</Table.Cell>
-    <!-- <Table.Cell class='text-muted-foreground'>{ details }</Table.Cell> -->
-    <Table.Cell class="hover:bg-muted/50 text-end">{ targetDate }</Table.Cell>
-</Table.Row>
-{/snippet}
+-->
 
 
 {#snippet SankeyOverview()}
