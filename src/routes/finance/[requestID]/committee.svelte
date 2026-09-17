@@ -8,5 +8,8 @@
 
 
 <Tabs.Content value="committee" class='border border-green-400'>
+    <br>
+    <br>
+    <br>
     <h1>This is the committee page</h1>
 </Tabs.Content>
