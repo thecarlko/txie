@@ -6,7 +6,6 @@
     import Currency from '$lib/components/currency/currency.svelte';
     import { DatePicker } from '$lib/components/date-picker';
     import * as InputGroup from '$lib/components/input-group';
-    import { PurchaseRequest, procurement } from '$lib/data/procurement.svelte';
     import { formatCurrency } from '$lib/hooks/finance';
     import { AtSign, Goal, SearchIcon, UserRound } from '@lucide/svelte';
     import { toast } from 'svelte-sonner';
@@ -31,21 +30,6 @@
         details
         // (purchase + fitup + misc) > 0
     );
-
-    async function submitProposal() {
-        const contract = new PurchaseRequest({ contact, email, purpose, details, purchase, fitup, misc });
-        contract.approval = 'pending';
-
-        procurement.contracts.push(contract);
-        toast.success(`Proposal submitted`);
-
-
-        form?.reset();
-        purchase = 0; fitup = 0; misc = 0;
-
-        await new Promise(resolve => setTimeout(resolve, 500));
-        await goto('/finance');
-    }
 </script>
 
 
@@ -55,7 +39,7 @@
 <br>
 <br>
 <article class='px-[5vw]'>
-    <form bind:this={ form }  class='max-w-xl mx-auto' onsubmit={ submitProposal }>
+    <form bind:this={ form }  class='max-w-xl mx-auto' onsubmit={ () => {}}>
         <h2 class='font-medium text-2xl mb-2'>Create a new Procurement Proposal</h2>
         <p class='text-muted-foreground'>Fill out the form below to create a new procurement proposal.</p>
         <br>

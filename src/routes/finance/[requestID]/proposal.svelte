@@ -1,0 +1,120 @@
+
+
+
+<script lang='ts'>
+    import { Button } from "$lib/components/button";
+    import { Input } from "$lib/components/input";
+    import { Label } from "$lib/components/label";
+    import * as RadioGroup from "$lib/components/radio-group";
+    import * as InputGroup from "$lib/components/input-group";
+    import * as Tabs from "$lib/components/tabs";
+    import { DatePicker } from "$lib/components/date-picker";
+    import { ArrowRight, Layers, ScanSquare, Microscope } from "@lucide/svelte";
+
+    let project : "process-module" | "test-vehicle" | "process-vehicle" = $state("process-module");
+    let projectTypes = [
+        { value: "process-module", label: "Process Module", icon: Layers },
+        { value: "test-vehicle", label: "Test Vehicle", icon: ScanSquare },
+        { value: "process-vehicle", label: "Process Vehicle", icon: Microscope },
+    ];
+
+    let name = $state("Sugento Huandra");
+    let email = $state("sugento_huandra@txie.org");
+    let purpose = $state("Wafer Based Plasma Dicing");
+    let details = $state(`To support C4 bumping process when pitch is >=200 um.\nMultiple potential customers asking for capability with 4 mil to 16 mil spheres, SnPb and SnAg.\n\nTwo options:\n\t‒ (1) ball drop (w/flux print & rework), est. $2M,\n\t‒ (2) laser jet (lower throughput), est. $800k ...`);
+    let due = $state("11/15/2026");
+
+    let validProposal = $derived(
+        name.length > 0 && email.length > 0 && purpose.length > 0 && details.length > 0 && due.length > 0
+    )
+
+    async function submitProposal() {
+        // if (!request) return;
+        // const proposal: Proposal = {
+        //     id: generateID(), 
+        //     type: project,
+        //     requester: name,
+        //     requesterEmail: email,
+
+        //     purpose, details, due
+        // }
+
+        // request.proposals.push(proposal);
+    }
+</script>
+
+<Tabs.Content value='proposal' class='grid grid-cols-2 px-[5vw] border border-blue-400'>
+    <section class='sticky top-42 h-max '>
+    <article class='max-w-xl mx-auto w-full'>
+        <h1 class='font-medium text-lg mb-1'>New Proposal</h1>
+    </article>
+    </section>
+    
+    <form onsubmit={ submitProposal } class='max-w-xl pt-40 pb-24'>
+        <h3 class='font-medium text-lg mb-1'>Supported Project</h3>
+        <p class='text-muted-foreground'>What project is this going to be used for?</p>
+        <RadioGroup.Root bind:value={ project } class='grid grid-cols-3 gap-4 mt-4'>
+            {#each projectTypes as { value, label, icon: Icon }}
+                <Label
+                    class='cursor-pointer flex flex-col gap-3 items-start border p-4 bg-accent opacity-50 font-medium transition-all
+                    data-[selected=true]:bg-white data-[selected=true]:shadow-md data-[selected=true]:text-slate-700 data-[selected=true]:opacity-100'
+                    data-selected={ value == project }>
+    
+                    <RadioGroup.Item class='hidden' value={ value }/>
+                    <Icon class='size-6 stroke-1' />
+                    { label }
+                </Label>
+            {/each}
+        </RadioGroup.Root>
+        <br>
+        <hr class='border-[0.5] border-dashed'>
+        <br>
+
+
+        <h3 class='font-medium text-lg mb-1'>Project Owners</h3>
+        <p class='text-muted-foreground'>Who is making the request for a new capability/equipment? Anyone else involved?</p>
+        <br>
+        <div class='grid grid-cols-2 gap-y-3 gap-x-4'>
+            <Label for="name">Your name</Label>
+            <Label for="email">Email Address</Label>
+    
+            <Input bind:value={name} id='name' type='name' placeholder='Sugento Huandra' />
+            <Input bind:value={email} id='email' type='email' placeholder='sugento_huandra@txie.org'/> 
+        </div>
+        <br>
+        <hr class='border-[0.5] border-dashed'>
+        <br>
+
+    
+        <h3 class='font-medium text-lg mb-1'>Proposal Overview</h3>
+        <p class='text-muted-foreground'>Provide extra information about the tool. What will it be used for? Why do we need it?</p>
+        <br>
+        <Label for="purpose" class='mb-3'>Equipment Purpose</Label>
+        <Input bind:value={purpose} id='purpose' type='text' placeholder='Wafer Based Plasma Dicing' />
+        <br>
+        <br>
+    
+        <Label for="details" class='mb-3'>Details</Label>
+        <InputGroup.Root>
+            <InputGroup.Textarea
+                id='details'
+                class='resize-y min-h-40'
+                bind:value={details}
+                placeholder={ `To support C4 bumping process when pitch is >=200 um.\nMultiple potential customers asking for capability with 4 mil to 16 mil spheres, SnPb and SnAg.\n\nTwo options:\n\t‒ (1) ball drop (w/flux print & rework), est. $2M,\n\t‒ (2) laser jet (lower throughput), est. $800k ...` }/>
+        </InputGroup.Root>
+        <br>
+        
+    
+        <Label for="details" class='mb-3'>Due By</Label>
+        <DatePicker bind:value={due} />
+        <br>
+        <br>
+        <br>
+        <Button disabled={ !validProposal } variant='default' class='ml-auto flex items-center gap-3 pl-4'>Submit to Committee <ArrowRight class='stroke-[1.5]' /></Button>
+
+
+        <br>
+        <br>
+    </form>
+
+</Tabs.Content>
