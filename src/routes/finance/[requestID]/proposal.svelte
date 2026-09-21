@@ -43,7 +43,7 @@
     }
 </script>
 
-<Tabs.Content value='proposal' class='grid grid-cols-2 px-[5vw] border border-blue-400'>
+<Tabs.Content value='proposal' class='grid grid-cols-2 px-[5vw]'>
     <section class='sticky top-42 h-max '>
     <article class='max-w-xl mx-auto w-full'>
         <h1 class='font-medium text-lg mb-1'>New Proposal</h1>
