@@ -10,7 +10,12 @@
     import * as Tabs from "$lib/components/tabs";
     import { DatePicker } from "$lib/components/date-picker";
     import { ArrowRight, Layers, ScanSquare, Microscope } from "@lucide/svelte";
+    import type { PurchaseRequest } from "$lib/data/procurement.svelte";
+    import { page } from "$app/state";
+    import type { Proposal } from "$lib/data/procurement.svelte";
+    import { generateID } from "$lib/hooks/hash";
 
+    let { request = $bindable() as PurchaseRequest } = $props()
     let project : "process-module" | "test-vehicle" | "process-vehicle" = $state("process-module");
     let projectTypes = [
         { value: "process-module", label: "Process Module", icon: Layers },
@@ -29,17 +34,24 @@
     )
 
     async function submitProposal() {
-        // if (!request) return;
-        // const proposal: Proposal = {
-        //     id: generateID(), 
-        //     type: project,
-        //     requester: name,
-        //     requesterEmail: email,
+        const proposal: Proposal = {
+            id: generateID(), 
+            type: project,
+            requester: name,
+            requesterEmail: email,
+            submitted: new Date().toISOString(),
+            committee: [
+                { name: "Pratik Joshi", email: "pratik_joshi@txie.org" },
+                { name: "Jonah Neff", email: "jonah_neff@txie.org" }
+            ],
 
-        //     purpose, details, due
-        // }
 
-        // request.proposals.push(proposal);
+            purpose, details, due
+        }
+
+
+        request.proposals.push(proposal);
+        console.log("Submitted proposal", proposal);
     }
 </script>
 
@@ -110,7 +122,7 @@
         <br>
         <br>
         <br>
-        <Button disabled={ !validProposal } variant='default' class='ml-auto flex items-center gap-3 pl-4'>Submit to Committee <ArrowRight class='stroke-[1.5]' /></Button>
+        <Button type='submit' disabled={ !validProposal } variant='default' class='ml-auto flex items-center gap-3 pl-4'>Submit to Committee <ArrowRight class='stroke-[1.5]' /></Button>
 
 
         <br>

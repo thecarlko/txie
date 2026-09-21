@@ -18,7 +18,7 @@ export type Proposal = {
     due: string;
     submitted: string;
 
-    committee: { email: string; name: string; vote?: "approve" | "reject" | "abstain"; votedAt: string; }[];
+    committee: { email: string; name: string; vote?: "approve" | "reject" | "abstain"; votedAt?: string; }[];
 }
 
 

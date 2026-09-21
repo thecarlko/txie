@@ -11,8 +11,8 @@
     import Procurement from "./procurement.svelte";
 
 
-    let { requestID } = $derived(page.params);
-    let request: PurchaseRequest | undefined = $derived(bank.purchaseRequests[requestID ?? '']);
+    let { requestID } = page.params;
+    let request: PurchaseRequest | undefined = $state(bank.purchaseRequests[requestID ?? '']);
 </script>
 
 
@@ -32,11 +32,10 @@
         <Tabs.Trigger class='h-7 rounded-none' value="procurement">Procurement</Tabs.Trigger>
     </Tabs.List>
 
-
-    <Proposal />
-    <Committee />
-    <Vendors />
-    <Procurement />
+    <Proposal bind:request />
+    <Committee bind:request />
+    <Vendors bind:request />
+    <Procurement bind:request />
 </Tabs.Root>
 {/if}
 
