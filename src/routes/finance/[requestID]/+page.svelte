@@ -1,5 +1,4 @@
 <script lang='ts'>
-
     import { bank } from "$lib/data/bank.svelte";
     import { page } from "$app/state";
     import { type PurchaseRequest } from "$lib/data/procurement.svelte";
@@ -13,6 +12,8 @@
 
     let { requestID } = page.params;
     let request: PurchaseRequest | undefined = $state(bank.purchaseRequests[requestID ?? '']);
+
+    let section = $state("proposal");
 </script>
 
 
@@ -22,7 +23,7 @@
     <br>
     <h1>Request not found</h1>
 {:else}
-<Tabs.Root value="proposal" class=''>
+<Tabs.Root bind:value={section} class=''>
     <div class='fixed top-0 left-0 w-screen h-16 bg-linear-180 from-background via-background to-background/30 z-10'></div>
 
     <Tabs.List class='fixed top-0 left-1/2 -translate-x-1/2 my-4 z-40 bg-transparent gap-1 grid grid-cols-4 p-0'>
@@ -32,10 +33,10 @@
         <Tabs.Trigger class='h-7 rounded-none' value="procurement">Procurement</Tabs.Trigger>
     </Tabs.List>
 
-    <Proposal bind:request />
-    <Committee bind:request />
-    <Vendors bind:request />
-    <Procurement bind:request />
+    <Proposal bind:request bind:section />
+    <Committee bind:request bind:section />
+    <Vendors bind:request bind:section />
+    <Procurement bind:request bind:section />
 </Tabs.Root>
 {/if}
 

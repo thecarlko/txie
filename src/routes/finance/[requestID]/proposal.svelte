@@ -15,7 +15,7 @@
     import type { Proposal } from "$lib/data/procurement.svelte";
     import { generateID } from "$lib/hooks/hash";
 
-    let { request = $bindable() as PurchaseRequest } = $props()
+    let { request = $bindable() as PurchaseRequest, section = $bindable() } = $props()
     let project : "process-module" | "test-vehicle" | "process-vehicle" = $state("process-module");
     let projectTypes = [
         { value: "process-module", label: "Process Module", icon: Layers },
@@ -51,7 +51,7 @@
 
 
         request.proposals.push(proposal);
-        console.log("Submitted proposal", proposal);
+        console.log(request);
     }
 </script>
 

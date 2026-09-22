@@ -7,11 +7,11 @@
     import type { PurchaseRequest } from "$lib/data/procurement.svelte";
     import type { Proposal } from "$lib/data/procurement.svelte";
 
-    let { request = $bindable() as PurchaseRequest } = $props();
+    let { request = $bindable() as PurchaseRequest, section = $bindable() } = $props();
     let { proposals } = $derived(request);
     let sorted = $derived(proposals.toSorted((a, b) => new Date(b.submitted).getTime() - new Date(a.submitted).getTime()));
 
-    let currentID = $state<string>(sorted[0].id ?? '');
+    let currentID = $state<string>(sorted[0]?.id ?? '');
     let current = $derived(sorted.find((p) => p.id === currentID));
 </script>
 

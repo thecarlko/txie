@@ -4,7 +4,7 @@
 <script lang='ts'>
     import * as Tabs from "$lib/components/tabs";
     import type { PurchaseRequest } from "$lib/data/procurement.svelte";
-    let { request = $bindable() as PurchaseRequest } = $props()
+    let { request = $bindable() as PurchaseRequest, section = $bindable() } = $props()
 </script>
 
 
