@@ -21,7 +21,7 @@
         const request = { id, proposals: [] };
 
         bank.purchaseRequests[id] = request;
-        goto(`/finance/${ request.id }`);
+        goto(`/finance/cart`);
     }
 </script>
 

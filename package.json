@@ -47,6 +47,7 @@
 		"@types/d3": "^7.4.3",
 		"@unovis/svelte": "^1.7.0",
 		"@unovis/ts": "^1.7.0",
+		"chrono-node": "^2.10.1",
 		"d3": "^7.9.0",
 		"d3-sankey": "^0.12.3",
 		"d3-scale": "^4.0.2",

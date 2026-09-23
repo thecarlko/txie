@@ -4,7 +4,6 @@
     import { type PurchaseRequest } from "$lib/data/procurement.svelte";
     import { Microscope, Layers, ScanSquare, ArrowLeft, ArrowRight } from "@lucide/svelte";
     import * as Tabs from "$lib/components/tabs";
-    import Proposal from "./proposal.svelte";
     import Committee from "./committee.svelte";
     import Vendors from "./vendors.svelte";
     import Procurement from "./procurement.svelte";
@@ -33,7 +32,6 @@
         <Tabs.Trigger class='h-7 rounded-none' value="procurement">Procurement</Tabs.Trigger>
     </Tabs.List>
 
-    <Proposal bind:request bind:section />
     <Committee bind:request bind:section />
     <Vendors bind:request bind:section />
     <Procurement bind:request bind:section />

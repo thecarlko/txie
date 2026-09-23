@@ -1,8 +1,8 @@
 <script lang='ts'>
     import * as InputGroup from '$lib/components/input-group';
 
-    let displayValue = $state('');
     let { value = $bindable<number | undefined>(undefined) } = $props();
+    let displayValue = $state(value ? formatWithCommas(value.toString()) : '');
 
 
     function formatWithCommas(digits: string): string {

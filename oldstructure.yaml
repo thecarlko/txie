@@ -1,0 +1,130 @@
+# Table 1 - EPG Request List | Represents the list of requests that engineers have made for tools they would like to be purchased
+ID: EPG-40
+Requester: Barry Allen (barry_allen@txie.org)
+Detail: Provides high-throughput electrical continuity testing for a 2D die map (in-plane XY).
+Location (MR2 | MER): MR2
+
+# Price
+Purchase Price: $280,010
+Fit-Up & Shipping: $50,000
+Additional Costs: $10,000
+Total Cost: $340,010
+
+#Vendor Information
+Vendor: Keysight Technologies
+Model: Keysight 4080 Tester
+
+# Procurement Information
+REQ#: REQ98816Y
+PO#: 
+PO Status:
+
+
+Deprecated:
+  - Phase (Phase 1 | Phase 2 | Phase 3): Phase 1
+  - Supported (PM/TV/PV || DoW vs Commercial): TV2 TV3
+
+Replace With:
+  - Due: Nov 30, 2026
+  - Project (PM / TV / PV): PM
+  - Supported (DoD vs Commercial): DoD
+
+------
+# Table 2 - Fit Up + Ped Spend Summary & Compare
+
+-Fit-Up Vendor: Brycon
+-Fit-Up: $294,067.00
+-Pedestal Type (RMF Island / Vibration / Elephant Feet / Slab / Other): RMF Island
+-Pedestal Vendor: Brycon
+-Pedestal Cost: $50,000.00
+
+# Table 3 -- MR2 Tool Fit Up Assignments
+-Tool ID: ABL01 ABL51
+-Assigned To: Brycon, Semicon
+
+
+# Table 4 -- Tool Fit UP Bid Tabs Report
+ID: WTB02, WTV51, WTB 52
+Quote Due by: 06/08/26
+
+
+# Table 5: Pedestal Audit
+Contract Type: Equip Pedestals
+Contract Name: Fulcrum Technologies, Inc (WO-26131) LexCorp 
+Vendor: Fulcrum Technologies, Inc
+Tool: AOI52, BND02, DEF51
+Contract Value: 1,400,000.00
+Spend to Date: 365,000.00
+Account: 1430960680
+
+
+# Table 6 - Tool Futures:
+Tool ID: ABL01, ABL51
+Vendor: Disco, park Systems Inc, Canon, KLA, Yamaha
+PO: 2026C00808
+PO Value: $1,761,889.55
+Payment Terms: Net 30 30/50/20, Net 30 90/10, Net 30 30/60/10
+Estimated Ship Date: Pending, 31 Mar, 26 June,
+Estimated Fitup $200,000.00
+
+# Table 7 - Location Code
+Location: Montopolis, Pickle
+Type: Flex, 200mm, 300mm,
+
+# Table 8 -Costs By Tool and More
+Tool ID: ABL51, AFM51
+Location: MR2
+Tool Total: $2,654,218
+  - Purchase: $2,200,000
+  - Support EQP: $0
+  - Shipping: $1471
+  - Shipping: $529
+  - Design: $67,693
+  - Fit Up: $359,525
+  - Pedestal Manufacturing: $0
+  - RMF Island/Pedestal: $25,000 | Not Started
+Status (Executed / Unexecuted / Not Started): Executed, Unexecuted, Not Started
+Detail: Customs, Included in PO
+Lookup TDR: $1397734
+Parent Status: Installed, Delivered
+PO#: 2026C00449, K0VP2793116
+Contract Number: 2026_3311AddendB, 2025_2621ServAgr
+
+# Table 8 - Fit Up Summary & Forecast
+Vendor: CTI
+  - CTI WO: $12,865,279
+  - CTI Change Order: $2,426,057
+  - CTI Change Order Remaining Forecast: $146,999
+Current Contract Value: $9,000,000
+Committed Value: $15,438,335
+Invoiced & Paid: $6,405,377
+Remaining to be Paid: $9,032,958
+Parent Contracts: 2026_3578ServAgr, 2025_3557ServAgr,2025_1401ServAgr
+Est. Increase Needed: $6,438,335
+
+
+
+# Table 9 - Tool Spending Summary - MR2
+Total Tool Capital Cost: $216,610,146
+Support EQP: 6347565
+Total Fit Up Cost: $12,865,279
+Total Design Cost: $1,000,000
+
+
+# Table 10 - Vendor List
+Vendor: Keysight Technologies, Brycon, Fulcrum Technologies, Disco, Park Systems Inc, Canon, KLA, Yamaha, CTI
+Category: Fit-Up, General, Design, Pedestal, Tool, Support Equipment
+
+
+
+# Table 11 - Tool Set List
+ID: ABL51, AOI51, BND02, BND51
+Tool Placed: True
+Tool Leveled: False
+
+
+
+
+
+
+
