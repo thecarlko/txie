@@ -31,8 +31,7 @@
 <Button onclick={() => startLookingForVendors()} variant='default' class='ml-auto flex items-center gap-3 pl-4'>Forward to Vendor Research <ArrowRight class='stroke-[1.5]' /></Button>
 <br>
 <br>
-<br>
-<br>
+
 
 
 {#snippet Person(name: any, status: any)}

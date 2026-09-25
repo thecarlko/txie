@@ -1,7 +1,6 @@
 
 
 <script lang='ts'>
-
     import * as RadioGroup from "$lib/components/radio-group";
     import * as InputGroup from "$lib/components/input-group";
     import * as Kbd from "$lib/components/kbd";
@@ -102,7 +101,7 @@
                 </div>
             {/each}
 
-            <Button size='sm' variant='outline' class='col-span-full w-max mx-auto gap-x-2' onclick={addStakeholder}><UserRoundPlus class='size-4' /> Add Stakeholder</Button>
+            <Button size='sm' variant='outline' class='col-span-full w-max mx-auto gap-x-2 pr-4' onclick={addStakeholder}><UserRoundPlus class='size-4' /> Add Stakeholder</Button>
         </div>
         <br>
         <hr class='border-[0.5] border-dashed'>
