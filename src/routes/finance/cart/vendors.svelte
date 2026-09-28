@@ -21,32 +21,46 @@
         shipping: number | undefined;
         fitup: number | undefined;
         misc: number | undefined;
+        support: number | undefined;
         recommended: boolean;
     }
 
 
+    let currentVendorIndex = $state("0");
+
+
     let vendors = $state<Vendor[]>([
-        { name: "", model: "", purchase: undefined, shipping: undefined, fitup: undefined, misc: undefined, recommended: false },
+        { name: "", model: "", purchase: undefined, shipping: undefined, fitup: undefined, misc: undefined, support: undefined, recommended: false },
     ]);
 
 
     function addVendor() {
-        vendors.push({ name: "", model: "", purchase: undefined, shipping: undefined, fitup: undefined, misc: undefined, recommended: false });
+        vendors.push({ name: "", model: "", purchase: undefined, shipping: undefined, fitup: undefined, misc: undefined, support: undefined, recommended: false });
+        currentVendorIndex = (vendors.length - 1).toString();
     }
 
     function removeVendor(index: number) {
         vendors = vendors.filter((_, i) => i !== index);
+        currentVendorIndex = Math.min(parseInt(currentVendorIndex) ?? 0, vendors.length - 1).toString();
+    }
+
+    /** Ensure only one vendor is recommended */
+    function recommendVendor(index: number) {
+        vendors.forEach((vendor, i) => {
+            vendor.recommended = (i === index);
+        });
     }
 
     // At least one vendor must have complete information (name, model, and at least one cost field) to submit
     let submitValid = $derived(
-        vendors.some(vendor => vendor.name && vendor.model && (vendor.purchase || vendor.shipping || vendor.fitup || vendor.misc))
+        vendors.some(vendor => vendor.name && vendor.model && vendor.purchase && (vendor.shipping || vendor.fitup || vendor.misc || vendor.support))
     )
 </script>
 
 
 
-<section class='grid grid-cols-2'>
+
+<section class='grid grid-cols-1 lg:grid-cols-2 gap-y-8'>
     <aside>
         <header class='sticky top-36 pt-2'>
             <strong class='text-xl font-medium'>03 - Vendors</strong>
@@ -54,7 +68,7 @@
     </aside>
 
     <article>
-        <Tabs.Root value="0">
+        <Tabs.Root bind:value={ currentVendorIndex } >
             <Tabs.List class='mb-4 bg-transparent gap-2'>
                 {#each vendors as vendor, index}
                 <Tabs.Trigger value={index.toString()} class='p-3 h-7 data-active:bg-foreground data-active:text-background data-active:hover:text-background'>
@@ -70,7 +84,7 @@
 
             
             {#each vendors as vendor, index }
-            {@const total = (vendor.purchase ?? 0) + (vendor.shipping ?? 0) + (vendor.fitup ?? 0) + (vendor.misc ?? 0) }
+            {@const total = (vendor.purchase ?? 0) + (vendor.shipping ?? 0) + (vendor.fitup ?? 0) + (vendor.misc ?? 0) + (vendor.support ?? 0) }
             {@const recc = vendor.recommended }
             <Tabs.Content value={ index.toString() }>
                 <div class='grid grid-cols-2 gap-y-3 gap-x-4'>
@@ -81,9 +95,10 @@
                 <Input bind:value={vendors[index].model} id='model' type='text' placeholder='PJ9000' />
                 </div>
                 <br>
+                <br>
         
                 <h4 class='font-medium'>Cost</h4> 
-                <p class='text-muted-foreground'>How much is the estimated cost for this tool.</p>
+                <p class='text-muted-foreground'>How much is the estimated cost for this tool? Any support equipment needed to be purchased or rented? If so, please provide an estimate of support equipment as well</p>
                 <div class='mt-3 grid grid-cols-3 gap-y-3 gap-x-3 items-center'>
                     <label for='purpose' class='text-sm font-medium'>Est. Purchase</label>
                     <Currency bind:value={ vendors[index].purchase } />
@@ -93,13 +108,16 @@
                     
                     <label for='purpose' class='text-sm font-medium'>Est. Fit-Up</label>
                     <Currency bind:value={ vendors[index].fitup } />
-        
+                    
                     <label for='purpose' class='text-sm font-medium'>Est. Miscellaneous & Fees</label>
                     <Currency bind:value={ vendors[index].misc } />
+                    
+                    <label for='purpose' class='text-sm font-medium'>Est. Support Equipment</label>
+                    <Currency bind:value={ vendors[index].support } />
                 </div>
                 <br>
                 <div class='grid grid-cols-[auto_auto_1fr_auto] gap-2 items-end mt-2'>
-                    <Button onclick={ () => vendor.recommended = !recc } size='sm' variant='outline' class='flex items-center gap-2 pr-4'>
+                    <Button onclick={ () => recommendVendor(index) } size='sm' variant='outline' class='flex items-center gap-2 pr-4'>
                         {#if recc }
                         <Star class='size-4 stroke-0 fill-orange-400' /> Recommend
                         {:else}
@@ -118,6 +136,19 @@
                 </div>
                 <br>
                 <br>
+
+                <strong class='font-medium block'>Installation</strong>
+                <p class='text-muted-foreground'>Provide the site location, dimensions, and contamination requirements for this equipment</p>
+
+
+                <br>
+                <br>
+                <br>
+
+
+                
+
+
 
                 <strong class='mb-4 font-medium block'>Attachment</strong>
                 <label for='attachment' class='border border-dashed flex flex-col items-center justify-center px-4 py-8 gap-1'>
@@ -140,7 +171,5 @@
     
     </article>
 </section>
-<br>
-<br>
 <br>
 <br>

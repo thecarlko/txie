@@ -3,17 +3,21 @@
 <script lang='ts'>
     import { Badge } from '$lib/components/badge';
     import * as Avatar from "$lib/components/avatar"
-    import { ArrowRight } from "@lucide/svelte";
+    import { ArrowRight, ArrowUp } from "@lucide/svelte";
     import { Button } from "$lib/components/button";
 
     function startLookingForVendors() {
+
+    }
+
+    function returnToProposal() {
 
     }
 </script>
 
 
 
-<section class='grid grid-cols-2'>
+<section class='grid grid-cols-1 lg:grid-cols-2 gap-y-8'>
     <aside>
         <header class='sticky top-36'>
             <strong class='text-xl font-medium'>02 - FAB Leadership</strong>
@@ -24,15 +28,19 @@
         {@render Person("Pratik Joshi", "accepted")}
         {@render Person("Jonah Neff", "pending")}
         {@render Person("Sugento Huandra", "rejected")}
+        <br>
+        <br>
+
+        <div class='flex justify-end gap-4'>
+            <Button onclick={() => returnToProposal()} variant='outline' class='flex items-center gap-3 pl-4'>Return to Proposal <ArrowUp class='stroke-2' /></Button>
+            <Button onclick={() => startLookingForVendors()} variant='default' class='flex items-center gap-3'>Forward to Vendor Research <ArrowRight class='stroke-[1.5]' /></Button>
+        </div>
     </content>
 </section>
 <br>
 <br>
-<Button onclick={() => startLookingForVendors()} variant='default' class='ml-auto flex items-center gap-3 pl-4'>Forward to Vendor Research <ArrowRight class='stroke-[1.5]' /></Button>
 <br>
 <br>
-
-
 
 {#snippet Person(name: any, status: any)}
 {@const initials = name.split(" ").map((n: string) => n.charAt(0)).join("")}
