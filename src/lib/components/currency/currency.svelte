@@ -1,7 +1,23 @@
 <script lang='ts'>
     import * as InputGroup from '$lib/components/input-group';
+    import type {HTMLAttributes } from 'svelte/elements';
+	import { cn, type WithElementRef } from "$lib/utils.js";
 
-    let { value = $bindable<number | undefined>(undefined) } = $props();
+
+    let {
+        class: className,
+        variant = "default",
+        value = $bindable<number | undefined>(undefined),
+        placeholder = "10,000.00"
+    }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
+        variant?: "default" | "underline" | "ghost";
+        value?: number;
+        placeholder?: string;
+    } = $props();
+
+
+
+
     let displayValue = $state(value ? formatWithCommas(value.toString()) : '');
 
 
@@ -35,14 +51,23 @@
     }
 </script>
 
-<InputGroup.Root class='col-span-2'>
-<InputGroup.Addon><InputGroup.Text>$</InputGroup.Text></InputGroup.Addon>
-<InputGroup.Input
-    bind:value={displayValue}
-    oninput={handleInput}
-    placeholder="10,000.00"
-    type="text"
-    inputmode="decimal"
-/>
+<InputGroup.Root
+    class={cn(
+        variant === 'underline' && 'rounded-none border-0 border-b bg-transparent shadow-none dark:bg-transparent has-[[data-slot=input-group-control]:focus-visible]:ring-0 has-[[data-slot][aria-invalid=true]]:ring-0',
+        className
+    )}
+    data-variant={variant}
+>
+    <InputGroup.Addon>
+        <InputGroup.Text>$</InputGroup.Text>
+    </InputGroup.Addon>
+
+    <InputGroup.Input
+        bind:value={displayValue}
+        oninput={handleInput}
+        placeholder={placeholder}
+        type="text"
+        inputmode="decimal"
+    />
 <InputGroup.Addon align="inline-end"><InputGroup.Text>USD</InputGroup.Text></InputGroup.Addon>
 </InputGroup.Root>

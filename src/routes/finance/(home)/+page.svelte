@@ -48,8 +48,8 @@
         <Button onclick={ createPurchaseRequest } class='w-max mx-auto rounded-none pr-4'><Plus />New Purchase Request</Button>
 
         <div class='ml-auto flex gap-2'>
-            <DatePicker title="Start Date" bind:value={ start } />
-            <DatePicker title="End Date" bind:value={ end } />
+            <DatePicker/>
+            <DatePicker />
         </div>
     </div>
     <br>

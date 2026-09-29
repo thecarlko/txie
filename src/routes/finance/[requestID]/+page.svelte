@@ -1,42 +1,49 @@
+
+
 <script lang='ts'>
-    import { bank } from "$lib/data/bank.svelte";
-    import { page } from "$app/state";
-    import { type PurchaseRequest } from "$lib/data/procurement.svelte";
-    import { Microscope, Layers, ScanSquare, ArrowLeft, ArrowRight } from "@lucide/svelte";
+    import Proposal from './proposal.svelte'
+    import Vendors from './vendors.svelte'
+    import Leadership from './leadership.svelte';
+
     import * as Tabs from "$lib/components/tabs";
-    import Committee from "./committee.svelte";
-    import Vendors from "./vendors.svelte";
-    import Procurement from "./procurement.svelte";
+    import Button from '$lib/components/button/button.svelte';
+    import { ArrowRight } from "@lucide/svelte";
+
+    let tab = $state("proposal");
 
 
-    let { requestID } = page.params;
-    let request: PurchaseRequest | undefined = $state(bank.purchaseRequests[requestID ?? '']);
 
-    let section = $state("proposal");
+    async function submitProposal() {
+        
+    }
 </script>
 
 
-{#if !request }
-    <br>
-    <br>
-    <br>
-    <h1>Request not found</h1>
-{:else}
-<Tabs.Root bind:value={section} class=''>
-    <div class='fixed top-0 left-0 w-screen h-16 bg-linear-180 from-background via-background to-background/30 z-10'></div>
+<Tabs.Root bind:value={tab}>
+    <Proposal />
+    <Leadership />
+    <Vendors />
+    
+    <div class='fixed top-0 w-screen pb-5 pt-3 px-6 flex justify-center bg-background'>
+        <Tabs.List variant='line' class='gap-x-4'>
+            <Tabs.Trigger value="proposal" class='after:bg-transparent'>Proposal</Tabs.Trigger>
+            <Tabs.Trigger value="leadership" class='after:bg-transparent font-base'>Leadership</Tabs.Trigger>
+            <Tabs.Trigger value="vendors" class='after:bg-transparent'>Vendors</Tabs.Trigger>
+            <Tabs.Trigger value="facility" class='after:bg-transparent'>Facility</Tabs.Trigger>
+        </Tabs.List>
 
-    <Tabs.List class='fixed top-0 left-1/2 -translate-x-1/2 my-4 z-40 bg-transparent gap-1 grid grid-cols-4 p-0'>
-        <Tabs.Trigger class='h-7 rounded-none' value="proposal">Proposal</Tabs.Trigger>
-        <Tabs.Trigger class='h-7 rounded-none' value="committee">Committee</Tabs.Trigger>
-        <Tabs.Trigger class='h-7 rounded-none' value="vendors">Vendors</Tabs.Trigger>
-        <Tabs.Trigger class='h-7 rounded-none' value="procurement">Procurement</Tabs.Trigger>
-    </Tabs.List>
+        <div class='ml-auto hidden gap-4 items-center grid-cols-[auto_auto]'>
+            <Button variant='secondary' class='px-4'>Return</Button>
 
-    <Committee bind:request bind:section />
-    <Vendors bind:request bind:section />
-    <Procurement bind:request bind:section />
+            <Button onclick={() => submitProposal()} disabled={ false } variant='default' class='ml-auto flex items-center gap-3 pl-4'>Submit to FAB Leadership <ArrowRight class='stroke-2' /></Button>
+        </div>
+    </div>
 </Tabs.Root>
-{/if}
+
+
+
+
+
 
 
 
