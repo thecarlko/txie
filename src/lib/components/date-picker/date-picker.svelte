@@ -19,7 +19,7 @@
         });
     }
 
-    let { inputValue = $bindable<string>() } = $props();
+    let { inputValue = $bindable<string>(), disabled = false } = $props();
     const id = $props.id();
 
     let open = $state(false);
@@ -39,7 +39,7 @@
 
 
 <Popover.Root bind:open>
-    <Popover.Trigger id="{id}-date-picker" class="border w-full py-1.5 px-3 text-start disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 grid grid-cols-[1fr_auto]">
+    <Popover.Trigger disabled={ disabled } id="{id}-date-picker" class="border w-full py-1.5 px-3 text-start disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 grid grid-cols-[1fr_auto]">
         { formatDate(value) }
         <CalendarIcon class='size-5 stroke-1' />
     </Popover.Trigger>

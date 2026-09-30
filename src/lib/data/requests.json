@@ -1,0 +1,23 @@
+[
+  {
+    "id": "req-001",
+    "request_number": "EPG-40",
+    "latest_snapshot": "snap-001-v2",
+    "submitted_by": "usr-barry",
+    "submitted_at": "2026-09-10T08:30:00Z"
+  },
+  {
+    "id": "req-002",
+    "request_number": "EPG-41",
+    "latest_snapshot": "snap-002-v1",
+    "submitted_by": "usr-sugento",
+    "submitted_at": "2026-09-15T10:15:00Z"
+  },
+  {
+    "id": "req-003",
+    "request_number": "EPG-42",
+    "latest_snapshot": "snap-003-v4",
+    "submitted_by": "usr-jane",
+    "submitted_at": "2026-09-20T14:00:00Z"
+  }
+]

@@ -1,5 +1,5 @@
 import { transactions, type Transaction } from '$lib/data/transactions.svelte';
-import type { PurchaseRequest } from './procurement.svelte';
+import type { PurchaseRequest } from '$lib/models/procurement';
 
 
 class Bank {

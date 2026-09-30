@@ -6,24 +6,29 @@
     import * as InputGroup from "$lib/components/input-group";
     import * as Field from "$lib/components/field";
     import { formatCurrency } from "$lib/hooks/finance";
-    import { BadgeCheck, Undo2, Gavel, MapPin, Target, Sparkles, Clock, CircleX, RefreshCcwDot } from "@lucide/svelte";
+    import { BadgeCheck, Undo2, Gavel, MapPin, Target, Sparkles, Clock, CircleX, RefreshCcwDot, Lock } from "@lucide/svelte";
     import type { Component } from "svelte";
     import { slide } from "svelte/transition";
     import { Currency } from "$lib/components/currency";
+    import { database } from "$lib/data/procurement.svelte";
+    import type { FABLeadershipDecision } from "$lib/models/procurement";
 
     let {
-        snapshot = $bindable() as Record<string, any> | undefined
+        snapshot = $bindable() as Record<string, any> | undefined,
+        request
     } = $props();
 
-
-    // Decision State
-    let decision = $state<"approved" | "changes_requested" | "rejected" | "">("");
-    let comments = $state("");
+    // Decision State - Hydrate if already decided
+    let decision = $state<FABLeadershipDecision>(snapshot?.outcome || "");
+    let comments = $state(snapshot?.comments || "");
     let touched = $state({ decision: false, comments: false });
     let submitted = $state(false);
     
     // Initialize the working budget with the engineer's total estimate
     let budget = $state(snapshot?.totalEstimate ?? 0);
+
+    // Lock form if an approval or rejection is already recorded
+    let isDecided = $derived(snapshot?.outcome === 'approved' || snapshot?.outcome === 'rejected');
 
     let errors = $derived({
         decision: (touched.decision || submitted) && !decision ? "A gate decision is required." : null,
@@ -35,11 +40,29 @@
         submitted = true;
         if (Object.values(errors).some(err => err !== null)) return;
         
-        // Proceed to generate Review record and update Request.stage
-        console.log("Decision recorded:", decision, comments, budget);
-    }
+        const now = new Date().toISOString();
 
-    $effect(() => console.log("Current snapshot:", snapshot));
+        // 1. Save outcome to snapshot
+        database.purchase_snapshots[snapshot!.id].outcome = decision;
+        database.purchase_snapshots[snapshot!.id].comments = comments;
+        database.purchase_snapshots[snapshot!.id].decider_id = "usr-lead-1"; // Mocking current user
+        database.purchase_snapshots[snapshot!.id].decided_at = now;
+
+        // 2. Advance the state machine for the parent request
+        if (decision === 'approved') {
+            database.purchase_requests[request.id].stage = 'sourcing';
+        } else if (decision === 'rejected') {
+            database.purchase_requests[request.id].stage = 'rejected';
+        } else if (decision === 'changes_requested') {
+            database.purchase_requests[request.id].stage = 'draft';
+        }
+
+        // 3. Update local UI bindings
+        snapshot!.outcome = decision;
+        snapshot!.comments = comments;
+        snapshot!.decider_id = "usr-lead-1";
+        snapshot!.decided_at = now;
+    }
 </script>
 
 <Tabs.Content value="leadership" class='gap-x-16 grid grid-cols-1 md:grid-cols-2 px-[5vw] w-full mx-auto max-w-8xl'>
@@ -64,8 +87,8 @@
                 <h3 class="text-3xl font-medium mb-4">{snapshot.purpose}</h3>
                 <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
                     <span class="flex items-center gap-1.5 uppercase"><MapPin class="size-4" /> {snapshot.location}</span>
-                    <span class="flex items-center gap-1.5 capitalize"><Sparkles class="size-4" /> {snapshot.needType}</span>
-                    <span class="flex items-center gap-1.5"><Clock class="size-4" /> Needed by {snapshot.due}</span>
+                    <span class="flex items-center gap-1.5 capitalize"><Sparkles class="size-4" /> {snapshot.need_type.replace('_', ' ')}</span>
+                    <span class="flex items-center gap-1.5"><Clock class="size-4" /> Needed by {snapshot.due_date}</span>
                 </div>
             </section>
 
@@ -75,7 +98,7 @@
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-2 uppercase tracking-wider">What it does</h4>
-                    <p class="text-foreground whitespace-pre-wrap">{snapshot.purpose}</p>
+                    <p class="text-foreground whitespace-pre-wrap">{snapshot.details}</p>
                 </div>
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-2 uppercase tracking-wider">Current Gap</h4>
@@ -108,7 +131,7 @@
 
             <!-- Specs & Timeline -->
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {#if snapshot.specs.length > 0}
+                {#if snapshot.specs?.length > 0}
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Target Specifications</h4>
                     <dl class="space-y-2 text-sm">
@@ -121,21 +144,21 @@
                     </dl>
                 </div>
                 {/if}
-                {#if snapshot.firmness && snapshot.force && snapshot.consequence}
+                {#if snapshot.firmness && snapshot.force && snapshot.consequence_if_late}
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Timeline Constraints</h4>
                     <dl class="space-y-2 text-sm">
                         <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
                             <dt class="text-muted-foreground">Firmness</dt>
-                            <dd class="font-medium text-right">{snapshot.firmness}</dd>
+                            <dd class="font-medium text-right capitalize">{snapshot.firmness}</dd>
                         </div>
                         <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
                             <dt class="text-muted-foreground">Forced Timeline</dt>
-                            <dd class="font-medium text-right">{snapshot.force}</dd>
+                            <dd class="font-medium text-right capitalize">{snapshot.force}</dd>
                         </div>
                         <div class="pt-2">
                             <dt class="text-muted-foreground mb-1">Consequence if late</dt>
-                            <dd class="font-medium">{snapshot.consequence}</dd>
+                            <dd class="font-medium">{snapshot.consequence_if_late}</dd>
                         </div>
                     </dl>
                 </div>
@@ -149,16 +172,16 @@
                 <h4 class="font-medium text-sm text-muted-foreground mb-4 uppercase tracking-wider">Estimated Budget Envelope</h4>
                 <div class="bg-background border rounded-lg overflow-hidden">
                     <div class="divide-y">
-                        {#each snapshot.receipt as line}
+                        {#each Object.entries(snapshot.receipt || {}) as [category, amount]}
                             <div class="grid grid-cols-[1fr_auto] p-4 items-center">
-                                <span class="text-muted-foreground capitalize">{line.category}</span>
-                                <span class="font-medium">{formatCurrency(line.amount)}</span>
+                                <span class="text-muted-foreground capitalize">{category.replace('_', ' ')}</span>
+                                <span class="font-medium">{formatCurrency(amount as number)}</span>
                             </div>
                         {/each}
                     </div>
                     <div class="bg-muted/50 grid grid-cols-[1fr_auto] p-4 items-center border-t">
                         <span class="font-medium">Total Estimate</span>
-                        <span class="font-medium text-xl">{formatCurrency(snapshot.totalEstimate)}</span>
+                        <span class="font-medium text-xl">{formatCurrency(snapshot.totalEstimate || 0)}</span>
                     </div>
                 </div>
             </section>
@@ -168,52 +191,84 @@
     <article class='grid grid-rows-[1fr_auto] md:sticky md:h-screen top-0 h-auto md:pt-28 pb-16'>
         
         <div class="space-y-8 mt-12 md:mt-0">
-            <Field.Set>
-                <Field.Legend class='font-medium text-lg mb-1'>Decision</Field.Legend>
-                <Field.Description>Is this problem worth solving, at roughly this cost?</Field.Description>
-                
-                <RadioGroup.Root bind:value={decision} onfocusout={() => touched.decision = true} class='grid grid-cols-3 gap-3 mt-4'>
-                    {@render DecisionCard("approved", decision, "Approve Envelope", BadgeCheck, "text-green-600")}
-                    {@render DecisionCard("changes_requested", decision, "Request Changes", Undo2, "text-orange-500")}
-                    {@render DecisionCard("rejected", decision, "Reject", CircleX, "text-red-500")}
-                </RadioGroup.Root>
-                {#if errors.decision}
-                    <Field.Error class="mt-2">{errors.decision}</Field.Error>
-                {/if}
-            </Field.Set>
+            {#if isDecided}
+                <!-- Read-Only Locked State -->
+                <div class="bg-accent/40 border rounded-lg p-6 flex flex-col gap-4">
+                    <div class="flex items-center gap-3">
+                        <Lock class="size-5 text-muted-foreground" />
+                        <h3 class="font-medium text-lg">Fab Leadership Decision Locked</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
+                        <span class="text-muted-foreground">Outcome</span>
+                        <strong class={`uppercase text-sm ${snapshot.outcome === 'approved' ? 'text-green-600' : 'text-red-600'}`}>
+                            {snapshot.outcome.replace('_', ' ')}
+                        </strong>
+                    </div>
 
-            {#if decision === "approved" }
-            <div transition:slide>
+                    {#if snapshot.outcome === 'approved'}
+                        <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
+                            <span class="text-muted-foreground">Approved Envelope</span>
+                            <strong class="text-sm">{formatCurrency(budget)}</strong>
+                        </div>
+                    {/if}
+
+                    <div class="pt-2">
+                        <span class="text-muted-foreground block mb-1">Comments & Conditions</span>
+                        <p class="text-sm">{snapshot.comments || "None provided."}</p>
+                    </div>
+                </div>
+            {:else}
+                <!-- Active Form State -->
                 <Field.Set>
-                    <Field.Legend class='font-medium'>Authorized Budget Envelope</Field.Legend>
-                    <Field.Description>Set the working budget that will be used to source vendors. By default, this is the engineer's total estimate.</Field.Description>
-
-                    <Currency bind:value={budget} placeholder={snapshot.totalEstimate.toString()} class="text-xl" />
+                    <Field.Legend class='font-medium text-lg mb-1'>Decision</Field.Legend>
+                    <Field.Description>Is this problem worth solving, at roughly this cost?</Field.Description>
+                    
+                    <RadioGroup.Root bind:value={decision} onfocusout={() => touched.decision = true} class='grid grid-cols-3 gap-3 mt-4'>
+                        {@render DecisionCard("approved", decision, "Approve Envelope", BadgeCheck, "text-green-600")}
+                        {@render DecisionCard("changes_requested", decision, "Request Changes", Undo2, "text-orange-500")}
+                        {@render DecisionCard("rejected", decision, "Reject", CircleX, "text-red-500")}
+                    </RadioGroup.Root>
+                    {#if errors.decision}
+                        <Field.Error class="mt-2">{errors.decision}</Field.Error>
+                    {/if}
                 </Field.Set>
-            </div>
-            {/if}
 
-            <Field.Field>
-                <Field.Label for="comments" class='font-medium'>Comments & Conditions</Field.Label>
-                <InputGroup.Root class="mt-2">
-                    <InputGroup.Textarea
-                        id="comments"
-                        bind:value={comments}
-                        onblur={() => touched.comments = true}
-                        class={`min-h-32 resize-none ${errors.comments ? 'border-destructive' : ''}`}
-                        placeholder="Provide feedback, conditions of approval, or reasons for rejection..." />
-                </InputGroup.Root>
-                {#if errors.comments}
-                    <Field.Error class="mt-2">{errors.comments}</Field.Error>
+                {#if decision === "approved" }
+                <div transition:slide>
+                    <Field.Set>
+                        <Field.Legend class='font-medium'>Authorized Budget Envelope</Field.Legend>
+                        <Field.Description>Set the working budget that will be used to source vendors. By default, this is the engineer's total estimate.</Field.Description>
+
+                        <Currency bind:value={budget} placeholder={(snapshot.totalEstimate || 0).toString()} class="text-xl" />
+                    </Field.Set>
+                </div>
                 {/if}
-            </Field.Field>
+
+                <Field.Field>
+                    <Field.Label for="comments" class='font-medium'>Comments & Conditions</Field.Label>
+                    <InputGroup.Root class="mt-2">
+                        <InputGroup.Textarea
+                            id="comments"
+                            bind:value={comments}
+                            onblur={() => touched.comments = true}
+                            class={`min-h-32 resize-none ${errors.comments ? 'border-destructive' : ''}`}
+                            placeholder="Provide feedback, conditions of approval, or reasons for rejection..." />
+                    </InputGroup.Root>
+                    {#if errors.comments}
+                        <Field.Error class="mt-2">{errors.comments}</Field.Error>
+                    {/if}
+                </Field.Field>
+            {/if}
         </div>
 
-        <div class="pt-8">
-            <Button onclick={submitReview} variant='default' class='w-full flex items-center justify-center gap-3 py-6 text-base'>
-                <Gavel class='stroke-[1.5] size-5' /> Finalize Decision
-            </Button>
-        </div>
+        {#if !isDecided}
+            <div class="pt-8">
+                <Button onclick={submitReview} variant='default' class='w-full flex items-center justify-center gap-3 py-6 text-base'>
+                    <Gavel class='stroke-[1.5] size-5' /> Finalize Decision
+                </Button>
+            </div>
+        {/if}
     </article>
 {/if}
 </Tabs.Content>

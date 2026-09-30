@@ -12,13 +12,15 @@
     import { DatePicker } from '$lib/components/date-picker';
     import { generateID } from '$lib/hooks/hash';
     import { goto } from '$app/navigation';
+    import type { PurchaseRequest, PurchaseSnapshot } from '$lib/models/procurement';
+    import { createPurchaseRequest, database } from '$lib/data/procurement.svelte';
 
     let start = $state<CalendarDate | undefined>();
     let end = $state<CalendarDate | undefined>();
 
-    function createPurchaseRequest() {
-        const id = generateID();
-        goto(`/finance/${id}`);
+    async function createNewPurchaseRequest() {
+        const id = createPurchaseRequest();
+        goto(`/finance/${ id }`);
     }
 </script>
 
@@ -42,7 +44,7 @@
         </Tabs.List>
         </Tabs.Root>
 
-        <Button onclick={ createPurchaseRequest } class='w-max mx-auto rounded-none pr-4'><Plus />New Purchase Request</Button>
+        <Button onclick={ createNewPurchaseRequest } class='w-max mx-auto rounded-none pr-4'><Plus />New Purchase Request</Button>
 
         <div class='ml-auto flex gap-2'>
             <DatePicker/>

@@ -8,11 +8,13 @@
         class: className,
         variant = "default",
         value = $bindable<number | undefined>(undefined),
-        placeholder = "10,000.00"
+        placeholder = "10,000.00",
+        disabled = false
     }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
         variant?: "default" | "underline" | "ghost";
         value?: number;
         placeholder?: string;
+        disabled?: boolean;
     } = $props();
 
 
@@ -68,6 +70,7 @@
         placeholder={placeholder}
         type="text"
         inputmode="decimal"
+        disabled={disabled}
     />
 <InputGroup.Addon align="inline-end"><InputGroup.Text>USD</InputGroup.Text></InputGroup.Addon>
 </InputGroup.Root>
