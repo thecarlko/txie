@@ -107,12 +107,12 @@
             </section>
 
             <!-- Programs & Personnel -->
-            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-accent/30 rounded-lg">
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-accent/30">
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Programs Supported</h4>
                     <div class="flex flex-wrap gap-2">
                         {#each snapshot.programs as prog}
-                            <span class="px-2.5 py-1 bg-background border rounded-md text-sm font-medium">{prog}</span>
+                            <span class="px-2.5 py-1 bg-background border text-sm font-medium">{prog}</span>
                         {/each}
                     </div>
                 </div>
@@ -170,7 +170,7 @@
             <!-- Budget Envelope -->
             <section>
                 <h4 class="font-medium text-sm text-muted-foreground mb-4 uppercase tracking-wider">Estimated Budget Envelope</h4>
-                <div class="bg-background border rounded-lg overflow-hidden">
+                <div class="bg-background border overflow-hidden">
                     <div class="divide-y">
                         {#each Object.entries(snapshot.receipt || {}) as [category, amount]}
                             <div class="grid grid-cols-[1fr_auto] p-4 items-center">
@@ -193,7 +193,7 @@
         <div class="space-y-8 mt-12 md:mt-0">
             {#if isDecided}
                 <!-- Read-Only Locked State -->
-                <div class="bg-accent/40 border rounded-lg p-6 flex flex-col gap-4">
+                <div class="bg-accent/40 border p-6 flex flex-col gap-4">
                     <div class="flex items-center gap-3">
                         <Lock class="size-5 text-muted-foreground" />
                         <h3 class="font-medium text-lg">Fab Leadership Decision Locked</h3>
@@ -275,7 +275,7 @@
 
 {#snippet DecisionCard(value: string, current: string, label: string, Icon: Component, styling: string)}
     <Label data-selected={ value === current } class={ 
-    'cursor-pointer border flex flex-col items-center justify-center gap-2 px-2 py-4 rounded-md transition-all opacity-70 hover:opacity-100 data-[selected=true]:bg-background data-[selected=true]:shadow-sm data-[selected=true]:opacity-100 data-[selected=true]:border-foreground/40' }>
+    'cursor-pointer border flex flex-col items-center justify-center gap-2 px-2 py-4 transition-all opacity-70 hover:opacity-100 data-[selected=true]:bg-background data-[selected=true]:shadow-sm data-[selected=true]:opacity-100 data-[selected=true]:border-foreground/40' }>
         <RadioGroup.Item { value } class='hidden' />
         <Icon class={`size-6 stroke-[1.5] ${ styling }`} />
         <span class="text-sm font-medium text-center">{ label }</span>

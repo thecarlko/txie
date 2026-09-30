@@ -474,7 +474,7 @@
                 {/each}
             </ToggleGroup.Root>
 
-            <div class='grid grid-cols-[1fr_2fr_auto] items-center gap-x-8 gap-y-1 mt-4'>
+            <div class='grid grid-cols-[1fr_2fr_auto] items-center gap-x-8 gap-y-1 mt-4' transition:slide>
                 {#each defaultSpecs.filter(s => activeSpecs.includes(s.id)) as spec}
                     <strong class="text-sm">{spec.label}</strong>
                     <Input variant='underline' bind:value={specValues[spec.id]} disabled={isDecided} placeholder={spec.placeholder} class='h-8' />

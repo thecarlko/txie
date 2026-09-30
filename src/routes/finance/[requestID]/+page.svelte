@@ -18,8 +18,8 @@
     <Leadership bind:snapshot={proposal} request={data.request} />
     <Vendors />
     
-    <div class='fixed top-0 w-screen pb-5 pt-3 px-6 flex justify-center bg-background z-50'>
-        <Tabs.List variant='line' class='gap-x-4'>
+    <div class='fixed top-0 w-screen pb-5 pt-3 px-6 flex justify-center pointer-events-none z-20 bg-linear-to-b from-background via-background to-transparent'>
+        <Tabs.List variant='line' class='gap-x-4 pointer-events-auto'>
             <Tabs.Trigger value="proposal" class='after:bg-transparent'>Proposal</Tabs.Trigger>
             <Tabs.Trigger 
                 value="leadership" 
@@ -28,9 +28,5 @@
             </Tabs.Trigger>
             <Tabs.Trigger value="vendors" class='after:bg-transparent' disabled={true}>Vendors</Tabs.Trigger>
         </Tabs.List>
-
-        <div class='ml-auto hidden gap-4 items-center grid-cols-[auto_auto]'>
-            <Button variant='secondary' class='px-4'>Return</Button>
-        </div>
     </div>
 </Tabs.Root>
