@@ -16,11 +16,10 @@
     import { slide } from "svelte/transition";
     import { ArrowRight, TestTubeDiagonal, Factory, UserRoundPlus, Trash, Gauge, Hourglass, Replace, RotateCcw, Sparkles, Upload, FileText, X, Plus, Truck, DollarSign, Ellipsis, GraduationCap, Handshake, HardHat, Package } from "@lucide/svelte";
     import Currency from "$lib/components/currency/currency.svelte";
-    import Toggle from "$lib/components/toggle/toggle.svelte";
     import { formatCurrency } from "$lib/hooks/finance";
     
 
-    let name = $state("");
+    let purpose = $state("");
     let details = $state("");
 
 
@@ -89,22 +88,11 @@
 
 
     /** Budget */
-    let costConfidence: "guess" | "quote" | "firm" = $state("quote");
-    let purchase = $state<number | undefined>(undefined);
     let costsCategories : string[] = $state([]);
     let receipt : { [key: string]: number } = $state({
         "purchase": 0
     });
 
-    // let estimate = $derived(() =>{
-    //     let total = 0;
-    //     for (const [key, value] of Object.entries(receipt)) {
-    //         if (costsCategories.includes(key) || key === "purchase") {
-    //             total += value ?? 0;
-    //         }
-    //     }
-    //     return total;
-    // });
     let estimate: number = $derived(
         Object.entries(receipt)
         .flatMap(([key, value]) => (costsCategories.includes(key) || key === "purchase") ? [value ?? 0] : [])
@@ -142,7 +130,7 @@
     <aside>
         <div class='grid grid-rows-[auto_1fr_auto] md:sticky top-0 py-20 md:pt-28 h-screen pr-16'>
             <div>
-                <h1 class='text-2xl font-medium'>01 - Proposal</h1>
+                <h1 class='text-2xl font-medium font-display'>01 - Proposal</h1>
 
             </div>
             <br>
@@ -152,6 +140,8 @@
                 <dl class="hidden grid-cols-2 gap-y-2 border-t pt-4 text-sm md:grid">
                     <dt class="text-muted-foreground">Location</dt>
                     <dd class="text-right font-medium uppercase">{ locations.find((l) => l.value === location)?.label ?? "Not set" }</dd>
+                    <dt class="text-muted-foreground">Purpose</dt>
+                    <dd class="text-right font-medium">{ purpose.length > 0 ? purpose : "Not set" }</dd>
                     <dt class="text-muted-foreground">Programs</dt>
                     <dd class="text-right font-medium">{ programs.length ? programs.join(", ") : "Not set" }</dd>
                     <dt class="text-muted-foreground">Estimated cost</dt>
@@ -164,6 +154,26 @@
     </aside>
 
     <article class='md:pt-28 pb-20'>
+        <!-- Location -->
+        <h3 class='font-medium text-lg mb-1'>Location</h3>
+        <p class='text-muted-foreground'>Where will this equipment be used?</p>
+        <RadioGroup.Root bind:value={ location } class='grid grid-cols-2 gap-4 mt-4'>
+            {#each locations as { value, label, icon: Icon }}
+                <Label
+                    class='cursor-pointer flex flex-col gap-2 items-start border p-4 bg-accent opacity-50 font-medium transition-all
+                    data-[selected=true]:bg-white data-[selected=true]:shadow-md data-[selected=true]:text-slate-700 data-[selected=true]:opacity-100'
+                    data-selected={ value == location }>
+
+                    <RadioGroup.Item class='hidden' value={ value }/>
+                    <Icon class='size-6 stroke-1' />
+                    <strong class='mt-2'>{ label }</strong>
+                    <p class='font-normal uppercase'>{ value }</p>
+                </Label>
+            {/each}
+        </RadioGroup.Root>
+        <br>
+        {@render Divider()}
+
         <!-- Purpose -->
         <h3 class='font-medium text-lg mb-1'>Purpose</h3>
         <p class='text-muted-foreground'>What is this equipment for? Does it enable any new technology or process that isn't currently available?</p>
@@ -171,7 +181,7 @@
         
 
         <Label for="name" class='mb-3'>Equipment name / purpose</Label>
-        <Input bind:value={name} id='purpose' type='text' placeholder='Wafer Based Plasma Dicer' />
+        <Input bind:value={ purpose } id='purpose' type='text' placeholder='Wafer Based Plasma Dicer' />
         <br>
         <br>
 
@@ -230,28 +240,12 @@
 
 
         <!-- Location -->
-        <h3 class='font-medium text-lg mb-1'>Location</h3>
-        <p class='text-muted-foreground'>What building will this equipment be located in?</p>
-        <RadioGroup.Root bind:value={ location } class='grid grid-cols-2 gap-4 mt-4'>
-            {#each locations as { value, label, icon: Icon }}
-                <Label
-                    class='cursor-pointer flex flex-col gap-2 items-start border p-4 bg-accent opacity-50 font-medium transition-all
-                    data-[selected=true]:bg-white data-[selected=true]:shadow-md data-[selected=true]:text-slate-700 data-[selected=true]:opacity-100'
-                    data-selected={ value == location }>
-
-                    <RadioGroup.Item class='hidden' value={ value }/>
-                    <Icon class='size-6 stroke-1' />
-                    <strong class='mt-2'>{ label }</strong>
-                    <p class='font-normal uppercase'>{ value }</p>
-                </Label>
-            {/each}
-        </RadioGroup.Root>
+        <h3 class='font-medium text-lg mb-1'>Programs it supports</h3>
+        <p class='text-muted-foreground'>Pick every program that will use it.</p>
         <br>
-        <br>
+        
 
         <Field.Set>
-            <Field.Legend variant="label">Programs it supports</Field.Legend>
-            <Field.Description>Pick every program that will use it.</Field.Description>
             <ToggleGroup.Root type="multiple" variant="outline" size="sm" spacing={2} bind:value={programs} class="w-full flex-col items-start gap-4">
                 {#each programGroups as group (group.label)}
                     <div class="flex flex-wrap items-center gap-2">
@@ -263,7 +257,6 @@
                 {/each}
             </ToggleGroup.Root>
             {@render Err("programs")}
-
         </Field.Set>
         {@render Divider()}
 
@@ -299,7 +292,7 @@
 
         <!-- Budget -->
         <h3 class='font-medium text-lg mb-1'>Budget</h3>
-        <p class='text-muted-foreground'>Provide estimates on what it will cost to acquire and install this equipment. Ballpark estimates are fine, real quotes will be used after approval.{ costsCategories }</p>
+        <p class='text-muted-foreground'>Provide estimates on what it will cost to acquire and install this equipment. Ballpark estimates are fine, real quotes will be used after approval</p>
         <br>
 
         <ToggleGroup.Root class='flex flex-wrap' type="multiple" variant="outline" size="sm" spacing={2} bind:value={costsCategories}>
@@ -377,12 +370,12 @@
         <br>
 
 
-        <div class='grid grid-cols-[1fr_2fr_auto] items-center gap-x-2 gap-y-1'>
+        <div class='grid grid-cols-[1fr_2fr_auto] items-center gap-x-8 gap-y-1'>
             {#each specifications as spec, i }
             {@render Specification(spec, i)}
             {/each}
-            <Input bind:value={newSpecTitle} class='border-0 px-0 shadow-transparent text-xl font-medium' placeholder='Add new spec...' />
-            <Input bind:value={newSpecUnit} placeholder='±0.5 um' />
+            <Input variant='underline' bind:value={newSpecTitle} class='px-0 shadow-transparent text-xl font-medium' placeholder='Add new spec...' />
+            <Input variant='underline' bind:value={newSpecUnit} placeholder='±0.5 um' />
             <Button class='size-8' variant={ (!newSpecTitle || !newSpecUnit) ? 'ghost' : 'default' } onclick={ addNewSpecification } disabled={ !newSpecTitle || !newSpecUnit }><Plus  /></Button>
         </div>
         {@render Divider()}
@@ -475,7 +468,7 @@
 {#snippet Specification(spec: config, index: number)}
 {@const { title, placeholder } = spec }
 <strong>{spec.title}</strong>
-<Input bind:value={ specifications[index].value } placeholder={ placeholder } class='h-8' />
+<Input variant='underline' bind:value={ specifications[index].value } placeholder={ placeholder } class='h-8' />
 <Button class='size-8' variant='ghost' onclick={ () => specifications = specifications.filter((_, i) => i !== index) }><Trash  /></Button>
 {/snippet}
 

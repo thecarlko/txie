@@ -95,7 +95,7 @@
 <Tabs.Content value="vendors" class='gap-x-0 grid grid-cols-1 md:grid-cols-2 px-[5vw] w-full mx-auto max-w-8xl'>
     <aside>
         <div class='md:sticky top-0 pt-20 space-y-4 md:h-screen md:pt-28'>
-            <h1 class='text-2xl font-medium'>03 - Vendors</h1>
+            <h1 class='text-2xl font-medium font-display'>03 - Vendors</h1>
         </div>
     </aside>
 

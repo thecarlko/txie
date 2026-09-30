@@ -3,7 +3,7 @@
 <script lang='ts'>
     import { Badge } from '$lib/components/badge';
     import * as Avatar from "$lib/components/avatar"
-    import { ArrowRight, ArrowUp } from "@lucide/svelte";
+    import { ArrowLeft, ArrowRight, ArrowUp } from "@lucide/svelte";
     import { Button } from "$lib/components/button";
     import * as Tabs from "$lib/components/tabs";
 
@@ -19,8 +19,8 @@
 
 <Tabs.Content value="leadership" class='gap-x-0 grid grid-cols-1 md:grid-cols-2 px-[5vw] w-full mx-auto max-w-8xl'>
     <aside>
-        <div class='md:sticky top-0 pt-20 space-y-4 md:h-screen md:pt-28 border'>
-            <h1 class='text-2xl font-medium'>02 - Leadership</h1>
+        <div class='md:sticky top-0 pt-20 space-y-4 md:h-screen md:pt-28'>
+            <h1 class='text-2xl font-medium font-display'>02 - FAB Leadership</h1>
             
             
             <br>
@@ -38,8 +38,8 @@
         
 
         <div class='flex justify-end gap-4'>
-            <Button onclick={() => returnToProposal()} variant='outline' class='flex items-center gap-3 pl-4'>Return to Proposal <ArrowUp class='stroke-2' /></Button>
-            <Button onclick={() => startLookingForVendors()} variant='default' class='flex items-center gap-3'>Forward to Vendor Research <ArrowRight class='stroke-[1.5]' /></Button>
+            <Button onclick={() => returnToProposal()} variant='outline' class='flex items-center gap-3 pl-4'>Request Changes <ArrowLeft class='stroke-2' /></Button>
+            <Button onclick={() => startLookingForVendors()} variant='default' class='flex items-center gap-3'>Advance to Vendor Research <ArrowRight class='stroke-[1.5]' /></Button>
         </div>
     </article> 
 </Tabs.Content>

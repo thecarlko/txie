@@ -29,7 +29,6 @@
             <Tabs.Trigger value="proposal" class='after:bg-transparent'>Proposal</Tabs.Trigger>
             <Tabs.Trigger value="leadership" class='after:bg-transparent font-base'>Leadership</Tabs.Trigger>
             <Tabs.Trigger value="vendors" class='after:bg-transparent'>Vendors</Tabs.Trigger>
-            <Tabs.Trigger value="facility" class='after:bg-transparent'>Facility</Tabs.Trigger>
         </Tabs.List>
 
         <div class='ml-auto hidden gap-4 items-center grid-cols-[auto_auto]'>
