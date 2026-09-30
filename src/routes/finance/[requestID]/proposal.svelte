@@ -16,6 +16,12 @@
     import { ArrowRight, TestTubeDiagonal, Factory, UserRoundPlus, Trash, Gauge, Hourglass, Replace, RotateCcw, Sparkles, Upload, FileText, X, Plus, Truck, DollarSign, Ellipsis, GraduationCap, Handshake, HardHat, Package } from "@lucide/svelte";
     import Currency from "$lib/components/currency/currency.svelte";
     import { formatCurrency } from "$lib/hooks/finance";
+
+    let {
+        tab = $bindable() as string,
+        snapshot = $bindable() as Record<string, any> | undefined,
+    } = $props();
+
     
     // Default Due Date (3 months from now)
     function get3MonthsFromNow() {
@@ -136,12 +142,13 @@
     }
 
     // Validation & Error Tracking
-    let touched = $state({ location: false, purpose: false, personnel: false, purchase: false });
+    let touched = $state({ location: false, purpose: false, gap: false, personnel: false, purchase: false });
     let submitted = $state(false);
 
     let errors = $derived({
         location: (touched.location || submitted) && !location ? "A location must be selected." : null,
         purpose: (touched.purpose || submitted) && purpose.trim() === "" ? "Equipment name / purpose is required." : null,
+        gap: (touched.gap || submitted) && gap.trim() === "" ? "Please explain the current gap this solves." : null,
         personnel: (touched.personnel || submitted) && stakeholders.filter(s => s.name.trim() !== "").length === 0 ? "At least one named personnel is required." : null,
         purchase: (touched.purchase || submitted) && (!receipt.purchase || receipt.purchase <= 0) ? "An estimated purchase price is required." : null
     });
@@ -149,10 +156,37 @@
     async function submitProposal() {
         submitted = true;
         if (Object.values(errors).some(err => err !== null)) {
-            // Scroll logic or error toast can be hooked up here
             return; 
         }
-        // Proceed with API submission...
+        
+        // Freeze current state into an immutable snapshot payload
+        const capture = {
+            request_number: "EPG-NEW",
+            purpose,
+            location,
+            needType,
+            details,
+            gap,
+            programs,
+            personnel: stakeholders,
+            // Format receipt to match the leadership view mapping
+            receipt: Object.entries(receipt)
+                .flatMap(([key, amount]) => (costsCategories.includes(key) || key === "purchase") 
+                    ? [{ category: key.replace('_', ' '), amount }] 
+                    : []),
+            totalEstimate: estimate,
+            due,
+            firmness,
+            force,
+            consequence,
+            specs: [
+                ...defaultSpecs.filter(s => activeSpecs.includes(s.id)).map(s => ({ title: s.label, value: specValues[s.id] })),
+                ...customSpecs
+            ]
+        };
+
+        snapshot = capture;
+        tab = 'leadership'
     }
 
     const chip = "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary";
@@ -260,10 +294,14 @@
                     id="gap"
                     bind:value={gap}
                     maxlength={200}
-                    class="min-h-20 resize-none"
+                    onblur={() => touched.gap = true}
+                    class={["min-h-20 resize-none", errors.gap && 'border-destructive']}
                     placeholder="Bumping is manual, slow, and error-prone. This automates it and raises throughput." />
                 {@render Count(gap, 200)}
             </InputGroup.Root>
+            {#if errors.gap}
+                <Field.Error class="mt-2">{errors.gap}</Field.Error>
+            {/if}
         </Field.Field>
 
         {@render Divider()}

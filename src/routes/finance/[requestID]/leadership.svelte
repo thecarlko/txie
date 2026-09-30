@@ -11,47 +11,23 @@
     import { slide } from "svelte/transition";
     import { Currency } from "$lib/components/currency";
 
-    // Mocking the frozen snapshot that would be passed down from the RequestVersion
-    const snapshot = {
-        request_number: "EPG-40",
-        purpose: "Wafer Based Plasma Dicer",
-        location: "Microelectronics Research Center (MER)",
-        needType: "New capability",
-        details: "Supports C4 bumping when pitch is 200 µm or more.\nSeveral customers are asking for 4 to 16 mil spheres, SnPb and SnAg.",
-        gap: "Bumping is manual, slow, and error-prone. This automates it and raises throughput.",
-        programs: ["PM6.2", "TV1"],
-        personnel: [
-            { name: "Sugento Huandra", email: "sugento_huandra@txie.org", role: "Equipment owner" },
-            { name: "Akarsh Saggar", email: "akarsh@txie.org", role: "Operator" }
-        ],
-        receipt: [
-            { category: "Purchase Price", amount: 280000 },
-            { category: "Facility Fit-Up", amount: 15000 },
-            { category: "Shipping & Freight", amount: 10000 }
-        ],
-        totalEstimate: 305000,
-        due: "December 30, 2026",
-        firmness: "Hard deadline",
-        force: "No",
-        consequence: "We miss the July milestones for the new product line.",
-        specs: [
-            { title: "Footprint / Dimensions", value: "2.5m x 1.8m" },
-            { title: "Throughput", value: "100 WPH" }
-        ]
-    };
+    let {
+        snapshot = $bindable() as Record<string, any> | undefined
+    } = $props();
+
 
     // Decision State
-    let decision: "approved" | "changes_requested" | "rejected" | "" = $state("");
+    let decision = $state<"approved" | "changes_requested" | "rejected" | "">("");
     let comments = $state("");
     let touched = $state({ decision: false, comments: false });
     let submitted = $state(false);
     
     // Initialize the working budget with the engineer's total estimate
-    let budget = $state(snapshot.totalEstimate);
+    let budget = $state(snapshot?.totalEstimate ?? 0);
 
     let errors = $derived({
         decision: (touched.decision || submitted) && !decision ? "A gate decision is required." : null,
-        comments: (touched.comments || submitted) && comments.trim() === "" 
+        comments: (touched.comments || submitted) && comments.trim() === "" && (decision != "approved")
             ? "Comments are required when requesting changes or rejecting." : null
     });
 
@@ -62,10 +38,16 @@
         // Proceed to generate Review record and update Request.stage
         console.log("Decision recorded:", decision, comments, budget);
     }
+
+    $effect(() => console.log("Current snapshot:", snapshot));
 </script>
 
 <Tabs.Content value="leadership" class='gap-x-16 grid grid-cols-1 md:grid-cols-2 px-[5vw] w-full mx-auto max-w-8xl'>
-    
+{#if !snapshot }
+    <div class="text-center py-12">
+        <p class="text-muted-foreground">No proposal data available.</p>
+    </div>
+{:else}
     <aside class='pr-8 md:pt-28 pb-16'>
         <div class="mb-12">
             <h1 class='text-2xl font-medium font-display mb-2'>02 - FAB Leadership</h1>
@@ -81,8 +63,8 @@
             <section>
                 <h3 class="text-3xl font-medium mb-4">{snapshot.purpose}</h3>
                 <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                    <span class="flex items-center gap-1.5"><MapPin class="size-4" /> {snapshot.location}</span>
-                    <span class="flex items-center gap-1.5"><Sparkles class="size-4" /> {snapshot.needType}</span>
+                    <span class="flex items-center gap-1.5 uppercase"><MapPin class="size-4" /> {snapshot.location}</span>
+                    <span class="flex items-center gap-1.5 capitalize"><Sparkles class="size-4" /> {snapshot.needType}</span>
                     <span class="flex items-center gap-1.5"><Clock class="size-4" /> Needed by {snapshot.due}</span>
                 </div>
             </section>
@@ -93,7 +75,7 @@
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-2 uppercase tracking-wider">What it does</h4>
-                    <p class="text-foreground whitespace-pre-wrap">{snapshot.details}</p>
+                    <p class="text-foreground whitespace-pre-wrap">{snapshot.purpose}</p>
                 </div>
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-2 uppercase tracking-wider">Current Gap</h4>
@@ -117,7 +99,7 @@
                         {#each snapshot.personnel as person}
                             <li class="text-sm">
                                 <span class="font-medium block">{person.name}</span>
-                                <span class="text-muted-foreground">{person.role} • {person.email}</span>
+                                <span class="text-muted-foreground capitalize">{person.role.split('_').join(' ')} • {person.email}</span>
                             </li>
                         {/each}
                     </ul>
@@ -126,6 +108,7 @@
 
             <!-- Specs & Timeline -->
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {#if snapshot.specs.length > 0}
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Target Specifications</h4>
                     <dl class="space-y-2 text-sm">
@@ -137,6 +120,8 @@
                         {/each}
                     </dl>
                 </div>
+                {/if}
+                {#if snapshot.firmness && snapshot.force && snapshot.consequence}
                 <div>
                     <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Timeline Constraints</h4>
                     <dl class="space-y-2 text-sm">
@@ -154,6 +139,7 @@
                         </div>
                     </dl>
                 </div>
+                {/if}
             </section>
 
             <hr class="border-dashed border-muted-foreground/30">
@@ -165,7 +151,7 @@
                     <div class="divide-y">
                         {#each snapshot.receipt as line}
                             <div class="grid grid-cols-[1fr_auto] p-4 items-center">
-                                <span class="text-muted-foreground">{line.category}</span>
+                                <span class="text-muted-foreground capitalize">{line.category}</span>
                                 <span class="font-medium">{formatCurrency(line.amount)}</span>
                             </div>
                         {/each}
@@ -229,6 +215,7 @@
             </Button>
         </div>
     </article>
+{/if}
 </Tabs.Content>
 
 {#snippet DecisionCard(value: string, current: string, label: string, Icon: Component, styling: string)}

@@ -18,6 +18,7 @@
 
     function createPurchaseRequest() {
         const id = generateID();
+        goto(`/finance/${id}`);
     }
 </script>
 
