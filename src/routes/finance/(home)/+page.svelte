@@ -18,10 +18,6 @@
 
     function createPurchaseRequest() {
         const id = generateID();
-        const request = { id, proposals: [] };
-
-        bank.purchaseRequests[id] = request;
-        goto(`/finance/cart`);
     }
 </script>
 

@@ -11,8 +11,6 @@
 
     let tab = $state("proposal");
 
-
-
     async function submitProposal() {
         
     }

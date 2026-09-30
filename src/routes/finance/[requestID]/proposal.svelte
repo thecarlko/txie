@@ -434,7 +434,7 @@
             <Field.Description>When do you need this tool installed & operational by? Approximate date is fine.</Field.Description>
             
             <Field.Field >
-                <Field.Label for='due' class='mb-3'>Installed & operational by</Field.Label>
+                <Field.Label for='due'>Installed & operational by</Field.Label>
                 <DatePicker bind:inputValue={due} />
             </Field.Field>
 
@@ -442,11 +442,9 @@
                 <Field.Label for="consequence">What happens if it's late?</Field.Label>
                 <Input id="consequence" bind:value={consequence} maxlength={140} placeholder="We miss the July milestones for the new product line." />
             </Field.Field>
-            <br>
             
-            <div class='grid grid-cols-2 gap-x-2 gap-y-2'>
+            <div class='grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-2'>
                 <Label>How firm is that date?</Label>
-                <Label>Is something forcing the timeline?</Label>
 
                 <ToggleGroup.Root type="single" variant="outline" size="sm" spacing={2} bind:value={firmness} class="justify-start">
                     <ToggleGroup.Item value="hard" class={chip}>Hard deadline</ToggleGroup.Item>
@@ -454,6 +452,7 @@
                     <ToggleGroup.Item value="flexible" class={chip}>Flexible</ToggleGroup.Item>
                 </ToggleGroup.Root>
 
+                <Label>Is something forcing the timeline?</Label>
                 <ToggleGroup.Root type="single" variant="outline" size="sm" spacing={2} bind:value={force} class="justify-start">
                     <ToggleGroup.Item value="standard" class={chip}>No</ToggleGroup.Item>
                     <ToggleGroup.Item value="expedited" class={chip}>Time-limited offer</ToggleGroup.Item>
