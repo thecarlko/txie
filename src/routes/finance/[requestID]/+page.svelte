@@ -21,12 +21,8 @@
     <div class='fixed top-0 w-screen pb-5 pt-3 px-6 flex justify-center pointer-events-none z-20 bg-linear-to-b from-background via-background to-transparent'>
         <Tabs.List variant='line' class='gap-x-4 pointer-events-auto'>
             <Tabs.Trigger value="proposal" class='after:bg-transparent'>Proposal</Tabs.Trigger>
-            <Tabs.Trigger 
-                value="leadership" 
-                class='after:bg-transparent font-base'>
-                Leadership
-            </Tabs.Trigger>
-            <Tabs.Trigger value="vendors" class='after:bg-transparent' disabled={true}>Vendors</Tabs.Trigger>
+            <Tabs.Trigger value="leadership" class='after:bg-transparent font-base'>Leadership</Tabs.Trigger>
+            <Tabs.Trigger value="vendors" class='after:bg-transparent'>Vendors</Tabs.Trigger>
         </Tabs.List>
     </div>
 </Tabs.Root>

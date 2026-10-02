@@ -29,7 +29,12 @@ export function createPurchaseRequest() {
             need_type: "new_capability",
             details: "Cutting 200mm wafers into 10mmx10mm dies for advanced materials research. The system must be capable of handling delicate wafers without introducing defects.",
             gap: "Currently, we lack the capability to slice wafers into smaller dies without damaging them. This limits our ability to conduct experiments on smaller samples.",
-            due_date: targetDate.toISOString(),
+
+            due_date: targetDate.toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            }),
             consequence_if_late: "",
             firmness: "flexible",
             programs: [],
@@ -57,6 +62,5 @@ export function createPurchaseRequest() {
 
         return requestId;
     }
-
 
 

@@ -16,29 +16,39 @@
     import * as ToggleGroup from "$lib/components/toggle-group";
     import { slide } from "svelte/transition";
     import { Switch } from "$lib/components/switch";
+    import { DollarSign, Truck, Wrench, Ellipsis } from "@lucide/svelte";
+    import type { Component } from "svelte";
 
 
+
+    const costItems: { key: string; label: string; icon: Component; placeholder: string }[] = [
+        { key: "purchase", label: "Purchase Price", icon: DollarSign, placeholder: "280,000" },
+        { key: "shipping", label: "Shipping & Freight", icon: Truck, placeholder: "10,000" },
+        { key: "fitup", label: "Facility Fit-Up", icon: HardHat, placeholder: "15,000" },
+        { key: "support", label: "Support Equipment", icon: Wrench, placeholder: "5,000" },
+        { key: "misc", label: "Miscellaneous & Fees", icon: Ellipsis, placeholder: "0" },
+    ];
+    const optionalCosts = costItems.filter((c) => c.key !== "purchase");
 
     type Vendor = {
         name: string;
         model: string;
-        purchase: number | undefined;
-        shipping: number | undefined;
-        fitup: number | undefined;
-        misc: number | undefined;
-        support: number | undefined;
+        costs: Record<string, number | undefined>;
+        categories: string[];
         recommended: boolean;
     }
+    const newVendor = (): Vendor => ({ name: "", model: "", costs: {}, categories: [], recommended: false });
+
+    // Deselected categories keep their value but are excluded from the total
+    const activeCosts = (v: Vendor) => costItems.filter((c) => c.key === "purchase" || v.categories.includes(c.key));
+    const vendorTotal = (v: Vendor) => activeCosts(v).reduce((sum, c) => sum + (v.costs[c.key] ?? 0), 0);
+
     let currentVendorIndex = $state("0");
 
-
-    let vendors = $state<Vendor[]>([
-        { name: "", model: "", purchase: undefined, shipping: undefined, fitup: undefined, misc: undefined, support: undefined, recommended: false },
-    ]);
-
+    let vendors = $state<Vendor[]>([newVendor()]);
 
     function addVendor() {
-        vendors.push({ name: "", model: "", purchase: undefined, shipping: undefined, fitup: undefined, misc: undefined, support: undefined, recommended: false });
+        vendors.push(newVendor());
         currentVendorIndex = (vendors.length - 1).toString();
     }
 
@@ -54,9 +64,9 @@
         });
     }
 
-    // At least one vendor must have complete information (name, model, and at least one cost field) to submit
+    // At least one vendor must have a name, model, and purchase price to submit
     let submitValid = $derived(
-        vendors.some(vendor => vendor.name && vendor.model && vendor.purchase && (vendor.shipping || vendor.fitup || vendor.misc || vendor.support))
+        vendors.some(vendor => vendor.name && vendor.model && vendor.costs.purchase)
     );
 
     /** Facility Requirements */
@@ -117,7 +127,7 @@
 
             
             {#each vendors as vendor, index }
-            {@const total = (vendor.purchase ?? 0) + (vendor.shipping ?? 0) + (vendor.fitup ?? 0) + (vendor.misc ?? 0) + (vendor.support ?? 0) }
+            {@const total = vendorTotal(vendor) }
             {@const recc = vendor.recommended }
             <Tabs.Content value={ index.toString() }>
                 <div class='grid grid-cols-2 gap-y-3 gap-x-4'>
@@ -160,24 +170,24 @@
 
                 {@render Divider()}
         
-                <h4 class='font-medium'>Cost</h4> 
-                <p class='text-muted-foreground'>How much is the estimated cost for this tool? Any support equipment needed to be purchased or rented? If so, please provide an estimate of support equipment as well</p>
-                <div class='mt-4 grid grid-cols-3 gap-y-3 gap-x-3 items-center'>
-                    <label for='purpose' class='text-sm font-medium'>Est. Purchase</label>
-                    <Currency class='col-span-2' bind:value={ vendors[index].purchase } />
-        
-                    <label for='purpose' class='text-sm font-medium'>Est. Shipping</label>
-                    <Currency class='col-span-2' bind:value={ vendors[index].shipping } />
-                    
-                    <label for='purpose' class='text-sm font-medium'>Est. Fit-Up</label>
-                    <Currency class='col-span-2' bind:value={ vendors[index].fitup } />
-                    
-                    <label for='purpose' class='text-sm font-medium'>Est. Miscellaneous & Fees</label>
-                    <Currency class='col-span-2' bind:value={ vendors[index].misc } />
-                    
-                    <label for='purpose' class='text-sm font-medium'>Est. Support Equipment</label>
-                    <Currency class='col-span-2' bind:value={ vendors[index].support } />
-                </div>
+                <Field.Set>
+                    <Field.Legend variant="label">Cost</Field.Legend>
+                    <Field.Description>How much is the estimated cost for this tool? Select any additional costs that apply, such as support equipment that needs to be purchased or rented.</Field.Description>
+
+                    <ToggleGroup.Root type="multiple" variant="outline" size="sm" spacing={2} bind:value={vendors[index].categories} class="flex-wrap">
+                        {#each optionalCosts as c (c.key)}
+                            <ToggleGroup.Item value={c.key} class={chip}>{c.label}</ToggleGroup.Item>
+                        {/each}
+                    </ToggleGroup.Root>
+
+                    <div class='grid grid-cols-[auto_1fr_2fr] items-end gap-x-3 gap-y-2'>
+                        {#each activeCosts(vendor) as c (c.key)}
+                            <c.icon class='size-5 text-muted-foreground' />
+                            <Label class='pb-1'>{c.label}</Label>
+                            <Currency bind:value={vendors[index].costs[c.key]} placeholder={c.placeholder} variant='underline' />
+                        {/each}
+                    </div>
+                </Field.Set>
                 <br>
                 <div class='grid grid-cols-[auto_auto_1fr_auto] gap-2 items-end mt-2'>
                     <Button onclick={ () => recommendVendor(index) } size='sm' variant='outline' class='flex items-center gap-2 pr-4'>

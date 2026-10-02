@@ -129,6 +129,18 @@
         newSpecUnit = "";
     }
 
+    const costItems: { key: string; label: string; icon: Component; placeholder: string }[] = [
+        { key: "purchase", label: "Purchase Price", icon: DollarSign, placeholder: "280,000" },
+        { key: "freight", label: "Shipping & Freight", icon: Truck, placeholder: "10,000" },
+        { key: "install_services", label: "Vendor Installation", icon: Replace, placeholder: "5,000" },
+        { key: "fit_up", label: "Facility Fit-Up", icon: HardHat, placeholder: "15,000" },
+        { key: "training", label: "Training", icon: GraduationCap, placeholder: "2,500" },
+        { key: "spares", label: "Spare Parts", icon: Package, placeholder: "3,000" },
+        { key: "service_contract", label: "Service Contract", icon: Handshake, placeholder: "7,500" },
+        { key: "additional", label: "Additional Costs", icon: Ellipsis, placeholder: "0" },
+    ];
+    const optionalCosts = costItems.filter((c) => c.key !== "purchase");
+
     // Hydrate budget
     let receipt: Record<string, number> = $state(snapshot?.receipt || { "purchase": 0 });
     let costsCategories: string[] = $state(Object.keys(receipt).filter(k => k !== 'purchase'));
@@ -393,67 +405,23 @@
             <Field.Description>Provide estimates on what it will cost to acquire and install this equipment. Ballpark estimates are fine, real quotes will be used after approval.</Field.Description>
             
             <ToggleGroup.Root class='flex flex-wrap' type="multiple" disabled={isDecided} variant="outline" size="sm" spacing={2} bind:value={costsCategories}>
-                <ToggleGroup.Item value="freight" class={chip} disabled={isDecided}>Shipping & Freight</ToggleGroup.Item>
-                <ToggleGroup.Item value="install_services" class={chip} disabled={isDecided}>Vendor Installation</ToggleGroup.Item>
-                <ToggleGroup.Item value="fit_up" class={chip} disabled={isDecided}>Facility Fit-Up</ToggleGroup.Item>
-                <ToggleGroup.Item value="training" class={chip} disabled={isDecided}>Training</ToggleGroup.Item>
-                <ToggleGroup.Item value="spares" class={chip} disabled={isDecided}>Spare Parts</ToggleGroup.Item>
-                <ToggleGroup.Item value="service_contract" class={chip} disabled={isDecided}>Service Contract</ToggleGroup.Item>
-                <ToggleGroup.Item value="additional" class={chip} disabled={isDecided}>Additional Costs</ToggleGroup.Item>
+                {#each optionalCosts as c (c.key)}
+                    <ToggleGroup.Item value={c.key} class={chip} disabled={isDecided}>{c.label}</ToggleGroup.Item>
+                {/each}
             </ToggleGroup.Root>
 
             <div class='grid grid-cols-[auto_1fr_2fr] items-end gap-x-3 gap-y-2' onfocusout={() => touched.purchase = true}>
-                <DollarSign class='size-5 text-muted-foreground' />
-                <Label class='pb-1'>Purchase Price</Label>
-                <Currency bind:value={receipt.purchase} disabled={isDecided} placeholder="280,000" variant='underline' />
-                
-                {#if errors.purchase}
-                    <div class="col-span-3">
-                        <Field.Error>{errors.purchase}</Field.Error>
-                    </div>
-                {/if}
+                {#each costItems.filter((c) => c.key === "purchase" || costsCategories.includes(c.key)) as c (c.key)}
+                    <c.icon class='size-5 text-muted-foreground' />
+                    <Label class='pb-1'>{c.label}</Label>
+                    <Currency bind:value={receipt[c.key]} disabled={isDecided} placeholder={c.placeholder} variant='underline' />
 
-                {#if costsCategories.includes('freight')}
-                    <Truck class='size-5 text-muted-foreground' />
-                    <Label class='pb-1'>Shipping & Freight</Label>
-                    <Currency bind:value={receipt["freight"]} disabled={isDecided} placeholder="10,000" variant='underline' />
-                {/if}
-
-                {#if costsCategories.includes('install_services')}
-                    <Replace class='size-5 text-muted-foreground' />
-                    <Label class='pb-1'>Vendor Installation</Label>
-                    <Currency bind:value={receipt["install_services"]} disabled={isDecided} placeholder="5,000" variant='underline' />
-                {/if}
-
-                {#if costsCategories.includes('fit_up')}
-                    <HardHat class='size-5 text-muted-foreground' />
-                    <Label class='pb-1'>Facility Fit-Up</Label>
-                    <Currency bind:value={receipt["fit_up"]} disabled={isDecided} placeholder="15,000" variant='underline' />
-                {/if}
-
-                {#if costsCategories.includes('training')}
-                    <GraduationCap class='size-5 text-muted-foreground' />
-                    <Label class='pb-1'>Training</Label>
-                    <Currency bind:value={receipt["training"]} disabled={isDecided} placeholder="2,500" variant='underline' />
-                {/if}
-
-                {#if costsCategories.includes('spares')}
-                    <Package class='size-5 text-muted-foreground' />
-                    <Label class='pb-1'>Spare Parts</Label>
-                    <Currency bind:value={receipt["spares"]} disabled={isDecided} placeholder="3,000" variant='underline' />
-                {/if}
-
-                {#if costsCategories.includes('service_contract')}
-                    <Handshake class='size-5 text-muted-foreground' />
-                    <Label class='pb-1'>Service Contract</Label>
-                    <Currency bind:value={receipt["service_contract"]} disabled={isDecided} placeholder="7,500" variant='underline' />
-                {/if}
-
-                {#if costsCategories.includes('additional')}
-                    <Ellipsis class='size-5 text-muted-foreground' />
-                    <Label class='pb-1'>Additional Costs</Label>
-                    <Currency bind:value={receipt["additional"]} disabled={isDecided} placeholder="0" variant='underline' />
-                {/if}
+                    {#if c.key === "purchase" && errors.purchase}
+                        <div class="col-span-3">
+                            <Field.Error>{errors.purchase}</Field.Error>
+                        </div>
+                    {/if}
+                {/each}
             </div>
             
             <div class='grid grid-cols-[1fr_auto] gap-2 items-end mt-6'>
