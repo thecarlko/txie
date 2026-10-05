@@ -1,5 +1,4 @@
 import { transactions, type Transaction } from '$lib/data/transactions.svelte';
-import type { PurchaseRequest } from '$lib/models/procurement';
 
 
 class Bank {
@@ -13,8 +12,6 @@ class Bank {
 	review = $derived(totalWhere('pending'));
 	spent = $derived(totalWhere('paid'));
 	available = $derived(this.account - (this.pending + this.review + this.spent));
-
-	purchaseRequests = $state({ }) as Record<string, PurchaseRequest>;
 
 }
 export const bank = new Bank();

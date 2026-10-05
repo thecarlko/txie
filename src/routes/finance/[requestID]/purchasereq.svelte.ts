@@ -12,29 +12,26 @@ export type CostCategory =
     | "training" 
     | "spares" 
     | "service_contract" 
-    | "additional"
-    | "legacy_fit_up_and_shipping";
+    | "additional";
 export type Firmness = "hard" | "target" | "flexible";
 export type FABLeadershipDecision = "approved" | "changes_requested" | "rejected";
 
 
 class PurchaseRequest {
     id: string;
+    request_number: string = $state("");
 
-    submitted_by: string = $state("");
-    submitted_at: string = $state("");
-    stage: "draft" | "sourcing" | "rejected" | "approved" = $state("draft");
+    created_at: string = $state("");
+    updated_at: string = $state("");
 
-
-    constructor() {
-        this.id = generateID();
+    constructor(request_number: string, id?: string) {
+        this.id = id ?? generateID();
+        this.request_number = request_number;
     }
-
 }
 
-
+/** Personnel */
 export interface Personnel {
-    id: string;
     name: string;
     email: string;
     role: "equipment_owner" | "operator" | "backup_operator" | "maintenance";
@@ -52,8 +49,10 @@ class Proposal {
     id: string;
     request_id: string; /** The ID of the purchase request this proposal is associated with */
 
+    created_at: string = $state("");
+    updated_at: string = $state("");
 
-    location: "mer" | "mr2" = $state("mer");
+    location: "MER" | "MR2" = $state("MER");
 
     /** Equipment need / purpose */
     purpose: string = $state("");
@@ -82,12 +81,26 @@ class Proposal {
 
 }
 
-export interface Personnel {
+type Utility = "power" | "process_gases" | "chemicals" | "exhaust" | "di_water" | "compressed_air" | "network" | "low_vibration";
+type EquipmentFlag = "hazardous_materials" | "facility_modification" | "export_controlled" | "new_vendor" | "refurbished";
+class Equipment {
     id: string;
-    // request_id: string;
-    name: string;
-    email: string;
-    role: "equipment_owner" | "operator" | "backup_operator" | "maintenance";
+    request_id: string;
+
+    vendor: string = $state("");
+    model: string = $state("");
+
+    cost: [CostCategory, number][] = $state([ ["purchase", 10000] ]);
+
+    utilities: Utility[] = $state([]);
+    utility_note: string = $state("");
+
+    flags: EquipmentFlag[] = $state([]);
+
+    constructor(request_id: string) {
+        this.id = generateID();
+        this.request_id = request_id;
+    }
 }
 
 

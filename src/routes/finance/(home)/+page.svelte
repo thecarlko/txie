@@ -6,22 +6,85 @@
     import { bank } from '$lib/data/bank.svelte';
     import * as Tabs from "$lib/components/tabs";
     import * as Table from "$lib/components/table";
+    import * as Pagination from "$lib/components/pagination";
+    import {
+        createTable,
+        createColumnHelper,
+        createPaginatedRowModel,
+        rowPaginationFeature,
+        tableFeatures,
+        FlexRender,
+        renderSnippet
+    } from '@tanstack/svelte-table';
+    import type { BudgetEntry, PersonnelEntry, PurchaseSnapshot, Stage } from '$lib/models/procurement';
     import Button from '$lib/components/button/button.svelte';
-    import { Plus } from '@lucide/svelte';
+    import { ChevronsLeftRight, Plus } from '@lucide/svelte';
     import { type CalendarDate } from "@internationalized/date";
     import { DatePicker } from '$lib/components/date-picker';
     import { generateID } from '$lib/hooks/hash';
     import { goto } from '$app/navigation';
-    import type { PurchaseRequest, PurchaseSnapshot } from '$lib/models/procurement';
-    import { createPurchaseRequest, database } from '$lib/data/procurement.svelte';
 
-    let start = $state<CalendarDate | undefined>();
-    let end = $state<CalendarDate | undefined>();
+    let { data } = $props();
+    let { proposals } = $derived(data);
+    const currency = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
 
-    async function createNewPurchaseRequest() {
-        const id = createPurchaseRequest();
-        goto(`/finance/${ id }`);
+    async function createNewPurchaseRequest() {}
+
+    // Table
+    const PAGE_SIZE = 20;
+    const features = tableFeatures({
+        rowPaginationFeature,
+        paginatedRowModel: createPaginatedRowModel()
+    });
+
+    const columnHelper = createColumnHelper<typeof features, PurchaseSnapshot>();
+    const columns = columnHelper.columns([
+        columnHelper.display({ id: 'open', cell: () => renderSnippet(OpenCell) }),
+        columnHelper.accessor('request_id', { header: 'ID' }),
+        columnHelper.accessor('location', { header: 'Location' }),
+        columnHelper.accessor('decision', { header: 'Decision', cell: ({ getValue }) => stageLabel[getValue()] }),
+        columnHelper.accessor('purpose', { header: 'Purpose', cell: ({ getValue }) => renderSnippet(PurposeCell, getValue()) }),
+        columnHelper.accessor(row => facultyName(row.personnel), { id: 'faculty', header: 'Faculty' }),
+        columnHelper.accessor(row => budgetTotal(row.budget), {
+            id: 'budget',
+            header: 'Budget',
+            cell: ({ getValue }) => { const total = getValue(); return total ? currency.format(total / 100) : 'Unset'; }
+        })
+    ]);
+
+    // Extra classes per column id, applied to both header and body cells
+    const headClass: Record<string, string> = { open: 'w-6', budget: 'text-end pr-5' };
+    const cellClass: Record<string, string> = { open: 'font-medium text-center', request_id: 'font-medium', budget: 'text-end pr-5' };
+    const stageLabel: Record<Stage, string> = {
+        draft: 'Draft',
+        fab_leadership_review: 'Leadership Review',
+        rejected: 'Rejected',
+        approved: 'Approved'
+    };
+
+    // Personnel is "name:email:role;..." — show the first listed person
+    function facultyName(personnel: PurchaseSnapshot['personnel']) {
+        const [entry] = (personnel?.split(';') ?? []) as PersonnelEntry[];
+        return entry?.split(':')[0] ?? '—';
     }
+
+    // Budget is "category-cents;..." (USD cents)
+    function budgetTotal(budget: PurchaseSnapshot['budget']) {
+        const entries = (budget?.split(';') ?? []) as BudgetEntry[];
+        return entries.reduce((acc, entry) => acc + Number(entry.split('-')[1]), 0);
+    }
+
+    const table = createTable({
+        features,
+        columns,
+        get data() { return proposals; },
+        initialState: { pagination: { pageIndex: 0, pageSize: PAGE_SIZE } }
+    });
+
+    const pagination = $derived(table.atoms.pagination.get());
 </script>
 
 <section class='max-w-8xl mx-auto px-[3vw]'>
@@ -39,7 +102,7 @@
     <div class='grid grid-cols-3 gap-4 items-end'>
         <Tabs.Root value="contracts" class='w-72'>
         <Tabs.List variant='line' class='w-full'>
-            <Tabs.Trigger value="contracts">Contracts</Tabs.Trigger>
+            <Tabs.Trigger value="contracts">Purchase Requests</Tabs.Trigger>
             <Tabs.Trigger value="transactions">Transactions</Tabs.Trigger>
         </Tabs.List>
         </Tabs.Root>
@@ -54,49 +117,12 @@
     <br>
     <br>
 
-    
+    {@render RequestTable()}
+    <br>
+    <br>
+    <br>
 </section>
 
-<!-- Row representing a single PurchaseRequest -->
-<!-- {#snippet ContractRow(info: PurchaseRequest, index: number)}
-{@const { contact, email, approval, purpose, details, purchase, fitup, misc, targetDate } = info }
-{@const estimate = purchase + fitup + misc }
-<Table.Row>
-    <Table.Cell class="hover:bg-muted/50 font-medium text-center"><ChevronsLeftRight class='-rotate-45 stroke-1 transition-all hover:scale-110' /></Table.Cell>
-    <Table.Cell class="hover:bg-muted/50 font-medium">{ contact }</Table.Cell>
-    <Table.Cell class='hover:bg-muted/50'>{ email }</Table.Cell>
-    {@render ApprovalCell(approval)}
-    <Table.Cell class='hover:bg-muted/50'>{ purpose }</Table.Cell>
-    <Table.Cell class='text-muted-foreground'>{ details }</Table.Cell>
-    <Table.Cell class="hover:bg-muted/50 text-end">{ targetDate }</Table.Cell>
-</Table.Row>
-{/snippet} -->
-
-<!--
-
-    
-
-    <Table.Root class='border'>
-        <Table.Header class='bg-muted'>
-            <Table.Row>
-                <Table.Head class="w-8"></Table.Head>
-                <Table.Head class="w-25"><UserRound class='stroke-2 size-5 ' /></Table.Head>
-                <Table.Head>Email</Table.Head>
-                <Table.Head>Status</Table.Head>
-                <Table.Head>Purpose</Table.Head>
-                <Table.Head class='border'>Details</Table.Head>
-                <Table.Head class="text-end">Target Date</Table.Head>
-            </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-        {#each procurement.contracts as info, index }
-            {@render ContractRow(info, index)}
-        {/each}
-        </Table.Body>
-    </Table.Root>
-
--->
 
 
 {#snippet SankeyOverview()}
@@ -117,17 +143,72 @@
 </div>
 {/snippet}
 
-{#snippet ApprovalCell(approval: string)}
-{#if approval === 'pending'}
-    <Table.Cell class='text-orange-500'>Pending</Table.Cell>
-{:else if approval === 'approved'}
-    <Table.Cell class='text-green-500 hover:bg-muted/50'>Approved</Table.Cell>
-{:else if approval === 'rejected'}
-    <Table.Cell class='text-red-500 hover:bg-muted/50'>Rejected</Table.Cell>
-{:else}
-    <Table.Cell class='hover:bg-muted/50'>-</Table.Cell>
-{/if}
+
+<!-- Table -->
+{#snippet RequestTable()}
+<Table.Root class='border'>
+    <Table.Header class=''>
+    {#each table.getHeaderGroups() as headerGroup (headerGroup.id)}
+    <Table.Row class='py-1 bg-muted'>
+        {#each headerGroup.headers as header (header.id)}
+        <Table.Head class={headClass[header.column.id]}>
+            {#if !header.isPlaceholder}<FlexRender {header} />{/if}
+        </Table.Head>
+        {/each}
+    </Table.Row>
+    {/each}
+    </Table.Header>
+
+    <Table.Body>
+    {#each table.getRowModel().rows as row (row.id)}
+    <Table.Row class='text-foreground/80 hover:*:bg-muted/50 transition-all cursor-pointer'>
+        {#each row.getAllCells() as cell (cell.id)}
+        <Table.Cell class={cellClass[cell.column.id]}><FlexRender {cell} /></Table.Cell>
+        {/each}
+    </Table.Row>
+    {:else}
+    <Table.Row>
+        <Table.Cell colspan={columns.length} class='h-24 text-center'>No proposals.</Table.Cell>
+    </Table.Row>
+    {/each}
+    </Table.Body>
+</Table.Root>
+
+{@const total = table.getRowCount()}
+{@const first = pagination.pageIndex * pagination.pageSize}
+<div class='flex items-center justify-between py-4'>
+    <p class='text-sm text-muted-foreground whitespace-nowrap'>
+        { total ? first + 1 : 0 }–{ Math.min(first + pagination.pageSize, total) } of { total }
+    </p>
+
+    <Pagination.Root
+        count={total}
+        perPage={pagination.pageSize}
+        page={pagination.pageIndex + 1}
+        onPageChange={(page) => table.setPageIndex(page - 1)}
+        class='mx-0 w-auto'
+    >
+        {#snippet children({ pages, currentPage })}
+        <Pagination.Content>
+            <Pagination.Item><Pagination.Previous /></Pagination.Item>
+            {#each pages as page (page.key)}
+                {#if page.type === 'ellipsis'}
+                <Pagination.Item><Pagination.Ellipsis /></Pagination.Item>
+                {:else}
+                <Pagination.Item><Pagination.Link {page} isActive={currentPage === page.value} /></Pagination.Item>
+                {/if}
+            {/each}
+            <Pagination.Item><Pagination.Next /></Pagination.Item>
+        </Pagination.Content>
+        {/snippet}
+    </Pagination.Root>
+</div>
 {/snippet}
 
+{#snippet OpenCell()}
+<ChevronsLeftRight class='-rotate-45 stroke-1 transition-all hover:scale-110' />
+{/snippet}
 
-
+{#snippet PurposeCell(purpose: string)}
+<div class="max-w-56 truncate" title={purpose}>{ purpose }</div>
+{/snippet}

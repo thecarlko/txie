@@ -8,8 +8,7 @@
         { id: 'finance', title: 'Finance', icon: Banknote },
         { id: 'engineering', title: 'Engineering', icon: Cpu },
         { id: 'metrology', title: 'Metrology', icon: DraftingCompass },
-        { id: 'materials', title: 'Materials', icon: Stone },
-        { id: 'fab', title: 'Fab Engineering', icon: Pickaxe }
+        { id: 'materials', title: 'Materials', icon: Stone }
     ]
 
 </script>
