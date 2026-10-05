@@ -82,6 +82,7 @@
     ];
     let utilities: string[] = $state([]);
     let utilityNote = $state("");
+    let footprint = $state({ length: 0, width: 0, height: 0 });
 
     const chip = "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary";
 
@@ -96,8 +97,6 @@
         { key: "refurbished", label: "Used or refurbished", hint: "Adds inspection and decontamination steps.", icon: Recycle },
     ];
     let flags: Record<string, boolean> = $state(Object.fromEntries(flagDefs.map((f) => [f.key, false])));
-
-
 </script>
 
 
@@ -138,38 +137,7 @@
                 <Input bind:value={vendors[index].model} id='model' type='text' placeholder='PJ9000' />
                 </div>
                 {@render Divider()}
-
-                <Field.Set>
-                    <Field.Legend variant="label">Facility Requirements</Field.Legend>
-                    <Field.Description>What facility requirements will this equipment need? (e.g. power, water, gas, vacuum, etc.)</Field.Description>
-
-                    <ToggleGroup.Root type="multiple" variant="outline" size="sm" spacing={2} bind:value={utilities} class="flex-wrap">
-                        {#each utilityOptions as u (u.value)}
-                            <ToggleGroup.Item value={u.value} class={chip}><u.icon class="size-4" /> {u.label}</ToggleGroup.Item>
-                        {/each}
-                    </ToggleGroup.Root>
-                    {#if utilities.length}
-                        <div transition:slide>
-                            <Input bind:value={utilityNote} maxlength={140} aria-label="Utility details" placeholder="Specifics, e.g. 208 V 3-phase, 40 A, N2 and CDA" />
-                        </div>
-                    {/if}
-                </Field.Set>
-                <br>
-
-
-                <Field.Set>
-                <Field.Legend variant="label">Do any of the these apply for the equipment?</Field.Legend>
-                <Field.Group class="grid items-center grid-cols-[auto_1fr_auto] gap-x-3 gap-y-3 mt-2">
-                    {#each flagDefs as flag (flag.key)}
-                        <flag.icon class="size-5 stroke-[1.2]" />
-                        <p class='font-[350]'>{flag.label}</p>
-                        <Switch id="flag-{flag.key}" bind:checked={flags[flag.key]} />
-                    {/each}
-                </Field.Group>
-                </Field.Set>
-
-                {@render Divider()}
-        
+                        
                 <Field.Set>
                     <Field.Legend variant="label">Cost</Field.Legend>
                     <Field.Description>How much is the estimated cost for this tool? Select any additional costs that apply, such as support equipment that needs to be purchased or rented.</Field.Description>
@@ -209,6 +177,53 @@
                 </div>
                 <br>
                 {@render Divider()}
+
+
+                <Field.Set>
+                    <Field.Legend>Facility</Field.Legend>
+                    <Field.Description>What facility requirements will this equipment need? (e.g. footprint, power, water, gas, vacuum, etc.)</Field.Description>
+
+                    <div class='grid grid-cols-3 gap-x-4 gap-y-2'>
+                        <Label for="width">Length</Label>
+                        <Label for="depth">Width</Label>
+                        <Label for="height">Height</Label>
+
+                        <Input bind:value={footprint.length} id='width' type='number' placeholder='0' />
+                        <Input bind:value={footprint.width} id='depth' type='number' placeholder='0' />
+                        <Input bind:value={footprint.height} id='height' type='number' placeholder='0' />
+                    </div>
+
+                    <div>
+                        <Field.Legend variant="label">Utilities</Field.Legend>
+
+                        <ToggleGroup.Root type="multiple" variant="outline" size="sm" spacing={2} bind:value={utilities} class="flex-wrap">
+                            {#each utilityOptions as u (u.value)}
+                                <ToggleGroup.Item value={u.value} class={chip}><u.icon class="size-4" /> {u.label}</ToggleGroup.Item>
+                            {/each}
+                        </ToggleGroup.Root>
+                        {#if utilities.length}
+                            <div class='pt-4' transition:slide>
+                                <Input bind:value={utilityNote} maxlength={140} aria-label="Utility details" placeholder="Specifics, e.g. 208 V 3-phase, 40 A, N2 and CDA" />
+                            </div>
+                        {/if}
+                    </div>
+                </Field.Set>
+                <br>
+
+
+                <Field.Set>
+                <Field.Legend variant="label">Do any of the these apply for the equipment?</Field.Legend>
+                <Field.Group class="grid items-center grid-cols-[auto_1fr_auto] gap-x-3 gap-y-3 mt-2">
+                    {#each flagDefs as flag (flag.key)}
+                        <flag.icon class="size-5 stroke-[1.2]" />
+                        <p class='font-[350]'>{flag.label}</p>
+                        <Switch id="flag-{flag.key}" bind:checked={flags[flag.key]} />
+                    {/each}
+                </Field.Group>
+                </Field.Set>
+
+                {@render Divider()}
+
 
             
                 <!-- Attachment -->
