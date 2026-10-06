@@ -7,10 +7,10 @@ class Bank {
     private = $state(12_000_000);
 	account = $derived(this.federal + this.state + this.private);
 
-	pending = $derived( 12_000_000);
-	review = $derived( 12_000_000);
 	spent = $derived( 12_000_000);
-	available = $derived(this.account - (this.pending + this.review + this.spent));
+	committed = $derived( 12_000_000);
+	requested = $derived( 12_000_000);
+	available = $derived(this.account - (this.spent + this.committed + this.requested));
 
 }
 export const bank = new Bank();

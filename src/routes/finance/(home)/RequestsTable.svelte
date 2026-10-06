@@ -1,4 +1,4 @@
-<!-- Complete table of the purchase Requests -->
+
 <script lang='ts'>
     import { createTable, FlexRender } from '@tanstack/svelte-table';
     import * as Table from '$lib/components/table';
@@ -8,7 +8,6 @@
     import RequestRow from './RequestRow.svelte';
 
     const PAGE_SIZE = 20;
-
     const table = createTable({
         features,
         columns,
@@ -52,7 +51,7 @@
     </Table.Body>
 </Table.Root>
 
-<div class='flex items-center justify-between py-4'>
+<div class='flex items-center justify-between mt-8 pb-4'>
     <p class='text-sm text-muted-foreground whitespace-nowrap'>{ first }–{ last } of { total }</p>
 
     <Pagination.Root

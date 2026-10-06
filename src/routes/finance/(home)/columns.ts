@@ -43,7 +43,9 @@ export const columns = column.columns([
         meta: { headClass: 'w-6', cellClass: 'font-medium text-center' }
     }),
     column.accessor('request_id', {
-        header: 'ID',
+        header: ({ column }) => renderComponent(SortButton, { column, label: 'ID' }),
+        sortFn: sortByRequestId,
+        sortDescFirst: true,
         meta: { cellClass: 'font-medium' }
     }),
     column.accessor('location', {
@@ -74,12 +76,12 @@ export const columns = column.columns([
         cell: ({ getValue }) => formatDate(getValue()),
         sortFn: sortByDate,
         sortDescFirst: true,
-        meta: { cellClass: 'text-muted-foreground tabular-nums text-end pr-4' }
+        meta: { headClass: 'text-end', cellClass: 'text-muted-foreground tabular-nums text-end pr-4' }
     })
 ]);
 
-/** Newest updates first when the table loads. */
-export const initialSorting = [{ id: 'updated_at', desc: true }];
+/** Newest requests first when the table loads. */
+export const initialSorting = [{ id: 'request_id', desc: true }];
 
 
 // Sorting
@@ -88,6 +90,11 @@ const stageOrder: Stage[] = ['draft', 'fab_leadership_review', 'changes_requeste
 
 function sortByStage(...[a, b, columnId]: Parameters<SortFn<RequestFeatures, PurchaseSnapshot>>) {
     return stageOrder.indexOf(a.getValue(columnId)) - stageOrder.indexOf(b.getValue(columnId));
+}
+
+/** "EPG-9" before "EPG-10": compare the request numbers, not the strings. */
+function sortByRequestId(...[a, b, columnId]: Parameters<SortFn<RequestFeatures, PurchaseSnapshot>>) {
+    return a.getValue<string>(columnId).localeCompare(b.getValue<string>(columnId), undefined, { numeric: true });
 }
 
 /** Dates are "YYYY-MM-DD", so comparing the strings orders them by date. */

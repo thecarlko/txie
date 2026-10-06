@@ -7,7 +7,6 @@
         fab_leadership_review: { label: 'Leadership Review', variant: 'secondary' },
         changes_requested:     { label: 'Changes Requested', variant: 'outline',     class: 'border-orange-300 text-orange-700 dark:text-orange-300' },
         rejected:              { label: 'Rejected',          variant: 'destructive' },
-        // Green, same pattern as shadcn's custom-color badge
         approved:              { label: 'Approved',          variant: 'default', class: 'bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300' }
     };
 </script>

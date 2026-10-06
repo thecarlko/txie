@@ -9,7 +9,9 @@ type Review = { decision: Decision; comments: string | null; approved_budget?: n
 
 const STORAGE_KEY = "txie:purchase_snapshots";
 const today = () => new Date().toISOString().slice(0, 10); // matches the "YYYY-MM-DD" format in the data
-const byId = (a: PurchaseSnapshot, b: PurchaseSnapshot) => a.id.localeCompare(b.id, undefined, { numeric: true });
+const requestNumber = (s: Pick<PurchaseSnapshot, "request_id">) => Number(s.request_id.split("-")[1]) || 0; // "EPG-07" → 7
+/** Newest request first; within a request, drafts in version order (1, 2, 3...). */
+const byRequestThenVersion = (a: PurchaseSnapshot, b: PurchaseSnapshot) => requestNumber(b) - requestNumber(a) || versionOf(a) - versionOf(b);
 
 /** Fresh copy of snapshots.json, keyed by snapshot id. */
 function seed(): Record<string, PurchaseSnapshot> {
@@ -43,13 +45,10 @@ function migrate(snapshots: Record<string, any>): Record<string, PurchaseSnapsho
 
 class SmartSheet {
     snapshots = $state<Record<string, PurchaseSnapshot>>(load());
-    rows = $derived(Object.values(this.snapshots).sort((a, b) => {
-        const dateCompare = b.updated_at.localeCompare(a.updated_at);
-        if (dateCompare !== 0) return dateCompare;
-        return b.request_id.localeCompare(a.request_id, undefined, { numeric: true });
-    }));
+    rows = $derived(Object.values(this.snapshots).sort(byRequestThenVersion));
 
-    // Latest version of each purchase request, for the requests table
+    // Latest version of each purchase request, newest request first, for the requests table.
+    // Rows are in version order, so the last draft seen for a request is the one that's kept.
     requests = $derived(Object.values(Object.fromEntries(this.rows.map((s) => [s.request_id, s]))));
 
     constructor() {
@@ -80,7 +79,7 @@ class SmartSheet {
     /** Start a new purchase request as an editable version 1 snapshot. */
     create(fields: Editable = {}): PurchaseSnapshot {
         // Next number after the highest existing request (IDs have gaps, so don't use the count).
-        const highest = Math.max(0, ...Object.values(this.snapshots).map((s) => Number(s.request_id.split("-")[1]) || 0));
+        const highest = Math.max(0, ...Object.values(this.snapshots).map(requestNumber));
         const request_id = `EPG-${String(highest + 1).padStart(2, "0")}`;
 
         const target = new Date();

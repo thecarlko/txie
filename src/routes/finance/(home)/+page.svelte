@@ -64,12 +64,12 @@
 
 {#snippet AccountOverview()}
     <div class='p-4'>
-        <h1 class='text-3xl'>{ formatCurrency(bank.account) }</h1>
+        <h1 class='text-3xl'>{ formatCurrency(bank.account / 100) }</h1>
         <br>
-        <p class='text-xl text-red-600'>-{ formatCurrency(bank.spent) } Spent</p>
-        <p class='text-xl text-orange-500'>-{ formatCurrency(bank.pending) } En-Route</p>
-        <p class='text-xl text-yellow-600'>-{ formatCurrency(bank.review) } Requested</p>
+        <p class='text-xl text-red-600'>-{ formatCurrency(bank.spent / 100) } Spent</p>
+        <p class='text-xl text-orange-500'>-{ formatCurrency(bank.committed / 100) } Committed</p>
+        <p class='text-xl text-yellow-600'>-{ formatCurrency(bank.requested / 100) } Requested</p>
         <br>
-        <p class='text-2xl'>{ formatCurrency(bank.available) }</p>
+        <p class='text-2xl'>{ formatCurrency(bank.available / 100) }</p>
     </div>
 {/snippet}
