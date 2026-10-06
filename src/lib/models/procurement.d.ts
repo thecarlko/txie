@@ -2,7 +2,8 @@ export type Location = "MER" | "MR2";
 export type NeedType = "new_capability" | "replacement" | "capacity" | "end_of_life" | "recurring_failure";
 export type Firmness = "hard" | "target" | "flexible";
 export type Force = "none" | "expedited" | "emergency"; // none = standard, expedited = time-limited offer, emergency = tool down
-export type Stage = "draft" | "fab_leadership_review" | "rejected" | "approved";
+export type Decision = "approved" | "rejected" | "changes_requested"; // set by FAB Leadership; any decision locks the snapshot
+export type Stage = "draft" | "fab_leadership_review" | Decision;     // derived from `forwarded` + `decision`, see stageOf()
 export type PersonnelRole = "equipment_owner" | "requester" | "operator" | "backup_operator" | "maintenance";
 export type CostCategory =
     | "purchase"
@@ -16,7 +17,7 @@ export type CostCategory =
 
 
 export interface PurchaseSnapshot {
-    id: string;                     // "{request_id}-{version}", e.g. "EPG-01-1"
+    id: string;                     // "{request_id}-{version}", e.g. "EPG-01-1" (version 2+ exist after changes are requested)
     request_id: string;             // Parent request, e.g. "EPG-01"
     created_at: string;             // "YYYY-MM-DD"
     updated_at: string;             // "YYYY-MM-DD"
@@ -39,10 +40,13 @@ export interface PurchaseSnapshot {
     target_date: string;            // Target operational date, "YYYY-MM-DD"
     date_firmness: Firmness;
     date_force: Force;
+    consequence?: string | null;    // What happens if it's late
 
     // Review
-    decision: Stage;
+    forwarded: boolean;             // Sent to FAB Leadership for review
+    decision: Decision | null;      // null = still editable
     decision_comments: string | null;
+    approved_budget?: number | null; // Envelope set by FAB Leadership on approval (USD cents)
 }
 
 /** Entry formats inside the ";"-separated fields above. */

@@ -1,22 +1,15 @@
-import { database } from '$lib/data/procurement.svelte';
+import { database } from '$lib/data/smartsheet.svelte';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = ({ params }) => {
-    const request = database.purchase_requests[params.requestID];
+// Requests created in the browser only exist in localStorage, so the server can't render them.
+export const ssr = false;
 
-    if (!request) {
+/** `requestID` is the parent request, e.g. "EPG-01". The page shows its snapshot versions. */
+export const load: PageLoad = ({ params }) => {
+    if (!database.latest(params.requestID)) {
         error(404, { message: 'Purchase request not found' });
     }
 
-    const snapshot = database.purchase_snapshots[request.latest_snapshot];
-
-    if (!snapshot) {
-        error(404, { message: 'Snapshot data not found' });
-    }
-
-    return {
-        request,
-        snapshot
-    };
+    return { requestID: params.requestID };
 };
