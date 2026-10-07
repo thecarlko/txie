@@ -13,7 +13,7 @@
     import { untrack, type Component } from "svelte";
     import { generateID } from "$lib/hooks/hash";
     import { slide } from "svelte/transition";
-    import { parseDate } from "chrono-node";
+    import { getLocalTimeZone, parseDate, type DateValue } from "@internationalized/date";
     import { ArrowRight, TestTubeDiagonal, Factory, UserRoundPlus, Trash, Gauge, Hourglass, Replace, RotateCcw, Sparkles, Upload, FileText, X, Plus, Truck, DollarSign, Ellipsis, GraduationCap, Handshake, HardHat, Package, BadgeCheck, Undo2, Clock } from "@lucide/svelte";
     import Currency from "$lib/components/currency/currency.svelte";
     import { formatCurrency } from "$lib/hooks/finance";
@@ -166,20 +166,12 @@
     }
 
 
-    // --- Timeline (DatePicker shows "December 31, 2026", snapshot stores "2026-12-31") ---
-    function displayDate(iso: string) {
-        const [y, m, d] = iso.split("-").map(Number);
-        return new Date(y, m - 1, d).toLocaleDateString("en-US", { day: "2-digit", month: "long", year: "numeric" });
+    // --- Timeline (DatePicker works in DateValues, snapshot stores "2026-12-31") ---
+    function displayDate(date: DateValue) {
+        return date.toDate(getLocalTimeZone()).toLocaleDateString("en-US", { day: "2-digit", month: "long", year: "numeric" });
     }
 
-    function isoDate(display: string) {
-        const date = parseDate(display);
-        if (!date) return initial.target_date;
-        const pad = (n: number) => String(n).padStart(2, "0");
-        return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-    }
-
-    let due = $state(displayDate(initial.target_date));
+    let due = $state<DateValue | undefined>(parseDate(initial.target_date));
     let consequence = $state(initial.consequence ?? "");
     let firmness: Firmness = $state(initial.date_firmness);
     let force: Force = $state(initial.date_force);
@@ -214,7 +206,7 @@
                 ...customSpecs.map(({ title, value }) => ({ title, value }))
             ]),
             budget: serializeBudget(Object.fromEntries(activeCosts.map((c) => [c.key, (receipt[c.key] ?? 0) * 100]))),
-            target_date: isoDate(due),
+            target_date: due?.toString() ?? initial.target_date,
             date_firmness: firmness,
             date_force: force,
             consequence: consequence || null,
@@ -282,7 +274,7 @@
                     <dt class="text-muted-foreground">Estimated cost</dt>
                     <dd class="text-right font-medium tabular-nums">{ estimate > 0 ? formatCurrency(estimate) : "Not set" }</dd>
                     <dt class="text-muted-foreground">Needed by</dt>
-                    <dd class="text-right font-medium">{ due }</dd>
+                    <dd class="text-right font-medium">{ due ? displayDate(due) : "Not set" }</dd>
                     <dt class="text-muted-foreground">Draft</dt>
                     <dd class="text-right font-medium">{ snapshot.request_id } · v{ versionOf(snapshot) }</dd>
                 </dl>
@@ -511,9 +503,9 @@
             <Field.Legend class='font-medium text-lg mb-1'>Target Operational Date</Field.Legend>
             <Field.Description>When do you need this tool installed & operational by? Approximate date is fine.</Field.Description>
             
-            <Field.Field >
+            <Field.Field orientation='horizontal'>
                 <Field.Label for='due'>Installed & operational by</Field.Label>
-                <DatePicker bind:inputValue={due} disabled={locked} />
+                <DatePicker bind:value={ due } disabled={locked} placeholder="Select a date" />
             </Field.Field>
 
             <Field.Field>

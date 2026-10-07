@@ -32,6 +32,7 @@
 
     } from "@lucide/svelte";
     import { generateID } from "$lib/hooks/hash";
+    import { DatePicker } from "$lib/components/date-picker";
 
     type Props = {
         /** Signed-in user. When provided, the requester fields are prefilled and read-only. */
@@ -808,7 +809,7 @@
             <Field.Field data-invalid={showErrors && !!errors.needBy}>
                 <Field.Label for="need-by">Installed and operational by</Field.Label>
                 <div class="flex flex-wrap items-center gap-2">
-                    <Popover.Root bind:open={dateOpen}>
+                    <!-- <Popover.Root bind:open={dateOpen}>
                         <Popover.Trigger id="need-by">
                             {#snippet child({ props })}
                                 <Button {...props} variant="outline" class={["min-w-52 justify-start font-normal", !needBy && "text-muted-foreground"]}>
@@ -819,7 +820,8 @@
                         <Popover.Content class="w-auto overflow-hidden p-0" align="start">
                             <Calendar type="single" bind:value={needBy} captionLayout="dropdown" minValue={today(tz)} onValueChange={() => (dateOpen = false)} />
                         </Popover.Content>
-                    </Popover.Root>
+                    </Popover.Root> -->
+                    <DatePicker bind:value={needBy} />
                     <Button variant="ghost" size="sm" onclick={() => setDatePreset(today(tz).add({ months: 3 }))}>In 3 months</Button>
                     <Button variant="ghost" size="sm" onclick={() => setDatePreset(today(tz).add({ months: 6 }))}>In 6 months</Button>
                     <Button variant="ghost" size="sm" onclick={() => setDatePreset(new CalendarDate(today(tz).year, 12, 31))}>End of year</Button>

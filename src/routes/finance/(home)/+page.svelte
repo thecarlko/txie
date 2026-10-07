@@ -1,5 +1,5 @@
 <script lang='ts'>
-    import { Plus } from '@lucide/svelte';
+    import { Hourglass, Landmark, Lock, Plus, Receipt, Wallet } from '@lucide/svelte';
     import { formatCurrency } from '$lib/hooks/finance';
     import { bank } from '$lib/data/bank.svelte';
     import { Sankey } from '$lib/components/sankey';
@@ -63,13 +63,24 @@
 {/snippet}
 
 {#snippet AccountOverview()}
-    <div class='p-4'>
-        <h1 class='text-3xl'>{ formatCurrency(bank.account / 100) }</h1>
-        <br>
-        <p class='text-xl text-red-600'>-{ formatCurrency(bank.spent / 100) } Spent</p>
-        <p class='text-xl text-orange-500'>-{ formatCurrency(bank.committed / 100) } Committed</p>
-        <p class='text-xl text-yellow-600'>-{ formatCurrency(bank.requested / 100) } Requested</p>
-        <br>
-        <p class='text-2xl'>{ formatCurrency(bank.available / 100) }</p>
+    <div class='p-4 flex flex-col justify-end items-end text-right tabular-nums '>
+        <span class='flex items-center gap-1.5 text-sm text-muted-foreground'><Landmark class='size-4' /> Account</span>
+        <h1 class='text-3xl py-2 font-medium'>{ formatCurrency(bank.account / 100) }</h1>
+
+        <dl class='grid grid-cols-[auto_auto_auto] items-center gap-x-2 gap-y-1 text-lg mt-auto py-4'>
+            {@render Deduction(Receipt, 'Spent', bank.spent, 'text-red-600')}
+            {@render Deduction(Lock, 'Committed', bank.committed, 'text-orange-500')}
+            {@render Deduction(Hourglass, 'Requested', bank.requested, 'text-yellow-600')}
+        </dl>
+
+        <hr class='w-full max-w-72 pt-4'>
+        <span class='flex items-center gap-1.5 text-sm text-muted-foreground'><Wallet class='size-4' /> Available</span>
+        <p class={['text-2xl font-medium', bank.available < 0 && 'text-red-600']}>{ formatCurrency(bank.available / 100) }</p>
     </div>
+{/snippet}
+
+{#snippet Deduction(Icon: typeof Receipt, label: string, cents: number, color: string)}
+    <Icon class={['size-4', color]} />
+    <dt class='text-sm text-muted-foreground text-left'>{label}</dt>
+    <dd class={color}>-{ formatCurrency(cents / 100) }</dd>
 {/snippet}

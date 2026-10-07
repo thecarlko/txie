@@ -1,10 +1,14 @@
 <script lang="ts">
     import '$lib/styles/layout.css'
 	import { UserRoundIcon } from '@lucide/svelte';
-    import { Button } from '$lib/components/button';
 	import * as Avatar from '$lib/components/avatar';
 	import * as Tooltip from '$lib/components/tooltip';
     import { Toaster } from '$lib/components/sonner';
+    import { ModeWatcher } from "mode-watcher";
+    import MoonIcon from "@lucide/svelte/icons/moon";
+    import SunIcon from "@lucide/svelte/icons/sun";
+    import { toggleMode } from "mode-watcher";
+    import { Button } from "$lib/components/button";
     
     
 	let { children } = $props();
@@ -15,8 +19,13 @@
 
 <Toaster richColors />
 <Tooltip.Provider>
-<nav class='fixed top-0 left-0 right-0 px-4 py-2 z-50 flex justify-between font-sans pointer-events-none'>
-    <a href='/' aria-label="Home" class='pointer-events-auto'><img class='h-10' src='/brand/wordmark.svg' alt="Home"/></a>
+<nav class='fixed top-0 left-0 right-0 px-4 py-2 z-50 grid grid-cols-[1fr_auto_auto] items-center gap-3 font-sans pointer-events-none'>
+    <a href='/' aria-label="Home" class='pointer-events-auto mr-auto'><img class='h-10' src='/brand/wordmark.svg' alt="Home"/></a>
+
+    <Button onclick={toggleMode} variant="ghost" size="icon" class='pointer-events-auto'>
+    <SunIcon class="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 !transition-all dark:scale-0 dark:-rotate-90"/>
+    <MoonIcon class="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 !transition-all dark:scale-100 dark:rotate-0"/>
+    </Button>
 
     <a class='pointer-events-auto' href={ sessionUser ? "/profile" : "/login" }>
         {#if sessionUser }
@@ -35,4 +44,5 @@
     {@render children()}
 </main>
 </Tooltip.Provider>
+<ModeWatcher />
 

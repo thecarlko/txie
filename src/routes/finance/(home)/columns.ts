@@ -48,8 +48,9 @@ export const columns = column.columns([
         sortDescFirst: true,
         meta: { cellClass: 'font-medium' }
     }),
-    column.accessor('location', {
-        header: 'Location'
+    column.accessor('purpose', {
+        header: 'Purpose',
+        cell: ({ getValue }) => renderComponent(PurposeCell, { purpose: getValue() })
     }),
     column.accessor((row) => stageOf(row), {
         id: 'stage',
@@ -57,9 +58,8 @@ export const columns = column.columns([
         cell: ({ getValue }) => renderComponent(DecisionBadge, { stage: getValue() }),
         sortFn: sortByStage
     }),
-    column.accessor('purpose', {
-        header: 'Purpose',
-        cell: ({ getValue }) => renderComponent(PurposeCell, { purpose: getValue() })
+    column.accessor('location', {
+        header: 'Location'
     }),
     column.accessor((row) => parsePersonnel(row.personnel)[0]?.name ?? '—', {
         id: 'owner',

@@ -1,17 +1,29 @@
-
+import { database } from "$lib/data/smartsheet.svelte";
+import { budgetTotal, vendorTotal } from "$lib/data/snapshot-fields";
 
 class Bank {
 
-    federal = $state(78_000_000);
-    state = $state(47_340_000);
-    private = $state(12_000_000);
+    federal = $state(72_000_000 * 100);
+    state = $state(12_340_000 * 100);
+    private = $state(12_000_000 * 100);
 	account = $derived(this.federal + this.state + this.private);
 
-	spent = $derived( 12_000_000);
-	committed = $derived( 12_000_000);
-	requested = $derived( 12_000_000);
+	// Each request counts once, at its latest version. Rejected requests count for nothing.
+	// Approved + vendors submitted: the recommended vendor's quote
+	spent = $derived(sum(database.requests.filter((s) => s.decision === "approved" && database.vendors.submittedAt(s.request_id)), (s) => {
+		const chosen = database.vendors.of(s.request_id).find((v) => v.recommended);
+		return chosen ? vendorTotal(chosen) : 0;
+	}));
+	// Approved, still sourcing: the envelope FAB Leadership approved
+	committed = $derived(sum(database.requests.filter((s) => s.decision === "approved" && !database.vendors.submittedAt(s.request_id)), (s) => s.approved_budget ?? budgetTotal(s.budget)));
+	// No decision yet (draft or in review): the budget asked for
+	requested = $derived(sum(database.requests.filter((s) => s.decision === null), (s) => budgetTotal(s.budget)));
 	available = $derived(this.account - (this.spent + this.committed + this.requested));
 
 }
-export const bank = new Bank();
 
+function sum<T>(rows: T[], amount: (row: T) => number): number {
+	return rows.reduce((total, row) => total + amount(row), 0);
+}
+
+export const bank = new Bank();
