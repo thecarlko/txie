@@ -1,6 +1,7 @@
 import type {
     Budget,
     BudgetEntry,
+    Footprint,
     CostCategory,
     Personnel,
     PersonnelEntry,
@@ -8,11 +9,14 @@ import type {
     PurchaseSnapshot,
     SpecEntry,
     Specification,
+    SupportItem,
+    SupportItemEntry,
+    Vendor,
     Stage
 } from '$lib/models/procurement';
 
 /**
- * Converters for the ";"-separated text fields on PurchaseSnapshot.
+ * Converters for the ";"-separated text fields on PurchaseSnapshot and Vendor.
  * Each parse* has a matching serialize* so forms can round-trip a snapshot.
  */
 
@@ -27,6 +31,27 @@ export function parsePrograms(programs: string | null): string[] {
 
 export function serializePrograms(programs: string[]): string | null {
     return join(programs);
+}
+
+
+// Plain lists: "power;di_water"
+export function parseList<T extends string = string>(list: string | null): T[] {
+    return entries(list) as T[];
+}
+
+export function serializeList(items: string[]): string | null {
+    return join(items);
+}
+
+
+// Footprint: "LxWxH" in mm, e.g. "2500x1800x2100". Unknown sides are left blank: "2500x1800x"
+export function parseFootprint(footprint: string | null): Footprint {
+    const [length, width, height] = (footprint?.split('x') ?? []).map((side) => (side ? Number(side) : null));
+    return { length, width, height };
+}
+
+export function serializeFootprint({ length, width, height }: Footprint): string | null {
+    return length || width || height ? [length, width, height].map((side) => side || '').join('x') : null;
 }
 
 
@@ -56,6 +81,24 @@ export function serializeSpecs(specs: Specification[]): string | null {
 }
 
 
+// Support items: "name|cents|lead weeks|LxWxH mm;..."
+export function parseSupportItems(items: string | null): SupportItem[] {
+    return (entries(items) as SupportItemEntry[]).map((entry) => {
+        const [name, cents, weeks, size] = entry.split('|');
+        return { name, cost: Number(cents) || 0, lead_time_weeks: weeks ? Number(weeks) : null, size: size || null };
+    });
+}
+
+export function serializeSupportItems(items: SupportItem[]): string | null {
+    const clean = (text: string) => text.replace(/\s*[|;]\s*/g, ' ').trim(); // separators can't appear inside a name
+    return join(
+        items
+            .filter((item) => clean(item.name))
+            .map((item) => [clean(item.name), Math.round(item.cost || 0), item.lead_time_weeks || '', item.size ?? ''].join('|'))
+    );
+}
+
+
 // Budget: "category-cents;..."
 export function parseBudget(budget: string | null): Budget {
     return Object.fromEntries(
@@ -77,6 +120,16 @@ export function serializeBudget(budget: Budget): string | null {
 /** Total of every budget line, in USD cents. */
 export function budgetTotal(budget: string | null): number {
     return Object.values(parseBudget(budget)).reduce((sum, cents) => sum + (cents ?? 0), 0);
+}
+
+/** A vendor with enough to be submitted: manufacturer, model, and a purchase price. */
+export function isComplete(vendor: Pick<Vendor, 'manufacturer' | 'model' | 'costs'>): boolean {
+    return Boolean(vendor.manufacturer && vendor.model && parseBudget(vendor.costs).purchase);
+}
+
+/** A vendor's quoted total in USD cents: every cost line, less the discount. */
+export function vendorTotal(vendor: Pick<Vendor, 'costs' | 'discount'>): number {
+    return budgetTotal(vendor.costs) - (vendor.discount ?? 0);
 }
 
 

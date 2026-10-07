@@ -1,7 +1,8 @@
 <script lang='ts'>
     import Proposal from './proposal.svelte';
-    import Vendors from './vendors.svelte';
+    import Sourcing from './sourcing.svelte';
     import Leadership from './leadership.svelte';
+    import Summary from './summary.svelte';
     import type { PageData } from './$types';
     import * as Tabs from '$lib/components/tabs';
     import * as NativeSelect from '$lib/components/native-select';
@@ -38,14 +39,16 @@
         <Proposal {snapshot} onforward={() => (tab = 'leadership')} />
         <Leadership {snapshot} onrevise={openDraft} />
     {/key}
-    <Vendors />
+    <Sourcing approved={versions.findLast((v) => v.decision === 'approved')} onsubmit={() => (tab = 'summary')} />
+    <Summary {versions} />
 
     <div class='fixed top-0 w-screen pb-5 pt-3 px-6 grid grid-cols-[1fr_auto_1fr] items-center pointer-events-none z-20 bg-linear-to-b from-background via-background to-transparent'>
         <span></span>
         <Tabs.List variant='line' class='gap-x-4 pointer-events-auto'>
             <Tabs.Trigger value='proposal' class='after:bg-transparent'>Proposal</Tabs.Trigger>
             <Tabs.Trigger value='leadership' class='after:bg-transparent font-base'>Leadership</Tabs.Trigger>
-            <Tabs.Trigger value='vendors' class='after:bg-transparent'>Vendors</Tabs.Trigger>
+            <Tabs.Trigger value='sourcing' class='after:bg-transparent'>Sourcing</Tabs.Trigger>
+            <Tabs.Trigger value='summary' class='after:bg-transparent'>Summary</Tabs.Trigger>
         </Tabs.List>
 
         {#if versions.length > 1}
