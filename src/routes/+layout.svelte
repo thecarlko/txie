@@ -9,6 +9,7 @@
     import SunIcon from "@lucide/svelte/icons/sun";
     import { toggleMode } from "mode-watcher";
     import { Button } from "$lib/components/button";
+    import 'katex/dist/katex.min.css';
     
     
 	let { children } = $props();
@@ -17,10 +18,13 @@
 
 
 
+
+
 <Toaster richColors />
 <Tooltip.Provider>
 <nav class='fixed top-0 left-0 right-0 px-4 py-2 z-50 grid grid-cols-[1fr_auto_auto] items-center gap-3 font-sans pointer-events-none'>
-    <a href='/' aria-label="Home" class='pointer-events-auto mr-auto'><img class='h-10' src='/brand/wordmark.svg' alt="Home"/></a>
+    <a href='/' aria-label="Home" class='pointer-events-auto mr-auto'><img class='h-10 dark:invert' src='/brand/wordmark.svg' alt="Home"/></a>
+
 
     <Button onclick={toggleMode} variant="ghost" size="icon" class='pointer-events-auto'>
     <SunIcon class="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 !transition-all dark:scale-0 dark:-rotate-90"/>

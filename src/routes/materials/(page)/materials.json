@@ -1,0 +1,30 @@
+[
+        {
+            "id": "MAT-01",
+            "code": "CM-036",
+            "name": "IPA 99.99%",
+            "type": "wet_chemical",
+            "status": "in_spec"
+        },
+        {
+            "id": "MAT-02",
+            "code": "CM-064",
+            "name": "ARC29A-308 BARC",
+            "type": "coating",
+            "status": "in_spec"
+        },
+        {
+            "id": "MAT-03",
+            "code": "CM-091",
+            "name": "Epoxy resin T693/R4502-H1",
+            "type": "resin",
+            "status": "in_spec"
+        },
+        {
+            "id": "MAT-04",
+            "code": "CM-012",
+            "name": "Hydrogen peroxide 31%",
+            "type": "wet_chemical",
+            "status": "in_spec"
+        }
+]
