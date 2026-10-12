@@ -19,8 +19,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": "2026-07-14"
+    "recommended": true
   },
   {
     "id": "EPG-09-V1",
@@ -42,8 +41,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": "hazardous_materials;facility_modification",
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-12-V1",
@@ -65,8 +63,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": "2026-07-15"
+    "recommended": true
   },
   {
     "id": "EPG-55-V1",
@@ -88,8 +85,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-18-V1",
@@ -111,8 +107,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": "hazardous_materials",
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-22-V1",
@@ -134,8 +129,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": "hazardous_materials;new_vendor",
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-24-V1",
@@ -157,8 +151,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-33-V1",
@@ -180,8 +173,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": "hazardous_materials",
-    "recommended": false,
-    "submitted_at": null
+    "recommended": false
   },
   {
     "id": "EPG-33-V2",
@@ -203,8 +195,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": "new_vendor",
-    "recommended": false,
-    "submitted_at": null
+    "recommended": false
   },
   {
     "id": "EPG-41-V1",
@@ -226,8 +217,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-46-V1",
@@ -249,8 +239,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": "hazardous_materials;facility_modification",
-    "recommended": true,
-    "submitted_at": "2026-09-15"
+    "recommended": true
   },
   {
     "id": "EPG-62-V1",
@@ -272,8 +261,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": "hazardous_materials;facility_modification",
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-52-V1",
@@ -295,8 +283,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-57-V1",
@@ -318,8 +305,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": "2026-09-30"
+    "recommended": true
   },
   {
     "id": "EPG-59-V1",
@@ -341,8 +327,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-61-V1",
@@ -364,8 +349,7 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": null
+    "recommended": true
   },
   {
     "id": "EPG-63-V1",
@@ -387,7 +371,6 @@
     "facility_lead_time_weeks": null,
     "facility_approved": false,
     "flags": null,
-    "recommended": true,
-    "submitted_at": "2026-10-06"
+    "recommended": true
   }
 ]

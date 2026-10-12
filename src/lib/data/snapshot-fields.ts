@@ -132,6 +132,28 @@ export function vendorTotal(vendor: Pick<Vendor, 'costs' | 'discount'>): number 
     return budgetTotal(vendor.costs) - (vendor.discount ?? 0);
 }
 
+/** Everything has to arrive before the tool can run, so the longest lead time wins. */
+export function longestLeadTime(vendor: Pick<Vendor, 'lead_time_weeks' | 'support_items' | 'facility_lead_time_weeks'>): number {
+    return Math.max(
+        vendor.lead_time_weeks ?? 0,
+        ...parseSupportItems(vendor.support_items).map((item) => item.lead_time_weeks ?? 0),
+        vendor.facility_lead_time_weeks ?? 0,
+    );
+}
+
+/** A proposal ready for FAB Leadership: location, purpose, current gap, a named person, and a purchase price. */
+export function isProposalComplete(
+    snapshot: Pick<PurchaseSnapshot, 'location' | 'purpose' | 'current_gap' | 'personnel' | 'budget'>
+): boolean {
+    return Boolean(
+        snapshot.location &&
+        snapshot.purpose.trim() &&
+        snapshot.current_gap?.trim() &&
+        parsePersonnel(snapshot.personnel).length &&
+        parseBudget(snapshot.budget).purchase
+    );
+}
+
 
 // Review state
 /** Where a snapshot sits in the review workflow. */

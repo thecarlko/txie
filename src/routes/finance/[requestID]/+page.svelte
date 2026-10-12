@@ -17,7 +17,8 @@
     // Every draft of this request; the latest is the one being worked on
     const versions = $derived(database.versions(data.requestID));
     let selectedId: string | null = $state(null);
-    const snapshot = $derived(versions.find((v) => v.id === selectedId) ?? versions.at(-1)!);
+    const latest = $derived(versions.at(-1)!);
+    const snapshot = $derived(versions.find((v) => v.id === selectedId) ?? latest);
 
     const stageLabel: Record<Stage, string> = {
         draft: 'Draft',
@@ -32,22 +33,29 @@
         selectedId = id;
         tab = 'proposal';
     }
+
+    /** The latest draft and its vendors went to FAB Leadership: show it there. */
+    function openReview() {
+        selectedId = null;
+        tab = 'leadership';
+    }
 </script>
 
 <Tabs.Root bind:value={tab}>
     {#key snapshot.id}
-        <Proposal {snapshot} onforward={() => (tab = 'leadership')} />
+        <Proposal {snapshot} onnext={() => (tab = 'sourcing')} />
         <Leadership {snapshot} onrevise={openDraft} />
     {/key}
-    <Sourcing approved={versions.findLast((v) => v.decision === 'approved')} onsubmit={() => (tab = 'summary')} />
+    <!-- Vendors aren't versioned, so sourcing always works against the latest draft -->
+    <Sourcing snapshot={latest} onforward={openReview} />
     <Summary {versions} />
 
     <div class='fixed top-0 w-screen pb-5 pt-3 px-6 grid grid-cols-[1fr_auto_1fr] items-center pointer-events-none z-20 bg-linear-to-b from-background via-background to-transparent'>
         <span></span>
         <Tabs.List variant='line' class='gap-x-4 pointer-events-auto'>
             <Tabs.Trigger value='proposal' class='after:bg-transparent'>Proposal</Tabs.Trigger>
-            <Tabs.Trigger value='leadership' class='after:bg-transparent font-base'>Leadership</Tabs.Trigger>
             <Tabs.Trigger value='sourcing' class='after:bg-transparent'>Sourcing</Tabs.Trigger>
+            <Tabs.Trigger value='leadership' class='after:bg-transparent font-base'>Leadership</Tabs.Trigger>
             <Tabs.Trigger value='summary' class='after:bg-transparent'>Summary</Tabs.Trigger>
         </Tabs.List>
 

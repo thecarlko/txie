@@ -2,7 +2,7 @@ import { browser } from "$app/environment";
 import snapshotsJSON from "$lib/json/snapshots.json";
 import vendorsJSON from "$lib/json/vendors.json";
 import type { Decision, PurchaseSnapshot, Vendor } from "$lib/models/procurement";
-import { isComplete, isLocked, versionOf } from "$lib/data/snapshot-fields";
+import { isComplete, isLocked, isProposalComplete, versionOf } from "$lib/data/snapshot-fields";
 
 /** Fields the proposal form may change. Review fields only change through forward() and decide(). */
 type Editable = Partial<Omit<PurchaseSnapshot, "id" | "request_id" | "created_at" | "forwarded" | "decision" | "decision_comments" | "approved_budget">>;
@@ -54,9 +54,13 @@ function persist(key: string, table: () => unknown): void {
     });
 }
 
-/** Saves from before support items, lead times and facility checks existed are missing those columns. */
+/**
+ * Saves from before support items, lead times and facility checks existed are missing those columns.
+ * Saves from before sourcing moved ahead of FAB Leadership have a `submitted_at` column that's no longer used.
+ */
 function migrateVendors(vendors: Record<string, any>): Record<string, Vendor> {
     for (const v of Object.values(vendors)) {
+        delete v.submitted_at;
         v.configuration ??= null;
         v.lead_time_weeks ??= null;
         v.discount ??= null;
@@ -65,7 +69,6 @@ function migrateVendors(vendors: Record<string, any>): Record<string, Vendor> {
         v.facility_work ??= null;
         v.facility_lead_time_weeks ??= null;
         v.facility_approved ??= false;
-        v.submitted_at ??= null;
     }
     return vendors;
 }
@@ -83,16 +86,17 @@ function migrate(snapshots: Record<string, any>): Record<string, PurchaseSnapsho
 
 /**
  * Vendor quotes, one flat row per vendor. Rows for the same purchase request share its `request_id`.
- * Vendors can only be added to a request FAB Leadership has approved, and are locked once submitted.
+ * Vendors are sourced alongside the proposal and aren't versioned: they stay editable while the request's
+ * latest draft has no decision (including a new draft after changes are requested) and lock once it does.
  */
 class VendorSheet {
     vendors = $state<Record<string, Vendor>>(load(VENDORS_KEY, vendorsJSON, migrateVendors));
     rows = $derived(Object.values(this.vendors).sort(byRequestThenVendor));
 
-    #isApproved: (request_id: string) => boolean;
+    #isOpen: (request_id: string) => boolean;
 
-    constructor(isApproved: (request_id: string) => boolean) {
-        this.#isApproved = isApproved;
+    constructor(isOpen: (request_id: string) => boolean) {
+        this.#isOpen = isOpen;
         persist(VENDORS_KEY, () => this.vendors);
     }
 
@@ -105,14 +109,18 @@ class VendorSheet {
         return this.rows.filter((v) => v.request_id === request_id);
     }
 
-    /** Date sourcing was submitted for a request, or null while it's still open. */
-    submittedAt(request_id: string): string | null {
-        return this.of(request_id).find((v) => v.submitted_at)?.submitted_at ?? null;
+    /** The vendor recommended for a request, if one has been picked. */
+    chosen(request_id: string): Vendor | undefined {
+        return this.of(request_id).find((v) => v.recommended);
     }
 
-    /** Add a blank vendor to an approved request. */
+    /** Whether a request's vendors can still be changed. */
+    isOpen(request_id: string): boolean {
+        return this.#isOpen(request_id);
+    }
+
+    /** Add a blank vendor to a request that's still being drafted. */
     create(request_id: string, fields: VendorEditable = {}): Vendor {
-        if (!this.#isApproved(request_id)) throw new Error(`${request_id} needs an approved proposal before sourcing`);
         this.requireOpen(request_id);
 
         const number = Math.max(0, ...this.of(request_id).map(vendorNumber)) + 1;
@@ -138,7 +146,6 @@ class VendorSheet {
             created_at: today(),
             updated_at: today(),
             recommended: false,
-            submitted_at: null,
         };
 
         this.vendors[vendor.id] = vendor;
@@ -166,18 +173,6 @@ class VendorSheet {
         delete this.vendors[id];
     }
 
-    /**
-     * Submit a request's vendors for the executive summary, which locks them.
-     * The recommended vendor needs a manufacturer, model, and purchase price.
-     */
-    submit(request_id: string): void {
-        this.requireOpen(request_id);
-        const vendors = this.of(request_id);
-        const chosen = vendors.find((v) => v.recommended);
-        if (!chosen || !isComplete(chosen)) throw new Error(`${request_id} needs a complete recommended vendor to submit`);
-        for (const v of vendors) Object.assign(v, { submitted_at: today(), updated_at: today() });
-    }
-
     /** Throw away local edits and go back to vendors.json. */
     reset(): void {
         this.vendors = seed(vendorsJSON);
@@ -190,14 +185,17 @@ class VendorSheet {
     }
 
     private requireOpen(request_id: string): void {
-        if (this.submittedAt(request_id)) throw new Error(`${request_id} vendors were submitted and can no longer be changed`);
+        if (!this.#isOpen(request_id)) throw new Error(`${request_id} has a decision from FAB Leadership; its vendors can no longer be changed`);
     }
 }
 
 class SmartSheet {
     snapshots = $state<Record<string, PurchaseSnapshot>>(load(SNAPSHOTS_KEY, snapshotsJSON, migrate));
     rows = $derived(Object.values(this.snapshots).sort(byRequestThenVersion));
-    vendors = new VendorSheet((request_id) => this.versions(request_id).some((s) => s.decision === "approved"));
+    vendors = new VendorSheet((request_id) => {
+        const latest = this.latest(request_id);
+        return !!latest && !isLocked(latest);
+    });
 
     // Latest version of each purchase request, newest request first, for the requests table.
     // Rows are in version order, so the last draft seen for a request is the one that's kept.
@@ -263,10 +261,16 @@ class SmartSheet {
         Object.assign(snapshot, patch, { updated_at: today() });
     }
 
-    /** Send an editable snapshot to FAB Leadership for review. */
+    /**
+     * Send an editable snapshot and its sourced vendors to FAB Leadership for review.
+     * The proposal must be complete and the recommended vendor needs a manufacturer, model, and purchase price.
+     */
     forward(id: string): void {
         const snapshot = this.require(id);
         if (isLocked(snapshot)) throw new Error(`${id} already has a decision`);
+        if (!isProposalComplete(snapshot)) throw new Error(`${id} is missing required proposal fields`);
+        const chosen = this.vendors.chosen(snapshot.request_id);
+        if (!chosen || !isComplete(chosen)) throw new Error(`${snapshot.request_id} needs a complete recommended vendor before review`);
         Object.assign(snapshot, { forwarded: true, updated_at: today() });
     }
 

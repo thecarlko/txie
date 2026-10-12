@@ -9,13 +9,10 @@ class Bank {
 	account = $derived(this.federal + this.state + this.private);
 
 	// Each request counts once, at its latest version. Rejected requests count for nothing.
-	// Approved + vendors submitted: the recommended vendor's quote
-	spent = $derived(sum(database.requests.filter((s) => s.decision === "approved" && database.vendors.submittedAt(s.request_id)), (s) => {
-		const chosen = database.vendors.of(s.request_id).find((v) => v.recommended);
-		return chosen ? vendorTotal(chosen) : 0;
-	}));
-	// Approved, still sourcing: the envelope FAB Leadership approved
-	committed = $derived(sum(database.requests.filter((s) => s.decision === "approved" && !database.vendors.submittedAt(s.request_id)), (s) => s.approved_budget ?? budgetTotal(s.budget)));
+	// Approved with a recommended vendor: that vendor's quote
+	spent = $derived(sum(database.requests.filter((s) => s.decision === "approved" && database.vendors.chosen(s.request_id)), (s) => vendorTotal(database.vendors.chosen(s.request_id)!)));
+	// Approved without a recommended vendor: the envelope FAB Leadership approved
+	committed = $derived(sum(database.requests.filter((s) => s.decision === "approved" && !database.vendors.chosen(s.request_id)), (s) => s.approved_budget ?? budgetTotal(s.budget)));
 	// No decision yet (draft or in review): the budget asked for
 	requested = $derived(sum(database.requests.filter((s) => s.decision === null), (s) => budgetTotal(s.budget)));
 	available = $derived(this.account - (this.spent + this.committed + this.requested));

@@ -1,18 +1,14 @@
 <script lang="ts">
+    import { untrack } from "svelte";
+    import { Clock, Gavel, Hourglass, Lock, MapPin, Sparkles, Star } from "@lucide/svelte";
     import * as Tabs from "$lib/components/tabs";
-    import { Label } from "$lib/components/label";
     import { Button } from "$lib/components/button";
-    import * as RadioGroup from "$lib/components/radio-group";
-    import * as InputGroup from "$lib/components/input-group";
-    import * as Field from "$lib/components/field";
     import { formatCurrency } from "$lib/hooks/finance";
-    import { BadgeCheck, Undo2, Gavel, MapPin, Sparkles, Clock, CircleX, Lock, Hourglass } from "@lucide/svelte";
-    import type { Component } from "svelte";
-    import { slide } from "svelte/transition";
-    import { Currency } from "$lib/components/currency";
     import { database } from "$lib/data/smartsheet.svelte";
-    import { budgetTotal, isLocked, parseBudget, parsePersonnel, parsePrograms, parseSpecs, versionOf } from "$lib/data/snapshot-fields";
-    import type { Decision, PurchaseSnapshot } from "$lib/models/procurement";
+    import { costLabel, decisionLabel, firmnessLabel, forceLabel, formatDate, needTypeLabel, roleLabel } from "$lib/data/labels";
+    import { budgetTotal, isLocked, longestLeadTime, parseBudget, parsePersonnel, parsePrograms, parseSpecs, vendorTotal, versionOf } from "$lib/data/snapshot-fields";
+    import type { CostCategory, Decision, PurchaseSnapshot } from "$lib/models/procurement";
+    import DecisionField from "../fields/decision.svelte";
 
     let { snapshot, onrevise }: { snapshot: PurchaseSnapshot; onrevise: (draftId: string) => void } = $props();
 
@@ -20,8 +16,13 @@
     const programs = $derived(parsePrograms(snapshot.programs));
     const personnel = $derived(parsePersonnel(snapshot.personnel));
     const specs = $derived(parseSpecs(snapshot.specs));
-    const budgetLines = $derived(Object.entries(parseBudget(snapshot.budget)));
+    const budgetLines = $derived(Object.entries(parseBudget(snapshot.budget)) as [CostCategory, number][]);
     const estimate = $derived(budgetTotal(snapshot.budget) / 100);
+
+    // Vendors sourced for the request (shared by every draft); the recommended one is what's being approved
+    const vendors = $derived(database.vendors.of(snapshot.request_id));
+    const chosen = $derived(database.vendors.chosen(snapshot.request_id));
+    const quote = $derived(chosen ? vendorTotal(chosen) / 100 : null);
 
     // Leadership can only decide on a forwarded draft, and only once
     const locked = $derived(isLocked(snapshot));
@@ -39,8 +40,8 @@
     let touched = $state({ decision: false, comments: false });
     let submitted = $state(false);
 
-    // Working budget for sourcing, in dollars. Defaults to the engineer's total estimate.
-    let budget = $state(budgetTotal(snapshot.budget) / 100);
+    // Authorized budget, in dollars. Defaults to the recommended vendor's quote, else the engineer's estimate.
+    let budget = $state(untrack(() => quote ?? estimate));
 
     let errors = $derived({
         decision: (touched.decision || submitted) && !decision ? "A gate decision is required." : null,
@@ -61,14 +62,16 @@
         // "Request changes" opened the next draft for the requester to edit
         if (draft) onrevise(draft.id);
     }
+
+    const eyebrow = "font-medium text-sm text-muted-foreground uppercase tracking-wider";
 </script>
 
 <Tabs.Content value="leadership" class='gap-x-16 grid grid-cols-1 md:grid-cols-2 px-[5vw] w-full mx-auto max-w-8xl'>
     <aside class='pr-8 md:pt-28 pb-16'>
         <div class="mb-12">
-            <h1 class='text-2xl font-medium font-display mb-2'>02 - FAB Leadership</h1>
+            <h1 class='text-2xl font-medium font-display mb-2'>03 - FAB Leadership</h1>
         </div>
-        
+
         <div class="flex items-center justify-between mb-8">
             <h2 class='font-medium text-xl text-muted-foreground'>Proposal Snapshot</h2>
             <div class="bg-muted px-3 py-1 rounded-md text-sm font-medium">{snapshot.request_id} · Draft {versionOf(snapshot)}</div>
@@ -80,8 +83,8 @@
                 <h3 class="text-3xl font-medium mb-4">{snapshot.purpose}</h3>
                 <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
                     <span class="flex items-center gap-1.5 uppercase"><MapPin class="size-4" /> {snapshot.location}</span>
-                    <span class="flex items-center gap-1.5 capitalize"><Sparkles class="size-4" /> {snapshot.purpose_type.replaceAll('_', ' ')}</span>
-                    <span class="flex items-center gap-1.5"><Clock class="size-4" /> Needed by {snapshot.target_date}</span>
+                    <span class="flex items-center gap-1.5"><Sparkles class="size-4" /> {needTypeLabel[snapshot.purpose_type]}</span>
+                    <span class="flex items-center gap-1.5"><Clock class="size-4" /> Needed by {formatDate(snapshot.target_date)}</span>
                 </div>
             </section>
 
@@ -90,11 +93,11 @@
             <!-- Justification -->
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                    <h4 class="font-medium text-sm text-muted-foreground mb-2 uppercase tracking-wider">What it does</h4>
+                    <h4 class="{eyebrow} mb-2">What it does</h4>
                     <p class="text-foreground whitespace-pre-wrap">{snapshot.purpose_details ?? "—"}</p>
                 </div>
                 <div>
-                    <h4 class="font-medium text-sm text-muted-foreground mb-2 uppercase tracking-wider">Current Gap</h4>
+                    <h4 class="{eyebrow} mb-2">Current Gap</h4>
                     <p class="text-foreground whitespace-pre-wrap">{snapshot.current_gap ?? "—"}</p>
                 </div>
             </section>
@@ -102,20 +105,20 @@
             <!-- Programs & Personnel -->
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-accent/30">
                 <div>
-                    <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Programs Supported</h4>
+                    <h4 class="{eyebrow} mb-3">Programs Supported</h4>
                     <div class="flex flex-wrap gap-2">
-                        {#each programs as prog}
+                        {#each programs as prog (prog)}
                             <span class="px-2.5 py-1 bg-background border text-sm font-medium">{prog}</span>
                         {/each}
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Personnel</h4>
+                    <h4 class="{eyebrow} mb-3">Personnel</h4>
                     <ul class="space-y-3">
-                        {#each personnel as person}
+                        {#each personnel as person, i (i)}
                             <li class="text-sm">
                                 <span class="font-medium block">{person.name}</span>
-                                <span class="text-muted-foreground capitalize">{person.role.split('_').join(' ')} • {person.email}</span>
+                                <span class="text-muted-foreground">{roleLabel[person.role] ?? person.role} • {person.email}</span>
                             </li>
                         {/each}
                     </ul>
@@ -125,30 +128,20 @@
             <!-- Specs & Timeline -->
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {#if specs.length > 0}
-                <div>
-                    <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Target Specifications</h4>
-                    <dl class="space-y-2 text-sm">
-                        {#each specs as spec}
-                            <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
-                                <dt class="text-muted-foreground">{spec.title}</dt>
-                                <dd class="font-medium text-right">{spec.value}</dd>
-                            </div>
-                        {/each}
-                    </dl>
-                </div>
+                    <div>
+                        <h4 class="{eyebrow} mb-3">Target Specifications</h4>
+                        <dl class="space-y-2 text-sm">
+                            {#each specs as spec (spec.title)}
+                                {@render Line(spec.title, spec.value)}
+                            {/each}
+                        </dl>
+                    </div>
                 {/if}
-                {#if snapshot.date_firmness}
                 <div>
-                    <h4 class="font-medium text-sm text-muted-foreground mb-3 uppercase tracking-wider">Timeline Constraints</h4>
+                    <h4 class="{eyebrow} mb-3">Timeline Constraints</h4>
                     <dl class="space-y-2 text-sm">
-                        <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
-                            <dt class="text-muted-foreground">Firmness</dt>
-                            <dd class="font-medium text-right capitalize">{snapshot.date_firmness}</dd>
-                        </div>
-                        <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
-                            <dt class="text-muted-foreground">Forced Timeline</dt>
-                            <dd class="font-medium text-right capitalize">{snapshot.date_force}</dd>
-                        </div>
+                        {@render Line("Firmness", firmnessLabel[snapshot.date_firmness])}
+                        {@render Line("Forced Timeline", forceLabel[snapshot.date_force])}
                         {#if snapshot.consequence}
                             <div class="pt-2">
                                 <dt class="text-muted-foreground mb-1">Consequence if late</dt>
@@ -157,20 +150,19 @@
                         {/if}
                     </dl>
                 </div>
-                {/if}
             </section>
 
             <hr class="border-dashed border-muted-foreground/30">
 
             <!-- Budget Envelope -->
             <section>
-                <h4 class="font-medium text-sm text-muted-foreground mb-4 uppercase tracking-wider">Estimated Budget Envelope</h4>
+                <h4 class="{eyebrow} mb-4">Estimated Budget Envelope</h4>
                 <div class="bg-background border overflow-hidden">
                     <div class="divide-y">
-                        {#each budgetLines as [category, cents]}
+                        {#each budgetLines as [category, cents] (category)}
                             <div class="grid grid-cols-[1fr_auto] p-4 items-center">
-                                <span class="text-muted-foreground capitalize">{category.replaceAll('_', ' ')}</span>
-                                <span class="font-medium">{formatCurrency((cents ?? 0) / 100)}</span>
+                                <span class="text-muted-foreground">{costLabel[category] ?? category}</span>
+                                <span class="font-medium">{formatCurrency(cents / 100)}</span>
                             </div>
                         {/each}
                     </div>
@@ -180,88 +172,68 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Sourced Vendors -->
+            <section>
+                <h4 class="{eyebrow} mb-4">Sourced Vendors</h4>
+                {#if vendors.length}
+                    <div class="bg-background border divide-y">
+                        {#each vendors as v, index (v.id)}
+                            {@const lead = longestLeadTime(v)}
+                            <div class="grid grid-cols-[1fr_auto_auto] gap-x-6 p-4 items-center">
+                                <span class="flex items-center gap-2 font-medium">
+                                    {v.manufacturer || `Vendor ${index + 1}`} <span class="font-normal text-muted-foreground">{v.model}</span>
+                                    {#if v.recommended}<Star class="size-4 stroke-0 fill-[#f59e0b]" />{/if}
+                                </span>
+                                <span class="text-sm text-muted-foreground">{lead ? `${lead} weeks` : "—"}</span>
+                                <span class="font-medium tabular-nums">{formatCurrency(vendorTotal(v) / 100)}</span>
+                            </div>
+                        {/each}
+                    </div>
+                    {#if quote !== null}
+                        <p class="mt-3 text-sm text-muted-foreground text-right">
+                            Recommended quote is
+                            <span class={quote > estimate ? "text-red-600" : "text-green-600"}>{formatCurrency(Math.abs(quote - estimate))} {quote > estimate ? "over" : "under"}</span>
+                            the estimate
+                        </p>
+                    {/if}
+                {:else}
+                    <p class="text-sm text-muted-foreground">No vendors sourced.</p>
+                {/if}
+            </section>
         </div>
     </aside>
 
     <article class='grid grid-rows-[1fr_auto] md:sticky md:h-screen top-0 h-auto md:pt-28 pb-16'>
-        
         <div class="space-y-8 mt-12 md:mt-0">
             {#if awaitingProposal}
                 <div class="bg-accent/40 border p-6 flex flex-col gap-2">
-                    <div class="flex items-center gap-3">
-                        <Hourglass class="size-5 text-muted-foreground" />
-                        <h3 class="font-medium text-lg">Waiting on the proposal</h3>
-                    </div>
-                    <p class="text-sm text-muted-foreground">This draft is still being edited. A decision can be made once it's forwarded to FAB Leadership.</p>
+                    <h3 class="flex items-center gap-3 font-medium text-lg"><Hourglass class="size-5 text-muted-foreground" /> Waiting on the proposal</h3>
+                    <p class="text-sm text-muted-foreground">This draft is still being edited. A decision can be made once the proposal and its sourced vendors are forwarded to FAB Leadership.</p>
                 </div>
-            {:else if locked && snapshot.decision}
-                <!-- Read-Only Locked State -->
+            {:else if snapshot.decision}
                 <div class="bg-accent/40 border p-6 flex flex-col gap-4">
-                    <div class="flex items-center gap-3">
-                        <Lock class="size-5 text-muted-foreground" />
-                        <h3 class="font-medium text-lg">Fab Leadership Decision Locked</h3>
-                    </div>
-                    
-                    <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
-                        <span class="text-muted-foreground">Outcome</span>
-                        <strong class={`uppercase text-sm ${outcomeStyle[snapshot.decision]}`}>
-                            {snapshot.decision.replaceAll('_', ' ')}
-                        </strong>
-                    </div>
+                    <h3 class="flex items-center gap-3 font-medium text-lg"><Lock class="size-5 text-muted-foreground" /> Fab Leadership Decision Locked</h3>
 
-                    {#if snapshot.decision === 'approved'}
-                        <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
-                            <span class="text-muted-foreground">Approved Envelope</span>
-                            <strong class="text-sm">{formatCurrency((snapshot.approved_budget ?? budgetTotal(snapshot.budget)) / 100)}</strong>
+                    <dl class="space-y-4">
+                        {@render Line("Outcome", decisionLabel[snapshot.decision], `uppercase text-sm ${outcomeStyle[snapshot.decision]}`)}
+                        {#if snapshot.decision === 'approved'}
+                            {@render Line("Approved Envelope", formatCurrency((snapshot.approved_budget ?? budgetTotal(snapshot.budget)) / 100), "text-sm")}
+                        {/if}
+                        <div class="pt-2">
+                            <dt class="text-muted-foreground mb-1">Comments & Conditions</dt>
+                            <dd class="text-sm">{snapshot.decision_comments || "None provided."}</dd>
                         </div>
-                    {/if}
-
-                    <div class="pt-2">
-                        <span class="text-muted-foreground block mb-1">Comments & Conditions</span>
-                        <p class="text-sm">{snapshot.decision_comments || "None provided."}</p>
-                    </div>
+                    </dl>
                 </div>
             {:else}
-                <!-- Active Form State -->
-                <Field.Set>
-                    <Field.Legend class='font-medium text-lg mb-1'>Decision</Field.Legend>
-                    <Field.Description>Is this problem worth solving, at roughly this cost?</Field.Description>
-                    
-                    <RadioGroup.Root bind:value={decision} onfocusout={() => touched.decision = true} class='grid grid-cols-3 gap-3 mt-4'>
-                        {@render DecisionCard("approved", decision, "Approve Envelope", BadgeCheck, "text-green-600")}
-                        {@render DecisionCard("changes_requested", decision, "Request Changes", Undo2, "text-orange-500")}
-                        {@render DecisionCard("rejected", decision, "Reject", CircleX, "text-red-500")}
-                    </RadioGroup.Root>
-                    {#if errors.decision}
-                        <Field.Error class="mt-2">{errors.decision}</Field.Error>
-                    {/if}
-                </Field.Set>
-
-                {#if decision === "approved" }
-                <div transition:slide>
-                    <Field.Set>
-                        <Field.Legend class='font-medium'>Authorized Budget Envelope</Field.Legend>
-                        <Field.Description>Set the working budget that will be used to source vendors. By default, this is the engineer's total estimate.</Field.Description>
-
-                        <Currency bind:value={budget} placeholder={estimate.toString()} class="text-xl" />
-                    </Field.Set>
-                </div>
-                {/if}
-
-                <Field.Field>
-                    <Field.Label for="comments" class='font-medium'>Comments & Conditions</Field.Label>
-                    <InputGroup.Root class="mt-2">
-                        <InputGroup.Textarea
-                            id="comments"
-                            bind:value={comments}
-                            onblur={() => touched.comments = true}
-                            class={`min-h-32 resize-none ${errors.comments ? 'border-destructive' : ''}`}
-                            placeholder="Provide feedback, conditions of approval, or reasons for rejection..." />
-                    </InputGroup.Root>
-                    {#if errors.comments}
-                        <Field.Error class="mt-2">{errors.comments}</Field.Error>
-                    {/if}
-                </Field.Field>
+                <DecisionField
+                    bind:decision
+                    bind:budget
+                    bind:comments
+                    budgetPlaceholder={quote ?? estimate}
+                    {errors}
+                    ontouch={(field) => (touched[field] = true)} />
             {/if}
         </div>
 
@@ -275,11 +247,10 @@
     </article>
 </Tabs.Content>
 
-{#snippet DecisionCard(value: string, current: string, label: string, Icon: Component, styling: string)}
-    <Label data-selected={ value === current } class={ 
-    'cursor-pointer border flex flex-col items-center justify-center gap-2 px-2 py-4 transition-all opacity-70 hover:opacity-100 data-[selected=true]:bg-background data-[selected=true]:shadow-sm data-[selected=true]:opacity-100 data-[selected=true]:border-foreground/40' }>
-        <RadioGroup.Item { value } class='hidden' />
-        <Icon class={`size-6 stroke-[1.5] ${ styling }`} />
-        <span class="text-sm font-medium text-center">{ label }</span>
-    </Label>
+<!-- A term / value row on a dashed rule -->
+{#snippet Line(term: string, detail: string, detailClass = "")}
+    <div class="grid grid-cols-[1fr_auto] border-b pb-2 border-dashed">
+        <dt class="text-muted-foreground">{term}</dt>
+        <dd class="font-medium text-right {detailClass}">{detail}</dd>
+    </div>
 {/snippet}

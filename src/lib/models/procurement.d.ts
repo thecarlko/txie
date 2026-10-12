@@ -53,8 +53,8 @@ export interface PurchaseSnapshot {
 }
 
 /**
- * One vendor's equipment offer for an approved purchase request (a row of vendors.json).
- * A request can have several; they're grouped by the shared `request_id`.
+ * One vendor's equipment offer for a purchase request (a row of vendors.json).
+ * A request can have several; they're grouped by the shared `request_id`, not by draft version.
  */
 export interface Vendor {
     id: string;                     // "{request_id}-V{n}", e.g. "EPG-12-V1"
@@ -85,7 +85,6 @@ export interface Vendor {
     flags: string | null;           // Flags that apply: "hazardous_materials;new_vendor"
 
     recommended: boolean;           // At most one vendor per request
-    submitted_at: string | null;    // "YYYY-MM-DD"; set on every vendor of the request when sourcing is submitted, which locks them
 }
 
 /** Entry formats inside the ";"-separated fields above. */

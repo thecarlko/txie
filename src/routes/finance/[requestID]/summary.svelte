@@ -4,23 +4,22 @@
     import { formatCurrency } from "$lib/hooks/finance";
     import { database } from "$lib/data/smartsheet.svelte";
     import {
-        budgetTotal, parseBudget, parseFootprint, parseList, parsePersonnel, parsePrograms,
+        budgetTotal, longestLeadTime, parseBudget, parseFootprint, parseList, parsePersonnel, parsePrograms,
         parseSpecs, parseSupportItems, vendorTotal, versionOf
     } from "$lib/data/snapshot-fields";
     import {
         costLabel, decisionLabel, firmnessLabel, flagLabel, forceLabel, formatDate,
         locationLabel, needTypeLabel, roleLabel, utilityLabel
     } from "$lib/data/labels";
-    import type { CostCategory, PurchaseSnapshot, Utility, Vendor, VendorFlag } from "$lib/models/procurement";
+    import type { CostCategory, PurchaseSnapshot, Utility, VendorFlag } from "$lib/models/procurement";
 
     /** Every draft of the request, oldest first */
     let { versions }: { versions: PurchaseSnapshot[] } = $props();
 
-    // The summary needs an approved proposal and submitted vendors
+    // The summary needs an approved proposal with a recommended vendor
     const latest = $derived(versions.at(-1)!);
     const approved = $derived(versions.findLast((v) => v.decision === "approved"));
     const vendors = $derived(approved ? database.vendors.of(approved.request_id) : []);
-    const submittedAt = $derived(approved ? database.vendors.submittedAt(approved.request_id) : null);
     const chosen = $derived(vendors.find((v) => v.recommended));
 
     const envelope = $derived(approved ? (approved.approved_budget ?? budgetTotal(approved.budget)) : 0);
@@ -36,15 +35,6 @@
         return footprint ? `${[length, width, height].map((side) => side || "—").join(" × ")} mm` : null;
     }
 
-    /** Everything has to arrive before the tool can run, so the longest lead time wins */
-    function longestLeadTime(v: Vendor) {
-        return Math.max(
-            v.lead_time_weeks ?? 0,
-            ...parseSupportItems(v.support_items).map((item) => item.lead_time_weeks ?? 0),
-            v.facility_lead_time_weeks ?? 0,
-        );
-    }
-
     const eyebrow = "text-xs font-medium uppercase tracking-wider text-muted-foreground";
     const rows = "grid grid-cols-[minmax(8rem,14rem)_1fr] gap-x-6 gap-y-3 text-sm";
 </script>
@@ -54,9 +44,9 @@
         <div class='grid grid-rows-[auto_auto_1fr] gap-10 md:sticky top-0 py-20 md:pt-28 h-auto md:h-screen'>
             <h1 class='text-2xl font-medium font-display'>04 - Executive Summary</h1>
 
-            {#if approved && submittedAt && chosen}
+            {#if approved && chosen}
                 <header class='grid gap-2 border-y border-dashed py-6'>
-                    <span class={eyebrow}>{approved.request_id} · Draft {versionOf(approved)} · Submitted {formatDate(submittedAt)}</span>
+                    <span class={eyebrow}>{approved.request_id} · Draft {versionOf(approved)} · Approved {formatDate(approved.updated_at)}</span>
                     <h2 class='text-2xl font-medium'>{approved.purpose}</h2>
                     <div class='flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground'>
                         <span class='flex items-center gap-1.5 uppercase'><MapPin class='size-4' /> {approved.location}</span>
@@ -87,9 +77,9 @@
         {#if !approved && latest.decision === "rejected"}
             {@render Empty(CircleX, "FAB Leadership rejected this request", latest.decision_comments || "No summary is produced for rejected requests.")}
         {:else if !approved}
-            {@render Empty(Hourglass, "Waiting on FAB Leadership", "The summary is put together once FAB Leadership approves a draft of this proposal and its vendors are submitted.")}
-        {:else if !submittedAt || !chosen}
-            {@render Empty(PackageSearch, "Waiting on vendors", `Sourcing is underway with ${vendors.length} vendor${vendors.length === 1 ? "" : "s"} quoted so far. The summary is ready once the vendors are submitted.`)}
+            {@render Empty(Hourglass, "Waiting on FAB Leadership", "The summary is put together once FAB Leadership approves a draft of this proposal and its sourced vendors.")}
+        {:else if !chosen}
+            {@render Empty(PackageSearch, "No recommended vendor", `This request was approved with ${vendors.length} vendor${vendors.length === 1 ? "" : "s"} quoted but none recommended, so there's no equipment to summarize.`)}
         {:else}
             {@const specs = parseSpecs(approved.specs)}
             {@const programs = parsePrograms(approved.programs)}
