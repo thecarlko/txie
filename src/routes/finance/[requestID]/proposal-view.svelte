@@ -28,6 +28,11 @@
             <Lock class='size-4 shrink-0' />
             Draft {versionOf(snapshot)} is view only. FAB Leadership marked it {decisionLabel[snapshot.decision].toLowerCase()} on {formatDate(snapshot.updated_at)}.
         </p>
+    {:else if snapshot.forwarded}
+        <p class='flex items-center gap-3 bg-accent/40 border p-4 text-sm text-muted-foreground'>
+            <Lock class='size-4 shrink-0' />
+            Draft {versionOf(snapshot)} is view only. It has been forwarded to FAB Leadership and is awaiting review.
+        </p>
     {/if}
 
     <!-- Where & why -->

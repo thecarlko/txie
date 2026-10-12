@@ -53,7 +53,7 @@ export interface PurchaseSnapshot {
 }
 
 /**
- * One vendor's equipment offer for a purchase request (a row of vendors.json).
+ * One vendor's equipment offer for a purchase request (a row of the vendor Smartsheet).
  * A request can have several; they're grouped by the shared `request_id`, not by draft version.
  */
 export interface Vendor {

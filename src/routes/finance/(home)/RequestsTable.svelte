@@ -1,21 +1,35 @@
 
 <script lang='ts'>
     import { createTable, FlexRender } from '@tanstack/svelte-table';
+    import { untrack } from 'svelte';
     import * as Table from '$lib/components/table';
     import * as Pagination from '$lib/components/pagination';
     import { database } from '$lib/data/smartsheet.svelte';
     import { columns, features, initialSorting } from './columns';
     import RequestRow from './RequestRow.svelte';
 
+    let { startDate, endDate }: { startDate?: string; endDate?: string } = $props();
+    const requests = $derived(database.requests.filter((request) =>
+        (!startDate || request.updated_at >= startDate) &&
+        (!endDate || request.updated_at <= endDate)
+    ));
+
     const PAGE_SIZE = 20;
     const table = createTable({
         features,
         columns,
-        get data() { return database.requests; }, // latest draft of each request
+        get data() { return requests; }, // latest draft of each request within the date range
         initialState: {
             pagination: { pageIndex: 0, pageSize: PAGE_SIZE },
             sorting: initialSorting
         }
+    });
+
+    $effect(() => {
+        // Track the bounds so narrowing or clearing a range returns to page one.
+        void startDate;
+        void endDate;
+        untrack(() => table.setPageIndex(0));
     });
 
     // "1–20 of 63"
@@ -45,7 +59,9 @@
             <RequestRow {row} />
         {:else}
             <Table.Row>
-                <Table.Cell colspan={columns.length} class='h-24 text-center'>No proposals.</Table.Cell>
+                <Table.Cell colspan={columns.length} class='h-24 text-center'>
+                    {startDate || endDate ? 'No requests match this date range.' : 'No proposals.'}
+                </Table.Cell>
             </Table.Row>
         {/each}
     </Table.Body>

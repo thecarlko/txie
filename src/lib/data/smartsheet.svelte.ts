@@ -1,5 +1,4 @@
-import { browser } from "$app/environment";
-import vendorsJSON from "$lib/json/vendors.json";
+import { SheetSync } from "$lib/data/sheet-sync.svelte";
 import type { Decision, PurchaseSnapshot, Vendor } from "$lib/models/procurement";
 import { isComplete, isLocked, isProposalComplete, versionOf } from "$lib/data/snapshot-fields";
 
@@ -10,12 +9,8 @@ type Review = { decision: Decision; comments: string | null; approved_budget?: n
 type VendorEditable = Partial<Omit<Vendor, "id" | "request_id" | "created_at" | "updated_at" | "recommended">>;
 
 const SNAPSHOTS_KEY = "txie:purchase_snapshots";
-const VENDORS_KEY = "txie:vendors";
-type SnapshotChanges = {
-    updates: Record<string, Partial<PurchaseSnapshot>>;
-    creates: Record<string, PurchaseSnapshot>;
-    deletes: string[];
-};
+// Keep old whole-table vendor caches separate from edits to the official vendor sheet.
+const VENDORS_KEY = "txie:vendor_changes";
 function debug(event: string, details: Record<string, unknown> = {}): void {
     console.debug(`[smartsheet] ${event}`, details);
 }
@@ -26,88 +21,6 @@ const byRequestThenVersion = (a: PurchaseSnapshot, b: PurchaseSnapshot) => reque
 const vendorNumber = (v: Pick<Vendor, "id">) => Number(v.id.split("-V").at(-1)) || 0; // "EPG-12-V2" → 2
 /** Newest request first; within a request, vendors in the order they were added. */
 const byRequestThenVendor = (a: Vendor, b: Vendor) => requestNumber(b) - requestNumber(a) || vendorNumber(a) - vendorNumber(b);
-
-/** Fresh copy of a JSON table, keyed by row id. */
-function seed<T extends { id: string }>(rows: unknown[]): Record<string, T> {
-    return Object.fromEntries((structuredClone(rows) as T[]).map((row) => [row.id, row]));
-}
-
-/** Saved edits from localStorage if there are any, otherwise the JSON. */
-function load<T extends { id: string }>(
-    key: string,
-    rows: unknown[],
-    migrate: (saved: Record<string, any>) => Record<string, T> = (saved) => saved
-): Record<string, T> {
-    if (browser) {
-        try {
-            const saved = localStorage.getItem(key);
-            if (saved) return migrate(JSON.parse(saved));
-        } catch {
-            /* corrupt or blocked storage: fall back to the seed */
-        }
-    }
-    return seed(rows);
-}
-
-/** Persist a table's edits, debounced so typing in a cell doesn't write on every keystroke. */
-function persist(key: string, table: () => unknown): void {
-    if (!browser) return;
-    $effect.root(() => {
-        $effect(() => {
-            const json = JSON.stringify(table());
-            const timer = setTimeout(() => {
-                localStorage.setItem(key, json);
-                debug('localStorage:write', { key, bytes: json.length });
-            }, 300);
-            return () => clearTimeout(timer);
-        });
-    });
-}
-
-function snapshotChanges(snapshots: Record<string, PurchaseSnapshot>, sheet: Record<string, PurchaseSnapshot>): SnapshotChanges {
-    const updates: SnapshotChanges["updates"] = {};
-    const creates: SnapshotChanges["creates"] = {};
-    for (const [id, snapshot] of Object.entries(snapshots)) {
-        const official = sheet[id];
-        if (!official) {
-            creates[id] = snapshot;
-            continue;
-        }
-        const patch = Object.fromEntries(
-            Object.keys(snapshot)
-                .filter((key) => snapshot[key as keyof PurchaseSnapshot] !== official[key as keyof PurchaseSnapshot])
-                .map((key) => [key, snapshot[key as keyof PurchaseSnapshot]])
-        ) as Partial<PurchaseSnapshot>;
-        if (Object.keys(patch).length) updates[id] = patch;
-    }
-    const deletes = Object.keys(sheet).filter((id) => !snapshots[id]);
-    debug('diff:computed', {
-        updateIDs: Object.keys(updates),
-        updateFields: Object.fromEntries(Object.entries(updates).map(([id, patch]) => [id, Object.keys(patch)])),
-        createIDs: Object.keys(creates),
-        deleteIDs: deletes
-    });
-    return { updates, creates, deletes };
-}
-
-/**
- * Saves from before support items, lead times and facility checks existed are missing those columns.
- * Saves from before sourcing moved ahead of FAB Leadership have a `submitted_at` column that's no longer used.
- */
-function migrateVendors(vendors: Record<string, any>): Record<string, Vendor> {
-    for (const v of Object.values(vendors)) {
-        delete v.submitted_at;
-        v.configuration ??= null;
-        v.lead_time_weeks ??= null;
-        v.discount ??= null;
-        v.support_items ??= null;
-        v.facility_analysis ??= false;
-        v.facility_work ??= null;
-        v.facility_lead_time_weeks ??= null;
-        v.facility_approved ??= false;
-    }
-    return vendors;
-}
 
 /** Saves from before `forwarded` existed stored "draft" / "fab_leadership_review" as decisions. */
 function migrate(snapshots: Record<string, any>): Record<string, PurchaseSnapshot> {
@@ -126,14 +39,14 @@ function migrate(snapshots: Record<string, any>): Record<string, PurchaseSnapsho
  * latest draft has no decision (including a new draft after changes are requested) and lock once it does.
  */
 class VendorSheet {
-    vendors = $state<Record<string, Vendor>>(load(VENDORS_KEY, vendorsJSON, migrateVendors));
+    vendors = $state<Record<string, Vendor>>({});
     rows = $derived(Object.values(this.vendors).sort(byRequestThenVendor));
 
     #isOpen: (request_id: string) => boolean;
+    #sync = new SheetSync<Vendor>(VENDORS_KEY, 'vendors', () => this.vendors, (rows) => { this.vendors = rows; });
 
     constructor(isOpen: (request_id: string) => boolean) {
         this.#isOpen = isOpen;
-        persist(VENDORS_KEY, () => this.vendors);
     }
 
     get(id: string): Vendor | undefined {
@@ -209,9 +122,18 @@ class VendorSheet {
         delete this.vendors[id];
     }
 
-    /** Throw away local edits and go back to vendors.json. */
+    /** Load vendor quotes from the official sheet, with this browser's pending edits. */
+    hydrate(rows: Vendor[]): void {
+        this.#sync.hydrate(rows);
+    }
+
+    save(options: { keepalive?: boolean } = {}): Promise<void> {
+        return this.#sync.save(options);
+    }
+
+    /** Throw away local edits and restore the last loaded or saved sheet rows. */
     reset(): void {
-        this.vendors = seed(vendorsJSON);
+        this.#sync.reset();
     }
 
     private require(id: string): Vendor {
@@ -241,109 +163,25 @@ class SmartSheet {
     // Rows are in version order, so the last draft seen for a request is the one that's kept.
     requests = $derived(Object.values(Object.fromEntries(this.rows.map((s) => [s.request_id, s]))));
 
-    /** The sheet's rows as last fetched, before local edits. */
-    #sheet: Record<string, PurchaseSnapshot> = {};
-    #hydrated = false;
-    #saving: Promise<void> | null = null;
+    #sync = new SheetSync<PurchaseSnapshot>(
+        SNAPSHOTS_KEY, 'snapshots', () => this.snapshots, (rows) => { this.snapshots = rows; }, migrate
+    );
 
-    /** Load the sheet's rows, applying this browser's changed cells and row tombstones on top. */
-    hydrate(rows: PurchaseSnapshot[]): void {
-        debug('hydrate:start', { fetchedRowCount: rows.length, fetchedIDs: rows.map(({ id }) => id) });
-        this.#sheet = seed(rows);
-        const merged = seed<PurchaseSnapshot>(rows);
-        const saved = this.loadChanges();
-        debug('hydrate:local-changes', {
-            updateIDs: Object.keys(saved.updates),
-            createIDs: Object.keys(saved.creates),
-            deleteIDs: saved.deletes
-        });
-        for (const [id, patch] of Object.entries(saved.updates)) {
-            if (merged[id]) merged[id] = { ...merged[id], ...patch };
-        }
-        for (const [id, snapshot] of Object.entries(saved.creates)) merged[id] = snapshot;
-        for (const id of saved.deletes) delete merged[id];
-        this.snapshots = merged;
-        debug('hydrate:complete', { visibleRowCount: Object.keys(merged).length, visibleIDs: Object.keys(merged) });
-
-        // Start saving only once there's something to compare against, so an empty table never overwrites a save.
-        if (this.#hydrated) return;
-        this.#hydrated = true;
-        persist(SNAPSHOTS_KEY, () => snapshotChanges(this.snapshots, this.#sheet));
+    /** Hydrate both official sheets before finance pages read from the database. */
+    hydrate(rows: PurchaseSnapshot[], vendors: Vendor[]): void {
+        this.#sync.hydrate(rows);
+        this.vendors.hydrate(vendors);
     }
 
-    private loadChanges(): SnapshotChanges {
-        if (!browser) return { updates: {}, creates: {}, deletes: [] };
-        try {
-            const saved = localStorage.getItem(SNAPSHOTS_KEY);
-            if (!saved) {
-                debug('localStorage:empty', { key: SNAPSHOTS_KEY });
-                return { updates: {}, creates: {}, deletes: [] };
-            }
-            const parsed = JSON.parse(saved);
-            if (parsed.updates && parsed.creates && parsed.deletes) return parsed;
-            debug('localStorage:migrate-legacy', { key: SNAPSHOTS_KEY });
-            return { updates: migrate(parsed), creates: {}, deletes: [] };
-        } catch {
-            debug('localStorage:read-failed', { key: SNAPSHOTS_KEY });
-            return { updates: {}, creates: {}, deletes: [] };
+    /** Save purchase requests before their vendors, preserving per-sheet progress on failure. */
+    async save(options: { keepalive?: boolean } = {}): Promise<void> {
+        // Dispatch both immediately when leaving the page so both fetches can use keepalive.
+        if (options.keepalive) {
+            await Promise.all([this.#sync.save(options), this.vendors.save(options)]);
+            return;
         }
-    }
-
-    /** Send the current local diff to Smartsheet and clear it only after every request succeeds. */
-    async save({ keepalive = false }: { keepalive?: boolean } = {}): Promise<void> {
-        if (!browser) return;
-        if (this.#saving) return this.#saving;
-        const changes = snapshotChanges(this.snapshots, this.#sheet);
-        if (!changes.deletes.length && !Object.keys(changes.updates).length && !Object.keys(changes.creates).length) return;
-        debug('save:dispatch', {
-            updateIDs: Object.keys(changes.updates),
-            createIDs: Object.keys(changes.creates),
-            deleteIDs: changes.deletes
-        });
-
-        let completed = false;
-        this.#saving = fetch('/api/smartsheet', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(changes),
-            keepalive
-        }).then((response) => {
-            debug('save:response', { status: response.status, ok: response.ok });
-            if (!response.ok) throw new Error(`Saving Smartsheet changes failed: ${response.status}: ${response.statusText}`);
-            completed = true;
-            for (const [id, patch] of Object.entries(changes.updates)) {
-                if (this.#sheet[id]) this.#sheet[id] = { ...this.#sheet[id], ...patch };
-            }
-            for (const [id, snapshot] of Object.entries(changes.creates)) this.#sheet[id] = snapshot;
-            for (const id of changes.deletes) delete this.#sheet[id];
-
-            const remaining = snapshotChanges(this.snapshots, this.#sheet);
-            if (!remaining.deletes.length && !Object.keys(remaining.updates).length && !Object.keys(remaining.creates).length) {
-                localStorage.removeItem(SNAPSHOTS_KEY);
-                debug('save:complete', { localStorage: 'cleared' });
-            } else {
-                localStorage.setItem(SNAPSHOTS_KEY, JSON.stringify(remaining));
-                debug('save:partial', {
-                    updateIDs: Object.keys(remaining.updates),
-                    createIDs: Object.keys(remaining.creates),
-                    deleteIDs: remaining.deletes
-                });
-            }
-        }).catch((error) => {
-            debug('save:failed', { error: error instanceof Error ? error.message : String(error) });
-            throw error;
-        }).finally(() => {
-            this.#saving = null;
-            const remaining = snapshotChanges(this.snapshots, this.#sheet);
-            if (completed && (remaining.deletes.length || Object.keys(remaining.updates).length || Object.keys(remaining.creates).length)) {
-                debug('save:deferred-changes', {
-                    updateIDs: Object.keys(remaining.updates),
-                    createIDs: Object.keys(remaining.creates),
-                    deleteIDs: remaining.deletes
-                });
-            }
-        });
-        return this.#saving;
+        await this.#sync.save(options);
+        await this.vendors.save(options);
     }
 
     get(id: string): PurchaseSnapshot | undefined {
@@ -463,9 +301,9 @@ class SmartSheet {
         delete this.snapshots[id];
     }
 
-    /** Throw away local edits and go back to the sheet's rows and vendors.json. */
+    /** Throw away local edits and restore both official sheets. */
     reset(): void {
-        this.snapshots = structuredClone(this.#sheet);
+        this.#sync.reset();
         this.vendors.reset();
     }
 

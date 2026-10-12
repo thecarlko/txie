@@ -1,5 +1,5 @@
 import { database } from "$lib/data/smartsheet.svelte";
-import { budgetTotal, vendorTotal } from "$lib/data/snapshot-fields";
+import { budgetTotal, stageOf } from "$lib/data/snapshot-fields";
 
 class Bank {
 
@@ -8,14 +8,12 @@ class Bank {
     private = $state(12_000_000 * 100);
 	account = $derived(this.federal + this.state + this.private);
 
-	// Each request counts once, at its latest version. Rejected requests count for nothing.
-	// Approved with a recommended vendor: that vendor's quote
-	spent = $derived(sum(database.requests.filter((s) => s.decision === "approved" && database.vendors.chosen(s.request_id)), (s) => vendorTotal(database.vendors.chosen(s.request_id)!)));
-	// Approved without a recommended vendor: the envelope FAB Leadership approved
-	committed = $derived(sum(database.requests.filter((s) => s.decision === "approved" && !database.vendors.chosen(s.request_id)), (s) => s.approved_budget ?? budgetTotal(s.budget)));
-	// No decision yet (draft or in review): the budget asked for
-	requested = $derived(sum(database.requests.filter((s) => s.decision === null), (s) => budgetTotal(s.budget)));
-	available = $derived(this.account - (this.spent + this.committed + this.requested));
+	// Each request counts once, at its latest version.
+	// FAB Leadership's approved envelope, regardless of vendor selection.
+	approved = $derived(sum(database.requests.filter((s) => stageOf(s) === "approved"), (s) => s.approved_budget ?? budgetTotal(s.budget)));
+	// Only proposals currently awaiting FAB Leadership's decision.
+	requested = $derived(sum(database.requests.filter((s) => stageOf(s) === "fab_leadership_review"), (s) => budgetTotal(s.budget)));
+	available = $derived(this.account - (this.approved + this.requested));
 
 }
 

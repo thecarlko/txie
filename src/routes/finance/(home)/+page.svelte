@@ -1,14 +1,23 @@
 <script lang='ts'>
-    import { Hourglass, Landmark, Lock, Plus, Receipt, Wallet } from '@lucide/svelte';
+    import { Hourglass, Landmark, Lock, Plus, Wallet } from '@lucide/svelte';
+    import { DateFormatter, getLocalTimeZone, today } from '@internationalized/date';
+    import type { DateRange } from 'bits-ui';
     import { formatCurrency } from '$lib/hooks/finance';
     import { bank } from '$lib/data/bank.svelte';
     import { Sankey } from '$lib/components/sankey';
     import * as Tabs from '$lib/components/tabs';
     import Button from '$lib/components/button/button.svelte';
-    import { DatePicker } from '$lib/components/date-picker';
+    import * as Popover from '$lib/components/popover';
+    import { RangeCalendar } from '$lib/components/range-calendar';
     import { goto } from '$app/navigation';
     import { database } from '$lib/data/smartsheet.svelte';
     import RequestsTable from './RequestsTable.svelte';
+
+    let dateRange = $state<DateRange | undefined>();
+    let datePickerOpen = $state(false);
+    const dateFormatter = new DateFormatter('en-US', { dateStyle: 'medium' });
+    const startDate = $derived(dateRange?.end ? dateRange.start?.toString() : undefined);
+    const endDate = $derived(dateRange?.start ? dateRange.end?.toString() : undefined);
 
     /** Opens a fresh version 1 draft for editing. */
     function createNewPurchaseRequest() {
@@ -41,15 +50,50 @@
             <Plus />New Purchase Request
         </Button>
 
-        <div class='ml-auto flex gap-2'>
-            <DatePicker />
-            <DatePicker />
+        <div class='ml-auto flex items-center gap-2'>
+            <Popover.Root bind:open={datePickerOpen}>
+                <Popover.Trigger aria-label='Filter requests by updated date range'>
+                    {#snippet child({ props })}
+                        <Button {...props} variant='outline' class='rounded-none justify-start font-normal'>
+                            <span>
+                                {#if dateRange?.start && dateRange.end}
+                                    {dateFormatter.format(dateRange.start.toDate(getLocalTimeZone()))}
+                                    – {dateFormatter.format(dateRange.end.toDate(getLocalTimeZone()))}
+                                {:else}
+                                    Filter by Date
+                                {/if}
+                            </span>
+                        </Button>
+                    {/snippet}
+                </Popover.Trigger>
+                <Popover.Content align='end' class='w-auto gap-0 p-0 rounded-none [&_*]:rounded-none!'>
+                    <RangeCalendar
+                        bind:value={dateRange}
+                        maxValue={today(getLocalTimeZone())}
+                        class='rounded-none [--cell-radius:0px]'
+                        aria-label='Updated date range'
+                        onValueChange={(value) => {
+                            if (value?.start && value.end) datePickerOpen = false;
+                        }}
+                    />
+                    <div class='flex justify-center border-t p-2'>
+                        <Button
+                            variant='ghost'
+                            class='rounded-none'
+                            disabled={!dateRange?.start && !dateRange?.end}
+                            onclick={() => { dateRange = undefined; }}
+                        >
+                            Clear
+                        </Button>
+                    </div>
+                </Popover.Content>
+            </Popover.Root>
         </div>
     </div>
     <br>
     <br>
 
-    <RequestsTable />
+    <RequestsTable {startDate} {endDate} />
     <br>
     <br>
     <br>
@@ -68,8 +112,7 @@
         <h1 class='text-3xl py-2 font-medium'>{ formatCurrency(bank.account / 100) }</h1>
 
         <dl class='grid grid-cols-[auto_auto_auto] items-center gap-x-2 gap-y-1 text-lg mt-auto py-4'>
-            {@render Deduction(Receipt, 'Spent', bank.spent, 'text-red-600')}
-            {@render Deduction(Lock, 'Committed', bank.committed, 'text-orange-500')}
+            {@render Deduction(Lock, 'FAB Approved', bank.approved, 'text-orange-500')}
             {@render Deduction(Hourglass, 'Requested', bank.requested, 'text-yellow-600')}
         </dl>
 
@@ -79,7 +122,7 @@
     </div>
 {/snippet}
 
-{#snippet Deduction(Icon: typeof Receipt, label: string, cents: number, color: string)}
+{#snippet Deduction(Icon: typeof Lock, label: string, cents: number, color: string)}
     <Icon class={['size-4', color]} />
     <dt class='text-sm text-muted-foreground text-left'>{label}</dt>
     <dd class={color}>-{ formatCurrency(cents / 100) }</dd>

@@ -1,0 +1,18 @@
+id,request_id,created_at,updated_at,manufacturer,model,configuration,lead_time_weeks,costs,discount,support_items,footprint,utilities,utility_notes,facility_analysis,facility_work,facility_lead_time_weeks,facility_approved,flags,recommended
+EPG-08-V1,EPG-08,2026-07-10,2026-07-14,Keysight,4080 Series Parametric Tester,,,purchase-66090400,,,,power;network,,false,,,false,,true
+EPG-09-V1,EPG-09,2026-06-26,2026-07-09,C&D Semiconductor,CS Clean + Adhesion Promoter Cluster (100/150mm),"Clean, protective film, adhesion promoter, FOUP transfer; 100/150mm. Final configuration pending for quote.",,purchase-180000000;fit_up-25000000,,,,chemicals;di_water;exhaust;compressed_air,,false,,,false,hazardous_materials;facility_modification,true
+EPG-12-V1,EPG-12,2026-06-30,2026-07-15,Camtek,Eagle G5,100/150/200/300mm wafer support,,purchase-120000000;fit_up-25000000,,,,power;compressed_air;network;low_vibration,,false,,,false,,true
+EPG-55-V1,EPG-55,2026-09-21,2026-09-24,Camtek,FRT,,,purchase-100000000;fit_up-25000000,,,,power;network;low_vibration,Bundled with the Eagle G5 inspection tool (EPG-12).,false,,,false,,true
+EPG-18-V1,EPG-18,2026-07-28,2026-08-04,Anton Paar,Multiwave 7301,,,purchase-11000000,,,,power;chemicals;exhaust,Hot acid digestion; auxiliary to ICP-MS.,false,,,false,hazardous_materials,true
+EPG-22-V1,EPG-22,2026-07-26,2026-08-02,AnaLab,EasyTrace CRD,,,purchase-6500000,,,,chemicals;di_water;exhaust,Hot acid labware cleaning between ICP-MS extractions.,false,,,false,hazardous_materials;new_vendor,true
+EPG-24-V1,EPG-24,2026-07-30,2026-08-03,Merck Millipore,Milli-Q IQ 7000,,,purchase-4000000,,,,di_water,UPW polisher feeding the ICP-MS.,false,,,false,,true
+EPG-33-V1,EPG-33,2026-08-11,2026-08-20,Shibuya,"Wafer Ball Mounter (ball drop, flux print, rework)",Ball drop with flux print and rework station; 4–16 mil SnPb and SnAg spheres,,purchase-180000000;fit_up-30000000,,,,power;compressed_air;exhaust,,false,,,false,hazardous_materials,false
+EPG-33-V2,EPG-33,2026-08-11,2026-08-20,PacTech,SB²-Jet Laser Solder Jetting,Laser jetting; lower throughput than ball drop,,purchase-80000000;fit_up-10000000,,,,power;compressed_air;exhaust,,false,,,false,new_vendor,false
+EPG-41-V1,EPG-41,2026-08-24,2026-08-28,Besi,V1.5 Upgrade (BND51),,,purchase-281966400,,,,power;compressed_air;network,,false,,,false,,true
+EPG-46-V1,EPG-46,2026-09-04,2026-09-15,Lam Research,Syndion GS + Mainframe,Mainframe + Syndion GS; FlexGB quoted separately (EPG-62),,purchase-297100000;fit_up-120000000,,,,power;process_gases;exhaust;compressed_air;network,,false,,,false,hazardous_materials;facility_modification,true
+EPG-62-V1,EPG-62,2026-10-06,2026-10-06,Lam Research,Flex GB,,,purchase-175200000;fit_up-80000000,,,,power;process_gases;exhaust;compressed_air;network,Pairs with the Syndion GS mainframe (EPG-46).,false,,,false,hazardous_materials;facility_modification,true
+EPG-52-V1,EPG-52,2026-09-14,2026-09-18,Pfeiffer Vacuum,Foreline Assembly Kits,,,purchase-9738700;fit_up-2000000,,,,,,false,,,false,,true
+EPG-57-V1,EPG-57,2026-09-26,2026-09-30,Tokyo Electron,Prexa Prober,,,purchase-37874100;fit_up-10642500,,,,power;compressed_air;network,Fully enclosed ISO Class 2.,false,,,false,,true
+EPG-59-V1,EPG-59,2026-10-03,2026-10-05,Applied Materials,Service Contract (scope + training credits),,,purchase-492285700,,,,,,false,,,false,,true
+EPG-61-V1,EPG-61,2026-10-06,2026-10-06,Besi,Parts & Labor Support Contract,,,purchase-61580200,,,,,,false,,,false,,true
+EPG-63-V1,EPG-63,2026-10-06,2026-10-06,Tokyo Electron,LP3 FOUP w/ Insert Software Patch (CTR52/53/54/01),"Patch for CTR52/CTR53/CTR54/CTR01; one coater per PM window, ~4 hours each",,purchase-4600000,,,,,,false,,,false,,true

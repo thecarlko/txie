@@ -2,8 +2,8 @@
 import { file, write } from "bun";
 
 async function convertSnapshotsToCsv() {
-  const jsonPath = "./src/lib/json/snapshots.json";
-  const csvPath = "./src/lib/json/snapshots.csv";
+  const jsonPath = "./src/lib/json/vendors.json";
+  const csvPath = "./src/lib/json/vendors.csv";
 
   try {
     // Read and parse the JSON file using Bun's native API

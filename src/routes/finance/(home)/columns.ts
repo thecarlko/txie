@@ -10,7 +10,7 @@ import {
 } from '@tanstack/svelte-table';
 import { ChevronsLeftRight } from '@lucide/svelte';
 import type { PurchaseSnapshot, Stage } from '$lib/models/procurement';
-import { budgetTotal, parsePersonnel, stageOf } from '$lib/data/snapshot-fields';
+import { budgetTotal, parsePersonnel, parsePrograms, stageOf } from '$lib/data/snapshot-fields';
 import DecisionBadge from './cells/DecisionBadge.svelte';
 import PurposeCell from './cells/PurposeCell.svelte';
 import SortButton from './cells/SortButton.svelte';
@@ -61,6 +61,10 @@ export const columns = column.columns([
     column.accessor('location', {
         header: 'Location'
     }),
+    column.accessor('programs', {
+        header: 'Programs',
+        cell: ({ getValue }) => parsePrograms(getValue()).join(', ') || '—'
+    }),
     column.accessor((row) => parsePersonnel(row.personnel)[0]?.name ?? '—', {
         id: 'owner',
         header: 'Owner'
@@ -71,17 +75,17 @@ export const columns = column.columns([
         cell: ({ getValue }) => formatBudget(getValue()),
         meta: { headClass: 'text-end pr-5', cellClass: 'text-end pr-5' }
     }),
-    column.accessor('updated_at', {
-        header: ({ column }) => renderComponent(SortButton, { column, label: 'Updated' }),
+    column.accessor('target_date', {
+        header: ({ column }) => renderComponent(SortButton, { column, label: 'Target date' }),
         cell: ({ getValue }) => formatDate(getValue()),
         sortFn: sortByDate,
-        sortDescFirst: true,
-        meta: { headClass: 'text-end', cellClass: 'text-muted-foreground tabular-nums text-end pr-4' }
+        sortDescFirst: false,
+        meta: { headClass: 'text-end', cellClass: 'tabular-nums text-end whitespace-nowrap pr-4' }
     })
 ]);
 
-/** Newest requests first when the table loads. */
-export const initialSorting = [{ id: 'request_id', desc: true }];
+/** Soonest target date first when the table loads. */
+export const initialSorting = [{ id: 'target_date', desc: false }];
 
 
 // Sorting

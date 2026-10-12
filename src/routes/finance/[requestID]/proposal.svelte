@@ -31,8 +31,8 @@
     // The parent re-mounts this component for each snapshot, so the form reads it once.
     const initial = untrack(() => $state.snapshot(snapshot));
 
-    // Any decision from FAB Leadership locks this draft
-    const locked = $derived(isLocked(snapshot));
+    // Forwarding to FAB Leadership or recording a decision makes the proposal read only.
+    const locked = $derived(snapshot.forwarded || isLocked(snapshot));
     const stage = $derived(stageOf(snapshot));
 
     // When this draft exists because changes were requested, show what Leadership asked for
@@ -122,7 +122,7 @@
     function save() {
         const patch = fields();
         const json = JSON.stringify(patch);
-        if (json === lastSaved || isLocked(snapshot)) return;
+        if (json === lastSaved || locked) return;
         lastSaved = json;
         database.update(snapshot.id, patch);
     }
@@ -146,7 +146,7 @@
     });
 
     function continueToSourcing() {
-        if (locked || snapshot.forwarded) return;
+        if (locked) return;
 
         submitted = true;
         if (Object.values(errors).some(err => err !== null)) return;
@@ -234,7 +234,7 @@
             onclick={continueToSourcing}
             variant={stage === 'rejected' ? 'destructive' : 'default'}
             class='ml-auto flex items-center gap-3'
-            disabled={locked || snapshot.forwarded}
+            disabled={locked}
         >
             {#if stage === 'approved'}
                 Proposal Approved <BadgeCheck class='stroke-[1.5]' />
