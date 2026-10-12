@@ -1,5 +1,4 @@
 import { browser } from "$app/environment";
-import snapshotsJSON from "$lib/json/snapshots.json";
 import vendorsJSON from "$lib/json/vendors.json";
 import type { Decision, PurchaseSnapshot, Vendor } from "$lib/models/procurement";
 import { isComplete, isLocked, isProposalComplete, versionOf } from "$lib/data/snapshot-fields";
@@ -12,6 +11,14 @@ type VendorEditable = Partial<Omit<Vendor, "id" | "request_id" | "created_at" | 
 
 const SNAPSHOTS_KEY = "txie:purchase_snapshots";
 const VENDORS_KEY = "txie:vendors";
+type SnapshotChanges = {
+    updates: Record<string, Partial<PurchaseSnapshot>>;
+    creates: Record<string, PurchaseSnapshot>;
+    deletes: string[];
+};
+function debug(event: string, details: Record<string, unknown> = {}): void {
+    console.debug(`[smartsheet] ${event}`, details);
+}
 const today = () => new Date().toISOString().slice(0, 10); // matches the "YYYY-MM-DD" format in the data
 const requestNumber = (s: Pick<PurchaseSnapshot, "request_id">) => Number(s.request_id.split("-")[1]) || 0; // "EPG-07" → 7
 /** Newest request first; within a request, drafts in version order (1, 2, 3...). */
@@ -48,10 +55,39 @@ function persist(key: string, table: () => unknown): void {
     $effect.root(() => {
         $effect(() => {
             const json = JSON.stringify(table());
-            const timer = setTimeout(() => localStorage.setItem(key, json), 300);
+            const timer = setTimeout(() => {
+                localStorage.setItem(key, json);
+                debug('localStorage:write', { key, bytes: json.length });
+            }, 300);
             return () => clearTimeout(timer);
         });
     });
+}
+
+function snapshotChanges(snapshots: Record<string, PurchaseSnapshot>, sheet: Record<string, PurchaseSnapshot>): SnapshotChanges {
+    const updates: SnapshotChanges["updates"] = {};
+    const creates: SnapshotChanges["creates"] = {};
+    for (const [id, snapshot] of Object.entries(snapshots)) {
+        const official = sheet[id];
+        if (!official) {
+            creates[id] = snapshot;
+            continue;
+        }
+        const patch = Object.fromEntries(
+            Object.keys(snapshot)
+                .filter((key) => snapshot[key as keyof PurchaseSnapshot] !== official[key as keyof PurchaseSnapshot])
+                .map((key) => [key, snapshot[key as keyof PurchaseSnapshot]])
+        ) as Partial<PurchaseSnapshot>;
+        if (Object.keys(patch).length) updates[id] = patch;
+    }
+    const deletes = Object.keys(sheet).filter((id) => !snapshots[id]);
+    debug('diff:computed', {
+        updateIDs: Object.keys(updates),
+        updateFields: Object.fromEntries(Object.entries(updates).map(([id, patch]) => [id, Object.keys(patch)])),
+        createIDs: Object.keys(creates),
+        deleteIDs: deletes
+    });
+    return { updates, creates, deletes };
 }
 
 /**
@@ -189,8 +225,12 @@ class VendorSheet {
     }
 }
 
+/**
+ * Purchase snapshots. Rows come from the official Smartsheet through hydrate(); edits made here stay in this
+ * browser, saved to localStorage as changed cells plus created and deleted rows.
+ */
 class SmartSheet {
-    snapshots = $state<Record<string, PurchaseSnapshot>>(load(SNAPSHOTS_KEY, snapshotsJSON, migrate));
+    snapshots = $state<Record<string, PurchaseSnapshot>>({});
     rows = $derived(Object.values(this.snapshots).sort(byRequestThenVersion));
     vendors = new VendorSheet((request_id) => {
         const latest = this.latest(request_id);
@@ -201,8 +241,109 @@ class SmartSheet {
     // Rows are in version order, so the last draft seen for a request is the one that's kept.
     requests = $derived(Object.values(Object.fromEntries(this.rows.map((s) => [s.request_id, s]))));
 
-    constructor() {
-        persist(SNAPSHOTS_KEY, () => this.snapshots);
+    /** The sheet's rows as last fetched, before local edits. */
+    #sheet: Record<string, PurchaseSnapshot> = {};
+    #hydrated = false;
+    #saving: Promise<void> | null = null;
+
+    /** Load the sheet's rows, applying this browser's changed cells and row tombstones on top. */
+    hydrate(rows: PurchaseSnapshot[]): void {
+        debug('hydrate:start', { fetchedRowCount: rows.length, fetchedIDs: rows.map(({ id }) => id) });
+        this.#sheet = seed(rows);
+        const merged = seed<PurchaseSnapshot>(rows);
+        const saved = this.loadChanges();
+        debug('hydrate:local-changes', {
+            updateIDs: Object.keys(saved.updates),
+            createIDs: Object.keys(saved.creates),
+            deleteIDs: saved.deletes
+        });
+        for (const [id, patch] of Object.entries(saved.updates)) {
+            if (merged[id]) merged[id] = { ...merged[id], ...patch };
+        }
+        for (const [id, snapshot] of Object.entries(saved.creates)) merged[id] = snapshot;
+        for (const id of saved.deletes) delete merged[id];
+        this.snapshots = merged;
+        debug('hydrate:complete', { visibleRowCount: Object.keys(merged).length, visibleIDs: Object.keys(merged) });
+
+        // Start saving only once there's something to compare against, so an empty table never overwrites a save.
+        if (this.#hydrated) return;
+        this.#hydrated = true;
+        persist(SNAPSHOTS_KEY, () => snapshotChanges(this.snapshots, this.#sheet));
+    }
+
+    private loadChanges(): SnapshotChanges {
+        if (!browser) return { updates: {}, creates: {}, deletes: [] };
+        try {
+            const saved = localStorage.getItem(SNAPSHOTS_KEY);
+            if (!saved) {
+                debug('localStorage:empty', { key: SNAPSHOTS_KEY });
+                return { updates: {}, creates: {}, deletes: [] };
+            }
+            const parsed = JSON.parse(saved);
+            if (parsed.updates && parsed.creates && parsed.deletes) return parsed;
+            debug('localStorage:migrate-legacy', { key: SNAPSHOTS_KEY });
+            return { updates: migrate(parsed), creates: {}, deletes: [] };
+        } catch {
+            debug('localStorage:read-failed', { key: SNAPSHOTS_KEY });
+            return { updates: {}, creates: {}, deletes: [] };
+        }
+    }
+
+    /** Send the current local diff to Smartsheet and clear it only after every request succeeds. */
+    async save({ keepalive = false }: { keepalive?: boolean } = {}): Promise<void> {
+        if (!browser) return;
+        if (this.#saving) return this.#saving;
+        const changes = snapshotChanges(this.snapshots, this.#sheet);
+        if (!changes.deletes.length && !Object.keys(changes.updates).length && !Object.keys(changes.creates).length) return;
+        debug('save:dispatch', {
+            updateIDs: Object.keys(changes.updates),
+            createIDs: Object.keys(changes.creates),
+            deleteIDs: changes.deletes
+        });
+
+        let completed = false;
+        this.#saving = fetch('/api/smartsheet', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(changes),
+            keepalive
+        }).then((response) => {
+            debug('save:response', { status: response.status, ok: response.ok });
+            if (!response.ok) throw new Error(`Saving Smartsheet changes failed: ${response.status}: ${response.statusText}`);
+            completed = true;
+            for (const [id, patch] of Object.entries(changes.updates)) {
+                if (this.#sheet[id]) this.#sheet[id] = { ...this.#sheet[id], ...patch };
+            }
+            for (const [id, snapshot] of Object.entries(changes.creates)) this.#sheet[id] = snapshot;
+            for (const id of changes.deletes) delete this.#sheet[id];
+
+            const remaining = snapshotChanges(this.snapshots, this.#sheet);
+            if (!remaining.deletes.length && !Object.keys(remaining.updates).length && !Object.keys(remaining.creates).length) {
+                localStorage.removeItem(SNAPSHOTS_KEY);
+                debug('save:complete', { localStorage: 'cleared' });
+            } else {
+                localStorage.setItem(SNAPSHOTS_KEY, JSON.stringify(remaining));
+                debug('save:partial', {
+                    updateIDs: Object.keys(remaining.updates),
+                    createIDs: Object.keys(remaining.creates),
+                    deleteIDs: remaining.deletes
+                });
+            }
+        }).catch((error) => {
+            debug('save:failed', { error: error instanceof Error ? error.message : String(error) });
+            throw error;
+        }).finally(() => {
+            this.#saving = null;
+            const remaining = snapshotChanges(this.snapshots, this.#sheet);
+            if (completed && (remaining.deletes.length || Object.keys(remaining.updates).length || Object.keys(remaining.creates).length)) {
+                debug('save:deferred-changes', {
+                    updateIDs: Object.keys(remaining.updates),
+                    createIDs: Object.keys(remaining.creates),
+                    deleteIDs: remaining.deletes
+                });
+            }
+        });
+        return this.#saving;
     }
 
     get(id: string): PurchaseSnapshot | undefined {
@@ -252,12 +393,14 @@ class SmartSheet {
         };
 
         this.snapshots[snapshot.id] = snapshot;
+        debug('snapshot:create', { id: snapshot.id, fields: Object.keys(snapshot) });
         return this.snapshots[snapshot.id]; // the reactive version
     }
 
     update(id: string, patch: Editable): void {
         const snapshot = this.require(id);
         if (isLocked(snapshot)) throw new Error(`${id} has a decision and can no longer be edited`);
+        debug('snapshot:update', { id, fields: Object.keys(patch), values: patch });
         Object.assign(snapshot, patch, { updated_at: today() });
     }
 
@@ -272,6 +415,7 @@ class SmartSheet {
         const chosen = this.vendors.chosen(snapshot.request_id);
         if (!chosen || !isComplete(chosen)) throw new Error(`${snapshot.request_id} needs a complete recommended vendor before review`);
         Object.assign(snapshot, { forwarded: true, updated_at: today() });
+        debug('snapshot:forward', { id });
     }
 
     /**
@@ -289,6 +433,7 @@ class SmartSheet {
             approved_budget: decision === "approved" ? (approved_budget ?? null) : null,
             updated_at: today(),
         });
+        debug('snapshot:decision', { id, decision, fields: ['decision', 'decision_comments', 'approved_budget'] });
 
         if (decision === "changes_requested") return this.revise(snapshot);
     }
@@ -309,16 +454,18 @@ class SmartSheet {
         };
 
         this.snapshots[draft.id] = draft;
+        debug('snapshot:create-revision', { id: draft.id, sourceID: previous.id });
         return this.snapshots[draft.id];
     }
 
     delete(id: string): void {
+        debug('snapshot:delete', { id });
         delete this.snapshots[id];
     }
 
-    /** Throw away local edits and go back to snapshots.json and vendors.json. */
+    /** Throw away local edits and go back to the sheet's rows and vendors.json. */
     reset(): void {
-        this.snapshots = seed(snapshotsJSON);
+        this.snapshots = structuredClone(this.#sheet);
         this.vendors.reset();
     }
 

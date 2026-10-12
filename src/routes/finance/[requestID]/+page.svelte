@@ -1,4 +1,5 @@
 <script lang='ts'>
+    import { onDestroy } from 'svelte';
     import Proposal from './proposal.svelte';
     import Sourcing from './sourcing.svelte';
     import Leadership from './leadership.svelte';
@@ -13,6 +14,20 @@
     let { data }: { data: PageData } = $props();
 
     let tab = $state('proposal');
+    let previousTab = $state('proposal');
+
+    // Save only when leaving a request workflow tab, not on every field edit.
+    $effect(() => {
+        if (tab === previousTab) return;
+        previousTab = tab;
+        void database.save().catch((error) => console.error('Failed to save before changing request tab', error));
+    });
+
+    // SvelteKit destroys this page when leaving the request entirely. keepalive lets the request
+    // continue while the browser navigates away.
+    onDestroy(() => {
+        void database.save({ keepalive: true }).catch((error) => console.error('Failed to save before leaving request', error));
+    });
 
     // Every draft of this request; the latest is the one being worked on
     const versions = $derived(database.versions(data.requestID));

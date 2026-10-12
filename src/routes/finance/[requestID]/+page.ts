@@ -6,7 +6,8 @@ import type { PageLoad } from './$types';
 export const ssr = false;
 
 /** `requestID` is the parent request, e.g. "EPG-01". The page shows its snapshot versions. */
-export const load: PageLoad = ({ params }) => {
+export const load: PageLoad = async ({ params, parent }) => {
+    await parent(); // the finance layout fills the database from the sheet
     if (!database.latest(params.requestID)) {
         error(404, { message: 'Purchase request not found' });
     }
