@@ -3,13 +3,13 @@
     import { Banknote, Cpu, DraftingCompass, Pickaxe, Stone } from '@lucide/svelte';
     import type { Component } from 'svelte';
     
-    type Department = { id: string; title: string; icon: Component }
+    type Department = { url: string; title: string; icon: Component }
     const departments: Department[] = [
-        { id: 'finance', title: 'Finance', icon: Banknote },
-        { id: 'engineering', title: 'Engineering', icon: Cpu },
-        { id: 'metrology', title: 'Metrology', icon: DraftingCompass },
-        { id: 'materials', title: 'Materials', icon: Stone },
-        { id: 'equipment', title: 'Equipment', icon: Pickaxe },
+        { url: '/finance', title: 'Finance', icon: Banknote },
+        { url: 'https://coa-tracker-xi.vercel.app/', title: 'Materials', icon: Stone },
+        { url: '/engineering', title: 'Engineering', icon: Cpu },
+        { url: '/metrology', title: 'Metrology', icon: DraftingCompass },
+        { url: '/equipment', title: 'Equipment', icon: Pickaxe },
     ]
 
 </script>
@@ -39,8 +39,8 @@
 
 
 {#snippet departmentCard(info: Department)}
-{@const { id, title, icon: Icon } = info}
-<a href='/{ id }' class='border bg-background flex flex-col justify-end gap-2 p-4'>
+{@const { url, title, icon: Icon } = info}
+<a href={ url } class='border bg-background flex flex-col justify-end gap-2 p-4'>
     <Icon class='size-6 stroke-1' />
     <p class='font-medium'>{ title }</p>
 </a>
