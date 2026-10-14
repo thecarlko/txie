@@ -1,0 +1,3 @@
+TYPE=CNAME
+NAME=fab
+TARGET=4ba4978ef32fe2fd.vercel-dns-017.com.

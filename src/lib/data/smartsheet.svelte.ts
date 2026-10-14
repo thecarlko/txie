@@ -12,6 +12,7 @@ const SNAPSHOTS_KEY = "txie:purchase_snapshots";
 // Keep old whole-table vendor caches separate from edits to the official vendor sheet.
 const VENDORS_KEY = "txie:vendor_changes";
 function debug(event: string, details: Record<string, unknown> = {}): void {
+    return;
     console.debug(`[smartsheet] ${event}`, details);
 }
 const today = () => new Date().toISOString().slice(0, 10); // matches the "YYYY-MM-DD" format in the data
