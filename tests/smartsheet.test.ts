@@ -31,9 +31,10 @@ const envURL = moduleURL('export const browser = true;');
 const syncURL = sourceURL('src/lib/data/sheet-sync.svelte.ts', {
     '$app/environment': envURL, './sheet-changes': changesURL
 });
-const server = await import(sourceURL('src/lib/server/smartsheet.ts', {
+const serverURL = sourceURL('src/lib/server/smartsheet.ts', {
     '$env/static/private': moduleURL('export const SMARTSHEET_TOKEN = "test-token";')
-})) as typeof import('../src/lib/server/smartsheet');
+});
+const server = await import(serverURL) as typeof import('../src/lib/server/smartsheet');
 
 const storage = new Map<string, string>();
 Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: {
@@ -41,11 +42,14 @@ Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: {
     setItem: (key: string, value: string) => storage.set(key, value),
     removeItem: (key: string) => storage.delete(key)
 } });
-async function database() {
+function databaseURL() {
     storage.clear();
-    return (await import(sourceURL('src/lib/data/smartsheet.svelte.ts', {
+    return sourceURL('src/lib/data/smartsheet.svelte.ts', {
         '$lib/data/sheet-sync.svelte': syncURL, '$lib/data/snapshot-fields': fieldsURL
-    })) as typeof import('../src/lib/data/smartsheet.svelte')).database;
+    });
+}
+async function database() {
+    return (await import(databaseURL()) as typeof import('../src/lib/data/smartsheet.svelte')).database;
 }
 const snapshot = (): PurchaseSnapshot => ({
     id: 'EPG-01-1', request_id: 'EPG-01', created_at: '2026-10-01', updated_at: '2026-10-01',
@@ -66,6 +70,125 @@ function sheet(rows: Vendor[]) {
         columnId: id, value: row[title as keyof Vendor]
     })) })) };
 }
+
+test('finance preloads share hydration and later layout loads retain local rows without fetching', async () => {
+    const url = databaseURL();
+    const db = (await import(url) as typeof import('../src/lib/data/smartsheet.svelte')).database;
+    const layout = await import(sourceURL('src/routes/finance/+layout.ts', {
+        '$lib/data/smartsheet.svelte': url
+    }));
+    assert.equal(layout.ssr, false);
+    storage.set('txie:vendor_changes', JSON.stringify({
+        updates: { 'EPG-01-V1': { model: 'Recovered edit' } }, creates: {}, deletes: []
+    }));
+    let reads = 0;
+    let release!: () => void;
+    const pending = new Promise<void>((resolve) => { release = resolve; });
+    const fetch: typeof globalThis.fetch = async (input) => {
+        assert.equal(input, '/api/smartsheet');
+        reads++;
+        await pending;
+        return Response.json({ snapshots: [snapshot()], vendors: [vendor()] });
+    };
+    const preload = layout.load({ fetch });
+    const navigation = layout.load({ fetch });
+    assert.equal(reads, 1);
+    assert.equal(db.rows.length, 0);
+    release();
+    await Promise.all([preload, navigation]);
+    assert.equal(db.vendors.get('EPG-01-V1')?.model, 'Recovered edit');
+
+    const row = db.get('EPG-01-1');
+    db.update('EPG-01-1', { purpose: 'Unsaved purpose' });
+    const created = db.create({ purpose: 'New local request' });
+    await layout.load({ fetch }); // returning to finance after leaving it, or invalidating its layout
+    assert.equal(reads, 1);
+    assert.equal(db.get('EPG-01-1'), row);
+    assert.equal(db.get('EPG-01-1')?.purpose, 'Unsaved purpose');
+    assert.equal(db.get(created.id), created);
+
+    const page = await import(sourceURL('src/routes/finance/[requestID]/+page.ts', {
+        '$lib/data/smartsheet.svelte': url,
+        '@sveltejs/kit': import.meta.resolve('@sveltejs/kit')
+    }));
+    const data = await page.load({ params: { requestID: created.request_id }, parent: () => layout.load({ fetch }) });
+    assert.equal(data.requestID, created.request_id);
+    assert.equal(reads, 1);
+});
+
+test('an empty database is hydrated once, and a new app session fetches fresh rows', async () => {
+    let reads = 0;
+    const fetch: typeof globalThis.fetch = async () => {
+        reads++;
+        return Response.json({ snapshots: [], vendors: [] });
+    };
+    const db = await database();
+    await db.ensureHydrated(fetch);
+    await db.ensureHydrated(fetch);
+    assert.equal(reads, 1);
+    const reloaded = await database();
+    await reloaded.ensureHydrated(fetch);
+    assert.equal(reads, 2);
+});
+
+test('failed or incomplete hydration can retry without accepting a partial database', async () => {
+    const db = await database();
+    await assert.rejects(db.ensureHydrated(async () => new Response('Unavailable', { status: 502 })), /502/);
+    await assert.rejects(db.ensureHydrated(async () => { throw new Error('Offline'); }), /Offline/);
+    await assert.rejects(db.ensureHydrated(async () => Response.json({ snapshots: [snapshot()] })), /snapshots and vendors/);
+    assert.equal(db.rows.length, 0);
+    assert.equal(db.vendors.rows.length, 0);
+    await db.ensureHydrated(async () => Response.json({ snapshots: [snapshot()], vendors: [vendor()] }));
+    assert.equal(db.latest('EPG-01')?.id, 'EPG-01-1');
+    assert.equal(db.vendors.get('EPG-01-V1')?.model, 'Model');
+    await db.ensureHydrated(async () => { throw new Error('Must not fetch hydrated data'); });
+});
+
+test('saving edits advances the local baseline without reloading either sheet', async () => {
+    const db = await database();
+    await db.ensureHydrated(async () => Response.json({ snapshots: [snapshot()], vendors: [vendor()] }));
+    db.update('EPG-01-1', { purpose: 'Saved purpose' });
+    db.vendors.update('EPG-01-V1', { model: 'Saved model' });
+    const fetchMock = mock.method(globalThis, 'fetch', async (_input: RequestInfo | URL, init?: RequestInit) => {
+        assert.equal(init?.method, 'POST');
+        return new Response(null, { status: 204 });
+    });
+    try {
+        await db.save();
+        await db.ensureHydrated(async () => { throw new Error('Must not reload after saving'); });
+        await db.save();
+        assert.equal(fetchMock.mock.callCount(), 2);
+        assert.equal(db.get('EPG-01-1')?.purpose, 'Saved purpose');
+        assert.equal(db.vendors.get('EPG-01-V1')?.model, 'Saved model');
+    } finally {
+        fetchMock.mock.restore();
+    }
+});
+
+test('the hydration endpoint returns both sheets and prevents HTTP caching', async () => {
+    const endpoint = await import(sourceURL('src/routes/api/smartsheet/+server.ts', {
+        '$lib/server/smartsheet': serverURL,
+        '@sveltejs/kit': import.meta.resolve('@sveltejs/kit')
+    }));
+    const reads: string[] = [];
+    const response = await endpoint.GET({ fetch: async (input: RequestInfo | URL) => {
+        reads.push(String(input));
+        return Response.json(String(input).endsWith(server.VENDORS_SHEET) ? sheet([vendor()]) : { columns: [], rows: [] });
+    } });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('cache-control'), 'private, no-store');
+    assert.deepEqual(await response.json(), { snapshots: [], vendors: [vendor()] });
+    assert.equal(reads.length, 2);
+
+    const errorMock = mock.method(console, 'error', () => {});
+    try {
+        const failed = await endpoint.GET({ fetch: async () => new Response(null, { status: 503 }) });
+        assert.equal(failed.status, 502);
+        assert.equal(failed.headers.get('cache-control'), 'private, no-store');
+    } finally {
+        errorMock.mock.restore();
+    }
+});
 
 test('fetches vendor fields by title, preserving null, false and zero values', async () => {
     const raw = sheet([vendor()]);

@@ -6,10 +6,10 @@
     type Department = { url: string; title: string; icon: Component }
     const departments: Department[] = [
         { url: '/finance', title: 'Finance', icon: Banknote },
-        { url: 'https://coa-tracker-xi.vercel.app/', title: 'Materials', icon: Stone },
-        { url: '/engineering', title: 'Engineering', icon: Cpu },
         { url: '/metrology', title: 'Metrology', icon: DraftingCompass },
+        { url: '/engineering', title: 'Engineering', icon: Cpu },
         { url: '/equipment', title: 'Equipment', icon: Pickaxe },
+        { url: 'https://coa-tracker-xi.vercel.app/', title: 'Materials', icon: Stone },
     ]
 
 </script>

@@ -1,5 +1,18 @@
-import { saveSnapshots, saveVendors, type SnapshotChanges, type VendorChanges } from '$lib/server/smartsheet';
+import { fetchSnapshots, fetchVendors, saveSnapshots, saveVendors, type SnapshotChanges, type VendorChanges } from '$lib/server/smartsheet';
+import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+
+/** Initial finance hydration; subsequent navigation reads the browser's database. */
+export const GET: RequestHandler = async ({ fetch }) => {
+    try {
+        const [snapshots, vendors] = await Promise.all([fetchSnapshots(fetch), fetchVendors(fetch)]);
+        return json({ snapshots, vendors }, { headers: { 'Cache-Control': 'private, no-store' } });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unknown Smartsheet load error';
+        console.error(message);
+        return new Response(message, { status: 502, headers: { 'Cache-Control': 'private, no-store' } });
+    }
+};
 
 export const POST: RequestHandler = async ({ request, fetch }) => {
     try {

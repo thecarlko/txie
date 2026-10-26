@@ -167,11 +167,32 @@ class SmartSheet {
     #sync = new SheetSync<PurchaseSnapshot>(
         SNAPSHOTS_KEY, 'snapshots', () => this.snapshots, (rows) => { this.snapshots = rows; }, migrate
     );
+    #hydrated = false;
+    #loading: Promise<void> | null = null;
+
+    /** Retain both sheets in memory until a full app reload, sharing concurrent preload requests. */
+    ensureHydrated(fetch: typeof globalThis.fetch): Promise<void> {
+        if (this.#hydrated) return Promise.resolve();
+        return this.#loading ??= this.fetchAndHydrate(fetch).finally(() => { this.#loading = null; });
+    }
+
+    private async fetchAndHydrate(fetch: typeof globalThis.fetch): Promise<void> {
+        const response = await fetch('/api/smartsheet', { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error(`Loading finance from Smartsheet failed: ${response.status}: ${await response.text()}`);
+        }
+        const data = await response.json() as { snapshots: PurchaseSnapshot[]; vendors: Vendor[] };
+        if (!Array.isArray(data?.snapshots) || !Array.isArray(data?.vendors)) {
+            throw new Error('Smartsheet response must include snapshots and vendors');
+        }
+        this.hydrate(data.snapshots, data.vendors);
+    }
 
     /** Hydrate both official sheets before finance pages read from the database. */
     hydrate(rows: PurchaseSnapshot[], vendors: Vendor[]): void {
         this.#sync.hydrate(rows);
         this.vendors.hydrate(vendors);
+        this.#hydrated = true;
     }
 
     /** Save purchase requests before their vendors, preserving per-sheet progress on failure. */
