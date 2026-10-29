@@ -128,10 +128,8 @@
 </script>
 
 <!-- A disabled fieldset disables every control inside it once the request has a decision -->
-<fieldset disabled={locked} class='grid gap-10 min-w-0'>
+<fieldset disabled={locked} class='grid gap-8 min-w-0'>
     <EquipmentField {id} bind:manufacturer bind:model bind:configuration bind:leadTime />
-
-    <hr class='border-dashed'>
 
     <Field.Set>
         <Field.Legend variant='label'>Cost</Field.Legend>
@@ -143,35 +141,33 @@
             {/snippet}
 
             {#if items.length}
-                <Wrench class='size-5 text-muted-foreground' />
+                <Wrench class='size-5 text-txie-secondary' />
                 <Label class='pb-1'>Support Equipment</Label>
-                <span class='pb-1 px-3 tabular-nums'>{formatCurrency(supportTotal)} <span class='text-muted-foreground'>· itemized below</span></span>
+                <span class='pb-1 px-3 tabular-nums'>{formatCurrency(supportTotal)} <span class='text-txie-secondary'>· itemized below</span></span>
             {/if}
             {#if hasDiscount}
-                <BadgePercent class='size-5 text-green-600' />
-                <Label class='pb-1'>Discount <span class='font-normal text-muted-foreground'>(subtracted)</span></Label>
+                <BadgePercent class='size-5 text-txie-secondary' />
+                <Label class='pb-1'>Discount <span class='font-normal text-txie-secondary'>(subtracted)</span></Label>
                 <Currency bind:value={discount} placeholder='0' variant='underline' />
             {/if}
 
-            <p class='col-span-2 pt-4 text-sm text-muted-foreground'>{longestLeadTime ? `Longest lead time: ${longestLeadTime} weeks` : ''}</p>
+            <p class='col-span-2 pt-4 text-sm text-txie-secondary tabular-nums'>{longestLeadTime ? `Longest lead time: ${longestLeadTime} weeks` : ''}</p>
             <strong class='text-xl font-medium tabular-nums text-end'>{formatCurrency(total)}</strong>
         </CostsField>
     </Field.Set>
 
     <SupportItemsField bind:items />
 
-    <hr class='border-dashed'>
-
     <FacilityField {id} bind:footprint bind:utilities bind:note={utilityNote} bind:analysis={facilityAnalysis} />
 
     <FlagsField {id} bind:flags bind:work={facilityWork} bind:workLeadTime={facilityLeadTime} bind:workApproved={facilityApproved} />
 
     <!-- Actions -->
-    <div class='flex gap-2 border-t border-dashed pt-10'>
-        <Toggle pressed={vendor.recommended} onPressedChange={(pressed) => database.vendors.recommend(id, pressed)} size='sm' variant='outline' class='gap-2 pr-4 aria-pressed:bg-transparent aria-pressed:border-orange-400'>
-            <Star class='group-aria-pressed/toggle:stroke-0 group-aria-pressed/toggle:fill-orange-400' /> Recommend
+    <div class='flex gap-2 border-t border-txie-rule pt-8'>
+        <Toggle pressed={vendor.recommended} onPressedChange={(pressed) => database.vendors.recommend(id, pressed)} size='sm' variant='outline' class='gap-2 pr-4 aria-pressed:bg-transparent aria-pressed:border-txie-accent aria-pressed:bg-txie-selected'>
+            <Star class='group-aria-pressed/toggle:stroke-0 group-aria-pressed/toggle:fill-txie-accent' /> Recommend
         </Toggle>
-        <Button variant='ghost' size='sm' class='px-3 hover:text-red-500' onclick={onremove}>
+        <Button variant='ghost' size='sm' class='px-3 hover:text-txie-error' onclick={onremove}>
             <Trash class='size-4' /> Delete
         </Button>
     </div>

@@ -2,14 +2,14 @@
 	import { tv, type VariantProps } from "tailwind-variants";
 
 	export const fieldVariants = tv({
-		base: "data-[invalid=true]:text-destructive gap-3 group/field flex w-full",
+		base: "group/field w-full min-w-0 content-start gap-2 text-txie-ink font-[400]",
 		variants: {
 			orientation: {
-				vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
+				vertical: "grid *:min-w-0 *:w-full [&>.sr-only]:w-auto",
 				horizontal:
-					"flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+					"flex items-center gap-3 has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-1",
 				responsive:
-					"flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+					"grid *:min-w-0 *:w-full @md/field-group:flex @md/field-group:gap-3 @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-1",
 			},
 		},
 		defaultVariants: {

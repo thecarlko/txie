@@ -1,0 +1,1785 @@
+{
+	"generatedAt": "2026-10-13 15:14",
+	"tools": [
+		{
+			"name": "AFM01",
+			"status": "configured",
+			"refresh": {
+				"status": "updated",
+				"attempted": true,
+				"retainedFailure": false,
+				"source": "authoritative_master",
+				"sourceSha256": "b39b6f4a9fe225e08bfc768d429d8d917d54ffeb3ecca2ee90a601859610ce5d",
+				"lastMeasuredDate": "2026-10-12",
+				"runReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json",
+				"lastSuccessfulRefreshAt": "2026-10-13T20:14:05+00:00"
+			},
+			"charts": [
+				{
+					"id": "afm01-avg-depth-nm-s14",
+					"title": "Avg Depth (nm) - S14",
+					"yAxis": "Avg Depth (nm)",
+					"points": [
+						{
+							"date": "2026-06-01",
+							"value": 3.2096,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-06-08",
+							"value": 3.1761,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-06-08",
+							"value": 3.4257,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-06-16",
+							"value": 3.2479,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-06-22",
+							"value": 3.2817,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-06-29",
+							"value": 3.2742,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-07-08",
+							"value": 3.28,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-07-13",
+							"value": 3.4704,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-07-20",
+							"value": 3.4728,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-07-27",
+							"value": 3.2305,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-08-10",
+							"value": 3.3134,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-08-17",
+							"value": 3.2551,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-08-24",
+							"value": 3.3351,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-09-01",
+							"value": 3.3899,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-09-08",
+							"value": 3.348,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-09-14",
+							"value": 3.359,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-09-22",
+							"value": 3.206,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-09-28",
+							"value": 3.2047,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-10-05",
+							"value": 3.2576,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						},
+						{
+							"date": "2026-10-12",
+							"value": 3.2334,
+							"lowerSpec": 2.77,
+							"upperSpec": 3.37
+						}
+					]
+				},
+				{
+					"id": "afm01-range-depth-nm-s14",
+					"title": "Range Depth (nm) - S14",
+					"yAxis": "Range Depth (nm)",
+					"points": [
+						{
+							"date": "2026-06-01",
+							"value": 0.29418,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-06-08",
+							"value": 0.29048,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-06-08",
+							"value": 0.28817,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-06-16",
+							"value": 0.31104,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-06-22",
+							"value": 0.30589,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-06-29",
+							"value": 0.31142,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-07-08",
+							"value": 0.34738,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-07-13",
+							"value": 0.84107,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-07-20",
+							"value": 0.95671,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-07-27",
+							"value": 0.88886,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-08-10",
+							"value": 0.82894,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-08-17",
+							"value": 0.90597,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-08-24",
+							"value": 0.84251,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-09-01",
+							"value": 0.98338,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-09-08",
+							"value": 0.94865,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-09-14",
+							"value": 0.91119,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-09-22",
+							"value": 1.0129,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-09-28",
+							"value": 1.139,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-10-05",
+							"value": 0.87512,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						},
+						{
+							"date": "2026-10-12",
+							"value": 1.0048,
+							"lowerSpec": 0.11,
+							"upperSpec": 1.51
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "AOI01",
+			"status": "configured",
+			"refresh": {
+				"status": "updated",
+				"attempted": true,
+				"retainedFailure": false,
+				"source": "authoritative_master",
+				"sourceSha256": "b3da8551e7d508f359c245cca6ea110143d4840b1239ccfa43dd1ef0fcafca91",
+				"lastMeasuredDate": "2026-10-12",
+				"runReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json",
+				"lastSuccessfulRefreshAt": "2026-10-13T20:14:05+00:00"
+			},
+			"charts": [
+				{
+					"id": "aoi01-total-defect-count",
+					"title": "Total Defect Count",
+					"yAxis": "Defect Count",
+					"points": [
+						{
+							"date": "2026-06-08",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-06-16",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-06-22",
+							"value": 73,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-06-29",
+							"value": 73,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-07-06",
+							"value": 74,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-07-13",
+							"value": 73,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-07-21",
+							"value": 74,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-07-27",
+							"value": 73,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-08-04",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-08-05",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-08-10",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-08-17",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-08-20",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-08-26",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-09-02",
+							"value": 73,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-09-14",
+							"value": 73,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-09-22",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-09-28",
+							"value": 72,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-10-05",
+							"value": 73,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						},
+						{
+							"date": "2026-10-12",
+							"value": 74,
+							"lowerSpec": 69.13995464168042,
+							"upperSpec": 74.31459081286505
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "DEF01",
+			"status": "configured",
+			"refresh": {
+				"status": "failed",
+				"attempted": true,
+				"retainedFailure": false,
+				"source": "previous_dashboard",
+				"sourceSha256": "fc96e6ad4ba70edeacb962c6a80abd4bdff05da9f75802e0c58687d58becdf84",
+				"lastMeasuredDate": "2026-10-05",
+				"runReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json",
+				"lastSuccessfulRefreshAt": "2026-10-08T21:48:23+00:00",
+				"failurePhase": "dashboard",
+				"error": "Cannot snapshot workbook: [Errno 2] No such file or directory: 'C:\\\\Users\\\\oeg233\\\\OneDrive - The University of Texas at Austin\\\\TIE Internal-Equipment - All_Metro_SPC\\\\DEF01\\\\DEF01_SPC_QUAL.xlsx'",
+				"failureRunReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json"
+			},
+			"charts": [
+				{
+					"id": "def01-ht-total-defects",
+					"title": "HT Total Defects",
+					"yAxis": "Total Defects",
+					"points": [
+						{
+							"date": "2026-05-04",
+							"value": 10418,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-05-12",
+							"value": 10414,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-05-18",
+							"value": 10350,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-05-27",
+							"value": 10403,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-05-28",
+							"value": 10435,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-06-01",
+							"value": 10498,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-06-08",
+							"value": 10416,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-06-16",
+							"value": 10760,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-06-22",
+							"value": 10695,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-06-29",
+							"value": 10806,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-07-03",
+							"value": 11327,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-07-14",
+							"value": 11225,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-07-21",
+							"value": 11624,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-08-03",
+							"value": 11881,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-08-10",
+							"value": 28831,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-09-03",
+							"value": 75615,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-09-14",
+							"value": 7813,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-09-22",
+							"value": 7843,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-09-28",
+							"value": 7880,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						},
+						{
+							"date": "2026-10-05",
+							"value": 7872,
+							"lowerSpec": 8807.139813524536,
+							"upperSpec": 11329.378704993982
+						}
+					]
+				},
+				{
+					"id": "def01-st-total-defects",
+					"title": "ST Total Defects",
+					"yAxis": "Total Defects",
+					"points": [
+						{
+							"date": "2026-05-04",
+							"value": 12443,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-05-12",
+							"value": 12421,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-05-18",
+							"value": 12331,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-05-27",
+							"value": 12391,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-05-28",
+							"value": 12505,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-06-01",
+							"value": 12458,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-06-08",
+							"value": 12447,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-06-16",
+							"value": 12940,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-06-22",
+							"value": 12791,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-06-29",
+							"value": 12935,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-07-03",
+							"value": 13603,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-07-14",
+							"value": 13391,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-07-21",
+							"value": 14092,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-08-03",
+							"value": 14333,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-08-10",
+							"value": 35713,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-09-03",
+							"value": 78976,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-09-14",
+							"value": 7956,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-09-22",
+							"value": 7994,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-09-28",
+							"value": 8029,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						},
+						{
+							"date": "2026-10-05",
+							"value": 8023,
+							"lowerSpec": 9878.891404278784,
+							"upperSpec": 13847.997484610107
+						}
+					]
+				},
+				{
+					"id": "def01-hs-total-defects",
+					"title": "HS Total Defects",
+					"yAxis": "Total Defects",
+					"points": [
+						{
+							"date": "2026-05-04",
+							"value": 14796,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-05-12",
+							"value": 14804,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-05-18",
+							"value": 14654,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-05-27",
+							"value": 14623,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-05-28",
+							"value": 14822,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-06-01",
+							"value": 14808,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-06-08",
+							"value": 14901,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-06-16",
+							"value": 15424,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-06-22",
+							"value": 15169,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-06-29",
+							"value": 15468,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-07-03",
+							"value": 16316,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-07-14",
+							"value": 16190,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-07-21",
+							"value": 17019,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-08-03",
+							"value": 17459,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-08-10",
+							"value": 48320,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-09-03",
+							"value": 81837,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-09-14",
+							"value": 8023,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-09-22",
+							"value": 8098,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-09-28",
+							"value": 8135,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						},
+						{
+							"date": "2026-10-05",
+							"value": 8139,
+							"lowerSpec": 11263.28734572511,
+							"upperSpec": 16701.897839460078
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "DEF02",
+			"status": "no-data",
+			"charts": []
+		},
+		{
+			"name": "MTH01",
+			"status": "configured",
+			"refresh": {
+				"status": "failed",
+				"attempted": true,
+				"retainedFailure": false,
+				"source": "previous_dashboard",
+				"sourceSha256": "2cd8af0b2899b356ee2f66312ad0f92b6c368d7f2142f35f84436ff7f16cc6b7",
+				"lastMeasuredDate": "2026-10-08",
+				"runReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json",
+				"lastSuccessfulRefreshAt": "2026-10-08T21:48:23+00:00",
+				"failurePhase": "dashboard",
+				"error": "Workbook changed during dashboard build",
+				"failureRunReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json"
+			},
+			"charts": [
+				{
+					"id": "mth01-2-mean-30-oxide-se",
+					"title": "Mean - 30Å_Oxide_SE",
+					"yAxis": "Mean - 30Å_Oxide_SE",
+					"points": [
+						{
+							"date": "2026-06-16",
+							"value": 36.6873,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-06-22",
+							"value": 37.2424,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-06-29",
+							"value": 37.2656,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-07-13",
+							"value": 37.2608,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-07-21",
+							"value": 37.2926,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-08-10",
+							"value": 37.2377,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-08-17",
+							"value": 35.5848,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-08-19",
+							"value": 35.6702,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-08-21",
+							"value": 37.2666,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-08-24",
+							"value": 37.275,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-09-01",
+							"value": 34.7511,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-09-03",
+							"value": 37.2517,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-09-04",
+							"value": 37.27,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-09-08",
+							"value": 37.2866,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-09-14",
+							"value": 37.284,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-09-21",
+							"value": 37.2379,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-09-28",
+							"value": 37.2261,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-10-05",
+							"value": 37.1782,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-10-07",
+							"value": 37.1801,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						},
+						{
+							"date": "2026-10-08",
+							"value": 37.2055,
+							"lowerSpec": 36.41264782608695,
+							"upperSpec": 37.98676086956522
+						}
+					]
+				},
+				{
+					"id": "mth01-3-range-30-oxide-se",
+					"title": "Range - 30Å_Oxide_SE",
+					"yAxis": "Range - 30Å_Oxide_SE",
+					"points": [
+						{
+							"date": "2026-06-16",
+							"value": 1.4934,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-06-22",
+							"value": 0.8325,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-06-29",
+							"value": 0.8429,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-07-13",
+							"value": 0.8103,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-07-21",
+							"value": 0.8391,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-08-10",
+							"value": 0.8119,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-08-17",
+							"value": 4.9107,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-08-19",
+							"value": 8.5624,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-08-21",
+							"value": 0.7902,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-08-24",
+							"value": 0.8732,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-09-01",
+							"value": 3.8486,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-09-03",
+							"value": 0.7736,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-09-04",
+							"value": 0.7261,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-09-08",
+							"value": 0.9397,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-09-14",
+							"value": 0.7466,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-09-21",
+							"value": 0.7652,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-09-28",
+							"value": 0.8843,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-10-05",
+							"value": 0.7768,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-10-07",
+							"value": 0.7649,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						},
+						{
+							"date": "2026-10-08",
+							"value": 0.8114,
+							"lowerSpec": 0.06572173913043478,
+							"upperSpec": 1.6398347826086956
+						}
+					]
+				},
+				{
+					"id": "mth01-4-gof-30-oxide-se",
+					"title": "GOF - 30Å_Oxide_SE",
+					"yAxis": "GOF - 30Å_Oxide_SE",
+					"points": [
+						{
+							"date": "2026-06-08",
+							"value": 0.9918,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-06-16",
+							"value": 0.9913,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-06-22",
+							"value": 0.992,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-06-29",
+							"value": 0.992,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-07-13",
+							"value": 0.992,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-07-21",
+							"value": 0.9921,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-08-10",
+							"value": 0.9921,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-08-17",
+							"value": 0.9888,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-08-19",
+							"value": 0.9899,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-08-21",
+							"value": 0.9921,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-08-24",
+							"value": 0.992,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-09-01",
+							"value": 0.9908,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-09-04",
+							"value": 0.9917,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-09-08",
+							"value": 0.9917,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-09-14",
+							"value": 0.9917,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-09-21",
+							"value": 0.9918,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-09-28",
+							"value": 0.9917,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-10-05",
+							"value": 0.9918,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-10-07",
+							"value": 0.992,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						},
+						{
+							"date": "2026-10-08",
+							"value": 0.992,
+							"lowerSpec": -0.316928,
+							"upperSpec": 2.300176
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "MTH02",
+			"status": "configured",
+			"refresh": {
+				"status": "plot_only",
+				"attempted": false,
+				"retainedFailure": false,
+				"source": "authoritative_master",
+				"sourceSha256": "da3e29016c1622e544d565a4ab57acffccd777b98ad2da0941c2649cb0ebaa6f",
+				"lastMeasuredDate": "2026-06-22",
+				"runReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json",
+				"lastSuccessfulRefreshAt": "2026-10-13T20:14:05+00:00"
+			},
+			"charts": [
+				{
+					"id": "mth02-cwl-henrietta-bow-bow-bf",
+					"title": "CWL - Henrietta - BOW - BOW BF",
+					"yAxis": "BOW BF",
+					"points": [
+						{
+							"date": "2026-02-27",
+							"value": -72.633,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-03-02",
+							"value": -72.645,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-03-18",
+							"value": -71.892,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-04-13",
+							"value": -70.226,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-04-28",
+							"value": -69.361,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-05-04",
+							"value": -69.774,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-05-27",
+							"value": -68.528,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-10",
+							"value": -68.469,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-16",
+							"value": -68.017,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-22",
+							"value": -67.381,
+							"lowerSpec": null,
+							"upperSpec": null
+						}
+					]
+				},
+				{
+					"id": "mth02-cwl-henrietta-bow-ttv",
+					"title": "CWL - Henrietta - BOW - TTV",
+					"yAxis": "TTV",
+					"points": [
+						{
+							"date": "2026-02-27",
+							"value": 162.539,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-03-02",
+							"value": 161.526,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-03-18",
+							"value": 161.272,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-04-13",
+							"value": 162.457,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-04-28",
+							"value": 162.11,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-05-04",
+							"value": 162.439,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-05-27",
+							"value": 162.784,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-10",
+							"value": 162.165,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-16",
+							"value": 162.49,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-22",
+							"value": 162.851,
+							"lowerSpec": null,
+							"upperSpec": null
+						}
+					]
+				},
+				{
+					"id": "mth02-cwl-henrietta-bow-total-thk",
+					"title": "CWL - Henrietta - BOW - Total THK",
+					"yAxis": "Total THK",
+					"points": [
+						{
+							"date": "2026-02-27",
+							"value": 842.696,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-03-02",
+							"value": 842.816,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-03-18",
+							"value": 842.898,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-04-13",
+							"value": 842.848,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-04-28",
+							"value": 843.024,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-05-04",
+							"value": 843.066,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-05-27",
+							"value": 843.091,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-10",
+							"value": 837.141,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-16",
+							"value": 837.924,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-22",
+							"value": 843.07,
+							"lowerSpec": null,
+							"upperSpec": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "OVL01",
+			"status": "configured",
+			"refresh": {
+				"status": "updated",
+				"attempted": true,
+				"retainedFailure": false,
+				"source": "authoritative_master",
+				"sourceSha256": "7a0a38690e3336269484756cabdcbe755021d4756567dc74f08b66d6a4875b2d",
+				"lastMeasuredDate": "2026-10-12",
+				"runReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json",
+				"lastSuccessfulRefreshAt": "2026-10-13T20:14:05+00:00"
+			},
+			"charts": [
+				{
+					"id": "ovl01-tn1-misx",
+					"title": "TN 1 - Mean MisX",
+					"yAxis": "Mean MisX",
+					"points": [
+						{
+							"date": "2026-07-27",
+							"value": -108.88856031538461,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-03",
+							"value": -108.2607176,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-10",
+							"value": -107.31895344615384,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-17",
+							"value": -108.59706189230769,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-24",
+							"value": -108.75491947692308,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-08",
+							"value": -108.49929781538462,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-14",
+							"value": -108.74864103846154,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-22",
+							"value": -108.17281958461538,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-28",
+							"value": -108.78451780769231,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-10-05",
+							"value": -109.26616286153846,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-10-12",
+							"value": -107.78266014615384,
+							"lowerSpec": null,
+							"upperSpec": null
+						}
+					]
+				},
+				{
+					"id": "ovl01-tn1-misy",
+					"title": "TN 1 - Mean MisY",
+					"yAxis": "Mean MisY",
+					"points": [
+						{
+							"date": "2026-07-27",
+							"value": 53.58006767692308,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-03",
+							"value": 53.74732741538462,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-10",
+							"value": 53.843737184615385,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-17",
+							"value": 53.98857606153846,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-24",
+							"value": 54.148661130769234,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-08",
+							"value": 54.0813985,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-14",
+							"value": 54.38901293076923,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-22",
+							"value": 54.08229534615385,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-28",
+							"value": 54.58362614615385,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-10-05",
+							"value": 54.70425047692308,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-10-12",
+							"value": 54.19439972307692,
+							"lowerSpec": null,
+							"upperSpec": null
+						}
+					]
+				},
+				{
+					"id": "ovl01-tn1-tisx",
+					"title": "TN 1 - Mean TISX",
+					"yAxis": "Mean TISX",
+					"points": [
+						{
+							"date": "2026-07-27",
+							"value": 23.031962476923077,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-03",
+							"value": 23.379966753846155,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-10",
+							"value": 25.161246276923077,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-17",
+							"value": 24.588115561538462,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-24",
+							"value": 26.15951623076923,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-08",
+							"value": 23.037343976923076,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-14",
+							"value": 23.946819023076923,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-22",
+							"value": 24.02036633846154,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-28",
+							"value": 24.01139716153846,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-10-05",
+							"value": 23.965654315384615,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-10-12",
+							"value": 24.116336569230768,
+							"lowerSpec": null,
+							"upperSpec": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SAM01",
+			"status": "configured",
+			"refresh": {
+				"status": "failed",
+				"attempted": true,
+				"retainedFailure": false,
+				"source": "previous_dashboard",
+				"sourceSha256": "71bce90e98309bba093660d12e1e8cd42aafa664c71d387870c92ab584eda045",
+				"lastMeasuredDate": "2026-10-07",
+				"runReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json",
+				"lastSuccessfulRefreshAt": "2026-10-08T21:48:23+00:00",
+				"failurePhase": "dashboard",
+				"error": "Workbook changed during dashboard build",
+				"failureRunReport": "file:///C:/Users/oeg233/OneDrive%20-%20The%20University%20of%20Texas%20at%20Austin/TIE%20Internal-Equipment%20-%20All_Metro_SPC/outputs/update_runs/20261013_151204_500600_9d6959eb69de/result.json"
+			},
+			"charts": [
+				{
+					"id": "sam01-void-count",
+					"title": "Void Count",
+					"yAxis": "Void Count",
+					"points": [
+						{
+							"date": "2026-02-04",
+							"value": 481,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-02-05",
+							"value": 498,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-08",
+							"value": 1199,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-11",
+							"value": 852,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-16",
+							"value": 838,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-22",
+							"value": 876,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-06-29",
+							"value": 904,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-07-20",
+							"value": 822,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-08-18",
+							"value": 883,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-01",
+							"value": 960,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-14",
+							"value": 894,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-22",
+							"value": 915,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-09-28",
+							"value": 860,
+							"lowerSpec": null,
+							"upperSpec": null
+						},
+						{
+							"date": "2026-10-07",
+							"value": 1132,
+							"lowerSpec": null,
+							"upperSpec": null
+						}
+					]
+				}
+			]
+		}
+	]
+}

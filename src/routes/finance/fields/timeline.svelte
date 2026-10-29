@@ -33,7 +33,7 @@
 </script>
 
 <Field.Set>
-    <Field.Legend class='font-medium text-lg mb-1'>Target Operational Date</Field.Legend>
+    <Field.Legend>Target Operational Date</Field.Legend>
     <Field.Description>When do you need this tool installed & operational by? Approximate date is fine.</Field.Description>
 
     <Field.Field orientation='horizontal'>

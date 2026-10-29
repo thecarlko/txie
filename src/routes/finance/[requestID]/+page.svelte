@@ -49,6 +49,13 @@
         tab = 'proposal';
     }
 
+    const sections = [
+        { value: 'proposal', label: 'Proposal' },
+        { value: 'sourcing', label: 'Sourcing' },
+        { value: 'leadership', label: 'Leadership' },
+        { value: 'summary', label: 'Summary' }
+    ];
+
     /** The latest draft and its vendors went to FAB Leadership: show it there. */
     function openReview() {
         selectedId = null;
@@ -56,7 +63,7 @@
     }
 </script>
 
-<Tabs.Root bind:value={tab}>
+<Tabs.Root bind:value={tab} class="txie-theme min-h-screen bg-txie-canvas text-txie-ink">
     {#key snapshot.id}
         <Proposal {snapshot} onnext={() => (tab = 'sourcing')} />
         <Leadership {snapshot} onrevise={openDraft} />
@@ -65,21 +72,23 @@
     <Sourcing snapshot={latest} onforward={openReview} />
     <Summary {versions} />
 
-    <div class='fixed top-0 w-screen pb-5 pt-3 px-6 grid grid-cols-[1fr_auto_1fr] items-center pointer-events-none z-20 bg-linear-to-b from-background via-background to-transparent'>
-        <span></span>
-        <Tabs.List variant='line' class='gap-x-4 pointer-events-auto'>
-            <Tabs.Trigger value='proposal' class='after:bg-transparent'>Proposal</Tabs.Trigger>
-            <Tabs.Trigger value='sourcing' class='after:bg-transparent'>Sourcing</Tabs.Trigger>
-            <Tabs.Trigger value='leadership' class='after:bg-transparent font-base'>Leadership</Tabs.Trigger>
-            <Tabs.Trigger value='summary' class='after:bg-transparent'>Summary</Tabs.Trigger>
+    <!-- Fixed footer bar, under the app navbar (z-50) and overlays. The sections' own bottom padding (pb-20+) keeps content clear of it -->
+    <nav aria-label='Request sections' class='fixed inset-x-0 bottom-0 z-40 grid grid-cols-[auto_auto] justify-between items-center pb-10 pt-4 px-[5vw] bg-linear-to-b from-transparent via-background to-background'>
+        <Tabs.List class='h-8 gap-1 bg-transparent p-0'>
+            {#each sections as { value, label } (value)}
+                <Tabs.Trigger {value} aria-current={tab === value ? 'step' : undefined}
+                    class='h-8 shadow-none! bg-transparent! border-0 px-3 text-txie-secondary hover:text-txie-ink data-active:text-brand-500 data-active:hover:text-brand-500 focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-txie-ink'>
+                    {label}
+                </Tabs.Trigger>
+            {/each}
         </Tabs.List>
 
         {#if versions.length > 1}
             <NativeSelect.Root
                 value={snapshot.id}
-                onchange={(e) => (selectedId = e.currentTarget.value)}
+                onchange={({ currentTarget }) => (selectedId = currentTarget.value)}
                 aria-label='Draft version'
-                class='ml-auto w-max pointer-events-auto'
+                size='sm'
             >
                 {#each versions as version (version.id)}
                     <NativeSelect.Option value={version.id}>
@@ -88,5 +97,5 @@
                 {/each}
             </NativeSelect.Root>
         {/if}
-    </div>
+    </nav>
 </Tabs.Root>

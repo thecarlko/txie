@@ -25,11 +25,13 @@
         errors?: { purpose?: string | null; gap?: string | null };
         ontouch?: (field: "purpose" | "gap") => void;
     } = $props();
+
+    const { purpose: purposeError, gap: gapError } = $derived(errors);
 </script>
 
 <Field.Field>
     <Field.Label for="purpose" class='font-medium text-lg'>Purpose</Field.Label>
-    <Field.Description>What is this equipment for? Does it enable any new technology or process that isn't currently available?</Field.Description>
+    <Field.Description id="purpose-help">What is this equipment for? Does it enable any new technology or process that isn't currently available?</Field.Description>
 
     <Input
         bind:value={purpose}
@@ -38,23 +40,22 @@
         {disabled}
         onblur={() => ontouch?.("purpose")}
         placeholder='Wafer Based Plasma Dicer'
-        class={[errors.purpose && 'border-destructive']}
+        aria-invalid={!!purposeError}
+        aria-describedby={purposeError ? 'purpose-help purpose-error' : 'purpose-help'}
     />
-    {#if errors.purpose}
-        <Field.Error class="mb-4">{errors.purpose}</Field.Error>
+    {#if purposeError}
+        <Field.Error id="purpose-error">{purposeError}</Field.Error>
     {/if}
 </Field.Field>
-<br>
 
 <Field.Set>
     <Field.Legend variant="label">What kind of need is it?</Field.Legend>
     <RadioGroup.Root bind:value={needType} {disabled} class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        {#each needTypes as n (n.value)}
-            {@render Choice(n.value, n.label, n.hint, n.icon)}
+        {#each needTypes as { value, label, hint, icon } (value)}
+            {@render Choice(value, label, hint, icon)}
         {/each}
     </RadioGroup.Root>
 </Field.Set>
-<br>
 
 <Field.Field>
     <Field.Label for="details">What will it do, and why do we need it?</Field.Label>
@@ -69,7 +70,6 @@
         {@render Count(details, 300)}
     </InputGroup.Root>
 </Field.Field>
-<br>
 
 <Field.Field>
     <Field.Label for="gap">What can't you do today that this fixes?</Field.Label>
@@ -80,12 +80,14 @@
             {disabled}
             maxlength={200}
             onblur={() => ontouch?.("gap")}
-            class={["min-h-20 resize-none", errors.gap && 'border-destructive']}
+            class="min-h-20 resize-none"
+            aria-invalid={!!gapError}
+            aria-describedby={gapError ? 'gap-error' : undefined}
             placeholder="Bumping is manual, slow, and error-prone. This automates it and raises throughput." />
         {@render Count(gap, 200)}
     </InputGroup.Root>
-    {#if errors.gap}
-        <Field.Error class="mt-2">{errors.gap}</Field.Error>
+    {#if gapError}
+        <Field.Error id="gap-error">{gapError}</Field.Error>
     {/if}
 </Field.Field>
 

@@ -14,10 +14,10 @@
 </script>
 
 <Field.Set>
-    <Field.Legend class='font-medium text-lg mb-1'>Location</Field.Legend>
+    <Field.Legend>Location</Field.Legend>
     <Field.Description>Where will this equipment be used?</Field.Description>
 
-    <RadioGroup.Root bind:value {disabled} onfocusout={ontouch} class='grid grid-cols-2 gap-4 mt-4'>
+    <RadioGroup.Root bind:value {disabled} onfocusout={ontouch} class='grid grid-cols-2 gap-4'>
         {#each locations as { value: option, label, icon: Icon } (option)}
             <Label
                 for={`loc-${option}`}

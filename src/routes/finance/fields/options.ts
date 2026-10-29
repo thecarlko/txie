@@ -9,7 +9,7 @@ import { parseBudget } from "$lib/data/snapshot-fields";
 import type { Budget, CostCategory, Location, NeedType, PersonnelRole, Utility, VendorFlag } from "$lib/models/procurement";
 
 /** Selected look for chips in a ToggleGroup */
-export const chip = "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary";
+export const chip = "rounded-none border-txie-control bg-transparent text-txie-ink shadow-none hover:bg-txie-header hover:text-txie-ink data-[state=on]:bg-txie-ink data-[state=on]:text-txie-canvas data-[state=on]:border-txie-ink focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-txie-ink disabled:opacity-100 motion-reduce:transition-none";
 
 type Option<T extends string> = { value: T; label: string; icon: Component };
 

@@ -18,18 +18,18 @@
 
     const dollars = (cents: number) => formatCurrency(cents / 100);
 
-    const eyebrow = "text-xs font-medium uppercase tracking-wider text-muted-foreground";
+    const eyebrow = "text-xs font-medium uppercase tracking-wider text-txie-secondary";
     const rows = "grid grid-cols-[minmax(8rem,14rem)_1fr] gap-x-6 gap-y-3 text-sm";
 </script>
 
 <div class='grid gap-12'>
     {#if snapshot.decision}
-        <p class='flex items-center gap-3 bg-accent/40 border p-4 text-sm text-muted-foreground'>
+        <p class='flex items-center gap-3 bg-txie-subtle border p-4 text-sm text-txie-secondary'>
             <Lock class='size-4 shrink-0' />
             Draft {versionOf(snapshot)} is view only. FAB Leadership marked it {decisionLabel[snapshot.decision].toLowerCase()} on {formatDate(snapshot.updated_at)}.
         </p>
     {:else if snapshot.forwarded}
-        <p class='flex items-center gap-3 bg-accent/40 border p-4 text-sm text-muted-foreground'>
+        <p class='flex items-center gap-3 bg-txie-subtle border p-4 text-sm text-txie-secondary'>
             <Lock class='size-4 shrink-0' />
             Draft {versionOf(snapshot)} is view only. It has been forwarded to FAB Leadership and is awaiting review.
         </p>
@@ -47,18 +47,18 @@
         </dl>
     </section>
 
-    <hr class='border-dashed'>
+    <hr class='border-txie-rule'>
 
     <!-- Programs & personnel -->
     <section class='grid gap-4'>
         <h3 class={eyebrow}>Programs and Personnel</h3>
         <dl class={rows}>
-            <dt class='text-muted-foreground'>Programs supported</dt>
+            <dt class='text-txie-secondary'>Programs supported</dt>
             <dd>
                 {#if programs.length}
                     <ul class='flex flex-wrap gap-2'>
                         {#each programs as program (program)}
-                            <li class='px-2.5 py-0.5 border bg-background font-medium'>{program}</li>
+                            <li class='px-2.5 py-0.5 border bg-txie-canvas font-medium'>{program}</li>
                         {/each}
                     </ul>
                 {:else}
@@ -66,14 +66,14 @@
                 {/if}
             </dd>
 
-            <dt class='text-muted-foreground'>Stakeholders</dt>
+            <dt class='text-txie-secondary'>Stakeholders</dt>
             <dd>
                 {#if personnel.length}
                     <ul class='grid gap-2'>
                         {#each personnel as person, i (i)}
                             <li class='grid'>
-                                <span class='font-medium'>{person.name} <span class='font-normal text-muted-foreground'>· {roleLabel[person.role] ?? person.role}</span></span>
-                                {#if person.email}<a href='mailto:{person.email}' class='text-muted-foreground hover:underline w-max'>{person.email}</a>{/if}
+                                <span class='font-medium'>{person.name} <span class='font-normal text-txie-secondary'>· {roleLabel[person.role] ?? person.role}</span></span>
+                                {#if person.email}<a href='mailto:{person.email}' class='text-txie-secondary hover:underline w-max'>{person.email}</a>{/if}
                             </li>
                         {/each}
                     </ul>
@@ -84,14 +84,14 @@
         </dl>
     </section>
 
-    <hr class='border-dashed'>
+    <hr class='border-txie-rule'>
 
     <!-- Budget -->
     <section class='grid gap-4'>
         <h3 class={eyebrow}>Estimated Budget</h3>
         <dl class='grid grid-cols-[1fr_auto] gap-x-6 gap-y-3 text-sm'>
             {#each costs as [category, cents] (category)}
-                <dt class='text-muted-foreground'>{costLabel[category] ?? category}</dt>
+                <dt class='text-txie-secondary'>{costLabel[category] ?? category}</dt>
                 <dd class='text-right tabular-nums'>{dollars(cents)}</dd>
             {/each}
             <dt class='border-t pt-3 font-medium'>Total estimated cost</dt>
@@ -99,7 +99,7 @@
         </dl>
     </section>
 
-    <hr class='border-dashed'>
+    <hr class='border-txie-rule'>
 
     <!-- Specs -->
     <section class='grid gap-4'>
@@ -111,11 +111,11 @@
                 {/each}
             </dl>
         {:else}
-            <p class='text-sm text-muted-foreground'>No specifications given.</p>
+            <p class='text-sm text-txie-secondary'>No specifications given.</p>
         {/if}
     </section>
 
-    <hr class='border-dashed'>
+    <hr class='border-txie-rule'>
 
     <!-- Timeline -->
     <section class='grid gap-4'>
@@ -130,6 +130,6 @@
 </div>
 
 {#snippet Row(term: string, detail: string | null | undefined)}
-    <dt class='text-muted-foreground'>{term}</dt>
+    <dt class='text-txie-secondary'>{term}</dt>
     <dd class='whitespace-pre-wrap'>{detail || "—"}</dd>
 {/snippet}

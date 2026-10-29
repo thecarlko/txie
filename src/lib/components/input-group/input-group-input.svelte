@@ -14,7 +14,7 @@
 <Input
 	bind:ref
 	data-slot="input-group-control"
-	class={cn("rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 aria-invalid:ring-0 dark:bg-transparent flex-1", className)}
+	class={cn("h-auto min-h-10 flex-1 border-0 bg-transparent shadow-none ring-0 focus-visible:outline-none focus-visible:ring-0 aria-invalid:ring-0", className)}
 	bind:value
 	{...props}
 />

@@ -19,10 +19,10 @@
 </script>
 
 <Field.Set>
-    <Field.Legend class="font-medium text-lg mb-1">Attachments</Field.Legend>
+    <Field.Legend>Attachments</Field.Legend>
     <Field.Description>Add any additional files (e.g. quotes, datasheets, or emails)</Field.Description>
     <label
-        class={["flex flex-col items-center gap-1.5 border border-dashed p-6 text-center text-sm transition-colors mt-4",
+        class={["flex flex-col items-center gap-1.5 border border-dashed p-6 text-center text-sm transition-colors",
         disabled ? "opacity-50 pointer-events-none" : "cursor-pointer hover:bg-accent/50 has-focus-visible:ring-2 has-focus-visible:ring-ring",
         dragging && "bg-accent"]}
         ondragover={(e) => { if (disabled) return; e.preventDefault(); dragging = true; }}
@@ -34,7 +34,7 @@
         <input type="file" multiple class="sr-only" {disabled} onchange={(e) => { addFiles(e.currentTarget.files); e.currentTarget.value = ""; }} />
     </label>
     {#if files.length}
-        <div class="flex flex-col gap-2 mt-4">
+        <div class="flex flex-col gap-2">
             {#each files as f, i (f.name + f.size + f.lastModified)}
                 <Attachment.Root state="idle" size="sm" class="w-full">
                     <Attachment.Media><FileText /></Attachment.Media>

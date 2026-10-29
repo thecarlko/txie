@@ -35,7 +35,7 @@
         return footprint ? `${[length, width, height].map((side) => side || "—").join(" × ")} mm` : null;
     }
 
-    const eyebrow = "text-xs font-medium uppercase tracking-wider text-muted-foreground";
+    const eyebrow = "text-xs font-medium uppercase tracking-wider text-txie-secondary";
     const rows = "grid grid-cols-[minmax(8rem,14rem)_1fr] gap-x-6 gap-y-3 text-sm";
 </script>
 
@@ -45,10 +45,10 @@
             <h1 class='text-2xl font-medium font-display'>04 - Executive Summary</h1>
 
             {#if approved && chosen}
-                <header class='grid gap-2 border-y border-dashed py-6'>
+                <header class='grid gap-2 border-y border-txie-rule py-6'>
                     <span class={eyebrow}>{approved.request_id} · Draft {versionOf(approved)} · Approved {formatDate(approved.updated_at)}</span>
                     <h2 class='text-2xl font-medium'>{approved.purpose}</h2>
-                    <div class='flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground'>
+                    <div class='flex flex-wrap gap-x-4 gap-y-1 text-sm text-txie-secondary'>
                         <span class='flex items-center gap-1.5 uppercase'><MapPin class='size-4' /> {approved.location}</span>
                         <span class='flex items-center gap-1.5'><Clock class='size-4' /> Needed by {formatDate(approved.target_date)}</span>
                     </div>
@@ -56,18 +56,18 @@
 
                 <!-- Key figures -->
                 <dl class='grid grid-cols-[1fr_auto] content-start gap-x-4 gap-y-3 text-sm'>
-                    <dt class='text-muted-foreground'>Procuring</dt>
+                    <dt class='text-txie-secondary'>Procuring</dt>
                     <dd class='font-medium text-right'>{chosen.manufacturer} {chosen.model}</dd>
-                    <dt class='text-muted-foreground'>Total cost</dt>
+                    <dt class='text-txie-secondary'>Total cost</dt>
                     <dd class='font-medium text-right tabular-nums'>{dollars(total)}</dd>
-                    <dt class='text-muted-foreground'>Approved envelope</dt>
+                    <dt class='text-txie-secondary'>Approved envelope</dt>
                     <dd class='font-medium text-right tabular-nums'>{dollars(envelope)}</dd>
-                    <dt class='text-muted-foreground'>{total > envelope ? "Over envelope" : "Under envelope"}</dt>
-                    <dd class='font-medium text-right tabular-nums {total > envelope ? "text-red-600" : "text-green-600"}'>{dollars(Math.abs(envelope - total))}</dd>
-                    <dt class='text-muted-foreground'>Longest lead time</dt>
+                    <dt class='text-txie-secondary'>{total > envelope ? "Over envelope" : "Under envelope"}</dt>
+                    <dd class='font-medium text-right tabular-nums {total > envelope ? "text-txie-error" : ""}'>{dollars(Math.abs(envelope - total))}</dd>
+                    <dt class='text-txie-secondary'>Longest lead time</dt>
                     <dd class='font-medium text-right'>{weeks(longestLeadTime(chosen)) ?? "—"}</dd>
-                    <dt class='text-muted-foreground'>Vendors considered</dt>
-                    <dd class='font-medium text-right'>{vendors.length}</dd>
+                    <dt class='text-txie-secondary'>Vendors considered</dt>
+                    <dd class='font-medium text-right tabular-nums'>{vendors.length}</dd>
                 </dl>
             {/if}
         </div>
@@ -103,7 +103,7 @@
                     </dl>
                 </section>
 
-                <hr class='border-dashed'>
+                <hr class='border-txie-rule'>
 
                 <!-- FAB Leadership -->
                 <section class='grid gap-4'>
@@ -111,7 +111,7 @@
                     <ol class='grid gap-4 text-sm'>
                         {#each decisions as draft (draft.id)}
                             <li class='grid grid-cols-[minmax(8rem,14rem)_1fr] gap-x-6'>
-                                <span class='text-muted-foreground'>Draft {versionOf(draft)} · {formatDate(draft.updated_at)}</span>
+                                <span class='text-txie-secondary'>Draft {versionOf(draft)} · {formatDate(draft.updated_at)}</span>
                                 <p class='grid gap-1'>
                                     <strong class='font-medium'>{decisionLabel[draft.decision!]}</strong>
                                     {#if draft.decision_comments}<span class='whitespace-pre-wrap'>{draft.decision_comments}</span>{/if}
@@ -124,7 +124,7 @@
                     </dl>
                 </section>
 
-                <hr class='border-dashed'>
+                <hr class='border-txie-rule'>
 
                 <!-- Equipment -->
                 <section class='grid gap-4'>
@@ -137,19 +137,19 @@
                     </dl>
                 </section>
 
-                <hr class='border-dashed'>
+                <hr class='border-txie-rule'>
 
                 <!-- Costs -->
                 <section class='grid gap-4'>
                     <h3 class={eyebrow}>Costs</h3>
                     <dl class='grid grid-cols-[1fr_auto] gap-x-6 gap-y-3 text-sm'>
                         {#each costs as [category, cents] (category)}
-                            <dt class='text-muted-foreground'>{costLabel[category] ?? category}</dt>
+                            <dt class='text-txie-secondary'>{costLabel[category] ?? category}</dt>
                             <dd class='text-right tabular-nums'>{dollars(cents)}</dd>
                         {/each}
                         {#if chosen.discount}
-                            <dt class='text-muted-foreground'>Discount</dt>
-                            <dd class='text-right tabular-nums text-green-600'>−{dollars(chosen.discount)}</dd>
+                            <dt class='text-txie-secondary'>Discount</dt>
+                            <dd class='text-right tabular-nums'>−{dollars(chosen.discount)}</dd>
                         {/if}
                         <dt class='border-t pt-3 font-medium'>Total</dt>
                         <dd class='border-t pt-3 text-right tabular-nums text-xl font-medium'>{dollars(total)}</dd>
@@ -167,7 +167,7 @@
                     </section>
                 {/if}
 
-                <hr class='border-dashed'>
+                <hr class='border-txie-rule'>
 
                 <!-- Facilities and Installation -->
                 <section class='grid gap-4'>
@@ -185,7 +185,7 @@
                     </dl>
                 </section>
 
-                <hr class='border-dashed'>
+                <hr class='border-txie-rule'>
 
                 <!-- Schedule -->
                 <section class='grid gap-4'>
@@ -198,7 +198,7 @@
                     </dl>
                 </section>
 
-                <hr class='border-dashed'>
+                <hr class='border-txie-rule'>
 
                 <!-- Vendors considered -->
                 <section class='grid gap-4'>
@@ -206,10 +206,10 @@
                     <dl class='grid grid-cols-[1fr_auto_auto] gap-x-6 gap-y-3 text-sm'>
                         {#each vendors as v (v.id)}
                             <dt class='flex items-center gap-2'>
-                                {v.manufacturer || "Unnamed vendor"} <span class='text-muted-foreground'>{v.model}</span>
-                                {#if v.recommended}<Star class='size-4 stroke-0 fill-[#f59e0b]' />{/if}
+                                {v.manufacturer || "Unnamed vendor"} <span class='text-txie-secondary'>{v.model}</span>
+                                {#if v.recommended}<Star class='size-4 stroke-0 fill-txie-accent' />{/if}
                             </dt>
-                            <dd class='text-muted-foreground'>{weeks(longestLeadTime(v)) ?? "—"}</dd>
+                            <dd class='text-txie-secondary tabular-nums'>{weeks(longestLeadTime(v)) ?? "—"}</dd>
                             <dd class='text-right tabular-nums'>{dollars(vendorTotal(v))}</dd>
                         {/each}
                     </dl>
@@ -220,13 +220,13 @@
 </Tabs.Content>
 
 {#snippet Row(term: string, detail: string | null | undefined)}
-    <dt class='text-muted-foreground'>{term}</dt>
+    <dt class='text-txie-secondary'>{term}</dt>
     <dd class='whitespace-pre-wrap'>{detail || "—"}</dd>
 {/snippet}
 
 {#snippet Empty(Icon: typeof Hourglass, title: string, body: string)}
-    <div class='grid gap-2 bg-accent/40 border p-6'>
-        <h3 class='flex items-center gap-3 font-medium text-lg'><Icon class='size-5 text-muted-foreground' /> {title}</h3>
-        <p class='text-sm text-muted-foreground whitespace-pre-wrap'>{body}</p>
+    <div class='grid gap-2 bg-txie-subtle border p-6'>
+        <h3 class='flex items-center gap-3 font-medium text-lg'><Icon class='size-5 text-txie-secondary' /> {title}</h3>
+        <p class='text-sm text-txie-secondary whitespace-pre-wrap'>{body}</p>
     </div>
 {/snippet}

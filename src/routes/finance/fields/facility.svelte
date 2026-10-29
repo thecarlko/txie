@@ -37,7 +37,7 @@
         {/each}
     </div>
 
-    <div>
+    <Field.Set class="gap-3">
         <Field.Legend variant='label'>Utilities</Field.Legend>
         <ToggleGroup.Root type='multiple' variant='outline' size='sm' spacing={2} bind:value={utilities} class='flex-wrap'>
             {#each utilityOptions as u (u.value)}
@@ -49,7 +49,7 @@
                 <Input bind:value={note} maxlength={140} aria-label='Utility details' placeholder='Specifics, e.g. 208 V 3-phase, 40 A, N2 and CDA' />
             </div>
         {/if}
-    </div>
+    </Field.Set>
 
     <div class='grid grid-cols-[1fr_auto] items-center gap-3'>
         <Label for='{id}-analysis' class='grid gap-1'>

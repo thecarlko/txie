@@ -85,7 +85,7 @@
     let force: Force = $state(initial.date_force);
 
     function displayDate(date: DateValue) {
-        return date.toDate(getLocalTimeZone()).toLocaleDateString("en-US", { day: "2-digit", month: "long", year: "numeric" });
+        return date.toDate(getLocalTimeZone()).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
     }
 
 
@@ -158,33 +158,33 @@
 
 <Tabs.Content value="proposal" class='gap-x-8 grid grid-cols-1 md:grid-cols-2 px-[5vw] w-full mx-auto max-w-8xl'>
     <aside>
-        <div class='grid grid-rows-[auto_1fr_auto] md:sticky top-0 py-20 md:pt-28 h-auto md:h-screen pr-16'>
+        <div class='grid grid-rows-[auto_1fr_auto] md:sticky top-0 pt-20 pb-32 md:pt-28 h-auto md:h-screen pr-16'>
             <div>
                 <h1 class='text-2xl font-medium font-display'>01 - Proposal</h1>
             </div>
             <br>
             <div>
                 <dl class="hidden grid-cols-2 gap-y-2 border-t pt-4 text-sm md:grid">
-                    <dt class="text-muted-foreground">Location</dt>
+                    <dt class="text-txie-secondary">Location</dt>
                     <dd class="text-right font-medium uppercase">{ locationLabel[location] ?? "Not set" }</dd>
-                    <dt class="text-muted-foreground">Purpose</dt>
+                    <dt class="text-txie-secondary">Purpose</dt>
                     <dd class="text-right font-medium">{ purpose.length > 0 ? purpose : "Not set" }</dd>
-                    <dt class="text-muted-foreground">Programs</dt>
+                    <dt class="text-txie-secondary">Programs</dt>
                     <dd class="text-right font-medium">{ programs.length ? programs.join(", ") : "Not set" }</dd>
-                    <dt class="text-muted-foreground">Estimated cost</dt>
+                    <dt class="text-txie-secondary">Estimated cost</dt>
                     <dd class="text-right font-medium tabular-nums">{ estimate > 0 ? formatCurrency(estimate) : "Not set" }</dd>
-                    <dt class="text-muted-foreground">Needed by</dt>
+                    <dt class="text-txie-secondary">Needed by</dt>
                     <dd class="text-right font-medium">{ due ? displayDate(due) : "Not set" }</dd>
-                    <dt class="text-muted-foreground">Draft</dt>
-                    <dd class="text-right font-medium">{ snapshot.request_id } · v{ versionOf(snapshot) }</dd>
+                    <dt class="text-txie-secondary">Draft</dt>
+                    <dd class="text-right font-medium tabular-nums">{ snapshot.request_id } · v{ versionOf(snapshot) }</dd>
                 </dl>
             </div>
         </div>
     </aside>
 
-    <article class='md:pt-28 pb-20'>
+    <article class='grid content-start gap-8 md:pt-28 pb-32'>
         {#if requestedChanges && !locked}
-            <div class='border border-orange-300 bg-orange-50 dark:bg-orange-950/40 p-4 mb-8 text-sm'>
+            <div class='border border-txie-warning bg-txie-warning-surface p-4 text-txie-ink text-sm'>
                 <strong class='flex items-center gap-2 font-medium mb-1'><Undo2 class='size-4' /> FAB Leadership requested changes on draft { versionOf(previous!) }</strong>
                 <p class='whitespace-pre-wrap'>{ requestedChanges }</p>
             </div>
@@ -194,46 +194,36 @@
             <ProposalView {snapshot} />
         {:else}
             <LocationField bind:value={location} error={errors.location} ontouch={() => (touched.location = true)} />
-            {@render Divider()}
 
             <PurposeField bind:purpose bind:needType bind:details bind:gap {errors} ontouch={(field) => (touched[field] = true)} />
-            {@render Divider()}
 
             <ProgramsField bind:value={programs} />
-            {@render Divider()}
 
             <PersonnelField bind:value={stakeholders} error={errors.personnel} ontouch={() => (touched.personnel = true)} />
-            {@render Divider()}
 
             <Field.Set>
-                <Field.Legend class='font-medium text-lg mb-1'>Budget</Field.Legend>
+                <Field.Legend>Budget</Field.Legend>
                 <Field.Description>Provide estimates on what it will cost to acquire and install this equipment. Ballpark estimates are fine, real quotes are gathered in Sourcing.</Field.Description>
 
                 <CostsField bind:amounts={receipt} bind:categories={costCategories} error={errors.purchase} ontouch={() => (touched.purchase = true)} />
 
-                <div class='grid grid-cols-[1fr_auto] gap-2 items-end mt-6'>
+                <div class='grid grid-cols-[1fr_auto] gap-2 items-end'>
                     <p class='text-end'>Total estimated cost:</p>
-                    <strong class='text-xl font-medium'>{ formatCurrency(estimate) }</strong>
+                    <strong class='text-xl font-medium tabular-nums'>{ formatCurrency(estimate) }</strong>
                 </div>
             </Field.Set>
-            {@render Divider()}
 
             <SpecsField bind:active={activeSpecs} bind:values={specValues} bind:custom={customSpecs} />
-            {@render Divider()}
 
             <TimelineField bind:due bind:consequence bind:firmness bind:force />
-            {@render Divider()}
 
             <AttachmentsField bind:files />
         {/if}
-        <br>
-        <br>
-        <br>
 
         <Button
             onclick={continueToSourcing}
             variant={stage === 'rejected' ? 'destructive' : 'default'}
-            class='ml-auto flex items-center gap-3'
+            class='ml-auto mt-8 flex items-center gap-3'
             disabled={locked}
         >
             {#if stage === 'approved'}
@@ -250,9 +240,3 @@
         </Button>
     </article>
 </Tabs.Content>
-
-{#snippet Divider()}
-    <br>
-    <hr class='border-[0.5px] border-dashed'>
-    <br>
-{/snippet}

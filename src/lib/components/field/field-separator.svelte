@@ -12,21 +12,19 @@
 	}: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
 		children?: Snippet;
 	} = $props();
-
-	const hasContent = $derived(!!children);
 </script>
 
 <div
 	bind:this={ref}
 	data-slot="field-separator"
-	data-content={hasContent}
-	class={cn("-my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2 relative", className)}
+	data-content={!!children}
+	class={cn("grid min-h-5 items-center text-sm", className)}
 	{...restProps}
 >
-	<Separator class="absolute inset-0 top-1/2" />
+	<Separator class="col-start-1 row-start-1 bg-txie-rule" />
 	{#if children}
 		<span
-			class="text-muted-foreground px-2 relative mx-auto block w-fit bg-background"
+			class="col-start-1 row-start-1 justify-self-center bg-txie-canvas px-2 text-txie-secondary"
 			data-slot="field-separator-content"
 		>
 			{@render children()}

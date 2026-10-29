@@ -15,8 +15,9 @@
 	bind:ref
 	data-slot="field-label"
 	class={cn(
-		"has-data-checked:bg-primary/5 has-data-checked:border-primary/30 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/50 has-[>[data-slot=field]]:has-[:focus-visible]:border-ring has-[>[data-slot=field]]:has-[:focus-visible]:ring-ring/50 has-[>[data-slot=field]]:has-[:focus-visible]:ring-3 *:data-[slot=field]:p-3 group/field-label peer/field-label flex w-fit",
-		"has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
+		"group/field-label peer/field-label flex w-fit gap-2 text-sm leading-normal font-medium text-txie-ink group-data-[disabled=true]:opacity-100 peer-disabled:opacity-100",
+		"has-[>[data-slot=field]]:grid has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:rounded-none has-[>[data-slot=field]]:border has-[>[data-slot=field]]:border-txie-control has-[>[data-slot=field]]:bg-txie-canvas *:data-[slot=field]:p-3",
+		"has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:border-txie-ink has-data-checked:bg-txie-selected has-data-checked:border-txie-accent has-[>[data-slot=field]]:has-[:focus-visible]:outline-2 has-[>[data-slot=field]]:has-[:focus-visible]:outline-offset-2 has-[>[data-slot=field]]:has-[:focus-visible]:outline-txie-ink",
 		className
 	)}
 	{...restProps}
