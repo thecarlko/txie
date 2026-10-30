@@ -12,7 +12,7 @@
 </script>
 
 <section class='max-w-8xl mx-auto pt-[calc(4vw+7rem)] px-[3vw]'>
-    <fieldset aria-label='Metrology filter' class='relative mb-16 flex w-fit gap-[3vw] border-b border-txie-rule pb-3 font-sans text-[clamp(1.25rem,3.5vw,3rem)]/[1.05] font-light tracking-tight'>
+    <fieldset aria-label='Metrology filter' class='sticky top-[calc(4vw+7rem)] z-40 mb-16 flex w-fit gap-[3vw] border-b border-txie-rule pb-3 font-sans text-[clamp(1.25rem,3.5vw,3rem)]/[1.05] font-light tracking-tight'>
         {#each filters as { value, label } (value)}
             <label bind:this={labels[value]} class='w-fit cursor-pointer text-txie-mark/60 transition-colors duration-150 ease-out hover:text-txie-secondary has-checked:text-txie-ink has-focus-visible:outline-2 has-focus-visible:outline-offset-4 has-focus-visible:outline-brand-500'>
                 <input type='radio' name='filter' {value} bind:group={filter} class='sr-only' />{label}

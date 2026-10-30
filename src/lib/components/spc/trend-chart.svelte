@@ -4,11 +4,14 @@
     import { curveStepAfter } from 'd3-shape';
     import { CalendarDate, DateFormatter, fromDate, getLocalTimeZone, toCalendarDate, today } from '@internationalized/date';
     import type { DateRange } from 'bits-ui';
-    import { Calendar } from '@lucide/svelte';
+    import { Calendar, FileText, TriangleAlert } from '@lucide/svelte';
     import * as Popover from '$lib/components/popover';
     import { Day, RangeCalendar } from '$lib/components/range-calendar';
+    import Hover from './hover.svelte';
+    import { sharepointUrl } from '../../../routes/metrology/spc/sharepoint';
 
-    type Point = { date: string; value: number; lowerSpec: number | null; upperSpec: number | null };
+    type Cite = { file: string; line?: number; lines?: [number, number]; table?: string; row?: number };
+    type Point = { date: string; value: number; lowerSpec: number | null; upperSpec: number | null; file?: string; cite?: Cite[]; dateSource?: string };
     let { title, points }: { title: string; points: Point[] } = $props();
 
     const zone = getLocalTimeZone();
@@ -71,7 +74,36 @@
     const stamp = (d: Date) =>
         `${d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} @ ${d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }).replace(/\s/u, '')}`;
 
+    // Points whose run date is not from the tool itself (filename or file creation time).
+    const inferred = $derived(measured.filter(({ dateSource }) => dateSource && dateSource !== 'tool'));
+    const where = ({ line, lines, table, row }: Cite) =>
+        line ? `Line ${line}` : lines ? `Lines ${lines[0]}–${lines[1]}` : table ? `${table}, row ${row}` : '';
+    const dateNote: Record<string, string> = { filename: 'date from filename', created: 'date from file creation time' };
+
+    let hovered = $state<(typeof all)[number] | null>(null);
+    // A clicked point stays in the footer until the chart is clicked again.
+    let pinned = $state<(typeof all)[number] | null>(null);
+    const shown = $derived(pinned ?? hovered);
+    const toggle = () => (pinned = pinned ? null : hovered);
+    const exact = new Intl.NumberFormat(undefined, { maximumSignificantDigits: 6 });
+    const stats = $derived.by(() => {
+        const values = measured.map(({ value }) => value);
+        if (!values.length) return null;
+        return {
+            n: values.length,
+            min: Math.min(...values),
+            max: Math.max(...values),
+            mean: values.reduce((a, b) => a + b, 0) / values.length,
+        };
+    });
+
     const dashed = { props: { class: '[stroke-dasharray:4_4]' } };
+    // Only draw limit lines that exist; a series of nulls breaks the chart's hover lookup.
+    const series = $derived([
+        ...(highs.length ? [{ key: 'upperSpec', label: config.upperSpec.label, color: config.upperSpec.color, ...dashed }] : []),
+        { key: 'value', label: config.value.label, color: config.value.color },
+        ...(lows.length ? [{ key: 'lowerSpec', label: config.lowerSpec.label, color: config.lowerSpec.color, ...dashed }] : []),
+    ]);
 </script>
 
 {#snippet Controls()}
@@ -105,6 +137,8 @@
             </Popover.Content>
         </Popover.Root>
     </figcaption>
+    <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+    <div onclick={toggle} class='cursor-pointer'>
     <Chart.Container {config} class='aspect-3/1 w-full py-2'>
         {#if data.length}
             <LineChart
@@ -113,11 +147,7 @@
                 x='date'
                 axis
                 padding={{ top: 10, right: 10, bottom: 30, left: 46 }}
-                series={[
-                    { key: 'upperSpec', label: config.upperSpec.label, color: config.upperSpec.color, ...dashed },
-                    { key: 'value', label: config.value.label, color: config.value.color },
-                    { key: 'lowerSpec', label: config.lowerSpec.label, color: config.lowerSpec.color, ...dashed },
-                ]}
+                {series}
                 props={{
                     spline: { curve: curveStepAfter },
                     xAxis: { format: (d: Date) => d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }), tickLabelProps: { dy: 20 } },
@@ -125,14 +155,35 @@
                 }}
             >
                 {#snippet aboveMarks()}
+                    <Points data={inferred} x='date' y='value' r={4} class='fill-none stroke-txie-mark [stroke-dasharray:2_2]' />
                     <Points data={outOfSpec} x='date' y='value' r={3} class='fill-destructive stroke-none' />
+                    {#if pinned}<Points data={[pinned]} x='date' y='value' r={5} class='fill-none stroke-brand-500 stroke-2' />{/if}
                 {/snippet}
                 {#snippet tooltip()}
-                    <Chart.Tooltip class='px-3.5 py-2.5 [&_[data-key=value]_span]:text-brand-500 [&_[data-key=value]_span:first-child]:text-brand-500/70' labelFormatter={(d) => stamp(new Date(d))} />
+                    <Chart.Tooltip class='px-3.5 py-2.5 [&_[data-key=value]_span]:text-brand-500 [&_[data-key=value]_span:first-child]:text-brand-500/70' hideLabel />
+                    <Hover bind:point={hovered} />
                 {/snippet}
             </LineChart>
         {:else}
             <p class='grid h-full place-items-center text-sm text-muted-foreground'>No measurements in this range.</p>
         {/if}
     </Chart.Container>
+    </div>
+    <footer aria-live='polite' class='flex items-center justify-between gap-4 border-t border-border px-2 pt-3 font-mono text-xs whitespace-nowrap text-muted-foreground tabular-nums'>
+        {#if shown}
+            {@const { date, file, cite = [], dateSource } = shown}
+            <span class='flex items-center gap-2 {pinned ? "text-foreground" : ""}'>
+                {cite.map(where).filter(Boolean).join('; ')}
+                {#if file}<a href={sharepointUrl(file)} target='_blank' rel='noopener' title={file} aria-label='Open {file} in SharePoint' class='grid place-items-center hover:text-brand-500 focus-visible:outline-2 focus-visible:outline-ring'><FileText class='size-[0.875rem]' aria-hidden='true' /></a>{/if}
+            </span>
+            <span>{stamp(date)}{#if dateSource && dateNote[dateSource]} · {dateNote[dateSource]}{/if}</span>
+        {:else if stats}
+            {@const { n, min, max, mean } = stats}
+            <span>{n} point{n === 1 ? '' : 's'} · Avg {exact.format(mean)} · Range {exact.format(min)}–{exact.format(max)}</span>
+            <span class='flex items-center gap-2 {outOfSpec.length ? "text-destructive" : ""}'>
+                {#if outOfSpec.length}<TriangleAlert class='size-[0.875rem]' aria-hidden='true' />{/if}
+                {outOfSpec.length} out of spec
+            </span>
+        {/if}
+    </footer>
 </figure>

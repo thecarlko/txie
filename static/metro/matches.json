@@ -1,0 +1,384 @@
+{
+	"matched": {
+		"AOI52": [
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_Defualt_SPC_20260629_24_Surface.csv",
+				"ext": ".csv",
+				"bytes": 6725,
+				"mtime": "2026-07-06T16:24:57.000Z",
+				"created": "2026-10-30T16:54:46.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_Defualt_SPC_20260727_24_Surface.csv",
+				"ext": ".csv",
+				"bytes": 6695,
+				"mtime": "2026-07-27T15:27:42.000Z",
+				"created": "2026-10-30T16:54:46.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_Defualt_SPC_20260721_24_Surface.csv",
+				"ext": ".csv",
+				"bytes": 6807,
+				"mtime": "2026-07-21T18:06:47.000Z",
+				"created": "2026-10-30T16:54:46.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_spc_20260921_25_Surface.csv",
+				"ext": ".csv",
+				"bytes": 8437,
+				"mtime": "2026-09-21T19:35:32.000Z",
+				"created": "2026-10-30T16:55:45.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC_0_Surface.csv",
+				"ext": ".csv",
+				"bytes": 8263,
+				"mtime": "2026-09-11T19:22:31.000Z",
+				"created": "2026-10-30T16:55:36.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_Defualt_spc_20260713_24_Surface.csv",
+				"ext": ".csv",
+				"bytes": 6700,
+				"mtime": "2026-07-13T18:19:47.000Z",
+				"created": "2026-10-30T16:54:46.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_Defualt_spc_20260706_24_Surface.csv",
+				"ext": ".csv",
+				"bytes": 6786,
+				"mtime": "2026-07-06T19:35:45.000Z",
+				"created": "2026-10-30T16:54:46.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_Defualt_spc_20260921_25_Surface.csv",
+				"ext": ".csv",
+				"bytes": 30916,
+				"mtime": "2026-09-21T16:24:06.000Z",
+				"created": "2026-10-30T16:55:44.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC_25_Surface.csv",
+				"ext": ".csv",
+				"bytes": 8543,
+				"mtime": "2026-10-06T15:00:28.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			},
+			{
+				"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC3_10132026_25_Surface.csv",
+				"ext": ".csv",
+				"bytes": 8376,
+				"mtime": "2026-10-13T16:30:28.000Z",
+				"created": "2026-10-30T16:56:18.000Z"
+			}
+		],
+		"DEF51": [
+			{
+				"path": "MDKL81_DEF51/RAW DATA/SPC_Health_Check01084.html",
+				"ext": ".html",
+				"bytes": 359489,
+				"mtime": "2026-07-23T13:13:21.000Z",
+				"created": "2026-10-30T16:54:46.000Z"
+			},
+			{
+				"path": "MDKL81_DEF51/RAW DATA/SPC_Health_Check01460.html",
+				"ext": ".html",
+				"bytes": 269985,
+				"mtime": "2026-09-21T15:47:22.000Z",
+				"created": "2026-10-30T16:55:44.000Z"
+			},
+			{
+				"path": "MDKL81_DEF51/RAW DATA/SPC_Health_Check01490.html",
+				"ext": ".html",
+				"bytes": 359806,
+				"mtime": "2026-09-28T18:39:34.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			},
+			{
+				"path": "MDKL81_DEF51/RAW DATA/SPC_Health_Check01546.html",
+				"ext": ".html",
+				"bytes": 270405,
+				"mtime": "2026-10-06T14:51:10.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			},
+			{
+				"path": "MDKL81_DEF51/RAW DATA/SPC_Health_Check01571.html",
+				"ext": ".html",
+				"bytes": 270265,
+				"mtime": "2026-10-13T17:37:26.000Z",
+				"created": "2026-10-30T16:56:18.000Z"
+			}
+		],
+		"DEF52": [
+			{
+				"path": "MDKL61_DEF52/RAW DATA/SPC_Health_Check_EE00777.html",
+				"ext": ".html",
+				"bytes": 98619,
+				"mtime": "2026-10-14T16:26:28.000Z",
+				"created": "2026-10-30T16:56:23.000Z"
+			}
+		],
+		"MTH52": [
+			{
+				"path": "MTKL61_MTH52/RAW DATA/20260911.csv",
+				"ext": ".csv",
+				"bytes": 13624,
+				"mtime": "2026-09-11T18:49:38.000Z",
+				"created": "2026-10-30T16:55:36.000Z"
+			},
+			{
+				"path": "MTKL61_MTH52/RAW DATA/SPC_20260918.csv",
+				"ext": ".csv",
+				"bytes": 13804,
+				"mtime": "2026-09-18T16:13:08.000Z",
+				"created": "2026-10-30T16:55:42.000Z"
+			},
+			{
+				"path": "MTKL61_MTH52/RAW DATA/SPC_20260921.csv",
+				"ext": ".csv",
+				"bytes": 13804,
+				"mtime": "2026-09-21T15:45:04.000Z",
+				"created": "2026-10-30T16:55:44.000Z"
+			},
+			{
+				"path": "MTKL61_MTH52/RAW DATA/SPC_20260914.csv",
+				"ext": ".csv",
+				"bytes": 13740,
+				"mtime": "2026-09-18T16:12:40.000Z",
+				"created": "2026-10-30T16:55:42.000Z"
+			},
+			{
+				"path": "MTKL61_MTH52/RAW DATA/SPC_20260915.csv",
+				"ext": ".csv",
+				"bytes": 13742,
+				"mtime": "2026-09-18T16:12:52.000Z",
+				"created": "2026-10-30T16:55:42.000Z"
+			},
+			{
+				"path": "MTKL61_MTH52/RAW DATA/POST PM_911.csv",
+				"ext": ".csv",
+				"bytes": 13624,
+				"mtime": "2026-09-11T18:49:38.000Z",
+				"created": "2026-10-30T16:55:36.000Z"
+			}
+		],
+		"MTH53": [],
+		"OVL51": [
+			{
+				"path": "BVKL81_OVL51/RAW DATA/D2W_BHM_214pts_300mm-10.06.26 13.03.35.xml",
+				"ext": ".xml",
+				"bytes": 417822,
+				"mtime": "2026-10-06T19:13:55.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			},
+			{
+				"path": "BVKL81_OVL51/RAW DATA/D2W_BHM_214pts_300mm-10.06.26 13.03.35.txt",
+				"ext": ".txt",
+				"bytes": 248305,
+				"mtime": "2026-10-06T19:14:20.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			}
+		],
+		"OVL52": [
+			{
+				"path": "LVKL61_OVL52/RAW DATA/CD_4TX_BHMB_AIM_M1_yellow_shot-09.25.26 13.24.12.xml",
+				"ext": ".xml",
+				"bytes": 18313,
+				"mtime": "2026-10-06T16:33:21.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			},
+			{
+				"path": "LVKL61_OVL52/RAW DATA/4TX_BHMB_AIM_M1_yellow_shot-09.25.26 13.28.37.xml",
+				"ext": ".xml",
+				"bytes": 40415,
+				"mtime": "2026-10-06T16:33:21.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			},
+			{
+				"path": "LVKL61_OVL52/RAW DATA/CD_4TX_BHMB_AIM_M1_yellow_shot-09.25.26 13.24.12.txt",
+				"ext": ".txt",
+				"bytes": 488,
+				"mtime": "2026-10-06T16:35:22.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			},
+			{
+				"path": "LVKL61_OVL52/RAW DATA/4TX_BHMB_AIM_M1_yellow_shot-09.25.26 13.28.37.txt",
+				"ext": ".txt",
+				"bytes": 39381,
+				"mtime": "2026-10-06T16:35:22.000Z",
+				"created": "2026-10-30T16:56:09.000Z"
+			}
+		],
+		"SAM51": []
+	},
+	"unmatched": [
+		{
+			"path": "MTH53/MTH02_ALL_Sensor_Qual.xlsx",
+			"ext": ".xlsx",
+			"bytes": 19767,
+			"mtime": "2026-07-30T20:24:38.000Z",
+			"created": "2026-10-30T16:54:46.000Z"
+		},
+		{
+			"path": "Update_MR2_SPC_Dashboard.bat",
+			"ext": ".bat",
+			"bytes": 292,
+			"mtime": "2026-09-09T18:32:28.000Z",
+			"created": "2026-10-30T16:55:20.000Z"
+		},
+		{
+			"path": "TIE_MR2_SPC_Trend_Monitor.html",
+			"ext": ".html",
+			"bytes": 110328,
+			"mtime": "2026-10-27T18:30:55.000Z",
+			"created": "2026-10-30T16:56:23.000Z"
+		},
+		{
+			"path": "MR2_Metrology Particles.xlsx",
+			"ext": ".xlsx",
+			"bytes": 1930804,
+			"mtime": "2026-09-25T19:03:47.000Z",
+			"created": "2026-10-30T16:54:46.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/AOI_SPC.xlsx",
+			"ext": ".xlsx",
+			"bytes": 14991,
+			"mtime": "2026-10-30T15:53:47.000Z",
+			"created": "2026-10-30T16:56:23.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_spc_20260921_25_DieLocation.csv",
+			"ext": ".csv",
+			"bytes": 2403,
+			"mtime": "2026-09-21T19:35:32.000Z",
+			"created": "2026-10-30T16:55:45.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_spc_20260921_25_DieAlignData.csv",
+			"ext": ".csv",
+			"bytes": 3915,
+			"mtime": "2026-09-21T19:35:32.000Z",
+			"created": "2026-10-30T16:55:45.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC_25_DieLocation.csv",
+			"ext": ".csv",
+			"bytes": 2393,
+			"mtime": "2026-10-06T15:00:29.000Z",
+			"created": "2026-10-30T16:56:09.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC3_10132026_25_DieAlignData.csv",
+			"ext": ".csv",
+			"bytes": 3813,
+			"mtime": "2026-10-13T16:30:29.000Z",
+			"created": "2026-10-30T16:56:18.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC_25_DieAlignData.csv",
+			"ext": ".csv",
+			"bytes": 3824,
+			"mtime": "2026-10-06T15:00:29.000Z",
+			"created": "2026-10-30T16:56:09.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC3_10132026_25_DieLocation.csv",
+			"ext": ".csv",
+			"bytes": 2421,
+			"mtime": "2026-10-13T16:30:28.000Z",
+			"created": "2026-10-30T16:56:18.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC_0_DieLocation.csv",
+			"ext": ".csv",
+			"bytes": 2407,
+			"mtime": "2026-09-11T19:22:31.000Z",
+			"created": "2026-10-30T16:55:36.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_spc_20260921_25_DieAlignPos.csv",
+			"ext": ".csv",
+			"bytes": 62265,
+			"mtime": "2026-09-21T19:35:32.000Z",
+			"created": "2026-10-30T16:55:45.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC_25_DieAlignPos.csv",
+			"ext": ".csv",
+			"bytes": 62519,
+			"mtime": "2026-10-06T15:00:29.000Z",
+			"created": "2026-10-30T16:56:09.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC_0_DieAlignData.csv",
+			"ext": ".csv",
+			"bytes": 3915,
+			"mtime": "2026-09-11T19:22:32.000Z",
+			"created": "2026-10-30T16:55:36.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC3_10132026_25_DieAlignPos.csv",
+			"ext": ".csv",
+			"bytes": 62975,
+			"mtime": "2026-10-13T16:30:29.000Z",
+			"created": "2026-10-30T16:56:18.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/SPC_10062026/SPC-25.jpeg",
+			"ext": ".jpeg",
+			"bytes": 150756,
+			"mtime": "2026-10-06T14:59:30.000Z",
+			"created": "2026-10-30T16:56:09.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/SPC_10062026/SPC_25.tif",
+			"ext": ".tif",
+			"bytes": 12228968,
+			"mtime": "2026-10-06T14:59:29.000Z",
+			"created": "2026-10-30T16:56:09.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/SPC_10062026/SPC_25.txt",
+			"ext": ".txt",
+			"bytes": 12227,
+			"mtime": "2026-10-06T14:59:29.000Z",
+			"created": "2026-10-30T16:56:09.000Z"
+		},
+		{
+			"path": "MBCT61_AOI52/RAW DATA/CTW SPC x15.0_v2_SPC_0_DieAlignPos.csv",
+			"ext": ".csv",
+			"bytes": 62182,
+			"mtime": "2026-09-11T19:22:31.000Z",
+			"created": "2026-10-30T16:55:36.000Z"
+		},
+		{
+			"path": "MTKL61_MTH52/MTH52_SPC.xlsx",
+			"ext": ".xlsx",
+			"bytes": 18726,
+			"mtime": "2026-10-27T19:35:32.000Z",
+			"created": "2026-10-30T16:56:23.000Z"
+		},
+		{
+			"path": "README_PORTABLE_SPC.txt",
+			"ext": ".txt",
+			"bytes": 4747,
+			"mtime": "2026-10-12T16:48:06.000Z",
+			"created": "2026-10-30T16:56:18.000Z"
+		},
+		{
+			"path": "MDKL81_DEF51/DEF51_SPC_QUAL.xlsx",
+			"ext": ".xlsx",
+			"bytes": 16285,
+			"mtime": "2026-10-27T18:30:50.000Z",
+			"created": "2026-10-30T16:56:23.000Z"
+		},
+		{
+			"path": "MSSX61_SAM51/SAM51_SPC.xlsx",
+			"ext": ".xlsx",
+			"bytes": 16578,
+			"mtime": "2026-07-30T20:23:22.000Z",
+			"created": "2026-10-30T16:54:46.000Z"
+		}
+	]
+}
