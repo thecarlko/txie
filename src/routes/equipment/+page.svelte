@@ -1,3 +1,5 @@
+<svelte:head><title>Equipment · TxIE</title></svelte:head>
+
 <br>
 <br>
 <br>

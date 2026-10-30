@@ -1,0 +1,151 @@
+I mapped 0_Metrology and its 20 subfolders: 14 tool folders, 5 shared folders, and one folder for a tool that's still being bought. I opened every one of those 20 directly, so that level is complete. Below that, the picture comes from search results and is mostly but not fully complete. A few folders I list but didn't open are marked (not opened).
+
+How the folder is organized
+Folder names: each tool folder pairs an asset ID with the tool's short name, e.g. BVKL61 (OVL51). The short name tells you the tool type: OVL = overlay, AOI = optical inspection, SEM = scanning electron microscope, RSM = defect-review SEM, DEF = particle inspection, PRF = surface profiler, SAM = acoustic microscope, FPP = four-point probe, MTH = film thickness.
+Design Status column: this tracks the facility design packages for fitting each tool into the building (the packages are titled "UT MR2 Tool Fit-Up Design Package"). 50% / 90% IFR means "issued for review" at that stage; 100% IFC means "issued for construction."
+Standard subfolders. Most tool folders reuse the same set, so I explain them once here:
+50% Review / 90% Review / 100% IFC (or IFC): the fit-up design drawings at each stage, plus change logs (e.g. the Arete Engineering change log in OVL52).
+Installation and Qualification: vendor site-prep manuals, facility drawings and floor plans.
+Pedestal → Vibration Testing: reports from the vibration consultant (Prateek Kulkarni) showing whether each tool's support stand meets the tool's vibration limit.
+SOPs: a standard set of eight slide decks, numbered 00–07: Basic Tool Info, Basic Operation, Data Collection, EMO Recovery, Error Identification, Principle of Operation, Qualification, Reset & Recovery. Indu created them all on Feb 23. The previews of several non-Archer decks still say "Archer AP," so many look like copied templates that haven't been filled in. Some tools also have newer Word SOPs from Christopher and Alvin, which look like real content.
+Final Acceptance Data / Test: vendor conformance test documents (CTDs), signed acceptance forms, and internal "T2 qualification" summaries.
+Post Install CPMs: Evelyn created all of these on Jul 21 at the same time. I didn't open them, and nothing inside them came up in search, so they may be empty placeholders.
+Spare Part Lists: spare-parts lists from Manuel, dated May 28.
+PC Qual: particle-count checks at 60 nm and 120 nm, with a summary deck for each.
+Files at the top level
+Cheat Sheet.xlsx (Alvin, edited 36 minutes ago): not opened, so I can't say what's in it.
+Metro Characterization.docx, TIE Metro Characterization Request Form.docx and TIE Metro Characterization Request PPT.pptx (Sep 22): what look like a request process and intake form for asking the metrology group to characterize samples.
+METROCAL_REV2.pdf (Chelsea, Jul 29): probably the metrology calibration plan, revision 2 (inferred from the name).
+Metrology Training SignUp Sheet_Apps_Ops.xlsx: training sign-ups for the applications and operations staff.
+Spec sheet C380-AF.pdf: I couldn't identify this part from anything I saw.
+Weekly Report_MR 2 Metro Tool Install Status Summary.docx (Oct 14): the weekly install-status report covering all the tools.
+Shared folders (not tied to one tool)
+All_Metro_SPC_MR2 is an automated tracking system for SPC (statistical process control: routine checks that each tool's measurements stay in spec). David and Chelsea built it.
+
+Update_MR2_SPC_Dashboard.bat starts the update. It runs a script in work/, which follows pipeline_config.json to rebuild TIE_MR2_SPC_Trend_Monitor.html, the trend dashboard (last rebuilt Oct 27).
+README_PORTABLE_SPC.txt says the update works from any computer, but only one person per site at a time. .spc_update.lock is the file that enforces that.
+MR2_Metrology Particles.xlsx (Evelyn): a particle tracker.
+Per-tool folders: BVKL81_OVL51, LVKL61_OVL52, MBCT61_AOI52, MDKL61_DEF52, MDKL81_DEF51, MSSX61_SAM51, MTKL61_MTH52, plus MTH53, a tool that has no folder of its own here.
+Each holds a master SPC workbook and usually a RAW DATA folder.
+AOI_SPC.xlsx tracks total defect count against its upper limit and defects by size.
+MTH52_SPC.xlsx tracks the mean, range, fit quality and 3-sigma spread for 30 Å and 60 Å oxide test films.
+outputs/: dashboard copies, a populated workbook (AOI52_SPC_populated_sorted.xlsx), update logs, and update_runs/, which has one timestamped folder per update with backups.
+code_backups/: dated snapshots of the dashboard code from Oct 12–13.
+PC/: dated particle-check runs (7_13, 8_20, 8_25, 8_26, and 9_11_MTH52_PostPMPC, a check after MTH52's maintenance).
+NIST (Stephen): 18 photos of NIST-traceable reference standards (certified samples used to verify measurements). They show pitch and step-height standards and silica particle standards from 41 nm to 1500 nm, plus two PRF51 photos.
+
+Post Tool Recovery PCs_7_31 (Evelyn, Aug 5): 28 particle-map images and a PC Foup.png. They show bare wafers in slots 1–17 scanned at 60 nm and 120 nm, before and after a tool recovery. The recipe is a 300 mm inspection recipe, but the name doesn't say which tool.
+
+Purchase Specs: the original vendor quotes from 2023–2025:
+
+KLA: AOI51 CIRCL, AOI54 CV350/BDR300, DEF51 SP3, DEF52 SP2XP, OVL51 Archer AP and MTH52 F5X
+Applied Materials: RSM51 SEMVision G7 and SEM51 Verity 6i
+Camtek: AOI52 Hawk
+Onto Innovation: MTH54 Echo
+Park Systems: PRF51 NX-Hybrid WLI
+Training Curriculums → AMAT: Applied Materials training quotes (SEMVision G7 theory and maintenance, VeritySEM 6i engineer level 1, a Verity training schedule). The Signed Curriculum subfolder holds signed TRAAMNA-1797 to 1801.
+
+New Camtek FRT: paperwork for a tool that hasn't been bought yet, a Camtek Eagle G5 CSI-AP. It holds two quotes (the latest, Rev3, expired Sep 23, 2026) and the facility prep spec.
+
+Tool folders
+All of these contain the standard subfolders above. Only what's different is listed.
+
+BVKL61 (OVL51): KLA Archer AP, overlay
+
+Installation and Qualification: Archer AP site prep manual, 5D Analyzer site prep, power floor plan, drawing.
+Final Acceptance Data: signed acceptance form (Aug 17) and KLA installation status report.
+Top level: vibration reports Rev2 and Rev3, Gantt chart, and a Declaration of Contamination (a Busch Group form for returning equipment, probably a pump).
+LVKL61 (OVL52): KLA Archer Power, overlay
+
+Extra subfolders: PC Qual (Particle_1–3), Tool Manuals (Archer 500 software release notes).
+100% IFC: Rev 4 and change log R5.
+Top level: quote, Daily Install Updates.xlsx, Gantt chart, safety (SEMI S2) report.
+MBCT61 (AOI52): Camtek Hawk, optical inspection. This folder has the most problem history.
+
+Extra subfolders:
+Bond: a 9/4 die-shift test with raw reports, focus maps and training data
+MISC (Chelsea, Tuesday)
+Manuals
+Stage troubleshooting Pictures
+Pedestal Drawings
+AOI52 Camtek Hawk (Bridge), with fit-up and pedestal documents
+Top level:
+AOI52 Stage Issue.pptx: a current spike about 200 mm from the X-axis hard stop
+8D Report on a main power switch wired incorrectly (an 8D is a formal root-cause report)
+shipping-bracket bolt thread issue
+Old AOI52 tool move-out
+acceptance and installation reports, QA sheet, Gantt chart, packing list
+Final Acceptance Data: AOI52 acceptance summary (Oct 12) and a contamination-qualification deck (Qual_CTW).
+MBKL81 (AOI51): KLA CIRCL with Kronos 1190-XR and Micro modules
+
+PEDESTALS holds pedestal quotes for the whole fab, not just AOI51: TMC, EZARC and Fulcrum quotes for OVL52, RSM51, SEM51, DEF51, MTH52, MTH02 and EXP51, plus Field Verification.
+Final Acceptance Data: Kronos conformance test document (defect position accuracy passed).
+Top level: conformance documents and Gantt chart.
+MBKL82 (AOI54): KLA CIRCL 5 / CV350i / BDR300, edge and backside inspection
+
+EdgeDefectKlarf_1_8: edge-defect result files (KLARF is KLA's defect-data file format).
+Final Acceptance Data: STR/CTD acceptance report dated Oct 20, 2026, and an earlier conformance document.
+SOPs: real Word SOPs as well as the template decks:
+Wafer Operation and Tape Frame load-port reset (Alvin)
+Circle5 recipe deck (Oct 28)
+Apps Training zip (Oct 26)
+MCAM61 (SEM51): Applied Materials VeritySEM 6i, CD-SEM (measures feature sizes)
+
+SOPs: the most mature set in this folder:
+Recipe Creation SOP (Oct 26)
+CD-SEM recipe tips
+Product Params Matrix (Oct 28)
+startup/shutdown, quarterly maintenance, EMO and error/log-export SOPs
+Extra subfolders: Training Material, Vendor Manuals.
+Top level: equipment spec and configuration, TPOC photo (TPOC = tool point of connection, where utilities hook up), quotes, Gantt chart.
+MDAM61 (RSM51): Applied Materials SEMVision G7E, defect-review SEM
+
+Misc holds other tools' data that RSM51 reviews: Hawk inspection results from test wafer 819_Test6 with a SEM_Review subfolder, and SP3 runs from 9/23 and 9/30.
+Final Acceptence Test (misspelled in SharePoint): PC folder and acceptance summary (Oct 14).
+SOPs: startup/shutdown, parameter backup, I-probe check, working-point calibration, weekly maintenance calibration, SemVision recipe deck.
+Top level: a schedule-recovery request deck, spec and configuration files, Gantt chart.
+MDKL61 (DEF52): KLA Surfscan SP2XP, particle inspection
+
+Extra subfolder: BKM/Collections/200mm and 300mm (BKM = best-known method recipes).
+Final Acceptance Test: PC and Repeat runs, summary (Oct 14), 86-page conformance test document.
+Installation and Qualification: facility drawings.
+Top level: contamination test (surface-chemistry results by slot), S2 safety report, blower measurement, Gantt chart, a raw tool results file.
+MDKL81 (DEF51): KLA Surfscan SP3, particle inspection
+
+Extra subfolders: BKM/Collections; Qual (bare-silicon 120 nm runs from Jul 21).
+Final Acceptance Test:
+PC folder and Capture Rate folder (SPC health-check job reports from Jul 22)
+summary (Oct 13)
+signed final acceptance forms for Archer Power, Archer AP, SP3 and SP2 in one PDF
+Top level: install spec, site prep checklist, S2 safety report, Gantt chart.
+MPPK61 (PRF51): Park NX-Hybrid WLI (AFM plus white-light interferometer), surface profiler
+
+Final Acceptance Data: Park's acceptance statement (SAT), uploaded Oct 29.
+IFC: design package zip.
+Spare Part Lists: says the tool was delivered 12/31/2025.
+Top level: three versions of the installation Gantt chart, electrical configuration, pedestal submittal and drawings, vibration data (spec VC-D), vendor checklist, safety/install manual.
+MSSX61 (SAM51): Sonix AutoWafer Pro 406, scanning acoustic microscope
+
+SAM51 Sonix Autowafer Pro (Bridge): procurement justification, fit-up documents, dimensions.
+Spare Part Lists: Sonix ECHO_AWP_PM_Items_i.xlsx, a maintenance checklist you edited today.
+Top level: system manual, training deck, design zips, Gantt chart, pre-install vibration survey.
+MTCD81 (FPP51): CDE ResMap 463, four-point probe (measures sheet resistance)
+
+This folder is unusual: there's no 100% IFC, Installation or Pedestal folder.
+Top level: facility information, floor plan, wafer carrier (FOUP) dimensions, service manual, TPOC container data (updated yesterday by Katie).
+MTKL61 (MTH52): KLA ASET F5X Pro EX, film thickness by ellipsometry
+
+It has both Final Acceptance Test (acceptance summary Oct 16, field conformance document) and Final Acceptance Data folders.
+PC Qual: summary deck.
+Top level: Exhaust RFI Submission (the vendor calls for 150 cfm for the handler), Measurement data types for automation.xlsx (Stephen, Oct 5).
+MTNT61 (MTH54): Onto Innovation ECHO 314, acoustic film thickness for metal films
+
+Filmstack Cards: recipe film-stack XML files (Cu_2um, Cu_5kA).
+Final Acceptance Test: qualification report (Jul 10), signed final acceptance (Oct 1).
+Installation Documents: facility manuals, datasheets, S2 safety report.
+Spare Part Lists: Onto spares list 775181.
+Top level: GanntChart_ECHO System Installation.xlsm, which you edited about an hour ago, and the ONTO Echo manual.
+Things to double-check
+Mismatched IDs: the SPC folder uses BVKL81_OVL51, but the tool folder is BVKL61. The AOI54 recipe deck says MBKL62, but the folder is MBKL82.
+Misplaced or unusual files: pedestal quotes for many tools sit inside AOI51, and the combined signed acceptance PDF sits inside DEF51. Both may be hard for others to find.
+Not opened: the review/IFC folders, Post Install CPMs, Spare Part Lists, and the SPC RAW DATA and work folders. Search showed only a few files from these.

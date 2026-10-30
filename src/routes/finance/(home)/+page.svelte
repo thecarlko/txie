@@ -26,6 +26,8 @@
     }
 </script>
 
+<svelte:head><title>Finance · TxIE</title></svelte:head>
+
 <section class='max-w-8xl mx-auto px-[3vw]'>
     <br>
     <br>

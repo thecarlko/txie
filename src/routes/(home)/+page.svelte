@@ -14,6 +14,8 @@
     const index = (i: number) => String(i + 1).padStart(2, '0');
 </script>
 
+<svelte:head><title>TxIE · Fab Engineering</title></svelte:head>
+
 <section class='relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-8xl content-start gap-[6vh] overflow-hidden px-[3vw] pt-[12vh] pb-[6vh]'>
     <span aria-hidden='true' class='pointer-events-none absolute right-[-2vw] bottom-0 font-display text-[10vw]/none font-medium text-txie-watermark opacity-60 select-none'>TxIE</span>
 

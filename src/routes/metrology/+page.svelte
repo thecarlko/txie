@@ -27,6 +27,8 @@
     };
 </script>
 
+<svelte:head><title>Metrology · TxIE</title></svelte:head>
+
 <section class='grid gap-16 pb-32 md:grid-cols-[5fr_7fr] md:gap-24'>
     <div class='grid content-start gap-6 md:sticky md:top-[20vh]'>
         <button type='button' class='group flex w-fit items-center gap-2 bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500'>

@@ -1,0 +1,952 @@
+# MR2 / Tools / 0_Metrology — folder structure
+# "Name/" = folder; anything else = file
+# [] = folder contents not retrieved (not necessarily empty)
+"0_Metrology/":
+  - "All_Metro_SPC_MR2/":
+    - "BVKL81_OVL51/":
+        - "RAW DATA/":
+            - "D2W_BHM_214pts_300mm-10.06.26 13.03.35.txt"
+            - "D2W_BHM_214pts_300mm-10.06.26 13.03.35.xml"
+    - "code_backups/":
+        - "20260909_133502/":
+            - "work/": []  # work (skipped)
+            - "Update_MR2_SPC_Dashboard.bat"
+        - "20260921_131432_880103_DEF51_partial/":
+            - "build_mr2_spc_dashboard.py"
+            - "compatibility_check.py"
+            - "pipeline_config.json"
+            - "populate_def51_spc_qual.py"
+            - "staged_updates.py"
+        - "20260929_102339_166437_dashboard_refresh_fix/":
+            - "run_portable.py"
+            - "UPDATE_SAFETY.md"
+        - "aoi52_filenames_20261013_155757/":
+            - "populate_aoi52_spc.py"
+            - "run_portable.py"
+        - "bootstrap_recovery_20261012_110852/":
+            - "work/": []  # work (skipped)
+        - "bootstrap_store_paths_20261012_112322/":
+            - "work/": []  # work (skipped)
+        - "coordinated_onedrive_20261012_092732/":
+            - "work/": []  # work (skipped)
+            - "README_PORTABLE_SPC.txt"
+        - "local_processing_20261012_114736/":
+            - "work/": []  # work (skipped)
+        - "python_policy_20260918_150642/":
+            - "bootstrap.py"
+            - "launch.ps1"
+            - "README_PORTABLE_SPC.txt"
+        - "sharepoint_adapter_20261009_112302/":
+            - "work/": []  # work (skipped)
+        - "sharepoint_adapter_20261009_130852/":
+            - "work/": []  # work (skipped)
+        - "staged_updates_20260918_152300/":
+            - "run_portable.py"
+        - "README_before_staging_20260918_152704.txt"
+    - "LVKL61_OVL52/":
+        - "RAW DATA/":
+            - "4TX_BHMB_AIM_M1_yellow_shot-09.25.26 13.28.37.txt"
+            - "4TX_BHMB_AIM_M1_yellow_shot-09.25.26 13.28.37.xml"
+            - "CD_4TX_BHMB_AIM_M1_yellow_shot-09.25.26 13.24.12.txt"
+            - "CD_4TX_BHMB_AIM_M1_yellow_shot-09.25.26 13.24.12.xml"
+    - "MBCT61_AOI52/":
+        - "RAW DATA/":
+            - "SPC_10062026/":
+                - "SPC_25.tif"
+                - "SPC_25.txt"
+                - "SPC-25.jpeg"
+            - "CTW SPC x15.0_Defualt_SPC_20260629_24_Surface.csv"
+            - "CTW SPC x15.0_Defualt_spc_20260706_24_Surface.csv"
+            - "CTW SPC x15.0_Defualt_spc_20260713_24_Surface.csv"
+            - "CTW SPC x15.0_Defualt_SPC_20260721_24_Surface.csv"
+            - "CTW SPC x15.0_Defualt_SPC_20260727_24_Surface.csv"
+            - "CTW SPC x15.0_Defualt_spc_20260921_25_Surface.csv"
+            - "CTW SPC x15.0_v2_SPC_0_DieAlignData.csv"
+            - "CTW SPC x15.0_v2_SPC_0_DieAlignPos.csv"
+            - "CTW SPC x15.0_v2_SPC_0_DieLocation.csv"
+            - "CTW SPC x15.0_v2_SPC_0_Surface.csv"
+            - "CTW SPC x15.0_v2_spc_20260921_25_DieAlignData.csv"
+            - "CTW SPC x15.0_v2_spc_20260921_25_DieAlignPos.csv"
+            - "CTW SPC x15.0_v2_spc_20260921_25_DieLocation.csv"
+            - "CTW SPC x15.0_v2_spc_20260921_25_Surface.csv"
+            - "CTW SPC x15.0_v2_SPC_25_DieAlignData.csv"
+            - "CTW SPC x15.0_v2_SPC_25_DieAlignPos.csv"
+            - "CTW SPC x15.0_v2_SPC_25_DieLocation.csv"
+            - "CTW SPC x15.0_v2_SPC_25_Surface.csv"
+            - "CTW SPC x15.0_v2_SPC3_10132026_25_DieAlignData.csv"
+            - "CTW SPC x15.0_v2_SPC3_10132026_25_DieAlignPos.csv"
+            - "CTW SPC x15.0_v2_SPC3_10132026_25_DieLocation.csv"
+            - "CTW SPC x15.0_v2_SPC3_10132026_25_Surface.csv"
+        - "AOI_SPC.xlsx"
+    - "MDKL61_DEF52/":
+        - "RAW DATA/":
+            - "SPC_Health_Check_EE00777.html"
+    - "MDKL81_DEF51/":
+        - "RAW DATA/":
+            - "SPC_Health_Check01084.html"
+            - "SPC_Health_Check01460.html"
+            - "SPC_Health_Check01490.html"
+            - "SPC_Health_Check01546.html"
+            - "SPC_Health_Check01571.html"
+        - "DEF51_SPC_QUAL.xlsx"
+    - "MSSX61_SAM51/":
+        - "RAW DATA/": []  # empty
+        - "SAM51_SPC.xlsx"
+    - "MTH53/":
+        - "RAW DATA/": []  # empty
+        - "MTH02_ALL_Sensor_Qual.xlsx"
+    - "MTKL61_MTH52/":
+        - "RAW DATA/":
+            - "20260911.csv"
+            - "POST PM_911.csv"
+            - "SPC_20260914.csv"
+            - "SPC_20260915.csv"
+            - "SPC_20260918.csv"
+            - "SPC_20260921.csv"
+        - "MTH52_SPC.xlsx"
+    - "outputs/":
+        - "update_runs/":
+            - "20260918_152506_081573/":
+                - "compatibility/": []  # not opened
+                - "dashboard/": []  # not opened
+                - "tools/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20260918_153145_608330/":
+                - "compatibility/": []  # not opened
+                - "dashboard/": []  # not opened
+                - "tools/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20260921_130334_087177/":  # fully expanded example run
+                - "backups/":
+                    - "MBCT61_AOI52/":
+                        - "AOI_SPC.xlsx"
+                    - "MDKL81_DEF51/": []  # not opened
+                    - "MTKL61_MTH52/": []  # not opened
+                    - "outputs/":
+                        - "TIE_MR2_SPC_Trend_Monitor.html"
+                    - "TIE_MR2_SPC_Trend_Monitor.html"
+                - "compatibility/":
+                    - "MBCT61_AOI52/": []  # not opened
+                    - "MDKL81_DEF51/": []  # not opened
+                    - "MTKL61_MTH52/": []  # not opened
+                    - "outputs/": []  # not opened
+                    - "work/": []  # work (skipped)
+                    - ".compatibility-stage"
+                - "dashboard/":
+                    - "MBCT61_AOI52/": []  # not opened
+                    - "MDKL81_DEF51/": []  # not opened
+                    - "MTKL61_MTH52/": []  # not opened
+                    - "outputs/": []  # not opened
+                    - "work/": []  # work (skipped)
+                - "tools/":
+                    - "AOI52/": []  # not opened
+                    - "DEF51/": []  # not opened
+                    - "MTH52/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20260921_130457_820402/":
+                - "backups/": []  # not opened
+                - "compatibility/": []  # not opened
+                - "dashboard/": []  # not opened
+                - "tools/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20260921_131432_880103_DEF51_partial/":
+                - "backups/": []  # not opened
+                - "dashboard/": []  # not opened
+                - "tools/": []  # not opened
+                - "result.json"
+                - "update.log"
+            - "20260929_111314_810034/":
+                - "backups/": []  # not opened
+                - "compatibility/": []  # not opened
+                - "dashboard/": []  # not opened
+                - "tools/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261008_164531_711036/":
+                - "backups/": []  # not opened
+                - "compatibility/": []  # not opened
+                - "dashboard/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261012_114754_475095_4912fe0183b2/":
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261013_125319_074034_382b5cabfb49/":
+                - "backups/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261013_152618_793981_178583e1a461/":
+                - "backups/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261013_152829_107899_faad4383a945/":
+                - "backups/": []  # not opened
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261013_155826_821449_bc5cb0c49895/":
+                - "AOI52_oct13_verification.json"
+                - "AOI52_rejected_files.csv"
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261013_155851_947359_c35dee70a018/":
+                - "backups/": []  # not opened
+                - "AOI52_oct13_verification.json"
+                - "AOI52_rejected_files.csv"
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261013_160543_287916_7bcdcda6ac93/":
+                - "backups/": []  # not opened
+                - "AOI52_rejected_files.csv"
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261014_092934_734983_b7eb67d08a1b/":
+                - "backups/": []  # not opened
+                - "AOI52_rejected_files.csv"
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+            - "20261027_133043_344765_00acf8e00672/":
+                - "backups/":
+                    - "MBCT61_AOI52/": []  # not opened
+                    - "MDKL81_DEF51/": []  # not opened
+                    - "MTKL61_MTH52/": []  # not opened
+                    - "outputs/": []  # not opened
+                    - "TIE_MR2_SPC_Trend_Monitor.html"
+                - "AOI52_rejected_files.csv"
+                - "environment.txt"
+                - "result.json"
+                - "update.log"
+        - "AOI52_SPC_master_backup_before_update.xlsx"
+        - "AOI52_SPC_parse_issues.csv"
+        - "AOI52_SPC_parse_summary.csv"
+        - "AOI52_SPC_populated_sorted.xlsx"
+        - "DEF51_SPC_QUAL_lpd_size_peak_mismatches.csv"
+        - "DEF51_SPC_QUAL_master_backup_before_update.xlsx"
+        - "DEF51_SPC_QUAL_parse_issues.csv"
+        - "DEF51_SPC_QUAL_parse_summary.csv"
+        - "DEF51_SPC_QUAL_populated_sorted.xlsx"
+        - "MTH52_SPC_master_backup_before_update.xlsx"
+        - "MTH52_SPC_parse_issues.csv"
+        - "MTH52_SPC_parse_summary.csv"
+        - "MTH52_SPC_populated_sorted.xlsx"
+        - "MTH52_SPC_unmapped.csv"
+        - "TIE_MR2_SPC_Trend_Monitor.html"
+        - "update_20260911_140842_665581.log"
+        - "update_20260911_155141_795034.log"
+        - "update_20260918_145053_035819.log"
+    - "PC/":
+        - "7_13_PC/":  # truncated: only first 30 files listed
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-01_PC_1202026-08-07-13-12-40.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-01_PC_1202026-08-07-14-40-33.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-03_PC_1202026-08-07-13-13-26.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-03_PC_1202026-08-07-14-41-19.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-09_PC_1202026-08-07-13-14-13.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-09_PC_1202026-08-07-14-42-06.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-11_PC_1202026-08-07-13-15-00.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-11_PC_1202026-08-07-14-42-53.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-13_PC_1202026-08-07-13-15-47.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-13_PC_1202026-08-07-14-43-40.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-15_PC_1202026-08-07-13-16-34.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-15_PC_1202026-08-07-14-44-27.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-01_PC_1202026-08-07-13-38-01.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-03_PC_1202026-08-07-13-37-14.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-09_PC_1202026-08-07-13-36-27.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-11_PC_1202026-08-07-13-35-39.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-13_PC_1202026-08-07-13-34-52.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-15_PC_1202026-08-07-13-34-05.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-01_PC_602026-08-07-13-03-27.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-03_PC_602026-08-07-13-04-13.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-09_PC_602026-08-07-13-05-01.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-09_PC_602026-08-07-13-40-30.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-11_PC_602026-08-07-13-05-48.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-13_PC_602026-08-07-13-06-36.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-15_PC_602026-08-07-13-07-23.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-01_PC_602026-08-07-12-06-04.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-03_PC_602026-08-07-12-05-17.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-09_PC_602026-08-07-13-30-42.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-11_PC_602026-08-07-12-04-30.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-13_PC_602026-08-07-12-03-42.jpg"
+        - "8_20_PC/":  # truncated: only first 30 files listed
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-01_PC_1202026-08-20-12-21-38.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-03_PC_1202026-08-20-12-22-25.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-07_PC_1202026-08-20-12-23-12.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-09_PC_1202026-08-20-10-31-30.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-09_PC_1202026-08-20-12-23-59.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-11_PC_1202026-08-20-12-24-46.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-13_PC_1202026-08-20-12-25-33.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-15_PC_1202026-08-20-12-26-20.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-01_PC_1202026-08-20-10-25-32.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-03_PC_1202026-08-20-10-24-45.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-05_PC_1202026-08-20-10-23-58.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-07_PC_1202026-08-20-10-23-11.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-09_PC_1202026-08-20-10-22-23.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-11_PC_1202026-08-20-10-21-36.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-13_PC_1202026-08-20-10-20-49.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-15_PC_1202026-08-20-10-20-02.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-17_PC_1202026-08-20-10-19-15.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-19_PC_1202026-08-20-10-18-27.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-21_PC_1202026-08-20-10-17-40.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-23_PC_1202026-08-20-10-16-53.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-25_PC_1202026-08-20-10-16-06.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-01_PC_602026-08-20-12-13-14.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-03_PC_602026-08-20-12-14-01.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-07_PC_602026-08-20-12-14-48.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-09_PC_602026-08-20-10-28-56.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-09_PC_602026-08-20-12-15-36.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-11_PC_602026-08-20-12-16-23.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-13_PC_602026-08-20-12-17-11.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-15_PC_602026-08-20-12-17-58.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-01_PC_602026-08-20-10-13-15.jpg"
+        - "8_25_PC/":  # truncated: only first 30 files listed
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-01_WEEKLYPC2026-08-25-11-17-00.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-03_WEEKLYPC2026-08-25-11-17-46.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-05_WEEKLYPC2026-08-25-11-18-33.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-07_WEEKLYPC2026-08-25-11-19-20.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-07_WEEKLYPC2026-08-25-15-51-59.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-09_WEEKLYPC2026-08-25-11-20-07.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-11_WEEKLYPC2026-08-25-11-20-54.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-13_WEEKLYPC2026-08-25-11-21-41.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-15_WEEKLYPC2026-08-25-11-22-28.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-17_WEEKLYPC2026-08-25-11-23-15.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-19_WEEKLYPC2026-08-25-11-24-02.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-21_WEEKLYPC2026-08-25-11-24-49.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-23_WEEKLYPC2026-08-25-11-25-36.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-25_WEEKLYPC2026-08-25-11-26-23.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-01_WEEKLYPC2026-08-25-09-18-29.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-03_WEEKLYPC2026-08-25-09-17-42.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-05_WEEKLYPC2026-08-25-09-16-54.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-07_WEEKLYPC1202026-08-25-15-19-28.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-07_WEEKLYPC2026-08-25-09-16-07.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-09_WEEKLYPC2026-08-25-09-15-20.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-11_WEEKLYPC2026-08-25-09-14-33.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-13_WEEKLYPC2026-08-25-09-13-46.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-15_WEEKLYPC2026-08-25-09-12-58.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-17_WEEKLYPC2026-08-25-09-12-11.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-19_WEEKLYPC2026-08-25-09-11-22.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-21_WEEKLYPC2026-08-25-09-10-34.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-23_WEEKLYPC2026-08-25-09-09-47.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-25_WEEKLYPC2026-08-25-09-09-00.jpg"
+            - "-My Recipes-PROD-M_300_INSP_40NM_POST_BARE_Slot-01_WEEKLYPC40NM2026-08-25-11-29-44.jpg"
+            - "-My Recipes-PROD-M_300_INSP_40NM_POST_BARE_Slot-03_WEEKLYPC40NM2026-08-25-11-30-31.jpg"
+        - "8_26_PC/":  # truncated: only first 30 files listed
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-01_WEEKLYPC2026-08-26-16-41-05.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-03_WEEKLYPC2026-08-26-16-41-52.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-05_WEEKLY PC2026-08-28-15-05-24.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-05_WEEKLYPC2026-08-26-16-42-39.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-07_WEEKLY PC2026-08-28-15-06-11.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-07_WEEKLYPC2026-08-26-16-43-26.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-09_WEEKLYPC2026-08-26-16-44-12.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-11_WEEKLYPC2026-08-26-16-44-59.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-13_WEEKLYPC2026-08-26-16-45-47.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-15_WEEKLYPC2026-08-26-16-46-34.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-17_WEEKLYPC2026-08-26-16-47-21.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-19_WEEKLYPC2026-08-26-16-48-08.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-21_WEEKLYPC2026-08-26-16-48-55.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-23_WEEKLYPC2026-08-26-16-49-42.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-25_WEEKLYPC2026-08-26-16-50-29.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-01_WEEKLYPC2026-08-26-13-28-06.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-03_WEEKLYPC2026-08-26-13-27-19.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-05_WEEKLYPC2026-08-26-13-26-31.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-07_WEEKLYPC2026-08-26-13-25-44.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-09_WEEKLYPC2026-08-26-13-24-57.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-11_WEEKLYPC2026-08-26-13-24-10.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-13_WEEKLYPC2026-08-26-13-23-22.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-15_WEEKLYPC2026-08-26-13-22-34.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-17_WEEKLYPC2026-08-26-13-21-47.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-19_WEEKLYPC2026-08-26-13-21-00.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-21_WEEKLYPC2026-08-26-13-20-13.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-23_WEEKLYPC2026-08-26-13-19-26.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-25_WEEKLYPC2026-08-26-13-18-39.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-01_WEEKLYPC2026-08-26-16-28-22.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-03_WEEKLYPC2026-08-26-16-29-08.jpg"
+        - "9_11_MTH52_PostPMPC/":
+            - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-15_MTH52 POST PM2026-09-11-13-14-48.jpg"
+            - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-15_MTH52 POST PM2026-09-11-12-57-01.jpg"
+            - "-My Recipes-PROD-M_300_INSP_40NM_POST_BARE_Slot-15_MTH52 POST PM2026-09-11-13-09-04.jpg"
+            - "-My Recipes-PROD-M_300_INSP_40NM_PRE_BARE_Slot-15_MTH52 POST PM2026-09-11-12-59-29.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-15_MTH52 POST PM2026-09-11-13-05-27.jpg"
+            - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-15_MTH52 POST PM2026-09-11-12-54-38.jpg"
+    - "work/": []  # work (skipped)
+    - ".spc_update.lock"
+    - "MR2_Metrology Particles.xlsx"
+    - "README_PORTABLE_SPC.txt"
+    - "TIE_MR2_SPC_Trend_Monitor.html"
+    - "Update_MR2_SPC_Dashboard.bat"
+
+
+  - "BVKL61 (OVL51)/":
+      - "100% IFC/": []
+      - "50% Review/": []
+      - "90% Review/": []
+      - "Final Acceptance Data/":
+          - "Signed AC.pdf"
+          - "University of Texas Austin Archer AP #6034481 CTD.docx"
+      - "Installation and Qualification/":
+          - "Files from AP Site Prep Manual/": []
+          - "5DAnalyzerSitePreparation.pdf"
+          - "ArcherAP Drawing.pdf"
+          - "OVL51_0853598-000_AE irArcher 007 and AP Site Preparation Manual.pdf"
+          - "OVL51_1070479-000_AA Archer Power Floorplan.pdf"
+      - "Pedestal/":
+          - "Vibration Testing/":
+              - "KLA Mont - vib review.pptx"
+              - "OVL51-52 Measurement Data.pdf"
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. Archer AP_Basic Tool Info.pptx"
+          - "01. Archer AP_Principal Of Operation.pptx"
+          - "02. Archer AP_Basic Operation.pptx"
+          - "03. Archer AP_Error Identification.pptx"
+          - "04. Archer AP_Reset and Recovery.pptx"
+          - "05. Archer AP_EMO Recovery.pptx"
+          - "07. Archer AP_Data Collection.pptx"
+      - "Declaration of Contamination.pdf"
+      - "Gannt Chart_IR ARCHER AP Plan View.pdf"
+      - "OVL51-52 Measurement Data-SI_Rev3.pdf"
+      - "OVL51-52 Measurement Data-SIRev2.pdf"
+
+  - "LVKL61 (OVL52)/":
+      - "100% IFC/":
+          - "Rev 4/": []
+          - "OVL52_ChangeLog_R5.docx"
+      - "50% Review/": []
+      - "90% Review/": []
+      - "Final Acceptance Test/": []
+      - "Installation and Qualification/": []
+      - "PC Qual/":
+          - "Particle_1/": []
+          - "Particle_2/": []
+          - "Particle_3/": []
+          - "LVKL61_OVL52_PCQual_Summary.pptx"
+      - "Pedestal/":
+          - "Vibration Testing/":
+              - "VAC-01949-6-OVL52 PedestalVibrationDesign.pdf"
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "000. SOP Template.docx"
+          - "01. Archer Power_Basic Operation.pptx"
+          - "02. Archer Power_Data Collection.pptx"
+          - "03. Archer Power_EMO Recovery.pptx"
+          - "05. Archer Power_Principle Of Operation.pptx"
+          - "06. Archer Power_Qualification.pptx"
+          - "07. Archer Power_Software Reset and Auto Recovery.docx"
+          - "Archer Power_.pptx"
+          - "LVKL61_OVL52_Recipe_SOP.pptx"
+      - "Tool Manuals/":
+          - "Archer_500_SRN.pdf"
+      - "6149280_4_Montopolis_Archer_Power.pdf"
+      - "Daily Install Updates.xlsx"
+      - "Gannt Chart_ARCHER POWER Plan View.pdf"
+      - "S2 Semi Standard OVL52.pdf"
+
+  - "MBCT61 (AOI52)/":
+      - "100% IFC/": []
+      - "50% Review/": []
+      - "90% Review/": []
+      - "AOI52 Camtek Hawk (Bridge)/":
+          - "AOI52_Fitup Docs/": []
+          - "AOI52_Pedestal Documents/": []
+      - "Bond/":
+          - "0904_Test1/":
+              - "0904_Test1/":
+                  - "16/":
+                      - "FocusMapping/": []
+                      - "OpticLightMetadata/": []
+                      - "TrainData/": []
+                      - "Zones/": []
+              - "0904_Test1.16.html"
+          - "Sites_Overlay/": []
+      - "Final Acceptance Data/":
+          - "AOI52_Final_Acceptance_Summary.pptx"
+          - "Process_Tool_Procurement_AOI52_Camtek.docx"
+          - "Qual_CTW.pptx"
+      - "Installation and Qualification/": []
+      - "Manuals/": []
+      - "MISC/": []
+      - "Pedestal/":
+          - "Vibration Testing/": []
+      - "Pedestal Drawings/": []
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. Hawk__Basic Tool Info.pptx"
+          - "01. Hawk_Basic Operation.pptx"
+      - "Stage troubleshooting Pictures/": []
+      - "260218 QA Sheet.xlsx"
+      - "8D Report_Montopolis Hawk SN108892 Main Power Switch Wired Incorrectly.pdf"
+      - "AOI52 Stage Issue.pptx"
+      - "AOI52.M201 (prelim plot).pdf"
+      - "AOI52_Packing_List.pdf"
+      - "Gantt chart_AOI52.xlsx"
+      - "Hawk_108892R_Acceptance Report.pdf"
+      - "Image (10).jpg"
+      - "Image (8).jpg"
+      - "Image (9).jpg"
+      - "Old AOI52 Tool Move out.pdf"
+      - "System Installation Report_AOI52.pdf"
+      - "UT Hawk Cover Shipping Bracket Bolt Thread Issue (CC-1548).pdf"
+
+  - "MBKL81 (AOI51)/":
+      - "100% IFC/": []
+      - "50% IFR/": []
+      - "90%IFR/": []
+      - "Final Acceptance Data/":
+          - "CTD_UTID2521938_SO153484_UNIVERSITY OF TEXAS AT AUSTIN_Kronos 1190-XR_KLAS CTD.pdf"
+      - "Installation and Qualification/": []
+      - "PEDESTALS/":
+          - "EZARC Quotes/":
+              - "EXP51/": []
+              - "SEM51/": []
+          - "Field Verification/": []
+          - "FULCRUM Quotes/":
+              - "MTH02/": []
+              - "OVL52/": []
+              - "SEM51/": []
+          - "Pedestal/":
+              - "Vibration Testing/": []
+          - "TMC Quotes/":
+              - "DEF51/": []
+              - "MTH02/": []
+              - "MTH52/": []
+              - "OVL52/": []
+              - "RSM51/": []
+              - "SEM51/": []
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. Circle_Micro_Kronos__Basic Tool Info.pptx"
+          - "01. Circle_Micro_Kronos___Basic Operation.pptx"
+          - "06.Circle_Micro_Kronos_Qualification.pptx"
+      - "8550483_SO150647_UNIVERSITY OF TEXAS AT AUSTIN_GER.pdf"
+      - "Gannt Chart_KRONOS 1190XR_MICRO_SR FFC Plan View.pdf"
+      - "UTID2521938_SO150645_UNIVERSITY OF TEXAS AT AUSTIN_Kronos 1190-XR_KLAS CTD.pdf"
+
+  - "MBKL82 (AOI54)/":
+      - "100% IFC/": []
+      - "50% Review/": []
+      - "90% Review/": []
+      - "EdgeDefectKlarf_1_8/": []
+      - "Final Acceptance Data/":
+          - "AOI54_8550483_SO150647_UNIVERSITY OF TEXAS AT AUSTIN_GER (002).pdf"
+          - "TIE_AOI54_STR Report_CTD.pdf"
+      - "Installation and Qualification/":
+          - "CTD_BDR-CV-Phx3.0XR blank.xlsm"
+      - "Pedestal/":
+          - "Vibration Testing/":
+              - "AOI54 Measurement Data.pdf"
+              - "VAC-01949-4-AOI54 PedestalVibrationDesign.pdf"
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. Circle 5__Basic Tool Info.pptx"
+          - "01. Circle 5__Basic Operation.pptx"
+          - "02. Circle 5___Data Collection.pptx"
+          - "03. Circle 5_EMO Recovery.pptx"
+          - "04. Circle 5_Error Identification.pptx"
+          - "05.Circle 5_Principle Of Operation.pptx"
+          - "06.Circle 5_Qualification.pptx"
+          - "07. Circle 5_Reset and Recovery.pptx"
+          - "AOI51 or AOI54 Wafer Operation SOP.docx"
+          - "AOI51 Tape Frame LP reset.docx"
+          - "Apps Training_CV350_BDR300.zip"
+          - "Circle5_Recipe_SOP.pptx"
+          - "SOP Template.docx"
+      - "AOI54_0590399-000-AJ CIRCL 5_7_8.pdf"
+      - "Gannt Chart_CV350I_BDR300 Plan View.pdf"
+
+  - "MCAM61 (SEM51)/":
+      - "100% IFC/": []
+      - "50% Review/": []
+      - "90% Review/": []
+      - "Final Acceptance Test/": []
+      - "Installation and Qualification/": []
+      - "PC Qual/":
+          - "Particle 1/": []
+          - "SEM51_PCQual_Summary_Round1.pptx"
+      - "Pedestal/":
+          - "Vibration Testing/": []
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. Verity 6__Basic Tool Info.pptx"
+          - "01. Verity 6__Basic Operation.pptx"
+          - "04. Verity 6_Error Identification.pptx"
+          - "07. Verity 6_Reset and Recovery.pptx"
+          - "CDSEM Recipe Tips & Tricks.docx"
+          - "SEM51 Product Params Matrix.xlsx"
+          - "SEM51 Recipe Creation SOP.docx"
+          - "SOP Template.docx"
+          - "Verity 6i Basic Operation SOP.docx"
+          - "Verity 6i EMO Recovery SOP.docx"
+          - "Verity 6i Error Identification and Log Export SOP.docx"
+          - "Verity 6i Quarterly PM.docx"
+          - "Verity 6i Startup Shutdown SOP.docx"
+      - "Spare Part Lists/": []
+      - "Training Material/": []
+      - "Vendor Manuals/": []
+      - "DSC_0881.JPG"
+      - "DSC_0882.JPG"
+      - "Est_RS03302601_from_Advantiv_Technologies_Inc._6096.pdf"
+      - "Gannt Chart_SEMVISIONG7E_Verity6I.xlsx"
+      - "Quote1873.pdf"
+      - "SEM51 TPOCs.jpg"
+      - "UOT_SEM51_Configuration.xls"
+      - "UOT_SEM51_EquipmentSpec.pdf"
+
+  - "MDAM61 (RSM51)/":
+      - "100% IFC/":
+          - "MR2_RSM51.R3.pdf"
+      - "50% Review/": []
+      - "90% Review/": []
+      - "Final Acceptence Test/":
+          - "PC/": []
+          - "RSM51_Final_Acceptance_Summary_PC.pptx"
+      - "Installation and Qualification/": []
+      - "Misc/":
+          - "MR2_Hawk/":
+              - "819_Test6_S25_BHM_API/": []
+              - "819_Test6_S25_BHM_API_SEM/":
+                  - "SEM_Review/": []
+                  - "819_Test6_S25_BKM.0.html"
+                  - "819_Test6_S25_BKM_0.txt"
+          - "SP3/":
+              - "09232026/": []
+              - "09302026/": []
+      - "Pedestal/":
+          - "Vibration Testing/": []
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. SemVision 7__Basic Tool Info.pptx"
+          - "I Probe Check SOP.docx"
+          - "SemVision7_Recipe_SOP.pptx"
+          - "Startup Shutdown SOP.docx"
+          - "Tool Parameters Backup SOP.docx"
+          - "Weekly PM Calibration Check SOP.docx"
+          - "Working point calibration SOP.docx"
+      - "Spare Part Lists/": []
+      - "Gannt Chart_SEMVISIONG7E_Verity6I.xlsx"
+      - "RSM51 Installation Timeline and Schedule Recovery Request.pptx"
+      - "UOT_RSM51_Configuration.xls"
+      - "UOT_RSM51_EquipmentSpec.pdf"
+
+  - "MDKL61 (DEF52)/":
+      - "100% IFC/": []
+      - "50% Review/": []
+      - "90% Review/": []
+      - "BKM/":
+          - "Collections/":
+              - "200mm/": []
+              - "300mm/": []
+      - "Final Acceptance Test/":
+          - "PC/": []
+          - "Repeat/": []
+          - "0113086-000_Rev_AK_SP2XP_CTD_UTID2081538.pdf"
+          - "DEF52_Final_Acceptance_Summary.pptx"
+      - "Installation and Qualification/":
+          - "0104305-000_AP_dwf_files/":
+              - "0230520-000 DWG,FACILITY,SP2,TFIM,SHINKO/": []
+              - "0230521-000 DWG,FACILITY,SP2,DFIM,SHINKO/": []
+              - "0230522-000 DWG,FACILITY,SP2,DFIM,200 OPEN,300 SHINKO/": []
+              - "0230523-000 DWG,FACILITY,SP2,TFIM,SHINKO, 2ND UI/": []
+              - "0230524-000 DWG,FACILITY,SP2,DFIM,SHINKO, 2ND UI/": []
+      - "Pedestal/":
+          - "Vibration Testing/": []
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. SP2__Basic Tool Info.pptx"
+          - "01. SP2__Basic Operation.pptx"
+          - "02. SP2__Data Collection.pptx"
+          - "06. SP2_Qualification.pptx"
+      - "DEF51-52-Blower-IMC-Measurement.pdf"
+      - "DEF52_Contamination Test.pptx"
+      - "Gannt Chart_SP2XP_SFS Plan View.pdf"
+      - "LotID_RecipeName2026-05-14_12_45_14_Carrier1.1.001"
+      - "SP2_SP2XP S2 Report.pdf"
+
+  - "MDKL81 (DEF51)/":
+      - "100% IFC/":
+          - "Rev 4/": []
+      - "50% Review/": []
+      - "90% Review/": []
+      - "BKM/":
+          - "Collections/": []
+      - "Final Acceptance Test/":
+          - "Capture Rate/":
+              - "SPC_Health_Check01084.html"
+              - "SPC_Health_Check01085.html"
+              - "SPC_Health_Check01086.html"
+              - "SPC_Health_Check01087.html"
+              - "SPC_Health_Check01088.html"
+          - "PC/": []
+          - "DEF51_Final_Acceptance_Summary.pptx"
+          - "Signed FPAs_Archer powe_Archer AP_SP3_SP2.pdf"
+      - "Installation and Qualification/":
+          - "0272135-000_SP3_Phoenix 6.0_Illustrations/":
+              - "PDF/": []
+      - "Pedestal/":
+          - "Vibration Testing/": []
+      - "Post Install CPMs/": []
+      - "Qual/":
+          - "File01051.html"
+          - "File01057.html"
+      - "SOPs/":
+          - "02. SP3__Data Collection.pptx"
+          - "07. SP3_Reset and Recovery.pptx"
+      - "DEF51 Tool Install Spec.xlsx"
+      - "DEF51-52-Blower-IMC-Measurement.pdf"
+      - "Gannt Chart_SP3 Plan View.pdf"
+      - "SP3 Semi S2 Report.pdf"
+      - "SP3 Site Prep Checklist.pdf"
+
+  - "MPPK61 (PRF51)/":
+      - "50% Review/": []
+      - "90% Review/": []
+      - "Final Acceptance Data/":
+          - "TIE NX-Hybrid PRF51 SAT 20262910.pdf"
+      - "IFC/":
+          - "Files_MR2_PRF51_IFC_2026-06-10_01-50-29pm.zip"
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. NX-Hybrid WLI__Basic Tool Info.pptx"
+          - "01. NX-Hybrid WLI___Basic Operation.pptx"
+          - "02. NX-Hybrid WLI___Data Collection.pptx"
+          - "03. NX-Hybrid WLI_EMO Recovery.pptx"
+          - "04. NX-Hybrid WLI_Error Identification.pptx"
+          - "05.NX-Hybrid WLI_Principle Of Operation.pptx"
+          - "07. NX-Hybrid WLI_Reset and Recovery.pptx"
+      - "Spare Part Lists/":
+          - "TIE Spare Parts List.xlsx"
+      - "Eletrical Configuration.pptx"
+      - "Gannt Chart_ NX-Hybrid WLI_Installation Gantt Chart_TIE 20262509.xlsx"
+      - "Gantt Chart_NX-Hybrid WLI_Installation.xlsx"
+      - "NX-Hybrid WLI_Installation Gantt Chart_TIE 20260510.xlsx"
+      - "NX-HybridWLI PB_Ver.200_300 (TDK,Isolated AE).dwg"
+      - "NX-HybWLI-SI2-B0.1-EN (NX-Hybird WLI Safety  Installation) 2023 03 23.pdf"
+      - "Pedestal-Submittal-01.pdf"
+      - "PRF51 Measurement Data.pdf"
+      - "PRF51_NX-HybridWLI PB_Ver.200_300 (TDK,Isolated AE).pdf"
+      - "PRF51_SEMI FINAL Report_S2 0818E_S8-0218_PARK Systems_NX-Hybrid WLI_ver 0.pdf"
+      - "PRF51_Texas Institute for Electronics(NX-Hybrid WLI Interferom Ver. (200-300mm) Check List v3.22.0.pdf"
+
+  - "MSSX61 (SAM51)/":
+      - "100% IFC/": []
+      - "50% Review/": []
+      - "90% Review/": []
+      - "Final Acceptance Data/": []
+      - "Installation and Qualification/":
+          - "406 Dimensions and Facility InfoUT.pdf"
+          - "AW Pro 406 Facility Drawing (406-9010_A).pdf"
+          - "AWPRO Water Flow.pdf"
+      - "Pedestal/":
+          - "Vibration Testing/": []
+      - "Post Install CPMs/": []
+      - "SAM51 Sonix Autowafer Pro (Bridge)/":
+          - "SAM51_Fitup Docs/":
+              - "MR2_SAM51_50IFR_Compiled.pdf"
+          - "Process_Tool_Justification_SAM51 - Sonix Response 7-17-2024.pdf"
+          - "SAM51_AW Pro 406 Dimensions and Facility Info.pdf"
+      - "SOPs/":
+          - "00. AW Pro__Basic Tool Info.pptx"
+          - "01. AW Pro___Basic Operation.pptx"
+          - "02. AW Pro___Data Collection.pptx"
+          - "03. AW Pro_EMO Recovery.pptx"
+          - "04. AW Pro_Error Identification.pptx"
+          - "05. AW Pro_Principle Of Operation.pptx"
+          - "06. AW Pro_Qualification.pptx"
+          - "07. AW Pro_Reset and Recovery.pptx"
+      - "Spare Part Lists/":
+          - "Sonix ECHO_AWP_PM_Items_i.xlsx"
+      - "AutoWafer System Manual-Rev C.pdf"
+      - "Basic Training 21.pdf"
+      - "Files_MR2_SAM51_IFC_2025-12-19_11-12-15am.zip"
+      - "GanntChart_Sonix.xlsx"
+      - "SAM51 Sonix Autowafer Pro (Bridge)_2025-11-24_12-25-48pm.zip"
+      - "VAC-01949-29-SAM51-Pre-Installation Vibration Survey.docx"
+
+  - "MTCD81 (FPP51)/":
+      - "50% Review/":
+          - "MR2_FPP51_50IFR.pdf"
+      - "90% Review/": []
+      - "Final Acceptance Data/": []
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. __Basic Tool Info.pptx"
+          - "01. __Basic Operation.pptx"
+          - "02. __Data Collection.pptx"
+          - "03. _EMO Recovery.pptx"
+          - "04. _Error Identification.pptx"
+          - "05. _Principle Of Operation.pptx"
+          - "06. _Qualification.pptx"
+          - "07. _Reset and Recovery.pptx"
+      - "463 foup dimensions.pdf"
+      - "CDE 463 Facilities information.pptx"
+      - "CDE 463 floor plan.pptx"
+      - "CDE_Service.pdf"
+      - "FPP51_TPOC_Container Data.xlsx"
+      - "ResMap Model 463 foup info sheet.pdf"
+
+  - "MTKL61 (MTH52)/":
+      - "100% IFC/":
+          - "MR2_MTH52.R2.pdf"
+      - "50% Review/":
+          - "MTH52_50%_IFR.pdf"
+      - "90% Review/": []
+      - "Final Acceptance Data/": []
+      - "Final Acceptance Test/":
+          - "MTH52_Final_Acceptance_Summary.pptx"
+          - "University of Texas Montopolis_F5X_Pro_EX_CTD_S_O_ 150657_SN_7250982_CTD_Field.pdf"
+      - "Installation and Qualification/":
+          - "MTH52_04-0534-AL ASET F5X.pdf"
+      - "PC Qual/":
+          - "Particle_1/": []
+          - "MTKL61_MTH52_PCQual_Summary.pptx"
+      - "Pedestal/":
+          - "Vibration Testing/":
+              - "MTH52 Measurement Data.pdf"
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. __Basic Tool Info.pptx"
+          - "01. __Basic Operation.pptx"
+          - "02. __Data Collection.pptx"
+          - "03. _EMO Recovery.pptx"
+          - "04. _Error Identification.pptx"
+          - "05._Principle Of Operation.pptx"
+          - "06._Qualification.pptx"
+          - "07. _Reset and Recovery.pptx"
+      - "Exhaust RFI Submission.pptx"
+      - "Measurement data types for automation.xlsx"
+
+  - "MTNT61 (MTH54)/":
+      - "50% Review/": []
+      - "90% Review/":
+          - "MR2_MTH54_90IFR.pdf"
+      - "Filmstack Cards/":
+          - "Cu_2um.xml"
+          - "Cu_5kA.xml"
+          - "Cu_5kA_Folder.xml"
+      - "Final Acceptance Test/":
+          - "07102026_TIE_ECHO_Qual Report_Final.pdf"
+          - "ECHO314 Final Acceptance - PO2026C00243.pdf"
+      - "IFC/": []
+      - "Installation Documents/":
+          - "07092026_TIE_ECHO_Apps Qual Report.pdf"
+          - "773604 ECHO Semi S2.pdf"
+          - "Echo_Facility_Requirements_Manual_771222-compressed.pdf"
+          - "Echo_Facility_Requirements_Manual_793154_RevA.pdf"
+          - "Echo-Datasheet-Rev2.pdf"
+          - "Metapulse specs.pdf"
+      - "Pedestal/":
+          - "Vibration Testing/": []
+          - "MTH54-Approval Packet Updated 1.pdf"
+      - "Post Install CPMs/": []
+      - "SOPs/":
+          - "00. ECHO__Basic Tool Info.pptx"
+          - "04. ECHO_Error Identification.pptx"
+      - "Spare Part Lists/":
+          - "775181.pdf"
+      - "GanntChart_ECHO System Installation.xlsm"
+      - "ONTO Echo Manual.pdf"
+
+  - "New Camtek FRT/":
+      - "AT9019600C Facility Preparation for Eagle G5 CSI – AP with CAL2 251013.pdf"
+      - "Quotation #000306R2 - #16122 [70].pdf"
+      - "Quote - 20260725_UT_EagleG5_AP_IR-Rev3.pdf"
+
+  - "NIST/":
+      - "26404-001-135 Pitch_1.jpg"
+      - "26404-001-135 Pitch_2.jpg"
+      - "26404-001-135 Pitch_3.jpg"
+      - "26404-001-135 Pitch_4.jpg"
+      - "30916-06-25 Step Height_1.jpg"
+      - "30916-06-25 Step Height_2.jpg"
+      - "30916-06-25 Step Height_3.jpg"
+      - "32104-005 Step Height_1.jpg"
+      - "32104-005 Step Height_2.jpg"
+      - "32104-005 Step Height_3.jpg"
+      - "51136-017_Silica 90.6nm.jpg"
+      - "51139-021_Silica 295nm.jpg"
+      - "51153-024_Silca 41.3nm.jpg"
+      - "51156-018_Silica 65.6nm.jpg"
+      - "51159-004_Silica 150-200-300-600-800-1500_1.jpg"
+      - "51159-004_Silica 150-200-300-600-800-1500_2.jpg"
+      - "PRF51_MPPK61_1.jpg"
+      - "PRF51_MPPK61_2.jpg"
+
+  - "Post Tool Recovery PCs_7_31/":
+      - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-01_PC_1202026-08-05-12-43-49.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-03_PC_1202026-08-05-12-44-36.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-09_PC_1202026-08-05-12-45-22.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-11_PC_1202026-08-05-12-46-09.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-13_PC_1202026-08-05-12-46-56.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-15_PC_1202026-08-05-12-47-43.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_POST_BARE_Slot-17_PC_1202026-08-05-12-48-30.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-01_PC_1202026-08-05-11-17-38.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-03_PC_1202026-08-05-11-16-50.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-09_PC_1202026-08-05-11-16-03.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-11_PC_1202026-08-05-11-15-16.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-13_PC_1202026-08-05-11-14-29.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-15_PC_1202026-08-05-11-13-41.jpg"
+      - "-My Recipes-PROD-M_300_INSP_120NM_PRE_BARE_Slot-17_PC_1202026-08-05-11-12-55.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-01_PC_602026-08-05-12-35-30.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-03_PC_602026-08-05-12-36-17.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-09_PC_602026-08-05-12-37-04.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-11_PC_602026-08-05-12-37-51.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-13_PC_602026-08-05-12-38-39.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-15_PC_602026-08-05-12-39-26.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_POST_BARE_Slot-17_PC_602026-08-05-12-40-13.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-01_PC_602026-08-05-11-05-52.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-03_PC_602026-08-05-11-05-05.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-09_PC_602026-08-05-11-04-17.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-11_PC_602026-08-05-11-03-30.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-13_PC_602026-08-05-11-02-43.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-15_PC_602026-08-05-11-01-55.jpg"
+      - "-My Recipes-PROD-M_300_INSP_60NM_PRE_BARE_Slot-17_PC_602026-08-05-11-01-07.jpg"
+      - "PC Foup.png"
+
+  - "Purchase Specs/":
+      - "AOI51_UT-A_CirCl_6149554_5_Montopolis.pdf"
+      - "AOI52_Quote_-_20241210_UT-Austin_Montopolis_Hawk_Rev1 (1).pdf"
+      - "AOI54_UT-A_CV350_BDR300_6154117_3.pdf"
+      - "DEF51_UofT-A_Montopolis_SP3_BSIM_6148724_3.pdf"
+      - "DEF52_SP2XP_UofTX-Austin_6156683.pdf"
+      - "MTH52_UofT-A_6156685_F5X.pdf"
+      - "MTH54_Quote_CPQ-1811_-_TIE_Echo_with_EFEM_09022025 (1).pdf"
+      - "OVL51_6156844_1_Montopolis_Archer_AP.pdf"
+      - "PRF51_PARK_Quote_1_NX-Hybrid_WLI_Quote_UTAUSTIE.01.10.2023 (1).pdf"
+      - "RSM51_UT_2010156350_401078560S01_UT_TIE_SEMVision_G7E_QTE.pdf"
+      - "SEM51_UT_2010156338_401078530S01_UT_TIE_Verity_6i_3D_QTE.pdf"
+
+  - "Training Curriculums/":
+      - "AMAT/":
+          - "Signed Curriculum/":
+              - "TRAAMNA-1797.pdf"
+              - "TRAAMNA-1797.zip"
+              - "TRAAMNA-1798.pdf"
+              - "TRAAMNA-1799.pdf"
+              - "TRAAMNA-1800.pdf"
+              - "TRAAMNA-1801.pdf"
+          - "TRAAMNA-1797   TIE -  SEMVision G7 System Theory and Maintenance.pdf"
+          - "TRAAMNA-1799  TIE - VeritySEM 6i 300mm Engineer Level 1 Application.pdf"
+          - "TRAI2819-SG_Training_Schedule_VERITY SEM.pdf"
+
+  - "Cheat Sheet.xlsx"
+  - "Metro Characterization.docx"
+  - "METROCAL_REV2.pdf"
+  - "Metrology Training SignUp Sheet_Apps_Ops.xlsx"
+  - "Spec sheet C380-AF.pdf"
+  - "TIE Metro Characterization Request Form.docx"
+  - "TIE Metro Characterization Request PPT.pptx"
+  - "Weekly Report_MR 2 Metro Tool Install Status Summary.docx"

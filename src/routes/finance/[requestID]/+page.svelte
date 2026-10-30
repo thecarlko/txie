@@ -63,6 +63,8 @@
     }
 </script>
 
+<svelte:head><title>{data.requestID} · Finance · TxIE</title></svelte:head>
+
 <Tabs.Root bind:value={tab} class="txie-theme min-h-screen bg-txie-canvas text-txie-ink">
     {#key snapshot.id}
         <Proposal {snapshot} onnext={() => (tab = 'sourcing')} />
