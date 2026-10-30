@@ -96,7 +96,7 @@
             </Popover.Trigger>
             <Popover.Content align='end' class='grid w-auto gap-0 rounded-none border border-border p-0 shadow-txie-overlay ring-0'>
                 <RangeCalendar bind:value={range} numberOfMonths={2} minValue={minDate} maxValue={end}
-                    class='[--cell-radius:0] **:rounded-none'>
+                    class='[--cell-radius:0] [&_td:has([data-outside-month])]:invisible **:rounded-none'>
                     {#snippet day()}
                         <Day class='data-[range-start]:bg-brand-500 data-[range-start]:text-white data-[range-end]:bg-brand-500 data-[range-end]:text-white data-[range-middle]:text-brand-700 [&[data-today]:not([data-selected])]:bg-transparent [&[data-today]:not([data-selected])]:font-semibold [&[data-today]:not([data-selected])]:underline [&[data-today]:not([data-selected])]:decoration-brand-500 [&[data-today]:not([data-selected])]:underline-offset-4' />
                     {/snippet}
