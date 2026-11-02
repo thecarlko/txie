@@ -1,6 +1,9 @@
 <script lang='ts'>
     import TrendChart from '$lib/components/spc/trend-chart.svelte';
     import { RefreshCw } from '@lucide/svelte';
+    import { slide } from 'svelte/transition';
+    import { cubicOut } from 'svelte/easing';
+    import { prefersReducedMotion } from 'svelte/motion';
     import { limitFor } from './spc/limits';
     import type { Series } from './spc/analysis';
 
@@ -41,6 +44,7 @@
     };
 
     let open = $state<Record<string, boolean>>({});
+    const motion = $derived(!prefersReducedMotion.current);
 </script>
 
 <svelte:head><title>Metrology · TxIE</title></svelte:head>
@@ -82,7 +86,7 @@
                     <span class='font-mono text-xs text-muted-foreground tabular-nums'>{group.series.length}</span>
                 </summary>
                 {#if open[key]}
-                <div class='grid gap-10 pt-6'>
+                <div in:slide={{ duration: motion ? 400 : 0, easing: cubicOut }} class='grid gap-10 pt-6'>
                     {#each group.series as s (s.id)}
                         <TrendChart title={s.title} points={chart({ tool: name, series: s })} />
                     {/each}

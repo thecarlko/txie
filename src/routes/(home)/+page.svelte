@@ -1,11 +1,17 @@
 <script lang="ts">
-    import { ArrowUpRight, Banknote, Cpu, DraftingCompass, Pickaxe, Stone } from '@lucide/svelte';
+    import { Aperture, ArrowUpRight, Banknote, Cpu, Disc3, DraftingCompass, Droplets, Gauge, Layers, Package, Pickaxe, Stone } from '@lucide/svelte';
     import type { Component } from 'svelte';
 
     type Department = { url: string; title: string; description: string; icon: Component };
     const departments: Department[] = [
         { url: '/finance', title: 'Finance', description: 'Procurement requests and approvals', icon: Banknote },
         { url: '/metrology', title: 'Metrology', description: 'SPC trends and tool limits', icon: DraftingCompass },
+        { url: '/packaging', title: 'Packaging', description: 'Assembly and package processes', icon: Package },
+        { url: '/vacuum', title: 'Vacuum', description: 'Deposition and etch systems', icon: Gauge },
+        { url: '/lithography', title: 'Lithography', description: 'Patterning and exposure', icon: Aperture },
+        { url: '/cleanep', title: 'Clean & Electroplating', description: 'Wafer cleaning and electroplating', icon: Droplets },
+        { url: '/cmp', title: 'CMP', description: 'Chemical mechanical planarization', icon: Disc3 },
+        { url: '/bonding', title: 'Bonding', description: 'Wafer and die bonding', icon: Layers },
         { url: '/engineering', title: 'Engineering', description: 'Process and fab engineering', icon: Cpu },
         { url: '/equipment', title: 'Equipment', description: 'Tools, facilities and status', icon: Pickaxe },
         { url: 'https://coa-tracker-xi.vercel.app/', title: 'Materials', description: 'Certificates of analysis', icon: Stone },
@@ -16,7 +22,7 @@
 
 <svelte:head><title>TxIE · Fab Engineering</title></svelte:head>
 
-<section class='relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-8xl content-start gap-[6vh] overflow-hidden px-[3vw] pt-[12vh] pb-[6vh]'>
+<section class='relative mx-auto grid min-h-[calc(100vh-4rem)] max-w-8xl content-start gap-[6vh] overflow-hidden px-[3vw] pt-[12vh] pb-[16vh]'>
     <span aria-hidden='true' class='pointer-events-none absolute right-[-2vw] bottom-0 font-display text-[10vw]/none font-medium text-txie-watermark opacity-60 select-none'>TxIE</span>
 
     <header class='relative grid gap-4'>
