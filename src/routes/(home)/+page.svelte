@@ -14,7 +14,7 @@
         { url: '/bonding', title: 'Bonding', description: 'Wafer and die bonding', icon: Layers },
         { url: '/engineering', title: 'Engineering', description: 'Process and fab engineering', icon: Cpu },
         { url: '/equipment', title: 'Equipment', description: 'Tools, facilities and status', icon: Pickaxe },
-        { url: 'https://coa-tracker-xi.vercel.app/', title: 'Materials', description: 'Certificates of analysis', icon: Stone },
+        { url: 'https://material-quality.txie.org/', title: 'Materials', description: 'Certificates of analysis', icon: Stone },
     ];
 
     const index = (i: number) => String(i + 1).padStart(2, '0');

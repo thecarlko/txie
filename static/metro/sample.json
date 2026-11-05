@@ -1,0 +1,2861 @@
+{
+			"tool": "AOI52",
+			"scan": "spc_20260921",
+			"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+			"date": {
+				"value": "2026-09-21T14:30:38",
+				"cite": {
+					"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"line": 7
+				}
+			},
+			"dateSource": "tool",
+			"classes": {
+				"0": "No Revision",
+				"1": "1",
+				"2": "2",
+				"3": "3",
+				"4": "4",
+				"5": "5",
+				"6": "6",
+				"7": "7",
+				"8": "8",
+				"9": "9",
+				"10": "10",
+				"11": "11",
+				"12": "12",
+				"13": "13",
+				"14": "14",
+				"15": "15",
+				"16": "16",
+				"17": "17",
+				"18": "18",
+				"19": "19",
+				"20": "20",
+				"21": "21",
+				"22": "22",
+				"23": "23",
+				"24": "24",
+				"25": "25",
+				"26": "26",
+				"27": "27",
+				"28": "28",
+				"29": "29",
+				"30": "30",
+				"31": "31",
+				"32": "32",
+				"33": "33",
+				"34": "34",
+				"35": "35",
+				"36": "36",
+				"37": "37",
+				"38": "38",
+				"39": "39",
+				"40": "40",
+				"41": "41",
+				"42": "42",
+				"43": "43",
+				"44": "44",
+				"45": "45",
+				"46": "46",
+				"47": "47",
+				"48": "48",
+				"49": "49",
+				"50": "50",
+				"51": "51",
+				"52": "52",
+				"53": "53",
+				"54": "54",
+				"55": "55",
+				"56": "56",
+				"57": "57",
+				"58": "58",
+				"59": "59",
+				"60": "Good",
+				"61": "61",
+				"62": "62",
+				"63": "63",
+				"64": "64",
+				"65": "65",
+				"66": "66",
+				"67": "67",
+				"68": "68",
+				"69": "69",
+				"70": "70",
+				"71": "71",
+				"72": "72",
+				"73": "73",
+				"74": "74",
+				"75": "75",
+				"76": "76",
+				"77": "77",
+				"78": "78",
+				"79": "79",
+				"80": "80",
+				"81": "81",
+				"82": "82",
+				"83": "83",
+				"84": "84",
+				"85": "85",
+				"86": "86",
+				"87": "87",
+				"88": "88",
+				"89": "89",
+				"90": "90",
+				"91": "91",
+				"92": "92",
+				"93": "93",
+				"94": "94",
+				"95": "95",
+				"96": "96",
+				"97": "97",
+				"98": "98",
+				"99": "99",
+				"100": "100",
+				"101": "101",
+				"102": "Surface",
+				"103": "Solder",
+				"104": "Pad",
+				"105": "Gold",
+				"106": "Prob",
+				"107": "Height",
+				"108": "Coplanarity",
+				"109": "Volume",
+				"110": "Ink-Dot",
+				"111": "Topology",
+				"112": "Cluster",
+				"113": "SB Die",
+				"114": "Line Measure",
+				"115": "Street",
+				"116": "Overlay",
+				"117": "1.5 Dark",
+				"118": "2.5 Dark",
+				"119": "3.5 Dark",
+				"120": "5 Dark",
+				"121": "10 Dark",
+				"122": "SB Outlier",
+				"123": "Recess Pad",
+				"124": "MissingAF",
+				"125": "DefectiveAF",
+				"126": "DefectiveAF2",
+				"127": "RDL Measure",
+				"128": "Bsi",
+				"129": "Zone Coplanarity",
+				"130": "Ocr",
+				"131": "HeightSurveyor3D",
+				"132": "CCSHeightSurveyor3D",
+				"133": "LayerThickness",
+				"134": "1 Dark",
+				"135": "1 Bright",
+				"136": "1.5 Bright",
+				"137": "2.5 Bright",
+				"138": "3.5 Bright",
+				"139": "5 Bright",
+				"140": "10 Bright",
+				"141": "20 Dark",
+				"142": "20 Bright",
+				"143": "0.6 Dark",
+				"144": "0.6 Bright",
+				"145": "0.3 Dark",
+				"146": "0.3 Bright",
+				"147": "Dark Defect",
+				"148": "Bright Defect"
+			},
+			"defects": [
+				{
+					"values": {
+						"DEFECTID": 1,
+						"X": 2674.94257,
+						"Y": 34475.01668,
+						"XREL": 574.94257,
+						"YREL": 875.01668,
+						"XINDEX": 1,
+						"YINDEX": 16,
+						"XSIZE": 1.201,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.81108,
+						"DSIZE": 0.901,
+						"CLASSNUMBER": 146,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						1,
+						0
+					],
+					"class": "0.3 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 263
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 2,
+						"X": 2674.97047,
+						"Y": 15575.02932,
+						"XREL": 574.97047,
+						"YREL": 875.02932,
+						"XINDEX": 1,
+						"YINDEX": 7,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.72096,
+						"DSIZE": 0.849,
+						"CLASSNUMBER": 146,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						2,
+						0
+					],
+					"class": "0.3 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 264
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 3,
+						"X": 2674.91412,
+						"Y": 53375.18245,
+						"XREL": 574.91412,
+						"YREL": 875.18245,
+						"XINDEX": 1,
+						"YINDEX": 25,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.81108,
+						"DSIZE": 0.901,
+						"CLASSNUMBER": 146,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						3,
+						0
+					],
+					"class": "0.3 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 265
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 4,
+						"X": 575.06373,
+						"Y": 34925.1576,
+						"XREL": 575.06373,
+						"YREL": 1325.1576,
+						"XINDEX": 0,
+						"YINDEX": 16,
+						"XSIZE": 1.201,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.81108,
+						"DSIZE": 0.901,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						4,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 266
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 5,
+						"X": 575.03363,
+						"Y": 16025.47742,
+						"XREL": 575.03363,
+						"YREL": 1325.47742,
+						"XINDEX": 0,
+						"YINDEX": 7,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.08144,
+						"DSIZE": 1.04,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						5,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 267
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 6,
+						"X": 574.9306,
+						"Y": 53825.104,
+						"XREL": 574.9306,
+						"YREL": 1325.104,
+						"XINDEX": 0,
+						"YINDEX": 25,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.63084,
+						"DSIZE": 0.794,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						6,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 268
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 7,
+						"X": 4949.37026,
+						"Y": 34925.30016,
+						"XREL": 749.37026,
+						"YREL": 1325.30016,
+						"XINDEX": 2,
+						"YINDEX": 16,
+						"XSIZE": 1.201,
+						"YSIZE": 2.101,
+						"DEFECTAREA": 2.34312,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 143,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						7,
+						0
+					],
+					"class": "0.6 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 269
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 8,
+						"X": 4949.34717,
+						"Y": 16025.25129,
+						"XREL": 749.34717,
+						"YREL": 1325.25129,
+						"XINDEX": 2,
+						"YINDEX": 7,
+						"XSIZE": 1.201,
+						"YSIZE": 2.101,
+						"DEFECTAREA": 2.253,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 143,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						8,
+						0
+					],
+					"class": "0.6 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 270
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 9,
+						"X": 4949.40062,
+						"Y": 53825.33529,
+						"XREL": 749.40062,
+						"YREL": 1325.33529,
+						"XINDEX": 2,
+						"YINDEX": 25,
+						"XSIZE": 1.201,
+						"YSIZE": 2.101,
+						"DEFECTAREA": 2.34312,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 143,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						9,
+						0
+					],
+					"class": "0.6 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 271
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 10,
+						"X": 7451.67148,
+						"Y": 2975.13676,
+						"XREL": 1151.67148,
+						"YREL": 875.13676,
+						"XINDEX": 3,
+						"YINDEX": 1,
+						"XSIZE": 4.203,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 16.58209,
+						"DSIZE": 4.072,
+						"CLASSNUMBER": 138,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						10,
+						0
+					],
+					"class": "3.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 272
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 11,
+						"X": 7451.51188,
+						"Y": 40775.13536,
+						"XREL": 1151.51188,
+						"YREL": 875.13536,
+						"XINDEX": 3,
+						"YINDEX": 19,
+						"XSIZE": 4.203,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 16.49197,
+						"DSIZE": 4.061,
+						"CLASSNUMBER": 138,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						11,
+						0
+					],
+					"class": "3.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 273
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 12,
+						"X": 6946.47481,
+						"Y": 41248.4683,
+						"XREL": 646.47481,
+						"YREL": 1348.4683,
+						"XINDEX": 3,
+						"YINDEX": 19,
+						"XSIZE": 0.6,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.27036,
+						"DSIZE": 0.52,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 274
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 13,
+						"X": 7050.23108,
+						"Y": 34474.86176,
+						"XREL": 750.23108,
+						"YREL": 874.86176,
+						"XINDEX": 3,
+						"YINDEX": 16,
+						"XSIZE": 1.501,
+						"YSIZE": 1.501,
+						"DEFECTAREA": 1.89252,
+						"DSIZE": 1.376,
+						"CLASSNUMBER": 144,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						12,
+						0
+					],
+					"class": "0.6 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 275
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 14,
+						"X": 7050.28764,
+						"Y": 15575.02677,
+						"XREL": 750.28764,
+						"YREL": 875.02677,
+						"XINDEX": 3,
+						"YINDEX": 7,
+						"XSIZE": 1.501,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.253,
+						"DSIZE": 1.501,
+						"CLASSNUMBER": 144,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						13,
+						0
+					],
+					"class": "0.6 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 276
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 15,
+						"X": 7451.58714,
+						"Y": 21875.11202,
+						"XREL": 1151.58714,
+						"YREL": 875.11202,
+						"XINDEX": 3,
+						"YINDEX": 10,
+						"XSIZE": 4.203,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 16.58209,
+						"DSIZE": 4.072,
+						"CLASSNUMBER": 138,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						14,
+						0
+					],
+					"class": "3.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 277
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 16,
+						"X": 7050.32887,
+						"Y": 53375.05741,
+						"XREL": 750.32887,
+						"YREL": 875.05741,
+						"XINDEX": 3,
+						"YINDEX": 25,
+						"XSIZE": 1.201,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 1.98264,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 144,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						15,
+						0
+					],
+					"class": "0.6 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 278
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 17,
+						"X": 9547.81307,
+						"Y": 3425.00491,
+						"XREL": 1147.81307,
+						"YREL": 1325.00491,
+						"XINDEX": 4,
+						"YINDEX": 1,
+						"XSIZE": 3.602,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 14.59945,
+						"DSIZE": 3.602,
+						"CLASSNUMBER": 119,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						16,
+						0
+					],
+					"class": "3.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 279
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 18,
+						"X": 9249.1673,
+						"Y": 53825.12595,
+						"XREL": 849.1673,
+						"YREL": 1325.12595,
+						"XINDEX": 4,
+						"YINDEX": 25,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.26168,
+						"DSIZE": 1.123,
+						"CLASSNUMBER": 134,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						17,
+						0
+					],
+					"class": "1 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 280
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 19,
+						"X": 9547.84126,
+						"Y": 22325.11754,
+						"XREL": 1147.84126,
+						"YREL": 1325.11754,
+						"XINDEX": 4,
+						"YINDEX": 10,
+						"XSIZE": 3.602,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 14.77969,
+						"DSIZE": 3.602,
+						"CLASSNUMBER": 119,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						18,
+						0
+					],
+					"class": "3.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 281
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 20,
+						"X": 9547.82858,
+						"Y": 41225.06069,
+						"XREL": 1147.82858,
+						"YREL": 1325.06069,
+						"XINDEX": 4,
+						"YINDEX": 19,
+						"XSIZE": 3.602,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 14.50933,
+						"DSIZE": 3.602,
+						"CLASSNUMBER": 119,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						19,
+						0
+					],
+					"class": "3.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 282
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 21,
+						"X": 9009.67494,
+						"Y": 41277.70663,
+						"XREL": 609.67494,
+						"YREL": 1377.70663,
+						"XINDEX": 4,
+						"YINDEX": 19,
+						"XSIZE": 1.201,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.81108,
+						"DSIZE": 0.901,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 283
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 22,
+						"X": 9048.27468,
+						"Y": 41261.06188,
+						"XREL": 648.27468,
+						"YREL": 1361.06188,
+						"XINDEX": 4,
+						"YINDEX": 19,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.4506,
+						"DSIZE": 0.671,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 284
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 23,
+						"X": 9249.0177,
+						"Y": 34925.04518,
+						"XREL": 849.0177,
+						"YREL": 1325.04518,
+						"XINDEX": 4,
+						"YINDEX": 16,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.3518,
+						"DSIZE": 1.163,
+						"CLASSNUMBER": 134,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						20,
+						0
+					],
+					"class": "1 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 285
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 24,
+						"X": 9035.84199,
+						"Y": 34411.6848,
+						"XREL": 635.84199,
+						"YREL": 811.6848,
+						"XINDEX": 4,
+						"YINDEX": 16,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 0.9012,
+						"DSIZE": 0.949,
+						"CLASSNUMBER": 146,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 286
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 25,
+						"X": 9249.0338,
+						"Y": 16024.9003,
+						"XREL": 849.0338,
+						"YREL": 1324.9003,
+						"XINDEX": 4,
+						"YINDEX": 7,
+						"XSIZE": 1.201,
+						"YSIZE": 1.501,
+						"DEFECTAREA": 1.71228,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 134,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						21,
+						0
+					],
+					"class": "1 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 287
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 26,
+						"X": 11548.37553,
+						"Y": 7625.15561,
+						"XREL": 1048.37553,
+						"YREL": 1325.15561,
+						"XINDEX": 5,
+						"YINDEX": 3,
+						"XSIZE": 3.002,
+						"YSIZE": 3.302,
+						"DEFECTAREA": 8.92188,
+						"DSIZE": 2.987,
+						"CLASSNUMBER": 118,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						22,
+						0
+					],
+					"class": "2.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 288
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 27,
+						"X": 11551.48015,
+						"Y": 5075.16812,
+						"XREL": 1051.48015,
+						"YREL": 875.16812,
+						"XINDEX": 5,
+						"YINDEX": 2,
+						"XSIZE": 3.002,
+						"YSIZE": 3.002,
+						"DEFECTAREA": 8.29104,
+						"DSIZE": 2.879,
+						"CLASSNUMBER": 137,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						23,
+						0
+					],
+					"class": "2.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 289
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 28,
+						"X": 11449.02575,
+						"Y": 11825.0734,
+						"XREL": 949.02575,
+						"YREL": 1325.0734,
+						"XINDEX": 5,
+						"YINDEX": 5,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.79372,
+						"DSIZE": 1.671,
+						"CLASSNUMBER": 117,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						24,
+						0
+					],
+					"class": "1.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 290
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 29,
+						"X": 11450.66836,
+						"Y": 9275.09366,
+						"XREL": 950.66836,
+						"YREL": 875.09366,
+						"XINDEX": 5,
+						"YINDEX": 4,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.88384,
+						"DSIZE": 1.698,
+						"CLASSNUMBER": 136,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						25,
+						0
+					],
+					"class": "1.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 291
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 30,
+						"X": 11063.40771,
+						"Y": 9754.16,
+						"XREL": 563.40771,
+						"YREL": 1354.16,
+						"XINDEX": 5,
+						"YINDEX": 4,
+						"XSIZE": 1.501,
+						"YSIZE": 1.501,
+						"DEFECTAREA": 1.62216,
+						"DSIZE": 1.274,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 292
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 31,
+						"X": 15279.82164,
+						"Y": 53798.9072,
+						"XREL": 579.82164,
+						"YREL": 1298.9072,
+						"XINDEX": 7,
+						"YINDEX": 25,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.81108,
+						"DSIZE": 0.901,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						26,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 293
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 32,
+						"X": 15351.0061,
+						"Y": 53832.19798,
+						"XREL": 651.0061,
+						"YREL": 1332.19798,
+						"XINDEX": 7,
+						"YINDEX": 25,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.63084,
+						"DSIZE": 0.794,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 294
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 33,
+						"X": 11551.34082,
+						"Y": 23975.19949,
+						"XREL": 1051.34082,
+						"YREL": 875.19949,
+						"XINDEX": 5,
+						"YINDEX": 11,
+						"XSIZE": 3.002,
+						"YSIZE": 3.002,
+						"DEFECTAREA": 8.20092,
+						"DSIZE": 2.864,
+						"CLASSNUMBER": 137,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						27,
+						0
+					],
+					"class": "2.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 295
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 34,
+						"X": 11551.22148,
+						"Y": 42875.20037,
+						"XREL": 1051.22148,
+						"YREL": 875.20037,
+						"XINDEX": 5,
+						"YINDEX": 20,
+						"XSIZE": 3.002,
+						"YSIZE": 3.002,
+						"DEFECTAREA": 8.29104,
+						"DSIZE": 2.879,
+						"CLASSNUMBER": 137,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						28,
+						0
+					],
+					"class": "2.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 296
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 35,
+						"X": 11548.44221,
+						"Y": 26525.21476,
+						"XREL": 1048.44221,
+						"YREL": 1325.21476,
+						"XINDEX": 5,
+						"YINDEX": 12,
+						"XSIZE": 3.002,
+						"YSIZE": 3.302,
+						"DEFECTAREA": 8.74164,
+						"DSIZE": 2.957,
+						"CLASSNUMBER": 118,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						29,
+						0
+					],
+					"class": "2.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 297
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 36,
+						"X": 11350.48919,
+						"Y": 32375.07887,
+						"XREL": 850.48919,
+						"YREL": 875.07887,
+						"XINDEX": 5,
+						"YINDEX": 15,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.17156,
+						"DSIZE": 1.082,
+						"CLASSNUMBER": 135,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						30,
+						0
+					],
+					"class": "1 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 298
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 37,
+						"X": 11111.33796,
+						"Y": 32863.11401,
+						"XREL": 611.33796,
+						"YREL": 1363.11401,
+						"XINDEX": 5,
+						"YINDEX": 15,
+						"XSIZE": 0.6,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.27036,
+						"DSIZE": 0.52,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 299
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 38,
+						"X": 11086.5651,
+						"Y": 34972.55411,
+						"XREL": 586.5651,
+						"YREL": 1372.55411,
+						"XINDEX": 5,
+						"YINDEX": 16,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.63084,
+						"DSIZE": 0.794,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						31,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 300
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 39,
+						"X": 11350.66109,
+						"Y": 51275.17237,
+						"XREL": 850.66109,
+						"YREL": 875.17237,
+						"XINDEX": 5,
+						"YINDEX": 24,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.17156,
+						"DSIZE": 1.082,
+						"CLASSNUMBER": 135,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						32,
+						0
+					],
+					"class": "1 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 301
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 40,
+						"X": 11026.10684,
+						"Y": 51775.80392,
+						"XREL": 526.10684,
+						"YREL": 1375.80392,
+						"XINDEX": 5,
+						"YINDEX": 24,
+						"XSIZE": 0.6,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.27036,
+						"DSIZE": 0.52,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 302
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 41,
+						"X": 11017.92934,
+						"Y": 51747.50376,
+						"XREL": 517.92934,
+						"YREL": 1347.50376,
+						"XINDEX": 5,
+						"YINDEX": 24,
+						"XSIZE": 0.6,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.36048,
+						"DSIZE": 0.6,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 303
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 42,
+						"X": 11448.86961,
+						"Y": 49625.23702,
+						"XREL": 948.86961,
+						"YREL": 1325.23702,
+						"XINDEX": 5,
+						"YINDEX": 23,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.97396,
+						"DSIZE": 1.725,
+						"CLASSNUMBER": 117,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						33,
+						0
+					],
+					"class": "1.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 304
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 43,
+						"X": 11449.03165,
+						"Y": 30725.17263,
+						"XREL": 949.03165,
+						"YREL": 1325.17263,
+						"XINDEX": 5,
+						"YINDEX": 14,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.88384,
+						"DSIZE": 1.698,
+						"CLASSNUMBER": 117,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						34,
+						0
+					],
+					"class": "1.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 305
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 44,
+						"X": 11350.66514,
+						"Y": 13475.14434,
+						"XREL": 850.66514,
+						"YREL": 875.14434,
+						"XINDEX": 5,
+						"YINDEX": 6,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.17156,
+						"DSIZE": 1.082,
+						"CLASSNUMBER": 135,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						35,
+						0
+					],
+					"class": "1 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 306
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 45,
+						"X": 11548.28266,
+						"Y": 45425.31834,
+						"XREL": 1048.28266,
+						"YREL": 1325.31834,
+						"XINDEX": 5,
+						"YINDEX": 21,
+						"XSIZE": 3.002,
+						"YSIZE": 3.302,
+						"DEFECTAREA": 8.74164,
+						"DSIZE": 2.957,
+						"CLASSNUMBER": 118,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						36,
+						0
+					],
+					"class": "2.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 307
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 46,
+						"X": 11450.89718,
+						"Y": 28175.04625,
+						"XREL": 950.89718,
+						"YREL": 875.04625,
+						"XINDEX": 5,
+						"YINDEX": 13,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.88384,
+						"DSIZE": 1.698,
+						"CLASSNUMBER": 136,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						37,
+						0
+					],
+					"class": "1.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 308
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 47,
+						"X": 11450.6756,
+						"Y": 47075.07846,
+						"XREL": 950.6756,
+						"YREL": 875.07846,
+						"XINDEX": 5,
+						"YINDEX": 22,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.88384,
+						"DSIZE": 1.698,
+						"CLASSNUMBER": 136,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						38,
+						0
+					],
+					"class": "1.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 309
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 48,
+						"X": 11019.89394,
+						"Y": 53847.42038,
+						"XREL": 519.89394,
+						"YREL": 1347.42038,
+						"XINDEX": 5,
+						"YINDEX": 25,
+						"XSIZE": 1.801,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.8024,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						39,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 310
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 49,
+						"X": 17429.75662,
+						"Y": 53798.01793,
+						"XREL": 629.75662,
+						"YREL": 1298.01793,
+						"XINDEX": 8,
+						"YINDEX": 25,
+						"XSIZE": 1.201,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.81108,
+						"DSIZE": 0.901,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						40,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 311
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 50,
+						"X": 19474.81956,
+						"Y": 34924.98308,
+						"XREL": 574.81956,
+						"YREL": 1324.98308,
+						"XINDEX": 9,
+						"YINDEX": 16,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.72096,
+						"DSIZE": 0.849,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						41,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 312
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 51,
+						"X": 19514.80665,
+						"Y": 34884.85877,
+						"XREL": 614.80665,
+						"YREL": 1284.85877,
+						"XINDEX": 9,
+						"YINDEX": 16,
+						"XSIZE": 0.6,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.27036,
+						"DSIZE": 0.52,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 313
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 52,
+						"X": 19475.02168,
+						"Y": 53825.31965,
+						"XREL": 575.02168,
+						"YREL": 1325.31965,
+						"XINDEX": 9,
+						"YINDEX": 25,
+						"XSIZE": 0.901,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.54072,
+						"DSIZE": 0.6,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						42,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 314
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 53,
+						"X": 21574.90064,
+						"Y": 53375.03627,
+						"XREL": 574.90064,
+						"YREL": 875.03627,
+						"XINDEX": 10,
+						"YINDEX": 25,
+						"XSIZE": 1.201,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.81108,
+						"DSIZE": 0.901,
+						"CLASSNUMBER": 146,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						43,
+						0
+					],
+					"class": "0.3 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 315
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 54,
+						"X": 21574.95835,
+						"Y": 15575.07579,
+						"XREL": 574.95835,
+						"YREL": 875.07579,
+						"XINDEX": 10,
+						"YINDEX": 7,
+						"XSIZE": 1.201,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.81108,
+						"DSIZE": 0.901,
+						"CLASSNUMBER": 146,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						44,
+						0
+					],
+					"class": "0.3 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 316
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 55,
+						"X": 21574.97853,
+						"Y": 34474.91629,
+						"XREL": 574.97853,
+						"YREL": 874.91629,
+						"XINDEX": 10,
+						"YINDEX": 16,
+						"XSIZE": 0.901,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.54072,
+						"DSIZE": 0.6,
+						"CLASSNUMBER": 146,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						45,
+						0
+					],
+					"class": "0.3 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 317
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 56,
+						"X": 23849.29138,
+						"Y": 16025.12687,
+						"XREL": 749.29138,
+						"YREL": 1325.12687,
+						"XINDEX": 11,
+						"YINDEX": 7,
+						"XSIZE": 1.501,
+						"YSIZE": 2.402,
+						"DEFECTAREA": 2.61348,
+						"DSIZE": 1.501,
+						"CLASSNUMBER": 143,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						46,
+						0
+					],
+					"class": "0.6 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 318
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 57,
+						"X": 23849.42656,
+						"Y": 53825.29069,
+						"XREL": 749.42656,
+						"YREL": 1325.29069,
+						"XINDEX": 11,
+						"YINDEX": 25,
+						"XSIZE": 1.201,
+						"YSIZE": 2.101,
+						"DEFECTAREA": 2.52336,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 143,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						47,
+						0
+					],
+					"class": "0.6 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 319
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 58,
+						"X": 23849.36919,
+						"Y": 34925.1085,
+						"XREL": 749.36919,
+						"YREL": 1325.1085,
+						"XINDEX": 11,
+						"YINDEX": 16,
+						"XSIZE": 1.501,
+						"YSIZE": 2.101,
+						"DEFECTAREA": 2.79372,
+						"DSIZE": 1.501,
+						"CLASSNUMBER": 143,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						48,
+						0
+					],
+					"class": "0.6 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 320
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 59,
+						"X": 25950.35059,
+						"Y": 15574.77261,
+						"XREL": 750.35059,
+						"YREL": 874.77261,
+						"XINDEX": 12,
+						"YINDEX": 7,
+						"XSIZE": 1.201,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.07276,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 144,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						49,
+						0
+					],
+					"class": "0.6 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 321
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 60,
+						"X": 25773.3909,
+						"Y": 15514.23466,
+						"XREL": 573.3909,
+						"YREL": 814.23466,
+						"XINDEX": 12,
+						"YINDEX": 7,
+						"XSIZE": 0.901,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 0.63084,
+						"DSIZE": 0.794,
+						"CLASSNUMBER": 146,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 322
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 61,
+						"X": 25950.2208,
+						"Y": 34475.13198,
+						"XREL": 750.2208,
+						"YREL": 875.13198,
+						"XINDEX": 12,
+						"YINDEX": 16,
+						"XSIZE": 1.201,
+						"YSIZE": 1.501,
+						"DEFECTAREA": 1.8024,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 144,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						50,
+						0
+					],
+					"class": "0.6 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 323
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 62,
+						"X": 25950.31311,
+						"Y": 53374.96411,
+						"XREL": 750.31311,
+						"YREL": 874.96411,
+						"XINDEX": 12,
+						"YINDEX": 25,
+						"XSIZE": 1.201,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 1.98264,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 144,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						51,
+						0
+					],
+					"class": "0.6 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 324
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 63,
+						"X": 26351.50715,
+						"Y": 40775.26602,
+						"XREL": 1151.50715,
+						"YREL": 875.26602,
+						"XINDEX": 12,
+						"YINDEX": 19,
+						"XSIZE": 4.203,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 16.31173,
+						"DSIZE": 4.039,
+						"CLASSNUMBER": 138,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						52,
+						0
+					],
+					"class": "3.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 325
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 64,
+						"X": 26351.6894,
+						"Y": 21875.0759,
+						"XREL": 1151.6894,
+						"YREL": 875.0759,
+						"XINDEX": 12,
+						"YINDEX": 10,
+						"XSIZE": 4.203,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 16.13149,
+						"DSIZE": 4.016,
+						"CLASSNUMBER": 138,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						53,
+						0
+					],
+					"class": "3.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 326
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 65,
+						"X": 25807.23386,
+						"Y": 22274.71962,
+						"XREL": 607.23386,
+						"YREL": 1274.71962,
+						"XINDEX": 12,
+						"YINDEX": 10,
+						"XSIZE": 1.501,
+						"YSIZE": 1.501,
+						"DEFECTAREA": 1.8024,
+						"DSIZE": 1.343,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 327
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 66,
+						"X": 26351.69469,
+						"Y": 2974.87675,
+						"XREL": 1151.69469,
+						"YREL": 874.87675,
+						"XINDEX": 12,
+						"YINDEX": 1,
+						"XSIZE": 4.203,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 15.95125,
+						"DSIZE": 3.994,
+						"CLASSNUMBER": 138,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						54,
+						0
+					],
+					"class": "3.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 328
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 67,
+						"X": 30451.37243,
+						"Y": 23975.11788,
+						"XREL": 1051.37243,
+						"YREL": 875.11788,
+						"XINDEX": 14,
+						"YINDEX": 11,
+						"XSIZE": 3.002,
+						"YSIZE": 3.002,
+						"DEFECTAREA": 8.29104,
+						"DSIZE": 2.879,
+						"CLASSNUMBER": 137,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						55,
+						0
+					],
+					"class": "2.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 329
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 68,
+						"X": 29945.56129,
+						"Y": 24357.98059,
+						"XREL": 545.56129,
+						"YREL": 1257.98059,
+						"XINDEX": 14,
+						"YINDEX": 11,
+						"XSIZE": 0.6,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.36048,
+						"DSIZE": 0.6,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 330
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 69,
+						"X": 30451.48875,
+						"Y": 42875.21587,
+						"XREL": 1051.48875,
+						"YREL": 875.21587,
+						"XINDEX": 14,
+						"YINDEX": 20,
+						"XSIZE": 3.002,
+						"YSIZE": 3.002,
+						"DEFECTAREA": 8.29104,
+						"DSIZE": 2.879,
+						"CLASSNUMBER": 137,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						56,
+						0
+					],
+					"class": "2.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 331
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 70,
+						"X": 30250.5285,
+						"Y": 32375.28539,
+						"XREL": 850.5285,
+						"YREL": 875.28539,
+						"XINDEX": 14,
+						"YINDEX": 15,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.17156,
+						"DSIZE": 1.082,
+						"CLASSNUMBER": 135,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						57,
+						0
+					],
+					"class": "1 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 332
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 71,
+						"X": 30350.65923,
+						"Y": 28175.25203,
+						"XREL": 950.65923,
+						"YREL": 875.25203,
+						"XINDEX": 14,
+						"YINDEX": 13,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.88384,
+						"DSIZE": 1.698,
+						"CLASSNUMBER": 136,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						58,
+						0
+					],
+					"class": "1.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 333
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 72,
+						"X": 28447.67961,
+						"Y": 22325.0799,
+						"XREL": 1147.67961,
+						"YREL": 1325.0799,
+						"XINDEX": 13,
+						"YINDEX": 10,
+						"XSIZE": 3.602,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 14.77969,
+						"DSIZE": 3.602,
+						"CLASSNUMBER": 119,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						59,
+						0
+					],
+					"class": "3.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 334
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 73,
+						"X": 28447.57147,
+						"Y": 3425.26365,
+						"XREL": 1147.57147,
+						"YREL": 1325.26365,
+						"XINDEX": 13,
+						"YINDEX": 1,
+						"XSIZE": 3.602,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 14.59945,
+						"DSIZE": 3.602,
+						"CLASSNUMBER": 119,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						60,
+						0
+					],
+					"class": "3.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 335
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 74,
+						"X": 30250.4464,
+						"Y": 13475.21982,
+						"XREL": 850.4464,
+						"YREL": 875.21982,
+						"XINDEX": 14,
+						"YINDEX": 6,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.17156,
+						"DSIZE": 1.082,
+						"CLASSNUMBER": 135,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						61,
+						0
+					],
+					"class": "1 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 336
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 75,
+						"X": 29983.54955,
+						"Y": 13875.41121,
+						"XREL": 583.54955,
+						"YREL": 1275.41121,
+						"XINDEX": 14,
+						"YINDEX": 6,
+						"XSIZE": 0.901,
+						"YSIZE": 0.901,
+						"DEFECTAREA": 0.63084,
+						"DSIZE": 0.794,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 337
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 76,
+						"X": 30448.46934,
+						"Y": 26525.37942,
+						"XREL": 1048.46934,
+						"YREL": 1325.37942,
+						"XINDEX": 14,
+						"YINDEX": 12,
+						"XSIZE": 3.002,
+						"YSIZE": 3.302,
+						"DEFECTAREA": 8.83176,
+						"DSIZE": 2.972,
+						"CLASSNUMBER": 118,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						62,
+						0
+					],
+					"class": "2.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 338
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 77,
+						"X": 30349.0467,
+						"Y": 11825.10038,
+						"XREL": 949.0467,
+						"YREL": 1325.10038,
+						"XINDEX": 14,
+						"YINDEX": 5,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.88384,
+						"DSIZE": 1.698,
+						"CLASSNUMBER": 117,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						63,
+						0
+					],
+					"class": "1.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 339
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 78,
+						"X": 30350.68891,
+						"Y": 9275.05569,
+						"XREL": 950.68891,
+						"YREL": 875.05569,
+						"XINDEX": 14,
+						"YINDEX": 4,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.88384,
+						"DSIZE": 1.698,
+						"CLASSNUMBER": 136,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						64,
+						0
+					],
+					"class": "1.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 340
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 79,
+						"X": 30448.39594,
+						"Y": 7625.37351,
+						"XREL": 1048.39594,
+						"YREL": 1325.37351,
+						"XINDEX": 14,
+						"YINDEX": 3,
+						"XSIZE": 3.002,
+						"YSIZE": 3.302,
+						"DEFECTAREA": 8.65152,
+						"DSIZE": 2.941,
+						"CLASSNUMBER": 118,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						65,
+						0
+					],
+					"class": "2.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 341
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 80,
+						"X": 30451.26299,
+						"Y": 5075.14974,
+						"XREL": 1051.26299,
+						"YREL": 875.14974,
+						"XINDEX": 14,
+						"YINDEX": 2,
+						"XSIZE": 3.002,
+						"YSIZE": 3.002,
+						"DEFECTAREA": 8.38116,
+						"DSIZE": 2.895,
+						"CLASSNUMBER": 137,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						66,
+						0
+					],
+					"class": "2.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 342
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 81,
+						"X": 30349.11853,
+						"Y": 30725.03795,
+						"XREL": 949.11853,
+						"YREL": 1325.03795,
+						"XINDEX": 14,
+						"YINDEX": 14,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.97396,
+						"DSIZE": 1.725,
+						"CLASSNUMBER": 117,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						67,
+						0
+					],
+					"class": "1.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 343
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 82,
+						"X": 30448.25547,
+						"Y": 45425.33754,
+						"XREL": 1048.25547,
+						"YREL": 1325.33754,
+						"XINDEX": 14,
+						"YINDEX": 21,
+						"XSIZE": 3.002,
+						"YSIZE": 3.302,
+						"DEFECTAREA": 8.74164,
+						"DSIZE": 2.957,
+						"CLASSNUMBER": 118,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						68,
+						0
+					],
+					"class": "2.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 344
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 83,
+						"X": 28149.01881,
+						"Y": 53825.26843,
+						"XREL": 849.01881,
+						"YREL": 1325.26843,
+						"XINDEX": 13,
+						"YINDEX": 25,
+						"XSIZE": 1.201,
+						"YSIZE": 1.501,
+						"DEFECTAREA": 1.53204,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 134,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						69,
+						0
+					],
+					"class": "1 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 345
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 84,
+						"X": 28148.93446,
+						"Y": 34925.2453,
+						"XREL": 848.93446,
+						"YREL": 1325.2453,
+						"XINDEX": 13,
+						"YINDEX": 16,
+						"XSIZE": 1.201,
+						"YSIZE": 1.501,
+						"DEFECTAREA": 1.62216,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 134,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						70,
+						0
+					],
+					"class": "1 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 346
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 85,
+						"X": 28149.01527,
+						"Y": 16025.0399,
+						"XREL": 849.01527,
+						"YREL": 1325.0399,
+						"XINDEX": 13,
+						"YINDEX": 7,
+						"XSIZE": 1.201,
+						"YSIZE": 1.501,
+						"DEFECTAREA": 1.53204,
+						"DSIZE": 1.201,
+						"CLASSNUMBER": 134,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						71,
+						0
+					],
+					"class": "1 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 347
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 86,
+						"X": 30348.84344,
+						"Y": 49624.99492,
+						"XREL": 948.84344,
+						"YREL": 1324.99492,
+						"XINDEX": 14,
+						"YINDEX": 23,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.97396,
+						"DSIZE": 1.725,
+						"CLASSNUMBER": 117,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						72,
+						0
+					],
+					"class": "1.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 348
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 87,
+						"X": 29942.14887,
+						"Y": 49670.64478,
+						"XREL": 542.14887,
+						"YREL": 1370.64478,
+						"XINDEX": 14,
+						"YINDEX": 23,
+						"XSIZE": 2.101,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.88384,
+						"DSIZE": 1.698,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 349
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 88,
+						"X": 29930.46691,
+						"Y": 49646.79466,
+						"XREL": 530.46691,
+						"YREL": 1346.79466,
+						"XINDEX": 14,
+						"YINDEX": 23,
+						"XSIZE": 2.402,
+						"YSIZE": 2.101,
+						"DEFECTAREA": 4.0554,
+						"DSIZE": 2.014,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 350
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 89,
+						"X": 30250.66822,
+						"Y": 51275.05141,
+						"XREL": 850.66822,
+						"YREL": 875.05141,
+						"XINDEX": 14,
+						"YINDEX": 24,
+						"XSIZE": 1.201,
+						"YSIZE": 1.201,
+						"DEFECTAREA": 1.17156,
+						"DSIZE": 1.082,
+						"CLASSNUMBER": 135,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						73,
+						0
+					],
+					"class": "1 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 351
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 90,
+						"X": 30350.89934,
+						"Y": 47075.17519,
+						"XREL": 950.89934,
+						"YREL": 875.17519,
+						"XINDEX": 14,
+						"YINDEX": 22,
+						"XSIZE": 1.801,
+						"YSIZE": 1.801,
+						"DEFECTAREA": 2.97396,
+						"DSIZE": 1.725,
+						"CLASSNUMBER": 136,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						74,
+						0
+					],
+					"class": "1.5 Bright",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 352
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 91,
+						"X": 28447.84196,
+						"Y": 41225.15891,
+						"XREL": 1147.84196,
+						"YREL": 1325.15891,
+						"XINDEX": 13,
+						"YINDEX": 19,
+						"XSIZE": 3.602,
+						"YSIZE": 4.203,
+						"DEFECTAREA": 14.50933,
+						"DSIZE": 3.602,
+						"CLASSNUMBER": 119,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						75,
+						0
+					],
+					"class": "3.5 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 353
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 92,
+						"X": 27858.01787,
+						"Y": 41179.43057,
+						"XREL": 558.01787,
+						"YREL": 1279.43057,
+						"XINDEX": 13,
+						"YINDEX": 19,
+						"XSIZE": 0.901,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.36048,
+						"DSIZE": 0.6,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 354
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 93,
+						"X": 27855.57776,
+						"Y": 41253.96695,
+						"XREL": 555.57776,
+						"YREL": 1353.96695,
+						"XINDEX": 13,
+						"YINDEX": 19,
+						"XSIZE": 0.6,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.36048,
+						"DSIZE": 0.6,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 355
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 94,
+						"X": 27935.96404,
+						"Y": 41220.80004,
+						"XREL": 635.96404,
+						"YREL": 1320.80004,
+						"XINDEX": 13,
+						"YINDEX": 19,
+						"XSIZE": 0.901,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.36048,
+						"DSIZE": 0.6,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 0
+					},
+					"images": [
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 356
+					}
+				},
+				{
+					"values": {
+						"DEFECTID": 95,
+						"X": 19474.84053,
+						"Y": 16025.23235,
+						"XREL": 574.84053,
+						"YREL": 1325.23235,
+						"XINDEX": 9,
+						"YINDEX": 7,
+						"XSIZE": 0.901,
+						"YSIZE": 0.6,
+						"DEFECTAREA": 0.54072,
+						"DSIZE": 0.6,
+						"CLASSNUMBER": 145,
+						"TEST": 1,
+						"IMAGECOUNT": 1
+					},
+					"images": [
+						1,
+						76,
+						0
+					],
+					"class": "0.3 Dark",
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 357
+					}
+				}
+			],
+			"summary": [
+				{
+					"values": {
+						"TESTNO": 1,
+						"NDEFECT": 95,
+						"DEFDENSITY": 0,
+						"NDIE": 87,
+						"NDEFDIE": 76
+					},
+					"cite": {
+						"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+						"line": 360
+					}
+				}
+			],
+			"images": [
+				"Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921-25.jpeg",
+				"Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.tif"
+			],
+			"warnings": [],
+			"station": {
+				"value": [
+					"Camtek",
+					"Hawk",
+					"Hawk1"
+				],
+				"cite": {
+					"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"line": 4
+				}
+			},
+			"lot": {
+				"value": "spc_20260921",
+				"cite": {
+					"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"line": 8
+				}
+			},
+			"recipe": {
+				"value": "CTW SPC x15.0",
+				"cite": {
+					"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"line": 10
+				}
+			},
+			"device": {
+				"value": "CTW SPC x15.0_v2",
+				"cite": {
+					"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"line": 11
+				}
+			},
+			"wafer": {
+				"value": "25",
+				"cite": {
+					"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"line": 12
+				}
+			},
+			"slot": {
+				"value": 25,
+				"cite": {
+					"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"line": 13
+				}
+			},
+			"area": {
+				"value": 383670000,
+				"cite": {
+					"file": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"line": 260
+				}
+			}
+}

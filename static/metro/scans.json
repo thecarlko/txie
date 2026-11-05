@@ -1,0 +1,357 @@
+{
+	"root": "/Volumes/FabData",
+	"crawled": "2026-11-03T22:25:14.052Z",
+	"scans": [
+		{
+			"tool": "AOI52",
+			"id": "spc_20260921",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "spc_20260921",
+					"path": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.txt",
+					"name": "spc_20260921_25.txt",
+					"ext": ".txt",
+					"bytes": 12057,
+					"mtime": "2026-09-21T19:31:21.700Z",
+					"created": "2026-09-21T16:21:09.347Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "spc_20260921",
+					"path": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921-25.jpeg",
+					"name": "spc_20260921-25.jpeg",
+					"ext": ".jpeg",
+					"bytes": 151405,
+					"mtime": "2026-09-21T19:31:22.263Z",
+					"created": "2026-09-21T16:21:09.980Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "spc_20260921",
+					"path": "Raw_Data/AOI52/KLARF/spc_20260921/spc_20260921_25.tif",
+					"name": "spc_20260921_25.tif",
+					"ext": ".tif",
+					"bytes": 12298472,
+					"mtime": "2026-09-21T19:31:21.696Z",
+					"created": "2026-09-21T19:31:19.825Z"
+				}
+			],
+			"other": []
+		},
+		{
+			"tool": "AOI52",
+			"id": "SPC_2",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_2",
+					"path": "Raw_Data/AOI52/KLARF/SPC_2/SPC_2_0.txt",
+					"name": "SPC_2_0.txt",
+					"ext": ".txt",
+					"bytes": 3186,
+					"mtime": "2026-10-13T15:23:29.872Z",
+					"created": "2026-10-13T15:23:29.871Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_2",
+					"path": "Raw_Data/AOI52/KLARF/SPC_2/SPC_2-0.jpeg",
+					"name": "SPC_2-0.jpeg",
+					"ext": ".jpeg",
+					"bytes": 127691,
+					"mtime": "2026-10-13T15:23:30.444Z",
+					"created": "2026-10-13T15:23:30.436Z"
+				}
+			],
+			"other": []
+		},
+		{
+			"tool": "AOI52",
+			"id": "SPC_10202016",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_10202016",
+					"path": "Raw_Data/AOI52/KLARF/SPC_10202016/SPC_10202016_0.txt",
+					"name": "SPC_10202016_0.txt",
+					"ext": ".txt",
+					"bytes": 12221,
+					"mtime": "2026-10-20T14:37:14.437Z",
+					"created": "2026-10-20T14:37:14.435Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_10202016",
+					"path": "Raw_Data/AOI52/KLARF/SPC_10202016/SPC_10202016-0.jpeg",
+					"name": "SPC_10202016-0.jpeg",
+					"ext": ".jpeg",
+					"bytes": 151473,
+					"mtime": "2026-10-20T14:37:14.987Z",
+					"created": "2026-10-20T14:37:14.977Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "SPC_10202016",
+					"path": "Raw_Data/AOI52/KLARF/SPC_10202016/SPC_10202016_0.tif",
+					"name": "SPC_10202016_0.tif",
+					"ext": ".tif",
+					"bytes": 12283016,
+					"mtime": "2026-10-20T14:37:14.433Z",
+					"created": "2026-10-20T14:37:12.685Z"
+				}
+			],
+			"other": []
+		},
+		{
+			"tool": "AOI52",
+			"id": "SPC_101420262",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_101420262",
+					"path": "Raw_Data/AOI52/KLARF/SPC_101420262/SPC_101420262_0.txt",
+					"name": "SPC_101420262_0.txt",
+					"ext": ".txt",
+					"bytes": 33429,
+					"mtime": "2026-10-14T16:04:33.735Z",
+					"created": "2026-10-14T16:02:33.444Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_101420262",
+					"path": "Raw_Data/AOI52/KLARF/SPC_101420262/SPC_101420262-0.jpeg",
+					"name": "SPC_101420262-0.jpeg",
+					"ext": ".jpeg",
+					"bytes": 145427,
+					"mtime": "2026-10-14T16:04:34.298Z",
+					"created": "2026-10-14T16:02:34.003Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "SPC_101420262",
+					"path": "Raw_Data/AOI52/KLARF/SPC_101420262/SPC_101420262_0.tif",
+					"name": "SPC_101420262_0.tif",
+					"ext": ".tif",
+					"bytes": 13617064,
+					"mtime": "2026-10-14T16:04:33.729Z",
+					"created": "2026-10-14T16:04:31.812Z"
+				}
+			],
+			"other": []
+		},
+		{
+			"tool": "AOI52",
+			"id": "SPC_101420261",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_101420261",
+					"path": "Raw_Data/AOI52/KLARF/SPC_101420261/SPC_101420261_0.txt",
+					"name": "SPC_101420261_0.txt",
+					"ext": ".txt",
+					"bytes": 12357,
+					"mtime": "2026-10-14T16:00:22.889Z",
+					"created": "2026-10-14T16:00:22.888Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_101420261",
+					"path": "Raw_Data/AOI52/KLARF/SPC_101420261/SPC_101420261-0.jpeg",
+					"name": "SPC_101420261-0.jpeg",
+					"ext": ".jpeg",
+					"bytes": 152249,
+					"mtime": "2026-10-14T16:00:23.449Z",
+					"created": "2026-10-14T16:00:23.440Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "SPC_101420261",
+					"path": "Raw_Data/AOI52/KLARF/SPC_101420261/SPC_101420261_0.tif",
+					"name": "SPC_101420261_0.tif",
+					"ext": ".tif",
+					"bytes": 12272856,
+					"mtime": "2026-10-14T16:00:22.885Z",
+					"created": "2026-10-14T16:00:21.028Z"
+				}
+			],
+			"other": []
+		},
+		{
+			"tool": "AOI52",
+			"id": "SPC_10132026",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_10132026",
+					"path": "Raw_Data/AOI52/KLARF/SPC_10132026/SPC_10132026_25.txt",
+					"name": "SPC_10132026_25.txt",
+					"ext": ".txt",
+					"bytes": 3167,
+					"mtime": "2026-10-13T14:45:46.322Z",
+					"created": "2026-10-13T14:45:46.297Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_10132026",
+					"path": "Raw_Data/AOI52/KLARF/SPC_10132026/SPC_10132026-25.jpeg",
+					"name": "SPC_10132026-25.jpeg",
+					"ext": ".jpeg",
+					"bytes": 127329,
+					"mtime": "2026-10-13T14:45:46.934Z",
+					"created": "2026-10-13T14:45:46.923Z"
+				}
+			],
+			"other": []
+		},
+		{
+			"tool": "AOI52",
+			"id": "SPC_1",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_1",
+					"path": "Raw_Data/AOI52/KLARF/SPC_1/SPC_1_0.txt",
+					"name": "SPC_1_0.txt",
+					"ext": ".txt",
+					"bytes": 3181,
+					"mtime": "2026-10-13T15:21:50.105Z",
+					"created": "2026-10-13T15:21:50.103Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC_1",
+					"path": "Raw_Data/AOI52/KLARF/SPC_1/SPC_1-0.jpeg",
+					"name": "SPC_1-0.jpeg",
+					"ext": ".jpeg",
+					"bytes": 127222,
+					"mtime": "2026-10-13T15:21:50.667Z",
+					"created": "2026-10-13T15:21:50.658Z"
+				}
+			],
+			"other": []
+		},
+		{
+			"tool": "AOI52",
+			"id": "SPC3_10132026",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC3_10132026",
+					"path": "Raw_Data/AOI52/KLARF/SPC3_10132026/SPC3_10132026_25.txt",
+					"name": "SPC3_10132026_25.txt",
+					"ext": ".txt",
+					"bytes": 12071,
+					"mtime": "2026-10-13T16:28:01.820Z",
+					"created": "2026-10-13T16:28:01.819Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC3_10132026",
+					"path": "Raw_Data/AOI52/KLARF/SPC3_10132026/SPC3_10132026-25.jpeg",
+					"name": "SPC3_10132026-25.jpeg",
+					"ext": ".jpeg",
+					"bytes": 151501,
+					"mtime": "2026-10-13T16:28:02.373Z",
+					"created": "2026-10-13T16:28:02.363Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "SPC3_10132026",
+					"path": "Raw_Data/AOI52/KLARF/SPC3_10132026/SPC3_10132026_25.tif",
+					"name": "SPC3_10132026_25.tif",
+					"ext": ".tif",
+					"bytes": 12323736,
+					"mtime": "2026-10-13T16:28:01.817Z",
+					"created": "2026-10-13T16:27:59.998Z"
+				}
+			],
+			"other": []
+		},
+		{
+			"tool": "AOI52",
+			"id": "SPC",
+			"klarf": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC",
+					"path": "Raw_Data/AOI52/KLARF/SPC/SPC_0.txt",
+					"name": "SPC_0.txt",
+					"ext": ".txt",
+					"bytes": 12309,
+					"mtime": "2026-10-13T16:15:28.466Z",
+					"created": "2026-10-13T16:15:28.461Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "SPC",
+					"path": "Raw_Data/AOI52/KLARF/SPC/SPC_25.txt",
+					"name": "SPC_25.txt",
+					"ext": ".txt",
+					"bytes": 12509,
+					"mtime": "2026-10-28T18:16:20.398Z",
+					"created": "2026-09-11T15:35:17.277Z"
+				}
+			],
+			"images": [
+				{
+					"tool": "AOI52",
+					"scan": "SPC",
+					"path": "Raw_Data/AOI52/KLARF/SPC/SPC-0.jpeg",
+					"name": "SPC-0.jpeg",
+					"ext": ".jpeg",
+					"bytes": 150606,
+					"mtime": "2026-10-13T16:15:29.011Z",
+					"created": "2026-10-13T16:15:29.002Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "SPC",
+					"path": "Raw_Data/AOI52/KLARF/SPC/SPC-25.jpeg",
+					"name": "SPC-25.jpeg",
+					"ext": ".jpeg",
+					"bytes": 150696,
+					"mtime": "2026-10-28T18:16:20.947Z",
+					"created": "2026-09-11T15:35:17.807Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "SPC",
+					"path": "Raw_Data/AOI52/KLARF/SPC/SPC_0.tif",
+					"name": "SPC_0.tif",
+					"ext": ".tif",
+					"bytes": 12267224,
+					"mtime": "2026-10-13T16:15:28.459Z",
+					"created": "2026-10-13T16:15:26.593Z"
+				},
+				{
+					"tool": "AOI52",
+					"scan": "SPC",
+					"path": "Raw_Data/AOI52/KLARF/SPC/SPC_25.tif",
+					"name": "SPC_25.tif",
+					"ext": ".tif",
+					"bytes": 12334648,
+					"mtime": "2026-10-28T18:16:20.394Z",
+					"created": "2026-10-28T18:16:18.637Z"
+				}
+			],
+			"other": []
+		}
+	]
+}

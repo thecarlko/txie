@@ -8,7 +8,7 @@
     import * as Popover from '$lib/components/popover';
     import { Day, RangeCalendar } from '$lib/components/range-calendar';
     import Hover from './hover.svelte';
-    import { sharepointUrl } from '../../../routes/metrology/spc/sharepoint';
+    import { fileUrl } from '$lib/spc/files';
 
     type Cite = { file: string; line?: number; lines?: [number, number]; table?: string; row?: number };
     type Point = { date: string; value: number; lowerSpec: number | null; upperSpec: number | null; file?: string; cite?: Cite[]; dateSource?: string };
@@ -174,7 +174,7 @@
             {@const { date, file, cite = [], dateSource } = shown}
             <span class='flex items-center gap-2 {pinned ? "text-foreground" : ""}'>
                 {cite.map(where).filter(Boolean).join('; ')}
-                {#if file}<a href={sharepointUrl(file)} target='_blank' rel='noopener' title={file} aria-label='Open {file} in SharePoint' class='grid place-items-center hover:text-brand-500 focus-visible:outline-2 focus-visible:outline-ring'><FileText class='size-[0.875rem]' aria-hidden='true' /></a>{/if}
+                {#if file}<a href={fileUrl(file)} title={file} aria-label='Open {file} on the FabData share' class='grid place-items-center hover:text-brand-500 focus-visible:outline-2 focus-visible:outline-ring'><FileText class='size-[0.875rem]' aria-hidden='true' /></a>{/if}
             </span>
             <span>{stamp(date)}{#if dateSource && dateNote[dateSource]} · {dateNote[dateSource]}{/if}</span>
         {:else if stats}

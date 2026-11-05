@@ -1,7 +1,7 @@
 import { write } from 'bun'
 import { scan } from './crawler'
 import { match } from './match'
-import { parse } from './parser'
+import { parse } from './scraper'
 import { analyze } from './analysis'
 
 const folder = '/Users/crl/OneDrive/TIE Internal-Equipment - Shared Documents/Equipment/MR2/Tools/0_Metrology/All_Metro_SPC_MR2'

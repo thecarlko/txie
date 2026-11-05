@@ -1,4 +1,4 @@
-import type { Cite, Parsed, Row } from './parser'
+import type { Cite, Parsed, Row } from './scraper'
 
 /** One value from one run, with where and when it was recorded. */
 export type Point = { date: string; value: number; file: string; cite: Cite[]; dateSource: Parsed['dateSource'] }
