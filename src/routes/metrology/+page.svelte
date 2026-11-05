@@ -1,6 +1,6 @@
 <script lang='ts'>
     import TrendChart from '$lib/components/spc/trend-chart.svelte';
-    import { RefreshCw, Send } from '@lucide/svelte';
+    import { FileDown, RefreshCw, ScreenShare } from '@lucide/svelte';
     import { slide } from 'svelte/transition';
     import { cubicOut } from 'svelte/easing';
     import { prefersReducedMotion } from 'svelte/motion';
@@ -13,6 +13,9 @@
     const tools = $derived(Object.entries(data.analysis).filter(([, series]) => series.length).map(([name, series]) => ({ name, series })));
     let selected = $state('');
     const tool = $derived(tools.find(({ name }) => name === selected) ?? tools[0]);
+
+    const secondary =
+        'flex w-fit items-center gap-2 border border-brand-500 bg-transparent px-4 py-2 text-sm font-medium text-brand-600 transition-colors hover:border-brand-600 hover:bg-brand-50 dark:hover:bg-brand-950/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500';
 
     const chart = ({ tool, series: { id, points } }: { tool: string; series: Series }) => {
         const { upper = null, lower = null } = limitFor(tool, id) ?? {};
@@ -52,14 +55,18 @@
 <section class='grid gap-16 pb-32 md:grid-cols-[5fr_7fr] md:gap-24'>
     <div class='grid content-start gap-6 md:sticky md:top-[calc(4vw+15rem)] md:self-start'>
         <div class='flex flex-wrap gap-3'>
-        <button type='button' class='group flex w-fit items-center gap-2 bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500'>
-            <RefreshCw class='size-4 transition-transform duration-500 group-hover:rotate-180' strokeWidth={1.5} />
-            Re-Run SPC
-        </button>
-        <button type='button' class='group flex w-fit items-center gap-2 border border-brand-500 px-4 py-2 text-sm font-medium text-brand-600 transition-colors hover:bg-brand-50 dark:hover:bg-brand-950/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500'>
-            <Send class='size-4 transition-transform duration-300 group-hover:translate-x-0.5' strokeWidth={1.5} />
-            Forward to MES
-        </button>
+            <button type='button' class='group flex w-fit items-center gap-2 bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500'>
+                <RefreshCw class='size-4 transition-transform duration-500 group-hover:rotate-180' strokeWidth={1.5} />
+                Re-Run SPC
+            </button>
+            <button type='button' class={secondary}>
+                <FileDown class='size-4' strokeWidth={1.5} />
+                Download SPC Data
+            </button>
+            <button type='button' class={secondary}>
+                <ScreenShare class='size-4' strokeWidth={1.5} />
+                Forward to MES
+            </button>
         </div>
         <ul class='grid content-start gap-1' aria-label='Tools'>
         {#each tools as { name, series }, i (name)}
